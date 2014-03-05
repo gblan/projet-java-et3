@@ -1,0 +1,27 @@
+ Classe Jeu : 
+ 	- Menu du Haut :
+ 		-Reserve:
+ 			-Pion
+ 		-Niveau
+ 		-Bouton menu
+ 	- Zone de jeu :
+ 		-Background
+ 		-Grille
+ 			-Case Vide
+ 			-Case Pleine
+ 			-Case avec Pion
+ 			-Case Possible
+ 			-Case Selectionnees
+ 				
+ 				
+ 	Cercle->(Case -> 
+ 	        (Pion ->
+ 	        (Bouton menu ->
+ 	        
+ 	       
+ 	    I) 1 jeu
+ 	    II) Menu, selecteur de niveaux
+ 	    III) Sauvegarde et reprise
+ 	    IV) Generateur de niveau
+ 	    V) Createur de niveau
+ 	    VI) Graphisme
