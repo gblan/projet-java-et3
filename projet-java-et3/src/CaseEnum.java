@@ -4,5 +4,6 @@ public enum CaseEnum {
 	OCCUPEE,
 	CONTAMINEE,
 	SURVOLEE,
+	POTENTIELLE,
 	DESACTIVEE;
 }
