@@ -12,7 +12,7 @@ public class Sauvegarde {
 	 
 		try {
 	 
-			output = new FileOutputStream("sauvegarde.properties");
+			output = new FileOutputStream("test.properties");
 	 
 			// set the properties value
 			prop.setProperty(key, value);

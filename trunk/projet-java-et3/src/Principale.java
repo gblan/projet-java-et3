@@ -13,7 +13,9 @@ public class Principale extends JDialog {
 	}
 
 	public static void main(String[] arg) {
-		Principale p1 = new Principale();
+		/*Principale p1 = new Principale();*/
+		Sauvegarde s1 = new Sauvegarde();
+		s1.saveProperties("cheval", "blanc");
 	}
 
 }
