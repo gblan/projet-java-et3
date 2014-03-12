@@ -53,10 +53,29 @@ public class Principale extends JFrame {
 			  jeu.getPionSelectionne().setCenter_y( jeu.getPionSelectionne().getCenter_y()+translate_y);
 			  setClique_x(evt.getX());
 			  setClique_y(evt.getY());
+			  caseSurvoleeListener();
 			  jeu.repaint() ;
 	    	}
 	    }
 	};
+	
+	public void caseSurvoleeListener() {
+
+		for(int i=0;i<jeu.getReserve().size();i++){
+			for(int j=0;j<jeu.getGrille().size();j++){
+				for(int k=0;k<jeu.getGrille().get(j).size();k++){
+					if (jeu.getGrille().get(j).get(k).intersect(jeu.getReserve().get(i))) {
+						jeu.getGrille().get(j).get(k).setEtat(CaseEnum.POTENTIELLESURVOLEE);
+					}
+					else {
+						jeu.getGrille().get(j).get(k).setEtat(CaseEnum.DISPONIBLE);
+					}
+				}
+			}
+			
+		}
+		
+	}
 	
 	public Principale(String title, int width, int height) {
 		super(title) ;

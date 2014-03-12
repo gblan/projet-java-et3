@@ -2,6 +2,8 @@ package et3_project;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class Case extends Component{
 	
@@ -42,8 +44,10 @@ public class Case extends Component{
 		this.y = y;
 	}
 	
-	public void intersect(Pions p){
-		
+	public boolean intersect(Pions p){
+		Rectangle2D rectPion = new Rectangle2D.Float(p.getCenter_x(), p.getCenter_y(), 2*p.getRayon(), 2*p.getRayon());
+		Ellipse2D.Float cercleCase = new Ellipse2D.Float(x, y, HEIGHT, HEIGHT);
+		return cercleCase.intersects(rectPion);
 	}
 	
 	public void paint(Graphics graphics){
@@ -80,6 +84,10 @@ public class Case extends Component{
 			case POTENTIELLE:
 				break;
 			case POTENTIELLESURVOLEE:
+				graphics.setColor(Color.black) ;
+				graphics.drawOval(x+(HEIGHT/10), y+(HEIGHT/10)+(HEIGHT/20), 2*r-(HEIGHT/5), 2*r-(HEIGHT/5));
+				graphics.setColor(new Color(255, 203, 96)); 
+				graphics.fillOval(x+(HEIGHT/10), y+(HEIGHT/10)+(HEIGHT/20), 2*r-(HEIGHT/5), 2*r-(HEIGHT/5));
 				break;
 			case DESACTIVEE:
 				break;
