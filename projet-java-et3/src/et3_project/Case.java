@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
-public class Case extends Component {
+public class Case extends Component{
 	
 	/**
 	 * 
@@ -40,6 +40,10 @@ public class Case extends Component {
 	}
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public void intersect(Pions p){
+		
 	}
 	
 	public void paint(Graphics graphics){
