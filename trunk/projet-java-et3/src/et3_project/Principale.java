@@ -3,8 +3,14 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
+
+
 
 public class Principale extends JFrame {
 
@@ -12,7 +18,46 @@ public class Principale extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Jeu jeu;
+	private int clique_x;
+	private int clique_y;
+	
+	
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
+	}
 
+	private MouseAdapter selectionnerPions = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			setClique_x(evt.getX());
+			setClique_y(evt.getY());
+			for (int i=0; i<jeu.getReserve().size();i++){
+				if (jeu.getReserve().get(i).contains(clique_x,clique_y)){
+					jeu.setPionSelectionne(jeu.getReserve().get(i));
+					jeu.repaint() ;
+				}
+			}
+		}
+		public void mouseReleased(MouseEvent evt) {
+			jeu.setPionSelectionne(null); 
+			jeu.repaint() ;
+		}
+	};
+	
+	private MouseMotionAdapter selectionnerPionsMotion = new MouseMotionAdapter(){	
+	    public void mouseDragged(MouseEvent evt) {
+	    	if (jeu.getPionSelectionne() !=null){
+	    	  int translate_x=evt.getX()- getClique_x() ;
+			  int translate_y=evt.getY()- getClique_y() ;
+			  jeu.getPionSelectionne().setCenter_x( jeu.getPionSelectionne().getCenter_x()+translate_x);
+			  jeu.getPionSelectionne().setCenter_y( jeu.getPionSelectionne().getCenter_y()+translate_y);
+			  setClique_x(evt.getX());
+			  setClique_y(evt.getY());
+			  jeu.repaint() ;
+	    	}
+	    }
+	};
+	
 	public Principale(String title, int width, int height) {
 		super(title) ;
 		setBounds(width, height, 0, 0);
@@ -43,15 +88,39 @@ public class Principale extends JFrame {
 		ligne3.add(c7);
 		ligne3.add(c8);
 		grille.add(ligne3);
+		
+		ArrayList<Pions> reserve = new ArrayList<Pions>();
+		Pions p1 = new Pions(PionsEnum.TYPE6, 50, 10);
+		reserve.add(p1);
+		
 		//listeCase.add(c2);
 		// FIN TEST
-		Jeu j = new Jeu(grille);
-		j.setBackground(Color.WHITE) ;
-		j.setPreferredSize(new Dimension(width,height));
-		pane.add(j);
+		
+		setJeu(new Jeu(grille,reserve));
+		jeu.setBackground(Color.WHITE) ;
+		jeu.setPreferredSize(new Dimension(width,height));
+		jeu.addMouseListener(selectionnerPions);
+		jeu.addMouseMotionListener(selectionnerPionsMotion);
+		pane.add(jeu);
 		pack();
 		setVisible(true);
 
+	}
+
+	public int getClique_x() {
+		return clique_x;
+	}
+
+	public void setClique_x(int clique_x) {
+		this.clique_x = clique_x;
+	}
+
+	public int getClique_y() {
+		return clique_y;
+	}
+
+	public void setClique_y(int clique_y) {
+		this.clique_y = clique_y;
 	}
 
 	public static void main(String[] arg) {
