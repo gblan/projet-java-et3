@@ -49,6 +49,14 @@ public class Jeu extends Component{
 	
 	
 
+	public ArrayList<ArrayList<Case>> getGrille() {
+		return grille;
+	}
+
+	public void setGrille(ArrayList<ArrayList<Case>> grille) {
+		this.grille = grille;
+	}
+
 	public void paint(Graphics graphics) {
     	
 		   Graphics2D g = (Graphics2D)graphics ;
