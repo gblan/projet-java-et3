@@ -1,0 +1,11 @@
+package et3_project;
+
+public enum CaseEnum {
+	DISPONIBLE,
+	OCCUPEE,
+	CONTAMINEE,
+	SURVOLEE,
+	POTENTIELLE,
+	POTENTIELLESURVOLEE,
+	DESACTIVEE;
+}
