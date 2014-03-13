@@ -73,63 +73,19 @@ public class Principale extends JFrame {
 	public void caseSurvoleeListener() {
 
 		for (int i = 0; i < jeu.getReserve().size(); i++) {
-			for (int j = 0; j < jeu.getGrille().size(); j++) {
-				for (int k = 0; k < jeu.getGrille().get(j).size(); k++) {
-					if (jeu.getGrille().get(j).get(k)
+			for (int j = 0; j < jeu.getGrille().getGrille().size(); j++) {
+				for (int k = 0; k < jeu.getGrille().getGrille().get(j).size(); k++) {
+					if (jeu.getGrille().getGrille().get(j).get(k)
 							.intersect(jeu.getReserve().get(i))) {
-						jeu.getGrille().get(j).get(k)
+						jeu.getGrille().getGrille().get(j).get(k)
 								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
 					} else {
-						jeu.getGrille().get(j).get(k)
+						jeu.getGrille().getGrille().get(j).get(k)
 								.setEtat(CaseEnum.DISPONIBLE);
 					}
 				}
 			}
-
 		}
-
-	}
-
-	/**
-	 * 
-	 * @param x
-	 *            position dans les properties
-	 * @param y
-	 *            position dans les properties
-	 * @param posX
-	 *            position exacte de la cellule
-	 * @param posY
-	 *            position exacte de la cellule
-	 */
-
-	private static ArrayList<ArrayList<Case>> buildGrid(String filename) {
-		ArrayList<ArrayList<Case>> grille = new ArrayList<ArrayList<Case>>();
-		ArrayList<Case> ligne = new ArrayList<Case>();
-		Case c = new Case(null, 0, 0);
-		String caseGrille = "";
-		String typeCase;
-		CaseEnum caseEnum = null;
-
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 7; j++) {
-				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
-				c = Case.getPositions(j, i);
-				typeCase = Sauvegarde.retrieveProperties(filename, caseGrille);
-
-				if (typeCase.equals(CaseEnum.DESACTIVEE.toString())) {
-					caseEnum = CaseEnum.DESACTIVEE;
-				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
-					caseEnum = CaseEnum.DISPONIBLE;
-				}
-
-				c.setEtat(caseEnum);
-
-				ligne.add(c);
-			}
-			grille.add(ligne);
-		}
-
-		return grille;
 	}
 
 	/**
@@ -147,7 +103,7 @@ public class Principale extends JFrame {
 
 		// DEBUT TEST
 
-		ArrayList<ArrayList<Case>> grille = Grille
+		Grille grille = Grille
 				.buildGrid("level1.properties");
 
 		ArrayList<Pions> reserve = new ArrayList<Pions>();

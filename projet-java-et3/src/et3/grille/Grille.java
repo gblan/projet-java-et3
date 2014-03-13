@@ -8,8 +8,35 @@ import et3.sauvegarde.Sauvegarde;
 
 public class Grille {
 
-	public static ArrayList<ArrayList<Case>> buildGrid(String filename) {
-		ArrayList<ArrayList<Case>> grille = new ArrayList<ArrayList<Case>>();
+	private ArrayList<ArrayList<Case>> grille;	
+
+	public ArrayList<ArrayList<Case>> getGrille() {
+		return grille;
+	}
+
+	public void setGrille(ArrayList<ArrayList<Case>> grille) {
+		this.grille = grille;
+	}	
+
+	public Grille(ArrayList<ArrayList<Case>> grille) {
+		super();
+		this.grille = grille;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 *            position dans les properties
+	 * @param y
+	 *            position dans les properties
+	 * @param posX
+	 *            position exacte de la cellule
+	 * @param posY
+	 *            position exacte de la cellule
+	 */
+	public static Grille buildGrid(String filename) {
+		
+		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = new ArrayList<Case>();
 		Case c = new Case(null, 0, 0);
 		String caseGrille = "";
@@ -32,7 +59,7 @@ public class Grille {
 
 				ligne.add(c);
 			}
-			grille.add(ligne);
+			grille.getGrille().add(ligne);
 		}
 
 		return grille;
