@@ -1,5 +1,5 @@
 package et3_project;
 
-public class Menu {
+public class CaseListener {
 
 }
