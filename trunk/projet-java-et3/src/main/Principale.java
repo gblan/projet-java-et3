@@ -10,10 +10,10 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
-import et3.cases.Case;
-import et3.cases.CaseEnum;
+import et3.grille.Grille;
+import et3.grille.cases.Case;
+import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.pions.Pions;
 import et3.pions.PionsEnum;
@@ -102,7 +102,7 @@ public class Principale extends JFrame {
 	 *            position exacte de la cellule
 	 */
 
-	private ArrayList<ArrayList<Case>> buildGrid(String filename) {
+	private static ArrayList<ArrayList<Case>> buildGrid(String filename) {
 		ArrayList<ArrayList<Case>> grille = new ArrayList<ArrayList<Case>>();
 		ArrayList<Case> ligne = new ArrayList<Case>();
 		Case c = new Case(null, 0, 0);
@@ -121,7 +121,7 @@ public class Principale extends JFrame {
 				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
 					caseEnum = CaseEnum.DISPONIBLE;
 				}
-				
+
 				c.setEtat(caseEnum);
 
 				ligne.add(c);
@@ -146,8 +146,9 @@ public class Principale extends JFrame {
 		pane.setLayout(new FlowLayout());
 
 		// DEBUT TEST
-		
-		ArrayList<ArrayList<Case>> grille = buildGrid("level1.properties");
+
+		ArrayList<ArrayList<Case>> grille = Grille
+				.buildGrid("level1.properties");
 
 		ArrayList<Pions> reserve = new ArrayList<Pions>();
 		Pions p1 = new Pions(PionsEnum.TYPE6, 50, 10);
@@ -189,7 +190,7 @@ public class Principale extends JFrame {
 	public static void main(String[] arg) {
 		Principale p1 = new Principale("Sporos", 300, 500);
 		p1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		p1.setResizable(false);
+		// p1.setResizable(false);
 		/*
 		 * Sauvegarde s1 = new Sauvegarde(); s1.saveProperties("cheval",
 		 * "blanc");

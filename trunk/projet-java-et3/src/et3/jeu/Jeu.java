@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import et3.cases.Case;
+import et3.grille.cases.Case;
 import et3.pions.Pions;
 
 public class Jeu extends Component {

@@ -1,4 +1,4 @@
-package et3.cases;
+package et3.grille.cases;
 
 import java.awt.Color;
 import java.awt.Component;

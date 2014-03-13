@@ -1,5 +1,11 @@
 package et3.menus;
 
-public class Menu {
+import javax.swing.JFrame;
 
+public class Menu extends JFrame {
+	
+	public Menu(){
+		super();
+	}
+	
 }
