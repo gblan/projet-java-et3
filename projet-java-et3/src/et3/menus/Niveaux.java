@@ -6,5 +6,5 @@ import et3.jeu.Jeu;
 
 public class Niveaux {
 
-	private ArrayList<Jeu> listeJeu;
+	private ArrayList<Jeu> listeNiveau;
 }
