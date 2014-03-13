@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.pions.Pions;
 
@@ -19,7 +20,7 @@ public class Jeu extends Component {
 	/*
 	 * En attendant les .properties pour Tester l'affichage A MODIFIER
 	 */
-	private ArrayList<ArrayList<Case>> grille;
+	private Grille grille;
 	private ArrayList<Pions> reserve;
 	private Pions pionSelectionne;
 
@@ -27,7 +28,7 @@ public class Jeu extends Component {
 	 * FIN A MODIFIER
 	 */
 
-	public Jeu(ArrayList<ArrayList<Case>> grille, ArrayList<Pions> reserve) {
+	public Jeu(Grille grille, ArrayList<Pions> reserve) {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
@@ -49,11 +50,11 @@ public class Jeu extends Component {
 		this.pionSelectionne = pionSelectionne;
 	}
 
-	public ArrayList<ArrayList<Case>> getGrille() {
+	public Grille getGrille() {
 		return grille;
 	}
 
-	public void setGrille(ArrayList<ArrayList<Case>> grille) {
+	public void setGrille(Grille grille) {
 		this.grille = grille;
 	}
 
@@ -62,9 +63,9 @@ public class Jeu extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		for (int i = 0; i < this.grille.size(); i++) {
-			for (int j = 0; j < grille.get(i).size(); j++) {
-				grille.get(i).get(j).paint(graphics);
+		for (int i = 0; i < this.grille.getGrille().size(); i++) {
+			for (int j = 0; j < grille.getGrille().get(i).size(); j++) {
+				grille.getGrille().get(i).get(j).paint(graphics);
 			}
 		}
 		for (int i = 0; i < this.reserve.size(); i++) {
