@@ -3,10 +3,6 @@ package main;
 
 import et3.menus.Menu;
 
-import et3.grille.cases.Case;
-import et3.grille.cases.CaseEnum;
-import et3.sauvegarde.Sauvegarde;
-
 public class Test {
 
 	public static void main(String[] args) {
