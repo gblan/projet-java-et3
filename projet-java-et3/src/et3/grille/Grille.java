@@ -8,7 +8,7 @@ import et3.sauvegarde.Sauvegarde;
 
 public class Grille {
 
-	private ArrayList<ArrayList<Case>> grille;	
+	private ArrayList<ArrayList<Case>> grille;
 
 	public ArrayList<ArrayList<Case>> getGrille() {
 		return grille;
@@ -16,7 +16,7 @@ public class Grille {
 
 	public void setGrille(ArrayList<ArrayList<Case>> grille) {
 		this.grille = grille;
-	}	
+	}
 
 	public Grille(ArrayList<ArrayList<Case>> grille) {
 		super();
@@ -35,7 +35,7 @@ public class Grille {
 	 *            position exacte de la cellule
 	 */
 	public static Grille buildGrid(String filename) {
-		
+
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = new ArrayList<Case>();
 		Case c = new Case(null, 0, 0);

@@ -40,7 +40,7 @@ public class Sauvegarde {
 		try {
 			Properties prop = PropertyLoader.load(filename);
 			result = prop.getProperty(key, "vide");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
