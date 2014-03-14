@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-public class Sauvegarde {
+public class PropertyAcces {
 
 	public void saveProperties(String key, String value) {
 		Properties prop = new Properties();
