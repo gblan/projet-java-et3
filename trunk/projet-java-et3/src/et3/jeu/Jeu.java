@@ -62,9 +62,9 @@ public class Jeu extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		for (int i = 0; i < this.grille.getGrille().size(); i++) {
-			for (int j = 0; j < grille.getGrille().get(i).size(); j++) {
-				grille.getGrille().get(i).get(j).paint(graphics);
+		for (int i = 0; i < this.grille.getListCases().size(); i++) {
+			for (int j = 0; j < grille.getListCases().get(i).size(); j++) {
+				grille.getListCases().get(i).get(j).paint(graphics);
 			}
 		}
 		for (int i = 0; i < this.reserve.size(); i++) {
