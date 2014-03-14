@@ -1,6 +1,5 @@
 package et3.pions;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -23,7 +22,7 @@ public class Pions {
 		this.x = center_x;
 		this.y = center_y;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -86,16 +85,58 @@ public class Pions {
 			}
 			break;
 		case TYPE2:
+			File file2 = new File("resources/Pion_2.png");
+			try {
+				BufferedImage img = ImageIO.read(file2);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case TYPE3:
+			File file3 = new File("resources/Pion_3.png");
+			try {
+				BufferedImage img = ImageIO.read(file3);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case TYPE4:
+			File file4 = new File("resources/Pion_4.png");
+			try {
+				BufferedImage img = ImageIO.read(file4);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case TYPE5:
+			File file5 = new File("resources/Pion_5.png");
+			try {
+				BufferedImage img = ImageIO.read(file5);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case TYPE6:
+			File file6 = new File("resources/Pion_6.png");
+			try {
+				BufferedImage img = ImageIO.read(file6);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case TYPE7:
+			File file7 = new File("resources/Pion_7.png");
+			try {
+				BufferedImage img = ImageIO.read(file7);
+				graphics.drawImage(img, x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		default:
 			break;

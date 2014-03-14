@@ -12,12 +12,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
-import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.pions.Pions;
 import et3.pions.PionsEnum;
-import et3.sauvegarde.Sauvegarde;
 
 public class Principale extends JFrame {
 
@@ -76,12 +74,15 @@ public class Principale extends JFrame {
 			for (int j = 0; j < jeu.getGrille().getGrille().size(); j++) {
 				for (int k = 0; k < jeu.getGrille().getGrille().get(j).size(); k++) {
 					if (jeu.getGrille().getGrille().get(j).get(k)
-							.intersect(jeu.getReserve().get(i))) {
-//						jeu.getGrille().getGrille().get(j).get(k)
-//								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
-					} else {
+							.intersect(jeu.getReserve().get(i))
+							&& (jeu.getGrille().getGrille().get(j).get(k)
+									.equals(CaseEnum.DISPONIBLE))) {
 						jeu.getGrille().getGrille().get(j).get(k)
-								.setEtat(CaseEnum.DISPONIBLE);
+								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
+					} else {
+						// jeu.getGrille().getGrille().get(j).get(k)
+						// .setEtat(CaseEnum.DISPONIBLE);
+
 					}
 				}
 			}
@@ -103,8 +104,7 @@ public class Principale extends JFrame {
 
 		// DEBUT TEST
 
-		Grille grille = Grille
-				.buildGrid("level1.properties");
+		Grille grille = Grille.buildGrid("level1.properties");
 
 		ArrayList<Pions> reserve = new ArrayList<Pions>();
 		Pions p1 = new Pions(PionsEnum.TYPE6, 50, 10);
