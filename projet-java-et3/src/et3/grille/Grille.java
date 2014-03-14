@@ -8,21 +8,19 @@ import et3.sauvegarde.Sauvegarde;
 
 public class Grille {
 
-	private ArrayList<ArrayList<Case>> grille;
+	private ArrayList<ArrayList<Case>> listCases;
 
-	public ArrayList<ArrayList<Case>> getGrille() {
-		return grille;
+	public Grille(ArrayList<ArrayList<Case>> listCases) {
+		this.listCases = listCases;
 	}
 
-	public void setGrille(ArrayList<ArrayList<Case>> grille) {
-		this.grille = grille;
+	public ArrayList<ArrayList<Case>> getListCases() {
+		return listCases;
 	}
 
-	public Grille(ArrayList<ArrayList<Case>> grille) {
-		super();
-		this.grille = grille;
+	public void setListCases(ArrayList<ArrayList<Case>> listCases) {
+		this.listCases = listCases;
 	}
-
 	/**
 	 * 
 	 * @param x
@@ -38,7 +36,8 @@ public class Grille {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = new ArrayList<Case>();
-		Case c = new Case(null, 0, 0);
+		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
+		
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
@@ -56,13 +55,18 @@ public class Grille {
 				}
 
 				c.setEtat(caseEnum);
+				c.setEtatActuel(caseEnum);
 
 				ligne.add(c);
 			}
-			grille.getGrille().add(ligne);
+			grille.getListCases().add(ligne);
 		}
 
 		return grille;
 	}
+
+
+
+
 
 }

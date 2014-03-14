@@ -14,15 +14,17 @@ public class Case extends Component {
 	 */
 	private static final long serialVersionUID = 1L;
 	private CaseEnum etat;
+	private CaseEnum etatActuel;
 	private int x;
 	private int y;
 	private final int HEIGHT = 40;
 
 	/* A FAIRE : Cases du HAUT,BAS... */
 
-	public Case(CaseEnum etat, int x, int y) {
+	public Case(CaseEnum etat, CaseEnum etatActuel, int x, int y) {
 		super();
 		this.etat = etat;
+		this.etatActuel = etatActuel;
 		this.x = x;
 		this.y = y;
 	}
@@ -38,6 +40,14 @@ public class Case extends Component {
 		this.etat = etat;
 	}
 
+	public CaseEnum getEtatActuel() {
+		return etatActuel;
+	}
+
+	public void setEtatActuel(CaseEnum etatActuel) {
+		this.etatActuel = etatActuel;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -99,7 +109,7 @@ public class Case extends Component {
 		graphics.fillPolygon(cx, cy, cx.length);
 
 		// Puis le cercle interieur en fonction de l'etat de la case
-		switch (this.etat) {
+		switch (this.etatActuel) {
 		case DISPONIBLE:
 			/*
 			 * dessine le cercle a l'interieur de l'hexagone(besoin de faire des
@@ -134,5 +144,6 @@ public class Case extends Component {
 			break;
 		}
 	}
+
 
 }

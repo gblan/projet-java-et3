@@ -71,17 +71,18 @@ public class Principale extends JFrame {
 	public void caseSurvoleeListener() {
 
 		for (int i = 0; i < jeu.getReserve().size(); i++) {
-			for (int j = 0; j < jeu.getGrille().getGrille().size(); j++) {
-				for (int k = 0; k < jeu.getGrille().getGrille().get(j).size(); k++) {
-					if (jeu.getGrille().getGrille().get(j).get(k)
+			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+				for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
+					if (jeu.getGrille().getListCases().get(j).get(k)
 							.intersect(jeu.getReserve().get(i))
-							&& (jeu.getGrille().getGrille().get(j).get(k)
-									.equals(CaseEnum.DISPONIBLE))) {
-						jeu.getGrille().getGrille().get(j).get(k)
-								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
-					} else {
-						// jeu.getGrille().getGrille().get(j).get(k)
-						// .setEtat(CaseEnum.DISPONIBLE);
+							&& (jeu.getGrille().getListCases().get(j).get(k).getEtatActuel().toString()
+									.equals(CaseEnum.DISPONIBLE.toString()))) {
+						jeu.getGrille().getListCases().get(j).get(k)
+								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+					} else if (!jeu.getGrille().getListCases().get(j).get(k)
+							.intersect(jeu.getReserve().get(i))){
+						jeu.getGrille().getListCases().get(j).get(k)
+						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtat());
 
 					}
 				}
