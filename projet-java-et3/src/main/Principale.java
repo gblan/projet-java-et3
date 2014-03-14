@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -69,7 +70,6 @@ public class Principale extends JFrame {
 	};
 
 	public void caseSurvoleeListener() {
-
 		for (int i = 0; i < jeu.getReserve().size(); i++) {
 			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 				for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
@@ -95,6 +95,7 @@ public class Principale extends JFrame {
 	 * @param title
 	 * @param width
 	 * @param height
+	 * @throws FileNotFoundException 
 	 */
 	public Principale(String title, int width, int height) {
 		super(title);
@@ -104,12 +105,11 @@ public class Principale extends JFrame {
 		pane.setLayout(new FlowLayout());
 
 		// DEBUT TEST
-
 		Grille grille = Grille.buildGrid("level1.properties");
 
 		ArrayList<Pions> reserve = new ArrayList<Pions>();
-		Pions p1 = new Pions(PionsEnum.TYPE6, 50, 10);
-		Pions p2 = new Pions(PionsEnum.TYPE1, 90, 10);
+		Pions p1 = new Pions(PionsEnum.TYPE1, 50, 10);
+		Pions p2 = new Pions(PionsEnum.TYPE2, 90, 10);
 
 		reserve.add(p1);
 		reserve.add(p2);
@@ -147,11 +147,7 @@ public class Principale extends JFrame {
 	public static void main(String[] arg) {
 		Principale p1 = new Principale("Sporos", 300, 500);
 		p1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// p1.setResizable(false);
-		/*
-		 * Sauvegarde s1 = new Sauvegarde(); s1.saveProperties("cheval",
-		 * "blanc");
-		 */
+
 	}
 
 }

@@ -1,10 +1,11 @@
 package et3.grille;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
-import et3.sauvegarde.Sauvegarde;
+import et3.sauvegarde.PropertyAcces;
 
 public class Grille {
 
@@ -32,7 +33,7 @@ public class Grille {
 	 * @param posY
 	 *            position exacte de la cellule
 	 */
-	public static Grille buildGrid(String filename) {
+	public static Grille buildGrid(String filename){
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = new ArrayList<Case>();
@@ -46,8 +47,7 @@ public class Grille {
 			for (int j = 0; j < 7; j++) {
 				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
 				c = Case.getPositions(j, i);
-				typeCase = Sauvegarde.retrieveProperties(filename, caseGrille);
-
+				typeCase = PropertyAcces.retrieveProperties(filename, caseGrille);
 				if (typeCase.equals(CaseEnum.DESACTIVEE.toString())) {
 					caseEnum = CaseEnum.DESACTIVEE;
 				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
@@ -64,9 +64,6 @@ public class Grille {
 
 		return grille;
 	}
-
-
-
 
 
 }
