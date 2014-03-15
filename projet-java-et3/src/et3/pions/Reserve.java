@@ -37,7 +37,7 @@ public class Reserve {
 		return pion;
 	}
 
-	public static Reserve buildReserve(String filename) {
+	public Reserve buildReserve(String filename) {
 
 		ArrayList<Pion> alPions = new ArrayList<Pion>();
 		Reserve reserve = new Reserve();

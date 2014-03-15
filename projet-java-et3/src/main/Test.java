@@ -34,8 +34,8 @@ public class Test {
 
 		Reserve reserve = new Reserve();
 		
-		Pion test = reserve.getPosition("pion3", PionEnum.TYPE1);
+		reserve.buildReserve("level1.properties");
 		
-		System.out.println(test.getCenter_x());
+		System.out.println(reserve.getPions().toString());
 	}
 }
