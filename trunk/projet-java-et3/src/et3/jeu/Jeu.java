@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import et3.grille.Grille;
-import et3.pions.Pions;
+import et3.pions.Pion;
 
 public class Jeu extends Component {
 
@@ -20,32 +20,32 @@ public class Jeu extends Component {
 	 * En attendant les .properties pour Tester l'affichage A MODIFIER
 	 */
 	private Grille grille;
-	private ArrayList<Pions> reserve;
-	private Pions pionSelectionne;
+	private ArrayList<Pion> reserve;
+	private Pion pionSelectionne;
 
 	/*
 	 * FIN A MODIFIER
 	 */
 
-	public Jeu(Grille grille, ArrayList<Pions> reserve) {
+	public Jeu(Grille grille, ArrayList<Pion> reserve) {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
 	}
 
-	public ArrayList<Pions> getReserve() {
+	public ArrayList<Pion> getReserve() {
 		return reserve;
 	}
 
-	public void setReserve(ArrayList<Pions> reserve) {
+	public void setReserve(ArrayList<Pion> reserve) {
 		this.reserve = reserve;
 	}
 
-	public Pions getPionSelectionne() {
+	public Pion getPionSelectionne() {
 		return pionSelectionne;
 	}
 
-	public void setPionSelectionne(Pions pionSelectionne) {
+	public void setPionSelectionne(Pion pionSelectionne) {
 		this.pionSelectionne = pionSelectionne;
 	}
 

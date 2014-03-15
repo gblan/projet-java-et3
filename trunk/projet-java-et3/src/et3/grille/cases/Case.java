@@ -5,7 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 
-import et3.pions.Pions;
+import et3.pions.Pion;
 
 public class Case extends Component {
 
@@ -79,7 +79,7 @@ public class Case extends Component {
 		return casePosition;
 	}
 
-	public boolean intersect(Pions p) {
+	public boolean intersect(Pion p) {
 
 		Ellipse2D.Float cercleCase = new Ellipse2D.Float(x + (HEIGHT / 10), y
 				+ (HEIGHT / 10) + (HEIGHT / 20), HEIGHT - (HEIGHT / 5), HEIGHT
