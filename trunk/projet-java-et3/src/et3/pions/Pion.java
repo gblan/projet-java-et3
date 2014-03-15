@@ -23,6 +23,10 @@ public class Pion {
 		this.y = center_y;
 	}
 
+	public Pion() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 * @return

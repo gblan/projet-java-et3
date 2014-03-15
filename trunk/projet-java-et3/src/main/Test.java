@@ -1,6 +1,9 @@
 package main;
 
 import et3.menus.Menu;
+import et3.pions.Pion;
+import et3.pions.PionEnum;
+import et3.pions.Reserve;
 
 public class Test {
 
@@ -29,6 +32,10 @@ public class Test {
 		// }
 		// }
 
-		Menu menu = new Menu();
+		Reserve reserve = new Reserve();
+		
+		Pion test = reserve.getPosition("pion3", PionEnum.TYPE1);
+		
+		System.out.println(test.getCenter_x());
 	}
 }

@@ -17,6 +17,7 @@ import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.pions.Pion;
 import et3.pions.PionEnum;
+import et3.pions.Reserve;
 
 public class Principale extends JFrame {
 
@@ -106,18 +107,19 @@ public class Principale extends JFrame {
 
 		// DEBUT TEST
 		Grille grille = Grille.buildGrid("level1.properties");
-
-		ArrayList<Pion> reserve = new ArrayList<Pion>();
+		
+		Reserve reserve = new Reserve();
+		
 		Pion p1 = new Pion(PionEnum.TYPE1, 50, 10);
 		Pion p2 = new Pion(PionEnum.TYPE2, 90, 10);
 
-		reserve.add(p1);
-		reserve.add(p2);
+		reserve.getPions().add(p1);
+		reserve.getPions().add(p2);
 
 		// listeCase.add(c2);
 		// FIN TEST
 
-		setJeu(new Jeu(grille, reserve));
+		setJeu(new Jeu(grille, reserve.getPions()));
 		jeu.setBackground(Color.WHITE);
 		jeu.setPreferredSize(new Dimension(width, height));
 		jeu.addMouseListener(selectionnerPions);
