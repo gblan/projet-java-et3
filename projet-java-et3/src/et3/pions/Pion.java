@@ -9,14 +9,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Pions {
+public class Pion {
 
-	private PionsEnum typePion;
+	private PionEnum typePion;
 	private int x;
 	private int y;
 	private final int rayon = 16;
 
-	public Pions(PionsEnum typePion, int center_x, int center_y) {
+	public Pion(PionEnum typePion, int center_x, int center_y) {
 		super();
 		this.typePion = typePion;
 		this.x = center_x;
@@ -27,7 +27,7 @@ public class Pions {
 	 * 
 	 * @return
 	 */
-	public PionsEnum getTypePion() {
+	public PionEnum getTypePion() {
 		return typePion;
 	}
 
@@ -35,7 +35,7 @@ public class Pions {
 	 * 
 	 * @param typePion
 	 */
-	public void setTypePion(PionsEnum typePion) {
+	public void setTypePion(PionEnum typePion) {
 		this.typePion = typePion;
 	}
 

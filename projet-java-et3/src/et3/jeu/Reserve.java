@@ -2,8 +2,8 @@ package et3.jeu;
 
 import java.util.ArrayList;
 
-import et3.pions.Pions;
+import et3.pions.Pion;
 
 public class Reserve {
-	private ArrayList<Pions> arrayListPions;
+	private ArrayList<Pion> arrayListPions;
 }

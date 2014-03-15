@@ -1,6 +1,6 @@
 package et3.pions;
 
-public enum PionsEnum {
+public enum PionEnum {
 	TYPE1,
 	TYPE2,
 	TYPE3,
