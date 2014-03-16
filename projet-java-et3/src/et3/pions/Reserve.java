@@ -48,7 +48,7 @@ public class Reserve {
 		for (int i = 1; i < 6; i++) {
 			pionName = "PION".concat(String.valueOf(i));
 			typePion = PropertyAcces.retrieveProperties(filename, pionName);
-			
+
 			if (typePion.equals(PionEnum.TYPE1.toString())) {
 				pionEnum = PionEnum.TYPE1;
 			} else if (typePion.equals(PionEnum.TYPE2.toString())) {
@@ -62,9 +62,12 @@ public class Reserve {
 			} else if (typePion.equals(PionEnum.TYPE6.toString())) {
 				pionEnum = PionEnum.TYPE6;
 			}
-			p = getPosition(pionName, pionEnum);
-			alPions.add(p);
-			reserve.setPions(alPions);
+			
+			if (!typePion.equals("vide")) {
+				p = getPosition(pionName, pionEnum);
+				alPions.add(p);
+				reserve.setPions(alPions);
+			}
 		}
 
 		return reserve;

@@ -43,6 +43,7 @@ public class PropertyAcces {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			result = null;
 		}
 		return result;
 	}
