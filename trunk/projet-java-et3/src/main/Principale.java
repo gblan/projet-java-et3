@@ -72,15 +72,18 @@ public class Principale extends JFrame {
 	};
 
 	public void caseSurvoleeListener() {
+				
 		for (int i = 0; i < jeu.getReserve().size(); i++) {
 			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 				for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
-					if (jeu.getGrille().getListCases().get(j).get(k)
-							.intersect(jeu.getReserve().get(i))
-							&& (jeu.getGrille().getListCases().get(j).get(k).getEtatActuel().toString()
-									.equals(CaseEnum.DISPONIBLE.toString()))) {
+					if ((jeu.getGrille().getListCases().get(j).get(k)
+							.intersect(jeu.getReserve().get(i)))
+							&& (!jeu.getGrille().getListCases().get(j).get(k).getEtatActuel().toString()
+									.equals(CaseEnum.DESACTIVEE.toString()))) {
 						jeu.getGrille().getListCases().get(j).get(k)
 								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+						/* Propagation de chaque pion à apeller ici */
+//						jeu.paint(getGraphics());
 					} else if (!jeu.getGrille().getListCases().get(j).get(k)
 							.intersect(jeu.getReserve().get(i))){
 						jeu.getGrille().getListCases().get(j).get(k)
