@@ -13,7 +13,7 @@ public class PropertyAcces {
 
 		try {
 
-			output = new FileOutputStream("test.properties");
+			output = new FileOutputStream("sauvegarde.properties");
 
 			// set the properties value
 			prop.setProperty(key, value);
