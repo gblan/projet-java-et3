@@ -78,73 +78,19 @@ public class Pion {
 		 */
 
 		// Puis le cercle interieur en fonction de l'etat de la case
-		switch (this.typePion) {
-		case TYPE1:
-			File file = new File("resources/Pion_1.png");
-			try {
-				BufferedImage img = ImageIO.read(file);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
+		for (int i = 1; i < 8; i++) {
+			if (this.typePion.toString().equals(
+					"TYPE".concat(String.valueOf(i)))) {
+				File file = new File("resources/Pion_" + i + ".png");
+				try {
+					BufferedImage img = ImageIO.read(file);
+					graphics.drawImage(img, x, y, null);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			break;
-		case TYPE2:
-			File file2 = new File("resources/Pion_2.png");
-			try {
-				BufferedImage img = ImageIO.read(file2);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case TYPE3:
-			File file3 = new File("resources/Pion_3.png");
-			try {
-				BufferedImage img = ImageIO.read(file3);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case TYPE4:
-			File file4 = new File("resources/Pion_4.png");
-			try {
-				BufferedImage img = ImageIO.read(file4);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case TYPE5:
-			File file5 = new File("resources/Pion_5.png");
-			try {
-				BufferedImage img = ImageIO.read(file5);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case TYPE6:
-			File file6 = new File("resources/Pion_6.png");
-			try {
-				BufferedImage img = ImageIO.read(file6);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case TYPE7:
-			File file7 = new File("resources/Pion_7.png");
-			try {
-				BufferedImage img = ImageIO.read(file7);
-				graphics.drawImage(img, x, y, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		default:
-			break;
 		}
+
 	}
 
 }
