@@ -66,6 +66,7 @@ public class Principale extends JFrame {
 				setClique_y(evt.getY());
 				caseSurvoleeListener();
 				jeu.repaint();
+
 			}
 		}
 	};
@@ -108,15 +109,8 @@ public class Principale extends JFrame {
 		// DEBUT TEST
 		Grille grille = Grille.buildGrid("level1.properties");
 		
-		Reserve reserve = new Reserve();
-		
-		Pion p1 = new Pion(PionEnum.TYPE1, 50, 10);
-		Pion p2 = new Pion(PionEnum.TYPE2, 90, 10);
+		Reserve reserve = Reserve.buildReserve("level1.properties");
 
-		reserve.getPions().add(p1);
-		reserve.getPions().add(p2);
-
-		// listeCase.add(c2);
 		// FIN TEST
 
 		setJeu(new Jeu(grille, reserve.getPions()));

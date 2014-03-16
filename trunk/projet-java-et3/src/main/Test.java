@@ -34,8 +34,8 @@ public class Test {
 
 		Reserve reserve = new Reserve();
 		
-		reserve.buildReserve("level1.properties");
+		reserve = Reserve.buildReserve("level1.properties");
 		
-		System.out.println(reserve.getPions().toString());
+		System.out.println(reserve.getPions().get(2).getCenter_x());
 	}
 }
