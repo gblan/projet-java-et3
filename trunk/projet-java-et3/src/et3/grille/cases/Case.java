@@ -13,7 +13,7 @@ public class Case extends Component {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private CaseEnum etat;
+	private CaseEnum etatInitial;
 	private CaseEnum etatActuel;
 	private int x;
 	private int y;
@@ -21,9 +21,9 @@ public class Case extends Component {
 
 	/* A FAIRE : Cases du HAUT,BAS... */
 
-	public Case(CaseEnum etat, CaseEnum etatActuel, int x, int y) {
+	public Case(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
 		super();
-		this.etat = etat;
+		this.etatInitial = etatInitial;
 		this.etatActuel = etatActuel;
 		this.x = x;
 		this.y = y;
@@ -32,12 +32,12 @@ public class Case extends Component {
 	public Case() {
 	}
 
-	public CaseEnum getEtat() {
-		return etat;
+	public CaseEnum getEtatInitial() {
+		return etatInitial;
 	}
 
-	public void setEtat(CaseEnum etat) {
-		this.etat = etat;
+	public void setEtatInitial(CaseEnum etatInitial) {
+		this.etatInitial = etatInitial;
 	}
 
 	public CaseEnum getEtatActuel() {

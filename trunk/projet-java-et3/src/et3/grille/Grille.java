@@ -54,7 +54,7 @@ public class Grille {
 					caseEnum = CaseEnum.DISPONIBLE;
 				}
 
-				c.setEtat(caseEnum);
+				c.setEtatInitial(caseEnum);
 				c.setEtatActuel(caseEnum);
 
 				ligne.add(c);

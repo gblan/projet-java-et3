@@ -84,7 +84,7 @@ public class Principale extends JFrame {
 					} else if (!jeu.getGrille().getListCases().get(j).get(k)
 							.intersect(jeu.getReserve().get(i))){
 						jeu.getGrille().getListCases().get(j).get(k)
-						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtat());
+						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
 
 					}
 				}
