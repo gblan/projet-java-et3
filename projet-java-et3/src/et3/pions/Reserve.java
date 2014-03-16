@@ -48,16 +48,16 @@ public class Reserve {
 		for (int i = 1; i < 6; i++) {
 			pionName = "PION".concat(String.valueOf(i));
 			typePion = PropertyAcces.retrieveProperties(filename, pionName);
-
+			
 			if (typePion.equals(PionEnum.TYPE1.toString())) {
 				pionEnum = PionEnum.TYPE1;
 			} else if (typePion.equals(PionEnum.TYPE2.toString())) {
 				pionEnum = PionEnum.TYPE2;
 			} else if (typePion.equals(PionEnum.TYPE3.toString())) {
 				pionEnum = PionEnum.TYPE3;
-			} else if (typePion.equals(PionEnum.TYPE3.toString())) {
-				pionEnum = PionEnum.TYPE4;
 			} else if (typePion.equals(PionEnum.TYPE4.toString())) {
+				pionEnum = PionEnum.TYPE4;
+			} else if (typePion.equals(PionEnum.TYPE5.toString())) {
 				pionEnum = PionEnum.TYPE5;
 			} else if (typePion.equals(PionEnum.TYPE6.toString())) {
 				pionEnum = PionEnum.TYPE6;
