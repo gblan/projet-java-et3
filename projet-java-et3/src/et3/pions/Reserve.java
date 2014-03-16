@@ -37,7 +37,7 @@ public class Reserve {
 		return pion;
 	}
 
-	public Reserve buildReserve(String filename) {
+	public static Reserve buildReserve(String filename) {
 
 		ArrayList<Pion> alPions = new ArrayList<Pion>();
 		Reserve reserve = new Reserve();
@@ -45,7 +45,7 @@ public class Reserve {
 		String typePion, pionName;
 		PionEnum pionEnum = PionEnum.TYPE1;
 
-		for (int i = 1; i < 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			pionName = "PION".concat(String.valueOf(i));
 			typePion = PropertyAcces.retrieveProperties(filename, pionName);
 
