@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import et3.grille.Grille;
-import et3.pions.Pion;
 import et3.reserve.Reserve;
+import et3.reserve.pions.Pion;
 
 public class Jeu extends Component {
 

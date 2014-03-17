@@ -15,9 +15,9 @@ import javax.swing.JFrame;
 import et3.grille.Grille;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
-import et3.pions.Pion;
-import et3.pions.PionEnum;
 import et3.reserve.Reserve;
+import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionEnum;
 
 public class Principale extends JFrame {
 

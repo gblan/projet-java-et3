@@ -5,7 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 
-import et3.pions.Pion;
+import et3.reserve.pions.Pion;
 
 public class Case extends Component {
 
