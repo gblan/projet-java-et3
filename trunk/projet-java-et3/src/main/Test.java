@@ -2,9 +2,9 @@ package main;
 
 import et3.menus.Menu;
 import et3.menus.Niveaux;
-import et3.pions.Pion;
-import et3.pions.PionEnum;
 import et3.reserve.Reserve;
+import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionEnum;
 
 public class Test {
 

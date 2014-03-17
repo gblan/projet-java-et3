@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
-import et3.pions.Pion;
-import et3.pions.PionEnum;
+import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;
 
 public class Reserve {
