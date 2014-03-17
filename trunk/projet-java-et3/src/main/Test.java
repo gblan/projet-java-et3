@@ -33,15 +33,15 @@ public class Test {
 		// }
 		// }
 
-//		Reserve reserve = new Reserve();
-//		
-//		reserve = Reserve.buildReserve("level1.properties");
-//		
-//		System.out.println(reserve.getPions().get(2).getCenter_x());
-		
-//		Menu menu = new Menu("Sporos");
+		// Reserve reserve = new Reserve();
+		//
+		// reserve = Reserve.buildReserve("level1.properties");
+		//
+		// System.out.println(reserve.getPions().get(2).getCenter_x());
+
+		// Menu menu = new Menu("Sporos");
 		Niveaux level = new Niveaux();
-//		System.out.println(level.getListeNiveau().toString());
-		System.out.println(level.toString());		
+		// System.out.println(level.getListeNiveau().toString());
+		System.out.println(level.toString());
 	}
 }

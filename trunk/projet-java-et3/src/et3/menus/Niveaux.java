@@ -1,14 +1,19 @@
 package et3.menus;
 
+import java.awt.GridLayout;
 import java.io.File;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JList;
 
 import et3.grille.Grille;
 import et3.jeu.Jeu;
 import et3.reserve.Reserve;
 
-public class Niveaux {
-
+public class Niveaux extends JFrame {
+	
+	private JFrame frame;
 	private ArrayList<Jeu> listeNiveau;
 
 	/**
@@ -17,6 +22,23 @@ public class Niveaux {
 	public Niveaux() {
 		this.listeNiveau = new ArrayList<Jeu>();
 		buildLevels();
+		initialize();
+	}
+	
+	private void initialize() {
+		int i=1;
+		frame = new JFrame();
+		frame.setBounds(100, 100, 315, 454);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JList<Jeu> list = new JList<Jeu>();
+		
+		for(Jeu j : this.listeNiveau){
+			list.add("level : "+i,j);
+			i++;
+		}
+		frame.getContentPane().add(list);
 	}
 
 	private void buildLevels() {
@@ -47,7 +69,7 @@ public class Niveaux {
 
 		for (Jeu j : this.listeNiveau) {
 			res += "\t Grille num " + i + ", Reserve : "
-					+ j.getReserve().getPions().size()+"\n";
+					+ j.getReserve().getPions().size() + "\n";
 			i++;
 		}
 		return res;
