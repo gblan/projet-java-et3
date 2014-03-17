@@ -158,6 +158,15 @@ public class Case extends Component {
 			break;
 		}
 	}
+	
+	@Override
+	public String toString(){
+		String res ="";
+		res+="Case : x : "+this.x+", y : "+this.y+"\n";
+		res+="\t etat Initial : "+this.etatInitial.toString()+", etat actuel : "+this.etatActuel.toString()+"\n";
+		
+		return res;
+	}
 
 
 }

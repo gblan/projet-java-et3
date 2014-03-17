@@ -95,5 +95,14 @@ public class Pion {
 		}
 
 	}
+	
+	@Override
+	public String toString(){
+		String res = "";
+		
+		res+="Pion : x : "+this.x+", y : "+this.y+"\n";
+		res+="\t typePion : "+this.typePion.toString()+"\n";
+		return res;
+	}
 
 }

@@ -42,7 +42,6 @@ public class Test {
 //		Menu menu = new Menu("Sporos");
 		Niveaux level = new Niveaux();
 //		System.out.println(level.getListeNiveau().toString());
-			
-		
+		System.out.println(level.toString());		
 	}
 }
