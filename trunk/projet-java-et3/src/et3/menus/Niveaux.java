@@ -15,14 +15,18 @@ public class Niveaux {
 	 * @return Constructeur de niveaux
 	 */
 	public Niveaux() {
+		this.listeNiveau = new ArrayList<Jeu>();
+		buildLevels();
+	}
+
+	private void buildLevels() {
 		for (int i = 1; i < 100; i++) {
-			String str = "level"+i+".properties";
+			String str = "level" + i + ".properties";
 			File properties = new File(str);
-			if(properties.isFile()){
-				System.out.println("Bite");
-				Jeu jeu = new Jeu(Grille.buildGrid(str),Reserve.buildReserve(str));
-				System.out.println(jeu.getGrille().getListCases().get(i).get(i).toString());
-				listeNiveau.add(jeu);
+			if (properties.isFile()) {
+				Jeu jeu = new Jeu(Grille.buildGrid(str),
+						Reserve.buildReserve(str));
+				this.listeNiveau.add(jeu);
 			}
 		}
 	}
@@ -33,5 +37,19 @@ public class Niveaux {
 
 	public void setListeNiveau(ArrayList<Jeu> listeNiveau) {
 		this.listeNiveau = listeNiveau;
+	}
+
+	@Override
+	public String toString() {
+		String res = "";
+		int i = 1;
+		res += "Niveaux : \n";
+
+		for (Jeu j : this.listeNiveau) {
+			res += "\t Grille num " + i + ", Reserve : "
+					+ j.getReserve().getPions().size()+"\n";
+			i++;
+		}
+		return res;
 	}
 }
