@@ -64,6 +64,12 @@ public class Case extends Component {
 		this.y = y;
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return position absolue de chaque case
+	 */
 	public static Case getPositions(int x, int y) {
 		Case casePosition = new Case();
 		if (y % 2 == 0) {
@@ -79,6 +85,11 @@ public class Case extends Component {
 		return casePosition;
 	}
 
+	/**
+	 * 
+	 * @param p
+	 * @return true or false si le pion est sur la case ou pas
+	 */
 	public boolean intersect(Pion p) {
 
 		Ellipse2D.Float cercleCase = new Ellipse2D.Float(x + (HEIGHT / 10), y
@@ -90,6 +101,9 @@ public class Case extends Component {
 				pion.getWidth(), pion.getHeight());
 	}
 
+	/**
+	 *@param graphics  on affiche la case
+	 */
 	public void paint(Graphics graphics) {
 
 		// On dessine tout d'abord l'hexagone commun aux cases

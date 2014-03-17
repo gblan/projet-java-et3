@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import et3.grille.Grille;
 import et3.pions.Pion;
+import et3.reserve.Reserve;
 
 public class Jeu extends Component {
 
@@ -20,24 +21,24 @@ public class Jeu extends Component {
 	 * En attendant les .properties pour Tester l'affichage A MODIFIER
 	 */
 	private Grille grille;
-	private ArrayList<Pion> reserve;
+	private Reserve reserve;
 	private Pion pionSelectionne;
 
 	/*
 	 * FIN A MODIFIER
 	 */
 
-	public Jeu(Grille grille, ArrayList<Pion> reserve) {
+	public Jeu(Grille grille, Reserve reserve) {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
 	}
 
-	public ArrayList<Pion> getReserve() {
+	public Reserve getReserve() {
 		return reserve;
 	}
 
-	public void setReserve(ArrayList<Pion> reserve) {
+	public void setReserve(Reserve reserve) {
 		this.reserve = reserve;
 	}
 
@@ -57,6 +58,9 @@ public class Jeu extends Component {
 		this.grille = grille;
 	}
 
+	/**
+	 * @param graphics on affiche le jeu en faisant appel à l'affichage de chaque case et de chaque pion
+	 */
 	public void paint(Graphics graphics) {
 
 		Graphics2D g = (Graphics2D) graphics;
@@ -67,8 +71,8 @@ public class Jeu extends Component {
 				grille.getListCases().get(i).get(j).paint(graphics);
 			}
 		}
-		for (int i = 0; i < this.reserve.size(); i++) {
-			reserve.get(i).paint(graphics);
+		for (int i = 0; i < this.reserve.getPions().size(); i++) {
+			reserve.getPions().get(i).paint(graphics);
 		}
 		g.setStroke(new BasicStroke(2f));
 		if (this.pionSelectionne != null) {

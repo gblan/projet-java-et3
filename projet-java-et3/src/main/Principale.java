@@ -17,7 +17,7 @@ import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.pions.Pion;
 import et3.pions.PionEnum;
-import et3.pions.Reserve;
+import et3.reserve.Reserve;
 
 public class Principale extends JFrame {
 
@@ -38,9 +38,9 @@ public class Principale extends JFrame {
 		public void mousePressed(MouseEvent evt) {
 			setClique_x(evt.getX());
 			setClique_y(evt.getY());
-			for (int i = 0; i < jeu.getReserve().size(); i++) {
-				if (jeu.getReserve().get(i).contains(clique_x, clique_y)) {
-					jeu.setPionSelectionne(jeu.getReserve().get(i));
+			for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
+				if (jeu.getReserve().getPions().get(i).contains(clique_x, clique_y)) {
+					jeu.setPionSelectionne(jeu.getReserve().getPions().get(i));
 					jeu.repaint();
 				}
 			}
@@ -73,11 +73,11 @@ public class Principale extends JFrame {
 
 	public void caseSurvoleeListener() {
 				
-		for (int i = 0; i < jeu.getReserve().size(); i++) {
+		for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
 			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 				for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
 					if ((jeu.getGrille().getListCases().get(j).get(k)
-							.intersect(jeu.getReserve().get(i)))
+							.intersect(jeu.getReserve().getPions().get(i)))
 							&& (!jeu.getGrille().getListCases().get(j).get(k).getEtatActuel().toString()
 									.equals(CaseEnum.DESACTIVEE.toString()))) {
 						jeu.getGrille().getListCases().get(j).get(k)
@@ -85,7 +85,7 @@ public class Principale extends JFrame {
 						/* Propagation de chaque pion à apeller ici */
 //						jeu.paint(getGraphics());
 					} else if (!jeu.getGrille().getListCases().get(j).get(k)
-							.intersect(jeu.getReserve().get(i))){
+							.intersect(jeu.getReserve().getPions().get(i))){
 						jeu.getGrille().getListCases().get(j).get(k)
 						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
 
@@ -116,7 +116,7 @@ public class Principale extends JFrame {
 
 		// FIN TEST
 
-		setJeu(new Jeu(grille, reserve.getPions()));
+		setJeu(new Jeu(grille, reserve));
 		jeu.setBackground(Color.WHITE);
 		jeu.setPreferredSize(new Dimension(width, height));
 		jeu.addMouseListener(selectionnerPions);

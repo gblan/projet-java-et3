@@ -1,6 +1,5 @@
 package et3.grille;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import et3.grille.cases.Case;
@@ -22,16 +21,11 @@ public class Grille {
 	public void setListCases(ArrayList<ArrayList<Case>> listCases) {
 		this.listCases = listCases;
 	}
+
 	/**
 	 * 
-	 * @param x
-	 *            position dans les properties
-	 * @param y
-	 *            position dans les properties
-	 * @param posX
-	 *            position exacte de la cellule
-	 * @param posY
-	 *            position exacte de la cellule
+	 * @param nom du fichier .properties
+	 * @return Grille remplie
 	 */
 	public static Grille buildGrid(String filename){
 

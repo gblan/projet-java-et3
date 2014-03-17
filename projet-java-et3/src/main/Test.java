@@ -1,9 +1,10 @@
 package main;
 
 import et3.menus.Menu;
+import et3.menus.Niveaux;
 import et3.pions.Pion;
 import et3.pions.PionEnum;
-import et3.pions.Reserve;
+import et3.reserve.Reserve;
 
 public class Test {
 
@@ -32,10 +33,16 @@ public class Test {
 		// }
 		// }
 
-		Reserve reserve = new Reserve();
+//		Reserve reserve = new Reserve();
+//		
+//		reserve = Reserve.buildReserve("level1.properties");
+//		
+//		System.out.println(reserve.getPions().get(2).getCenter_x());
 		
-		reserve = Reserve.buildReserve("level1.properties");
+//		Menu menu = new Menu("Sporos");
+		Niveaux level = new Niveaux();
+//		System.out.println(level.getListeNiveau().toString());
+			
 		
-		System.out.println(reserve.getPions().get(2).getCenter_x());
 	}
 }

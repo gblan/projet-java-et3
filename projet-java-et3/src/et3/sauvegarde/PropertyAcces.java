@@ -7,6 +7,11 @@ import java.util.Properties;
 
 public class PropertyAcces {
 
+	/**
+	 * 
+	 * @param key
+	 * @param value
+	 */
 	public void saveProperties(String key, String value) {
 		Properties prop = new Properties();
 		OutputStream output = null;
@@ -35,6 +40,12 @@ public class PropertyAcces {
 		}
 	}
 
+	/**
+	 * 
+	 * @param filename
+	 * @param key
+	 * @return value du .properties demande
+	 */
 	public static String retrieveProperties(String filename, String key) {
 		String result = "";
 		try {
