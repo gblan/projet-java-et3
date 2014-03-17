@@ -1,10 +1,12 @@
-package et3.pions;
+package et3.reserve;
 
 import java.util.ArrayList;
 
 import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
+import et3.pions.Pion;
+import et3.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;
 
 public class Reserve {
@@ -23,6 +25,12 @@ public class Reserve {
 		this.pions = pions;
 	}
 
+	/**
+	 * 
+	 * @param pionName
+	 * @param typePion
+	 * @return position absolue de chaque pion
+	 */
 	public static Pion getPosition(String pionName, PionEnum typePion) {
 		String num = "";
 		int numInt = 0;
@@ -37,6 +45,11 @@ public class Reserve {
 		return pion;
 	}
 
+	/**
+	 * 
+	 * @param filename .properties
+	 * @return reserve de pions
+	 */
 	public static Reserve buildReserve(String filename) {
 
 		ArrayList<Pion> alPions = new ArrayList<Pion>();

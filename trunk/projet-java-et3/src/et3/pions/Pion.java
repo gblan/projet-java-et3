@@ -62,19 +62,23 @@ public class Pion {
 		return rayon;
 	}
 
+	/**
+	 * 
+	 * @param point_x
+	 * @param point_y
+	 * @return true or false si le point selectionné contient le Pion
+	 */
 	public boolean contains(int point_x, int point_y) {
 		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, 2 * rayon, 2 * rayon);
 		return (cercle.contains(new Point2D.Float(point_x, point_y)));
 
 	}
 
+	/**
+	 * 
+	 * @param graphics qui permet l'affichage d'un pion
+	 */
 	public void paint(Graphics graphics) {
-
-		/*
-		 * graphics.setColor(Color.black); graphics.drawOval(x, y, 2 * rayon, 2
-		 * * rayon); graphics.setColor(new Color(255, 0, 255));
-		 * graphics.fillOval(x, y, 2 * rayon, 2 * rayon);
-		 */
 
 		// Puis le cercle interieur en fonction de l'etat de la case
 		for (int i = 1; i < 8; i++) {
