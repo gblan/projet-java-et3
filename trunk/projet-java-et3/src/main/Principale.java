@@ -89,6 +89,17 @@ public class Principale extends JFrame {
 						jeu.getGrille().getListCases().get(j).get(k)
 						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
 
+//		for (int i = 0; i < jeu.getReserve().size(); i++) {
+//			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+//				for (int k = 0; k < jeu.getGrille().getGrille().get(j).size(); k++) {
+//					if (jeu.getGrille().getGrille().get(j).get(k)
+//							.intersect(jeu.getReserve().get(i)) && (jeu.getGrille().getGrille().get(j).get(k).equals(CaseEnum.DISPONIBLE))) {
+//					jeu.getGrille().getGrille().get(j).get(k)
+//								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
+//					} else {
+						//jeu.getGrille().getGrille().get(j).get(k)
+						//		.setEtat(CaseEnum.DISPONIBLE);
+						
 					}
 				}
 			}
