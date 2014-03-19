@@ -94,13 +94,31 @@ public class Case extends Component {
 	 */
 	public boolean intersect(Pion p) {
 
-		Ellipse2D.Float cercleCase = new Ellipse2D.Float(x + (HEIGHT / 10), y
-				+ (HEIGHT / 10) + (HEIGHT / 20), HEIGHT - (HEIGHT / 5), HEIGHT
-				- (HEIGHT / 5));
-		Ellipse2D.Float pion = new Ellipse2D.Float(p.getCenter_x(),
-				p.getCenter_y(), p.getRayon(), p.getRayon());
-		return cercleCase.intersects(pion.getCenterX(), pion.getCenterY(),
-				pion.getWidth(), pion.getHeight());
+		/*
+		 * Calcul de la distance entre la case et le pion En x
+		 */
+		
+		int centreCaseX = x + (HEIGHT / 10);
+		int centrePionX = p.getCenter_x();
+		int distance_x = Math.abs(centrePionX - centreCaseX);
+
+		/* En y */
+
+		int centreCaseY = y
+				+ (HEIGHT / 10)
+				+ (HEIGHT / 20);
+		int centrePionY = p.getCenter_y();
+		int distance_y = Math.abs(centrePionY - centreCaseY);
+		
+		/* Distance */
+		
+		int distance = (int) Math.sqrt(distance_x*distance_x+distance_y*distance_y);
+		
+		if (distance < p.getRayon()-(p.getRayon()/20)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
