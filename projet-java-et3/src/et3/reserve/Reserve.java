@@ -40,14 +40,15 @@ public class Reserve {
 
 		int x = 0, y = 10;
 		x = 50 + (40 * (numInt - 1));
-		Pion pion = new Pion(typePion, x, y, x,y);
+		Pion pion = new Pion(typePion, x, y, x, y);
 
 		return pion;
 	}
 
 	/**
 	 * 
-	 * @param filename .properties
+	 * @param filename
+	 *            .properties
 	 * @return reserve de pions
 	 */
 	public static Reserve buildReserve(String filename) {
@@ -62,21 +63,12 @@ public class Reserve {
 			pionName = "PION".concat(String.valueOf(i));
 			typePion = PropertyAcces.retrieveProperties(filename, pionName);
 
-			if (typePion.equals(PionEnum.TYPE1.toString())) {
-				pionEnum = PionEnum.TYPE1;
-			} else if (typePion.equals(PionEnum.TYPE2.toString())) {
-				pionEnum = PionEnum.TYPE2;
-			} else if (typePion.equals(PionEnum.TYPE3.toString())) {
-				pionEnum = PionEnum.TYPE3;
-			} else if (typePion.equals(PionEnum.TYPE4.toString())) {
-				pionEnum = PionEnum.TYPE4;
-			} else if (typePion.equals(PionEnum.TYPE5.toString())) {
-				pionEnum = PionEnum.TYPE5;
-			} else if (typePion.equals(PionEnum.TYPE6.toString())) {
-				pionEnum = PionEnum.TYPE6;
-			} else if (typePion.equals(PionEnum.TYPE7.toString())) {
-				pionEnum = PionEnum.TYPE7;
-			}			
+			for (PionEnum b : PionEnum.values()) {
+				if (typePion.equalsIgnoreCase(b.name())) {
+					pionEnum = PionEnum.valueOf(b.name());
+				}
+			}
+
 			if (!typePion.equals("vide")) {
 				p = getPosition(pionName, pionEnum);
 				alPions.add(p);
