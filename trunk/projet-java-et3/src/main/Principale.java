@@ -39,7 +39,8 @@ public class Principale extends JFrame {
 			setClique_x(evt.getX());
 			setClique_y(evt.getY());
 			for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
-				if (jeu.getReserve().getPions().get(i).contains(clique_x, clique_y)) {
+				if (jeu.getReserve().getPions().get(i)
+						.contains(clique_x, clique_y)) {
 					jeu.setPionSelectionne(jeu.getReserve().getPions().get(i));
 					jeu.repaint();
 				}
@@ -64,44 +65,74 @@ public class Principale extends JFrame {
 						jeu.getPionSelectionne().getCenter_y() + translate_y);
 				setClique_x(evt.getX());
 				setClique_y(evt.getY());
-				caseSurvoleeListener();
+				for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
+					caseSurvoleeListener(jeu.getReserve().getPions().get(i));
+				}
 				jeu.repaint();
 
 			}
 		}
 	};
 
-	public void caseSurvoleeListener() {
-				
-		for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
-			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-				for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
-					if ((jeu.getGrille().getListCases().get(j).get(k)
-							.intersect(jeu.getReserve().getPions().get(i)))
-							&& (!jeu.getGrille().getListCases().get(j).get(k).getEtatActuel().toString()
-									.equals(CaseEnum.DESACTIVEE.toString()))) {
+	public void caseSurvoleeListener(Pion p) {
+		int PionSurvoleX = 0;
+		int PionSurvoleY = 0;
+		for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+			for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
+
+				if ((jeu.getGrille().getListCases().get(j).get(k).intersect(p))
+						&& (!jeu.getGrille().getListCases().get(j).get(k)
+								.getEtatActuel().toString()
+								.equals(CaseEnum.DESACTIVEE.toString()))) {
+
+					/*
+					 * Calcul de la distance entre la case et le pion En x
+					 */
+					int caseX = jeu.getGrille().getListCases().get(j).get(k)
+							.getX();
+					int centreCaseX = caseX
+							+ (jeu.getGrille().getListCases().get(j).get(k)
+									.getHeight() / 10);
+					int centrePionX = p.getCenter_x();
+					int distance_x = Math.abs(centrePionX - centreCaseX);
+
+					/* En y */
+					int caseY = jeu.getGrille().getListCases().get(j).get(k)
+							.getY();
+					int centreCaseY = caseY
+							+ (jeu.getGrille().getListCases().get(j).get(k)
+									.getHeight() / 10)
+							+ (jeu.getGrille().getListCases().get(j).get(k)
+									.getHeight() / 20);
+					int centrePionY = p.getCenter_y();
+					int distance_y = Math.abs(centrePionY - centreCaseY);
+
+					if (distance_x == Math.max(distance_x, PionSurvoleX)
+							&& distance_y == Math.max(distance_y, PionSurvoleY)) {
 						jeu.getGrille().getListCases().get(j).get(k)
 								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-						/* Propagation de chaque pion à apeller ici */
-//						jeu.paint(getGraphics());
-					} else if (!jeu.getGrille().getListCases().get(j).get(k)
-							.intersect(jeu.getReserve().getPions().get(i))){
-						jeu.getGrille().getListCases().get(j).get(k)
-						 .setEtatActuel(jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
-
-//		for (int i = 0; i < jeu.getReserve().size(); i++) {
-//			for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-//				for (int k = 0; k < jeu.getGrille().getGrille().get(j).size(); k++) {
-//					if (jeu.getGrille().getGrille().get(j).get(k)
-//							.intersect(jeu.getReserve().get(i)) && (jeu.getGrille().getGrille().get(j).get(k).equals(CaseEnum.DISPONIBLE))) {
-//					jeu.getGrille().getGrille().get(j).get(k)
-//								.setEtat(CaseEnum.POTENTIELLESURVOLEE);
-//					} else {
-						//jeu.getGrille().getGrille().get(j).get(k)
-						//		.setEtat(CaseEnum.DISPONIBLE);
+						PionSurvoleX = distance_x;
+						PionSurvoleY = distance_y;
 						
 					}
+					return;
+					/* Propagation de chaque pion à apeller ici */
+					// jeu.paint(getGraphics());
+				} else if (!jeu.getGrille().getListCases().get(j).get(k)
+						.intersect(p)
+						&& (jeu.getGrille().getListCases().get(j).get(k)
+								.getEtatActuel().toString()
+								.equals(CaseEnum.POTENTIELLESURVOLEE.toString()))) {
+					jeu.getGrille()
+							.getListCases()
+							.get(j)
+							.get(k)
+							.setEtatActuel(
+									jeu.getGrille().getListCases().get(j)
+											.get(k).getEtatInitial());
+					
 				}
+
 			}
 		}
 	}
@@ -111,7 +142,7 @@ public class Principale extends JFrame {
 	 * @param title
 	 * @param width
 	 * @param height
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
 	public Principale(String title, int width, int height) {
 		super(title);
@@ -122,7 +153,7 @@ public class Principale extends JFrame {
 
 		// DEBUT TEST
 		Grille grille = Grille.buildGrid("level1.properties");
-		
+
 		Reserve reserve = Reserve.buildReserve("level1.properties");
 
 		// FIN TEST

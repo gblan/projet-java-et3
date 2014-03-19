@@ -1,8 +1,10 @@
 package et3.grille.cases;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
 import et3.reserve.pions.Pion;
@@ -104,7 +106,9 @@ public class Case extends Component {
 	/**
 	 *@param graphics  on affiche la case
 	 */
-	public void paint(Graphics graphics) {
+	public void paint(Graphics g) {
+		
+		Graphics2D graphics = (Graphics2D) g;
 
 		// On dessine tout d'abord l'hexagone commun aux cases
 		int r = HEIGHT / 2; // r = radius of inscribed circle
@@ -145,9 +149,12 @@ public class Case extends Component {
 		case POTENTIELLE:
 			break;
 		case POTENTIELLESURVOLEE:
-			graphics.setColor(Color.black);
+			
+			graphics.setStroke(new BasicStroke(3f));
+			graphics.setColor(new Color(255, 0, 0));
 			graphics.drawOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.setStroke(new BasicStroke(1f));
 			graphics.setColor(new Color(255, 203, 96));
 			graphics.fillOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
