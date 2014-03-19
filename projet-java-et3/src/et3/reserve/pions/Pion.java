@@ -14,6 +14,8 @@ public class Pion {
 	private PionEnum typePion;
 	private int x;
 	private int y;
+	private int xInitial;
+	private int yInitial;
 	private final int rayon = 16;
 
 	public Pion(PionEnum typePion, int center_x, int center_y) {
@@ -21,6 +23,8 @@ public class Pion {
 		this.typePion = typePion;
 		this.x = center_x;
 		this.y = center_y;
+		this.xInitial = center_x;
+		this.yInitial = center_y;
 	}
 
 	public Pion() {
@@ -32,6 +36,24 @@ public class Pion {
 	 */
 	public PionEnum getTypePion() {
 		return typePion;
+	}
+	
+	
+
+	public int getxInitial() {
+		return xInitial;
+	}
+
+	public void setxInitial(int xInitial) {
+		this.xInitial = xInitial;
+	}
+
+	public int getyInitial() {
+		return yInitial;
+	}
+
+	public void setyInitial(int yInitial) {
+		this.yInitial = yInitial;
 	}
 
 	/**

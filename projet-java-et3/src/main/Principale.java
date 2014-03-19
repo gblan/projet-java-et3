@@ -7,12 +7,14 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
+import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.reserve.Reserve;
@@ -48,8 +50,17 @@ public class Principale extends JFrame {
 		}
 
 		public void mouseReleased(MouseEvent evt) {
-			jeu.setPionSelectionne(null);
+
+			if (jeu.getPionSelectionne() != null) {
+				/* A FAIRE deplacement vers point initial */
+				jeu.getPionSelectionne().setCenter_x(
+						jeu.getPionSelectionne().getxInitial());
+				jeu.getPionSelectionne().setCenter_y(
+						jeu.getPionSelectionne().getyInitial());
+				jeu.setPionSelectionne(null);
+			}
 			jeu.repaint();
+
 		}
 	};
 
@@ -65,64 +76,39 @@ public class Principale extends JFrame {
 						jeu.getPionSelectionne().getCenter_y() + translate_y);
 				setClique_x(evt.getX());
 				setClique_y(evt.getY());
-				for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
-					caseSurvoleeListener(jeu.getReserve().getPions().get(i));
-				}
+
+				caseSurvoleeListener();
+
 				jeu.repaint();
 
 			}
 		}
 	};
 
-	public void caseSurvoleeListener(Pion p) {
-		int PionSurvoleX = 0;
-		int PionSurvoleY = 0;
+	public void caseSurvoleeListener() {
+
 		for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 			for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
 
-				if ((jeu.getGrille().getListCases().get(j).get(k).intersect(p))
+				if (jeu.getGrille().getListCases().get(j).get(k)
+						.intersect(jeu.getPionSelectionne())
 						&& (!jeu.getGrille().getListCases().get(j).get(k)
 								.getEtatActuel().toString()
 								.equals(CaseEnum.DESACTIVEE.toString()))) {
 
-					/*
-					 * Calcul de la distance entre la case et le pion En x
-					 */
-					int caseX = jeu.getGrille().getListCases().get(j).get(k)
-							.getX();
-					int centreCaseX = caseX
-							+ (jeu.getGrille().getListCases().get(j).get(k)
-									.getHeight() / 10);
-					int centrePionX = p.getCenter_x();
-					int distance_x = Math.abs(centrePionX - centreCaseX);
+					jeu.getGrille().getListCases().get(j).get(k)
+							.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 
-					/* En y */
-					int caseY = jeu.getGrille().getListCases().get(j).get(k)
-							.getY();
-					int centreCaseY = caseY
-							+ (jeu.getGrille().getListCases().get(j).get(k)
-									.getHeight() / 10)
-							+ (jeu.getGrille().getListCases().get(j).get(k)
-									.getHeight() / 20);
-					int centrePionY = p.getCenter_y();
-					int distance_y = Math.abs(centrePionY - centreCaseY);
+					// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
+					// jeu.getGrille().getListCases().get(j).remove(k);
+					// indicePionSurvole.add(i);
+					// indiceCaseSurvole.add(j);
+					// indiceCaseSurvole2.add(k);
+					// jeu.repaint();
 
-					if (distance_x == Math.max(distance_x, PionSurvoleX)
-							&& distance_y == Math.max(distance_y, PionSurvoleY)) {
-						jeu.getGrille().getListCases().get(j).get(k)
-								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-						PionSurvoleX = distance_x;
-						PionSurvoleY = distance_y;
-						
-					}
-					return;
 					/* Propagation de chaque pion à apeller ici */
 					// jeu.paint(getGraphics());
-				} else if (!jeu.getGrille().getListCases().get(j).get(k)
-						.intersect(p)
-						&& (jeu.getGrille().getListCases().get(j).get(k)
-								.getEtatActuel().toString()
-								.equals(CaseEnum.POTENTIELLESURVOLEE.toString()))) {
+				} else {
 					jeu.getGrille()
 							.getListCases()
 							.get(j)
@@ -130,11 +116,26 @@ public class Principale extends JFrame {
 							.setEtatActuel(
 									jeu.getGrille().getListCases().get(j)
 											.get(k).getEtatInitial());
-					
+
 				}
 
 			}
 		}
+
+		// for (int i = 0; i < caseSurvole.size(); i++) {
+		// if
+		// (!caseSurvole.get(i).intersect(jeu.getReserve().getPions().get(indicePionSurvole.get(i))))
+		// {
+		// jeu.getGrille().getListCases().get(indiceCaseSurvole.get(i)).add(indiceCaseSurvole2.get(i),
+		// caseSurvole.get(i));
+		// jeu.getGrille().getListCases().get(indiceCaseSurvole.get(i)).get(indiceCaseSurvole2.get(i)).setEtatActuel(caseSurvole.get(i).getEtatInitial());
+		// caseSurvole.remove(i);
+		// indicePionSurvole.remove(i);
+		// indiceCaseSurvole.remove(i);
+		// indiceCaseSurvole2.remove(i);
+		// jeu.repaint();
+		// }
+		// }
 	}
 
 	/**
