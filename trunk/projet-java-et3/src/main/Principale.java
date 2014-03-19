@@ -7,19 +7,14 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
-import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.reserve.Reserve;
-import et3.reserve.pions.Pion;
-import et3.reserve.pions.PionEnum;
 
 public class Principale extends JFrame {
 
@@ -60,6 +55,7 @@ public class Principale extends JFrame {
 					jeu.getPionSelectionne().setCenter_y(
 							jeu.getPionSelectionne().getyInitial());
 					jeu.setPionSelectionne(null);
+					jeu.setCaseSelectionne(null);
 					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 						for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
 							jeu.getGrille()
@@ -71,9 +67,7 @@ public class Principale extends JFrame {
 											.get(k).getEtatInitial());
 						}
 					}
-				}
-				
-				else {
+				}else {
 					// sinon on le positionne sur la case
 					jeu.getPionSelectionne().setCenter_x(
 							jeu.getCaseSelectionne().getX()+3);
@@ -141,6 +135,7 @@ public class Principale extends JFrame {
 							.setEtatActuel(
 									jeu.getGrille().getListCases().get(j)
 											.get(k).getEtatInitial());
+					
 
 				}
 
