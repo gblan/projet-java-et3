@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import et3.grille.Grille;
+import et3.grille.cases.Case;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 
@@ -23,6 +24,7 @@ public class Jeu extends Component {
 	private Grille grille;
 	private Reserve reserve;
 	private Pion pionSelectionne;
+	private Case caseSelectionne;
 
 	/*
 	 * FIN A MODIFIER
@@ -40,6 +42,15 @@ public class Jeu extends Component {
 
 	public void setReserve(Reserve reserve) {
 		this.reserve = reserve;
+	}
+
+	
+	public Case getCaseSelectionne() {
+		return caseSelectionne;
+	}
+
+	public void setCaseSelectionne(Case caseSelectionne) {
+		this.caseSelectionne = caseSelectionne;
 	}
 
 	public Pion getPionSelectionne() {

@@ -127,7 +127,7 @@ public class Case extends Component {
 	public void paint(Graphics g) {
 		
 		Graphics2D graphics = (Graphics2D) g;
-
+		graphics.setStroke(new BasicStroke(2f));
 		// On dessine tout d'abord l'hexagone commun aux cases
 		int r = HEIGHT / 2; // r = radius of inscribed circle
 		int s = (int) (HEIGHT / 1.73205); // s = (h/2)/cos(30)= (h/2) /
@@ -159,8 +159,10 @@ public class Case extends Component {
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case OCCUPEE:
+			
 			break;
 		case CONTAMINEE:
+			
 			break;
 		case SURVOLEE:
 			break;
@@ -172,7 +174,7 @@ public class Case extends Component {
 			graphics.setColor(new Color(255, 0, 0));
 			graphics.drawOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
-			graphics.setStroke(new BasicStroke(1f));
+			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
 			graphics.fillOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));

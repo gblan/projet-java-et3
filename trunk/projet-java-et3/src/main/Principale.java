@@ -52,12 +52,36 @@ public class Principale extends JFrame {
 		public void mouseReleased(MouseEvent evt) {
 
 			if (jeu.getPionSelectionne() != null) {
-				/* A FAIRE deplacement vers point initial */
-				jeu.getPionSelectionne().setCenter_x(
-						jeu.getPionSelectionne().getxInitial());
-				jeu.getPionSelectionne().setCenter_y(
-						jeu.getPionSelectionne().getyInitial());
-				jeu.setPionSelectionne(null);
+				// Si il n'y a pas de case selectionne le pion retourne dans la reserve
+				if (jeu.getCaseSelectionne() == null) {
+					/* A FAIRE deplacement vers point initial */
+					jeu.getPionSelectionne().setCenter_x(
+							jeu.getPionSelectionne().getxInitial());
+					jeu.getPionSelectionne().setCenter_y(
+							jeu.getPionSelectionne().getyInitial());
+					jeu.setPionSelectionne(null);
+					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+						for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
+							jeu.getGrille()
+							.getListCases()
+							.get(j)
+							.get(k)
+							.setEtatActuel(
+									jeu.getGrille().getListCases().get(j)
+											.get(k).getEtatInitial());
+						}
+					}
+				}
+				
+				else {
+					// sinon on le positionne sur la case
+					jeu.getPionSelectionne().setCenter_x(
+							jeu.getCaseSelectionne().getX()+3);
+					jeu.getPionSelectionne().setCenter_y(
+							jeu.getCaseSelectionne().getY() +4);
+					jeu.getCaseSelectionne().setEtatActuel(CaseEnum.OCCUPEE);
+					jeu.setPionSelectionne(null);
+				}
 			}
 			jeu.repaint();
 
@@ -98,6 +122,7 @@ public class Principale extends JFrame {
 
 					jeu.getGrille().getListCases().get(j).get(k)
 							.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+					jeu.setCaseSelectionne(jeu.getGrille().getListCases().get(j).get(k));
 
 					// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
 					// jeu.getGrille().getListCases().get(j).remove(k);

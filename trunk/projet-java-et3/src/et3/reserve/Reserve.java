@@ -40,7 +40,7 @@ public class Reserve {
 
 		int x = 0, y = 10;
 		x = 50 + (40 * (numInt - 1));
-		Pion pion = new Pion(typePion, x, y);
+		Pion pion = new Pion(typePion, x, y, x,y);
 
 		return pion;
 	}
