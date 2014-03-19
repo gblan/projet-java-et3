@@ -18,6 +18,7 @@ public class Niveaux extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Jeu> listeNiveau;
+	private String[] test;
 
 	/**
 	 * @return Constructeur de niveaux
@@ -56,16 +57,9 @@ public class Niveaux extends JFrame {
 				Jeu jeu = new Jeu(Grille.buildGrid(str),
 						Reserve.buildReserve(str));
 				this.listeNiveau.add(jeu);
+				
 			}
 		}
-	}
-
-	public ArrayList<Jeu> getListeNiveau() {
-		return listeNiveau;
-	}
-
-	public void setListeNiveau(ArrayList<Jeu> listeNiveau) {
-		this.listeNiveau = listeNiveau;
 	}
 
 	@Override
