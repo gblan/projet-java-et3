@@ -7,14 +7,19 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
+import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.reserve.Reserve;
+import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionEnum;
 
 public class Principale extends JFrame {
 
@@ -49,9 +54,16 @@ public class Principale extends JFrame {
 			if (jeu.getPionSelectionne() != null) {
 				// Si il n'y a pas de case selectionne le pion retourne dans la
 				// reserve
-				if (jeu.getCaseSelectionne() == null
-						|| !(jeu.getCaseSelectionne().intersect(jeu
-								.getPionSelectionne()))) {
+				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
+						.get(jeu.getIndiceCaseV()) == null
+						|| !(jeu.getGrille().getListCases()
+								.get(jeu.getIndiceCaseH())
+								.get(jeu.getIndiceCaseV()).intersect(jeu
+								.getPionSelectionne()))
+						|| jeu.getGrille().getListCases()
+								.get(jeu.getIndiceCaseH())
+								.get(jeu.getIndiceCaseV()).getEtatActuel()
+								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 					/* A FAIRE deplacement vers point initial */
 					jeu.getPionSelectionne().setCenter_x(
 							jeu.getPionSelectionne().getxInitial());
@@ -77,10 +89,16 @@ public class Principale extends JFrame {
 				else {
 					// sinon on le positionne sur la case
 					jeu.getPionSelectionne().setCenter_x(
-							jeu.getCaseSelectionne().getX() + 3);
+							jeu.getGrille().getListCases()
+									.get(jeu.getIndiceCaseH())
+									.get(jeu.getIndiceCaseV()).getX() + 3);
 					jeu.getPionSelectionne().setCenter_y(
-							jeu.getCaseSelectionne().getY() + 4);
-					jeu.getCaseSelectionne().setEtatActuel(CaseEnum.OCCUPEE);
+							jeu.getGrille().getListCases()
+									.get(jeu.getIndiceCaseH())
+									.get(jeu.getIndiceCaseV()).getY() + 4);
+					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
+							.get(jeu.getIndiceCaseV())
+							.setEtatActuel(CaseEnum.OCCUPEE);
 					jeu.setPionSelectionne(null);
 				}
 			}
@@ -119,12 +137,15 @@ public class Principale extends JFrame {
 						.intersect(jeu.getPionSelectionne())
 						&& (!jeu.getGrille().getListCases().get(j).get(k)
 								.getEtatActuel().toString()
-								.equals(CaseEnum.DESACTIVEE.toString()))) {
+								.equals(CaseEnum.DESACTIVEE.toString()))
+						&& (!jeu.getGrille().getListCases().get(jeu.getIndiceCaseH()).get(jeu.getIndiceCaseV())
+								.getEtatActuel().toString()
+								.equals(CaseEnum.OCCUPEE.toString()))) {
 
 					jeu.getGrille().getListCases().get(j).get(k)
 							.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-					jeu.setCaseSelectionne(jeu.getGrille().getListCases()
-							.get(j).get(k));
+					jeu.setIndiceCaseH(j);
+					jeu.setIndiceCaseV(k);
 
 					// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
 					// jeu.getGrille().getListCases().get(j).remove(k);
