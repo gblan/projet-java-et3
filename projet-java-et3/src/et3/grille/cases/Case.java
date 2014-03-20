@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
 import et3.reserve.pions.Pion;
 
@@ -120,6 +121,12 @@ public class Case extends Component {
 		
 		return false;
 	}
+	
+	public boolean contains(int point_x, int point_y) {
+		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, HEIGHT, HEIGHT);
+		return (cercle.contains(new Point2D.Float(point_x, point_y)));
+
+	}
 
 	/**
 	 *@param graphics  on affiche la case
@@ -159,6 +166,12 @@ public class Case extends Component {
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case OCCUPEE:
+			graphics.setColor(Color.black);
+			graphics.drawOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
+					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.setColor(new Color(0, 127, 255));
+			graphics.fillOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
+					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			
 			break;
 		case CONTAMINEE:
