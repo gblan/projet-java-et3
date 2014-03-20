@@ -17,6 +17,7 @@ import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
+import et3.menus.Menu;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionEnum;
@@ -253,8 +254,9 @@ public class Principale extends JFrame {
 	}
 
 	public static void main(String[] arg) {
-		Principale p1 = new Principale("Sporos", 300, 500);
-		p1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Principale p1 = new Principale("Sporos", 300, 500);
+		Menu m = new Menu("Sporos");
+		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 

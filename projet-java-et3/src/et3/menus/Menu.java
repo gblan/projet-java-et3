@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
+import main.Principale;
+
 public class Menu extends JFrame {
 
 	/**
@@ -23,6 +25,13 @@ public class Menu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton btnNewButton = new JButton("Play");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Principale p1 = new Principale("Sporos", 300, 500);
+				
+			}
+		});
 
 		JButton btnOptions = new JButton("Options");
 		btnOptions.addActionListener(new ActionListener() {

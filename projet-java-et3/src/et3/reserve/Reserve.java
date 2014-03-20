@@ -1,5 +1,9 @@
 package et3.reserve;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import et3.reserve.pions.Pion;
@@ -40,6 +44,14 @@ public class Reserve {
 		Pion pion = new Pion(typePion, x, y, x, y);
 
 		return pion;
+	}
+	
+	public void paint(Graphics g) {
+		Graphics2D graphics = (Graphics2D) g;
+		graphics.setStroke(new BasicStroke(2f));
+		g.setColor(Color.black);
+		graphics.drawRoundRect(40, 6, 
+			     160, 45, 40, 40);
 	}
 
 	/**
