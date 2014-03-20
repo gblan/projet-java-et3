@@ -137,26 +137,30 @@ public class Principale extends JFrame {
 						.intersect(jeu.getPionSelectionne())
 						&& (!jeu.getGrille().getListCases().get(j).get(k)
 								.getEtatActuel().toString()
-								.equals(CaseEnum.DESACTIVEE.toString()))
-						&& (!jeu.getGrille().getListCases().get(jeu.getIndiceCaseH()).get(jeu.getIndiceCaseV())
-								.getEtatActuel().toString()
-								.equals(CaseEnum.OCCUPEE.toString()))) {
+								.equals(CaseEnum.DESACTIVEE.toString()))) {
 
-					jeu.getGrille().getListCases().get(j).get(k)
-							.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-					jeu.setIndiceCaseH(j);
-					jeu.setIndiceCaseV(k);
+					if (!jeu.getGrille().getListCases().get(j).get(k)
+									.getEtatActuel().toString()
+									.equals(CaseEnum.OCCUPEE.toString())) {
+						
+						jeu.getGrille().getListCases().get(j).get(k)
+								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+						jeu.setIndiceCaseH(j);
+						jeu.setIndiceCaseV(k);
 
-					// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
-					// jeu.getGrille().getListCases().get(j).remove(k);
-					// indicePionSurvole.add(i);
-					// indiceCaseSurvole.add(j);
-					// indiceCaseSurvole2.add(k);
-					// jeu.repaint();
+						// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
+						// jeu.getGrille().getListCases().get(j).remove(k);
+						// indicePionSurvole.add(i);
+						// indiceCaseSurvole.add(j);
+						// indiceCaseSurvole2.add(k);
+						// jeu.repaint();
 
-					/* Propagation de chaque pion à apeller ici */
-					// jeu.paint(getGraphics());
-				} else {
+						/* Propagation de chaque pion à apeller ici */
+						// jeu.paint(getGraphics());
+					}
+				} else if (!jeu.getGrille().getListCases().get(j).get(k)
+						.getEtatActuel().toString()
+						.equals(CaseEnum.OCCUPEE.toString()))   {
 					jeu.getGrille()
 							.getListCases()
 							.get(j)
