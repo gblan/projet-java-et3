@@ -1,11 +1,34 @@
 package et3.reserve.pions;
 
+import et3.grille.Grille;
+import et3.grille.cases.CaseEnum;
+
+/* Une méthode par type de déploiement */
+/* chaque pion apelle 1 ou plusieurs méthodes de déploiement */
 public class PionManager {
 
-	/* Une méthode par type de déploiement */
-	/* chaque pion apelle 1 ou plusieurs méthodes de déploiement */
+	private Grille grille;
+	private Pion pion;
+
+	public PionManager(Grille grille, Pion pion) {
+		super();
+		this.grille = grille;
+		this.pion = pion;
+		contamination(pion);
+	}
 
 	public void deploiementHorizontal() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (this.grille.getListCases().get(i).get(j).intersect(pion)) {
+					for (int k = 0; k < 7; k++) {
+						this.grille.getListCases().get(i).get(k)
+								.setEtatActuel(CaseEnum.CONTAMINEE);
+					}
+					return;
+				}
+			}
+		}
 
 	}
 
@@ -20,31 +43,31 @@ public class PionManager {
 	public void contamination(Pion p) {
 		switch (p.getTypePion()) {
 		case TYPE1:
-			deploiementHorizontal();			
+			deploiementHorizontal();
 			break;
 		case TYPE2:
-			deploiementBiaisDroit();			
+			deploiementBiaisDroit();
 			break;
 		case TYPE3:
-			deploiementBiaisGauche();			
+			deploiementBiaisGauche();
 			break;
 		case TYPE4:
 			deploiementBiaisGauche();
-			deploiementHorizontal();			
+			deploiementHorizontal();
 			break;
 		case TYPE5:
 			deploiementBiaisDroit();
-			deploiementHorizontal();	
+			deploiementHorizontal();
 			break;
 		case TYPE6:
 			deploiementBiaisDroit();
 			deploiementBiaisGauche();
-			break;	
+			break;
 		case TYPE7:
 			deploiementHorizontal();
 			deploiementBiaisDroit();
 			deploiementBiaisGauche();
-			break;	
+			break;
 		default:
 			break;
 		}

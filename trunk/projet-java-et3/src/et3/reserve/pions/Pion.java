@@ -18,7 +18,8 @@ public class Pion {
 	private int yInitial;
 	private final int rayon = 16;
 
-	public Pion(PionEnum typePion, int center_x, int center_y,int xIni, int yIni) {
+	public Pion(PionEnum typePion, int center_x, int center_y, int xIni,
+			int yIni) {
 		super();
 		this.typePion = typePion;
 		this.x = center_x;
@@ -37,18 +38,14 @@ public class Pion {
 	public PionEnum getTypePion() {
 		return typePion;
 	}
-	
-	
 
 	public int getxInitial() {
 		return xInitial;
 	}
 
-
 	public int getyInitial() {
 		return yInitial;
 	}
-
 
 	/**
 	 * 
@@ -92,7 +89,8 @@ public class Pion {
 
 	/**
 	 * 
-	 * @param graphics qui permet l'affichage d'un pion
+	 * @param graphics
+	 *            qui permet l'affichage d'un pion
 	 */
 	public void paint(Graphics graphics) {
 
@@ -111,13 +109,13 @@ public class Pion {
 		}
 
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		String res = "";
-		
-		res+="Pion : x : "+this.x+", y : "+this.y+"\n";
-		res+="\t typePion : "+this.typePion.toString()+"\n";
+
+		res += "Pion : x : " + this.x + ", y : " + this.y + "\n";
+		res += "\t typePion : " + this.typePion.toString() + "\n";
 		return res;
 	}
 
