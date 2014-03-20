@@ -18,29 +18,29 @@ public class PionManager {
 	}
 
 	public void contaminationPion(Pion p) {
-		switch (p.getTypePion()) {
-		case TYPE1:
+		switch (p.getTypePion().toString()) {
+		case "TYPE1":
 			contaminationHorizontal();
 			break;
-		case TYPE2:
+		case "TYPE2":
 			contaminationBiaisDroit();
 			break;
-		case TYPE3:
+		case "TYPE3":
 			contaminationBiaisGauche();
 			break;
-		case TYPE4:
+		case "TYPE4":
 			contaminationBiaisGauche();
 			contaminationHorizontal();
 			break;
-		case TYPE5:
+		case "TYPE5":
 			contaminationBiaisDroit();
 			contaminationHorizontal();
 			break;
-		case TYPE6:
+		case "TYPE6":
 			contaminationBiaisDroit();
 			contaminationBiaisGauche();
 			break;
-		case TYPE7:
+		case "TYPE7":
 			contaminationHorizontal();
 			contaminationBiaisDroit();
 			contaminationBiaisGauche();
@@ -55,10 +55,12 @@ public class PionManager {
 			for (int j = 0; j < 7; j++) {
 				if (this.grille.getListCases().get(i).get(j).intersect(pion)) {
 					for (int k = 0; k < 7; k++) {
-						this.grille.getListCases().get(i).get(k)
-								.setEtatActuel(CaseEnum.CONTAMINEE);
+						if (this.grille.getListCases().get(i).get(k)
+								.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
+							this.grille.getListCases().get(i).get(k)
+									.setEtatActuel(CaseEnum.CONTAMINEE);
+						}
 					}
-					return;
 				}
 			}
 		}
