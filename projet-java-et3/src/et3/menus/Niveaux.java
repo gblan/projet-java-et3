@@ -57,7 +57,7 @@ public class Niveaux extends JFrame {
 				Jeu jeu = new Jeu(Grille.buildGrid(str),
 						Reserve.buildReserve(str));
 				this.listeNiveau.add(jeu);
-				
+
 			}
 		}
 	}

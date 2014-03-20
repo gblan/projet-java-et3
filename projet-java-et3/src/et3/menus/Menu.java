@@ -61,10 +61,9 @@ public class Menu extends JFrame {
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
 				btnNewButton, btnOptions, btnQuit });
 		getContentPane().setLayout(groupLayout);
-		
+
 		setVisible(true);
 
 	}
-
 
 }

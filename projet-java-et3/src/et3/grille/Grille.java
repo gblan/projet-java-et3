@@ -24,15 +24,16 @@ public class Grille {
 
 	/**
 	 * 
-	 * @param nom du fichier .properties
+	 * @param nom
+	 *            du fichier .properties
 	 * @return Grille remplie
 	 */
-	public static Grille buildGrid(String filename){
+	public static Grille buildGrid(String filename) {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = new ArrayList<Case>();
 		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
-		
+
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
@@ -41,7 +42,8 @@ public class Grille {
 			for (int j = 0; j < 7; j++) {
 				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
 				c = Case.getPositions(j, i);
-				typeCase = PropertyAcces.retrieveProperties(filename, caseGrille);
+				typeCase = PropertyAcces.retrieveProperties(filename,
+						caseGrille);
 				if (typeCase.equals(CaseEnum.DESACTIVEE.toString())) {
 					caseEnum = CaseEnum.DESACTIVEE;
 				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
@@ -58,6 +60,5 @@ public class Grille {
 
 		return grille;
 	}
-
 
 }

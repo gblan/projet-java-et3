@@ -2,9 +2,6 @@ package et3.reserve;
 
 import java.util.ArrayList;
 
-import et3.grille.Grille;
-import et3.grille.cases.Case;
-import et3.grille.cases.CaseEnum;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;
