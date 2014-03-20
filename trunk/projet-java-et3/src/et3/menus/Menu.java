@@ -28,6 +28,8 @@ public class Menu extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				
+				/* TODO Aller a liste niveau par la suite*/
 				Principale p1 = new Principale("Sporos", 300, 500);
 				
 			}
