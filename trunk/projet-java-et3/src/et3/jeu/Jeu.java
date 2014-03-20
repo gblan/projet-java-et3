@@ -4,7 +4,12 @@ import java.awt.BasicStroke;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import et3.grille.Grille;
 import et3.grille.cases.Case;
@@ -94,6 +99,15 @@ public class Jeu extends Component {
 		}
 		for (int i = 0; i < this.reserve.getPions().size(); i++) {
 			reserve.getPions().get(i).paint(graphics);
+		}
+		reserve.paint(g);
+		File file = new File("resources/icone_menu.png");
+		try {
+			BufferedImage img = ImageIO.read(file);
+			graphics.drawImage(img, 230, 10, null);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 		g.setStroke(new BasicStroke(2f));
 		if (this.pionSelectionne != null) {
