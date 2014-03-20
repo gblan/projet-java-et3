@@ -14,10 +14,43 @@ public class PionManager {
 		super();
 		this.grille = grille;
 		this.pion = pion;
-		contamination(pion);
+		contaminationPion(pion);
 	}
 
-	public void deploiementHorizontal() {
+	public void contaminationPion(Pion p) {
+		switch (p.getTypePion()) {
+		case TYPE1:
+			contaminationHorizontal();
+			break;
+		case TYPE2:
+			contaminationBiaisDroit();
+			break;
+		case TYPE3:
+			contaminationBiaisGauche();
+			break;
+		case TYPE4:
+			contaminationBiaisGauche();
+			contaminationHorizontal();
+			break;
+		case TYPE5:
+			contaminationBiaisDroit();
+			contaminationHorizontal();
+			break;
+		case TYPE6:
+			contaminationBiaisDroit();
+			contaminationBiaisGauche();
+			break;
+		case TYPE7:
+			contaminationHorizontal();
+			contaminationBiaisDroit();
+			contaminationBiaisGauche();
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void contaminationHorizontal() {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 7; j++) {
 				if (this.grille.getListCases().get(i).get(j).intersect(pion)) {
@@ -29,48 +62,14 @@ public class PionManager {
 				}
 			}
 		}
+	}
+
+	public void contaminationBiaisGauche() {
 
 	}
 
-	public void deploiementBiaisGauche() {
+	public void contaminationBiaisDroit() {
 
 	}
 
-	public void deploiementBiaisDroit() {
-
-	}
-
-	public void contamination(Pion p) {
-		switch (p.getTypePion()) {
-		case TYPE1:
-			deploiementHorizontal();
-			break;
-		case TYPE2:
-			deploiementBiaisDroit();
-			break;
-		case TYPE3:
-			deploiementBiaisGauche();
-			break;
-		case TYPE4:
-			deploiementBiaisGauche();
-			deploiementHorizontal();
-			break;
-		case TYPE5:
-			deploiementBiaisDroit();
-			deploiementHorizontal();
-			break;
-		case TYPE6:
-			deploiementBiaisDroit();
-			deploiementBiaisGauche();
-			break;
-		case TYPE7:
-			deploiementHorizontal();
-			deploiementBiaisDroit();
-			deploiementBiaisGauche();
-			break;
-		default:
-			break;
-		}
-
-	}
 }
