@@ -31,7 +31,7 @@ public class Grille {
 	public static Grille buildGrid(String filename) {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
-		ArrayList<Case> ligne = new ArrayList<Case>();
+		ArrayList<Case> ligne = null;;
 		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
 
 		String caseGrille = "";
@@ -39,6 +39,7 @@ public class Grille {
 		CaseEnum caseEnum = null;
 
 		for (int i = 0; i < 10; i++) {
+			ligne =  new ArrayList<Case>();
 			for (int j = 0; j < 7; j++) {
 				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
 				c = Case.getPositions(j, i);
