@@ -24,7 +24,8 @@ public class Jeu extends Component {
 	private Grille grille;
 	private Reserve reserve;
 	private Pion pionSelectionne;
-	private Case caseSelectionne;
+	private int indiceCaseH;
+	private int indiceCaseV;
 
 	/*
 	 * FIN A MODIFIER
@@ -45,12 +46,21 @@ public class Jeu extends Component {
 	}
 
 	
-	public Case getCaseSelectionne() {
-		return caseSelectionne;
+
+	public int getIndiceCaseH() {
+		return indiceCaseH;
 	}
 
-	public void setCaseSelectionne(Case caseSelectionne) {
-		this.caseSelectionne = caseSelectionne;
+	public void setIndiceCaseH(int indiceCaseH) {
+		this.indiceCaseH = indiceCaseH;
+	}
+
+	public int getIndiceCaseV() {
+		return indiceCaseV;
+	}
+
+	public void setIndiceCaseV(int indiceCaseV) {
+		this.indiceCaseV = indiceCaseV;
 	}
 
 	public Pion getPionSelectionne() {
