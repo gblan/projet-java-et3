@@ -43,6 +43,13 @@ public class Principale extends JFrame {
 			for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
 				if (jeu.getReserve().getPions().get(i)
 						.contains(clique_x, clique_y)) {
+					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+					 for (int k = 0; k < jeu.getGrille().getListCases().get(j).size();k++) {
+						 if ( jeu.getGrille().getListCases().get(j).get(k).contains(clique_x, clique_y)) {
+							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
+						 }
+					 }
+					}
 					jeu.setPionSelectionne(jeu.getReserve().getPions().get(i));
 					jeu.repaint();
 				}
@@ -70,19 +77,25 @@ public class Principale extends JFrame {
 					jeu.getPionSelectionne().setCenter_y(
 							jeu.getPionSelectionne().getyInitial());
 					jeu.setPionSelectionne(null);
-					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-						for (int k = 0; k < jeu.getGrille().getListCases()
-								.get(j).size(); k++) {
-							jeu.getGrille()
-									.getListCases()
-									.get(j)
-									.get(k)
-									.setEtatActuel(
-											jeu.getGrille().getListCases()
-													.get(j).get(k)
-													.getEtatInitial());
-						}
-					}
+//					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+//						for (int k = 0; k < jeu.getGrille().getListCases()
+//								.get(j).size(); k++) {
+//							if (!jeu.getGrille()
+//									.getListCases()
+//									.get(j)
+//									.get(k)
+//									.getEtatActuel().toString().equals(CaseEnum.OCCUPEE.toString())) {
+//							jeu.getGrille()
+//									.getListCases()
+//									.get(j)
+//									.get(k)
+//									.setEtatActuel(
+//											jeu.getGrille().getListCases()
+//													.get(j).get(k)
+//													.getEtatInitial());
+//							}
+//						}
+//					}
 
 				}
 
@@ -99,6 +112,7 @@ public class Principale extends JFrame {
 					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
+					
 					jeu.setPionSelectionne(null);
 				}
 			}
