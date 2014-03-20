@@ -7,20 +7,16 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
-import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.menus.Menu;
 import et3.reserve.Reserve;
-import et3.reserve.pions.Pion;
-import et3.reserve.pions.PionEnum;
+import et3.reserve.pions.PionManager;
 
 public class Principale extends JFrame {
 
@@ -114,7 +110,9 @@ public class Principale extends JFrame {
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
 					
+					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne());
 					jeu.setPionSelectionne(null);
+
 				}
 			}
 			jeu.repaint();
