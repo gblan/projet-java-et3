@@ -188,9 +188,11 @@ public class Principale extends JFrame {
 		jeu.setPreferredSize(new Dimension(width, height));
 		jeu.addMouseListener(selectionnerPions);
 		jeu.addMouseMotionListener(selectionnerPionsMotion);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeu);
 		pack();
 		setVisible(true);
+		
 
 	}
 
