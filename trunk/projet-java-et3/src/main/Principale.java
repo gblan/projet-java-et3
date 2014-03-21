@@ -74,25 +74,7 @@ public class Principale extends JFrame {
 					jeu.getPionSelectionne().setCenter_y(
 							jeu.getPionSelectionne().getyInitial());
 					jeu.setPionSelectionne(null);
-//					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-//						for (int k = 0; k < jeu.getGrille().getListCases()
-//								.get(j).size(); k++) {
-//							if (!jeu.getGrille()
-//									.getListCases()
-//									.get(j)
-//									.get(k)
-//									.getEtatActuel().toString().equals(CaseEnum.OCCUPEE.toString())) {
-//							jeu.getGrille()
-//									.getListCases()
-//									.get(j)
-//									.get(k)
-//									.setEtatActuel(
-//											jeu.getGrille().getListCases()
-//													.get(j).get(k)
-//													.getEtatInitial());
-//							}
-//						}
-//					}
+
 
 				}
 
@@ -161,15 +143,7 @@ public class Principale extends JFrame {
 						jeu.setIndiceCaseH(j);
 						jeu.setIndiceCaseV(k);
 
-						// caseSurvole.add(jeu.getGrille().getListCases().get(j).get(k));
-						// jeu.getGrille().getListCases().get(j).remove(k);
-						// indicePionSurvole.add(i);
-						// indiceCaseSurvole.add(j);
-						// indiceCaseSurvole2.add(k);
-						// jeu.repaint();
 
-						/* Propagation de chaque pion à apeller ici */
-						// jeu.paint(getGraphics());
 					}
 				} else if (!jeu.getGrille().getListCases().get(j).get(k)
 						.getEtatActuel().toString()
@@ -186,21 +160,6 @@ public class Principale extends JFrame {
 
 			}
 		}
-
-		// for (int i = 0; i < caseSurvole.size(); i++) {
-		// if
-		// (!caseSurvole.get(i).intersect(jeu.getReserve().getPions().get(indicePionSurvole.get(i))))
-		// {
-		// jeu.getGrille().getListCases().get(indiceCaseSurvole.get(i)).add(indiceCaseSurvole2.get(i),
-		// caseSurvole.get(i));
-		// jeu.getGrille().getListCases().get(indiceCaseSurvole.get(i)).get(indiceCaseSurvole2.get(i)).setEtatActuel(caseSurvole.get(i).getEtatInitial());
-		// caseSurvole.remove(i);
-		// indicePionSurvole.remove(i);
-		// indiceCaseSurvole.remove(i);
-		// indiceCaseSurvole2.remove(i);
-		// jeu.repaint();
-		// }
-		// }
 	}
 
 	/**
