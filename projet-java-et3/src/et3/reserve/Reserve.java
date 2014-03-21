@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import et3.grille.Grille;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;
@@ -67,6 +68,7 @@ public class Reserve {
 		Pion p = new Pion();
 		String typePion, pionName;
 		PionEnum pionEnum = PionEnum.TYPE1;
+		
 
 		for (int i = 1; i < 8; i++) {
 			pionName = "PION".concat(String.valueOf(i));
