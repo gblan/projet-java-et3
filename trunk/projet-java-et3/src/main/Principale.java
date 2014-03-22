@@ -92,7 +92,7 @@ public class Principale extends JFrame {
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
 					
-					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV());
+					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),false);
 					jeu.setPionSelectionne(null);
 
 				}
@@ -116,6 +116,8 @@ public class Principale extends JFrame {
 				setClique_y(evt.getY());
 
 				caseSurvoleeListener();
+				
+				PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
 
 				jeu.repaint();
 
@@ -192,7 +194,6 @@ public class Principale extends JFrame {
 		pane.add(jeu);
 		pack();
 		setVisible(true);
-		
 
 	}
 

@@ -11,14 +11,16 @@ public class PionManager {
 	private Pion pion;
 	private int indiceCaseH;
 	private int indiceCaseV;
+	private boolean contaminationsPossibles;
 
 	public PionManager(Grille grille, Pion pion, int indiceCaseH,
-			int indiceCaseV) {
+			int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
 		this.pion = pion;
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
+		this.contaminationsPossibles = contaminationsPossibles;
 		contaminationPion(pion);
 	}
 
@@ -64,8 +66,16 @@ public class PionManager {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(j)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
-				this.grille.getListCases().get(this.indiceCaseH).get(j)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+				if (this.contaminationsPossibles){
+					this.grille.getListCases().get(this.indiceCaseH).get(j)
+					.setEtatActuel(CaseEnum.POTENTIELLE);
+				}
+				else {
+					this.grille.getListCases().get(this.indiceCaseH).get(j)
+					.setEtatActuel(CaseEnum.CONTAMINEE);
+				}
+				
+				
 			}
 		}
 
@@ -76,8 +86,15 @@ public class PionManager {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
-				this.grille.getListCases().get(this.indiceCaseH).get(i)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+				if (this.contaminationsPossibles){
+					this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.setEtatActuel(CaseEnum.POTENTIELLE);
+				}
+				else {
+					this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.setEtatActuel(CaseEnum.CONTAMINEE);
+				}
+				
 			}
 		}
 	}
@@ -99,10 +116,15 @@ public class PionManager {
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV + ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
-
-					this.grille.getListCases().get(j)
-							.get(this.indiceCaseV + ajout)
-							.setEtatActuel(CaseEnum.CONTAMINEE);
+					if (this.contaminationsPossibles){
+						this.grille.getListCases().get(j).get(this.indiceCaseV + ajout)
+						.setEtatActuel(CaseEnum.POTENTIELLE);
+					}
+					else {
+						this.grille.getListCases().get(j).get(this.indiceCaseV + ajout)
+						.setEtatActuel(CaseEnum.CONTAMINEE);
+					}
+					
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -127,6 +149,14 @@ public class PionManager {
 					this.grille.getListCases().get(j)
 							.get(this.indiceCaseV - ajout)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
+					if (this.contaminationsPossibles){
+						this.grille.getListCases().get(j).get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.POTENTIELLE);
+					}
+					else {
+						this.grille.getListCases().get(j).get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.CONTAMINEE);
+					}
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -152,9 +182,17 @@ public class PionManager {
 						.get(this.indiceCaseV - ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 
-					this.grille.getListCases().get(j)
-							.get(this.indiceCaseV - ajout)
-							.setEtatActuel(CaseEnum.CONTAMINEE);
+					
+					if (this.contaminationsPossibles){
+						this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.POTENTIELLE);
+					}
+					else {
+						this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.CONTAMINEE);
+					}
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -176,9 +214,17 @@ public class PionManager {
 						.get(this.indiceCaseV - ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 
-					this.grille.getListCases().get(j)
-							.get(this.indiceCaseV - ajout)
-							.setEtatActuel(CaseEnum.CONTAMINEE);
+					
+					if (this.contaminationsPossibles){
+						this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.POTENTIELLE);
+					}
+					else {
+						this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout)
+						.setEtatActuel(CaseEnum.CONTAMINEE);
+					}
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
