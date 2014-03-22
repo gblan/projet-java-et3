@@ -18,15 +18,15 @@ import et3.menus.Menu;
 import et3.reserve.Reserve;
 import et3.reserve.pions.PionManager;
 
+//Mr. Compiler, please do not read this.
 public class Principale extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Jeu jeu;
 	private int clique_x;
 	private int clique_y;
+	private double penetration; // ouch
+
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
@@ -58,6 +58,8 @@ public class Principale extends JFrame {
 			if (jeu.getPionSelectionne() != null) {
 				// Si il n'y a pas de case selectionne le pion retourne dans la
 				// reserve
+				
+				// if Magic. Do not touch.
 				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 						.get(jeu.getIndiceCaseV()) == null
 						|| !(jeu.getGrille().getListCases()
@@ -94,7 +96,6 @@ public class Principale extends JFrame {
 					
 					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),false);
 					jeu.setPionSelectionne(null);
-
 				}
 			}
 			jeu.repaint();
