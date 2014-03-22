@@ -187,6 +187,14 @@ public class Case extends Component {
 		case SURVOLEE:
 			break;
 		case POTENTIELLE:
+			graphics.setStroke(new BasicStroke(3f));
+			graphics.setColor(new Color(255, 255, 255));
+			graphics.drawOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
+					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.setStroke(new BasicStroke(2f));
+			graphics.setColor(new Color(255, 203, 96));
+			graphics.fillOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
+					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case POTENTIELLESURVOLEE:
 			
