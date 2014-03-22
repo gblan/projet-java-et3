@@ -65,17 +65,17 @@ public class PionManager {
 					.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(j)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
-				if (this.contaminationsPossibles){
+					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
+					|| this.grille.getListCases().get(this.indiceCaseH).get(j)
+							.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
+				if (this.contaminationsPossibles) {
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
-					.setEtatActuel(CaseEnum.POTENTIELLE);
-				}
-				else {
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+				} else {
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
-					.setEtatActuel(CaseEnum.CONTAMINEE);
+							.setEtatActuel(CaseEnum.CONTAMINEE);
 				}
-				
-				
+
 			}
 		}
 
@@ -85,16 +85,16 @@ public class PionManager {
 					.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
-				if (this.contaminationsPossibles){
+					.getEtatActuel().equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
+				if (this.contaminationsPossibles) {
 					this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.setEtatActuel(CaseEnum.POTENTIELLE);
-				}
-				else {
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+				} else {
 					this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.setEtatActuel(CaseEnum.CONTAMINEE);
+							.setEtatActuel(CaseEnum.CONTAMINEE);
 				}
-				
+
 			}
 		}
 	}
@@ -115,16 +115,19 @@ public class PionManager {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV + ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
-					if (this.contaminationsPossibles){
-						this.grille.getListCases().get(j).get(this.indiceCaseV + ajout)
-						.setEtatActuel(CaseEnum.POTENTIELLE);
+						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
+						.get(this.indiceCaseV + ajout).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
+					if (this.contaminationsPossibles) {
+						this.grille.getListCases().get(j)
+								.get(this.indiceCaseV + ajout)
+								.setEtatActuel(CaseEnum.POTENTIELLE);
+					} else {
+						this.grille.getListCases().get(j)
+								.get(this.indiceCaseV + ajout)
+								.setEtatActuel(CaseEnum.CONTAMINEE);
 					}
-					else {
-						this.grille.getListCases().get(j).get(this.indiceCaseV + ajout)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
-					}
-					
+
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -144,18 +147,21 @@ public class PionManager {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
 
 					this.grille.getListCases().get(j)
 							.get(this.indiceCaseV - ajout)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
-					if (this.contaminationsPossibles){
-						this.grille.getListCases().get(j).get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.POTENTIELLE);
-					}
-					else {
-						this.grille.getListCases().get(j).get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+					if (this.contaminationsPossibles) {
+						this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.POTENTIELLE);
+					} else {
+						this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.CONTAMINEE);
 					}
 				}
 			} catch (IndexOutOfBoundsException e) {
@@ -180,18 +186,18 @@ public class PionManager {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
 
-					
-					if (this.contaminationsPossibles){
+					if (this.contaminationsPossibles) {
 						this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.POTENTIELLE);
-					}
-					else {
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.POTENTIELLE);
+					} else {
 						this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.CONTAMINEE);
 					}
 				}
 			} catch (IndexOutOfBoundsException e) {
@@ -212,18 +218,18 @@ public class PionManager {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
+						.get(this.indiceCaseV - ajout).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
 
-					
-					if (this.contaminationsPossibles){
+					if (this.contaminationsPossibles) {
 						this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.POTENTIELLE);
-					}
-					else {
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.POTENTIELLE);
+					} else {
 						this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+								.get(this.indiceCaseV - ajout)
+								.setEtatActuel(CaseEnum.CONTAMINEE);
 					}
 				}
 			} catch (IndexOutOfBoundsException e) {
