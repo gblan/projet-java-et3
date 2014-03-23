@@ -16,7 +16,7 @@ public class Pion {
 	private int y;
 	private int xInitial;
 	private int yInitial;
-	private final int rayon = 22;
+	private final int rayon = 21;
 
 	public Pion(PionEnum typePion, int center_x, int center_y, int xIni,
 			int yIni) {
