@@ -16,7 +16,7 @@ public class Pion {
 	private int y;
 	private int xInitial;
 	private int yInitial;
-	private final int rayon = 16;
+	private final int rayon = 22;
 
 	public Pion(PionEnum typePion, int center_x, int center_y, int xIni,
 			int yIni) {
@@ -74,7 +74,7 @@ public class Pion {
 	 * @return true or false si le point selectionné contient le Pion
 	 */
 	public boolean contains(int point_x, int point_y) {
-		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, 2 * rayon, 2 * rayon);
+		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, 32, 32);
 		return (cercle.contains(new Point2D.Float(point_x, point_y)));
 
 	}
