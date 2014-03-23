@@ -20,16 +20,18 @@ import et3.reserve.pions.PionManager;
 
 public class Principale extends JFrame {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Jeu jeu;
 	private int clique_x;
 	private int clique_y;
-	private double penetration; // ouch
-
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
 	}
+	
 	public int getClique_x() {
 		return clique_x;
 	}
@@ -57,7 +59,7 @@ public class Principale extends JFrame {
 					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 					 for (int k = 0; k < jeu.getGrille().getListCases().get(j).size();k++) {
 						 if ( jeu.getGrille().getListCases().get(j).get(k).contains(clique_x, clique_y)) {
-//							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
+							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
 						 }
 					 }
 					}
@@ -72,7 +74,7 @@ public class Principale extends JFrame {
 			if (jeu.getPionSelectionne() != null) {
 				// Si il n'y a pas de case selectionne le pion retourne dans la
 				// reserve
-				
+
 				// if Magic. Do not touch.
 				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 						.get(jeu.getIndiceCaseV()) == null
@@ -110,6 +112,7 @@ public class Principale extends JFrame {
 					
 					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),false);
 					jeu.setPionSelectionne(null);
+
 				}
 			}
 			jeu.repaint();
@@ -132,8 +135,8 @@ public class Principale extends JFrame {
 
 				caseSurvoleeListener();
 				
-				PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
 
+				PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
 				jeu.repaint();
 
 			}
@@ -164,10 +167,19 @@ public class Principale extends JFrame {
 					}
 				} else if (!jeu.getGrille().getListCases().get(j).get(k)
 						.getEtatActuel().toString()
-						.equals(CaseEnum.OCCUPEE.toString()))   {
-					jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(
-						jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
-																}
+						.equals(CaseEnum.OCCUPEE.toString()) || !jeu.getGrille().getListCases().get(j).get(k)
+						.getEtatActuel().toString()
+						.equals(CaseEnum.POTENTIELLE.toString()))   {
+					jeu.getGrille()
+							.getListCases()
+							.get(j)
+							.get(k)
+							.setEtatActuel(
+									jeu.getGrille().getListCases().get(j)
+											.get(k).getEtatInitial());
+
+				}
+
 			}
 		}
 	}
@@ -204,6 +216,8 @@ public class Principale extends JFrame {
 		setVisible(true);
 
 	}
+
+
 
 	public static void main(String[] arg) {
 		//Principale p1 = new Principale("Sporos", 300, 500);
