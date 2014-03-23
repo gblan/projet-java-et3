@@ -132,57 +132,58 @@ public class Principale extends JFrame {
 						jeu.getPionSelectionne().getCenter_y() + translate_y);
 				setClique_x(evt.getX());
 				setClique_y(evt.getY());
-
-				caseSurvoleeListener();
 				
+				boolean potentielle = false;
 
-				PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
+				for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
+					for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
+
+						if (jeu.getGrille().getListCases().get(j).get(k)
+								.intersect(jeu.getPionSelectionne())
+								&& (!jeu.getGrille().getListCases().get(j).get(k)
+										.getEtatActuel().toString()
+										.equals(CaseEnum.DESACTIVEE.toString()))) {
+
+							if (!jeu.getGrille().getListCases().get(j).get(k)
+											.getEtatActuel().toString()
+											.equals(CaseEnum.OCCUPEE.toString())) {
+								
+								jeu.getGrille().getListCases().get(j).get(k)
+										.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+								jeu.setIndiceCaseH(j);
+								jeu.setIndiceCaseV(k);
+								potentielle = true;
+
+
+							}
+						} else if (!jeu.getGrille().getListCases().get(j).get(k)
+								.getEtatActuel().toString()
+								.equals(CaseEnum.OCCUPEE.toString()) || !jeu.getGrille().getListCases().get(j).get(k)
+								.getEtatActuel().toString()
+								.equals(CaseEnum.POTENTIELLE.toString()))   {
+							jeu.getGrille()
+									.getListCases()
+									.get(j)
+									.get(k)
+									.setEtatActuel(
+											jeu.getGrille().getListCases().get(j)
+													.get(k).getEtatInitial());
+
+						}
+
+					}
+				}
+				
+				if (potentielle == true) {
+					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
+				}
 				jeu.repaint();
 
 			}
 		}
 	};
 
-	public void caseSurvoleeListener() {
 
-		for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-			for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
-
-				if (jeu.getGrille().getListCases().get(j).get(k)
-						.intersect(jeu.getPionSelectionne())
-						&& (!jeu.getGrille().getListCases().get(j).get(k)
-								.getEtatActuel().toString()
-								.equals(CaseEnum.DESACTIVEE.toString()))) {
-
-					if (!jeu.getGrille().getListCases().get(j).get(k)
-									.getEtatActuel().toString()
-									.equals(CaseEnum.OCCUPEE.toString())) {
-						
-						jeu.getGrille().getListCases().get(j).get(k)
-								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-						jeu.setIndiceCaseH(j);
-						jeu.setIndiceCaseV(k);
-
-
-					}
-				} else if (!jeu.getGrille().getListCases().get(j).get(k)
-						.getEtatActuel().toString()
-						.equals(CaseEnum.OCCUPEE.toString()) || !jeu.getGrille().getListCases().get(j).get(k)
-						.getEtatActuel().toString()
-						.equals(CaseEnum.POTENTIELLE.toString()))   {
-					jeu.getGrille()
-							.getListCases()
-							.get(j)
-							.get(k)
-							.setEtatActuel(
-									jeu.getGrille().getListCases().get(j)
-											.get(k).getEtatInitial());
-
-				}
-
-			}
-		}
-	}
 
 	/**
 	 * 

@@ -75,7 +75,7 @@ public class PionManager {
 	 * @return propagation du pion vers la gauche puis vers la droite
 	 */
 	public void contaminationHorizontal() {
-
+	
 		/* Vers la droite */
 		for (int j = indiceCaseV; j < 7; j++) {
 			if (this.grille.getListCases().get(this.indiceCaseH).get(j)
@@ -114,6 +114,8 @@ public class PionManager {
 
 			}
 		}
+	  
+	 
 	}
 
 	/**
