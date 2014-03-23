@@ -11,6 +11,7 @@ public class PropertyAcces {
 	 * 
 	 * @param key
 	 * @param value
+	 * @return sauvegarde l avancement dans le fichier sauvegarde.properties
 	 */
 	public void saveProperties(String key, String value) {
 		Properties prop = new Properties();

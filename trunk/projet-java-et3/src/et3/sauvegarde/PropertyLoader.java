@@ -8,10 +8,8 @@ import java.util.Properties;
 public class PropertyLoader {
 
 	/**
-	 * Charge la liste des propriétés contenu dans le fichier spécifié
 	 * 
-	 * @param filename
-	 *            le fichier contenant les propriétés
+	 * @param filename le fichier contenant les propriétés
 	 * @return un objet Properties contenant les propriétés du fichier
 	 */
 	public static Properties load(String filename) throws IOException,

@@ -13,6 +13,15 @@ public class PionManager {
 	private int indiceCaseV;
 	private boolean contaminationsPossibles;
 
+	/**
+	 * 
+	 * @param grille
+	 * @param pion
+	 * @param indiceCaseH
+	 * @param indiceCaseV
+	 * @param contaminationsPossibles
+	 * @return Constructor PionManager
+	 */
 	public PionManager(Grille grille, Pion pion, int indiceCaseH,
 			int indiceCaseV, boolean contaminationsPossibles) {
 		super();
@@ -24,6 +33,11 @@ public class PionManager {
 		contaminationPion(pion);
 	}
 
+	/**
+	 * 
+	 * @param pion
+	 * @return swich sur chaque type de pion et appelle les propagations necessaires
+	 */
 	public void contaminationPion(Pion p) {
 		switch (p.getTypePion()) {
 		case TYPE1:
@@ -57,6 +71,9 @@ public class PionManager {
 		}
 	}
 
+	/**
+	 * @return propagation du pion vers la gauche puis vers la droite
+	 */
 	public void contaminationHorizontal() {
 
 		/* Vers la droite */
@@ -99,8 +116,10 @@ public class PionManager {
 		}
 	}
 
+	/**
+	 * @return propagation du pion vers le haut gauche puis vers le bas droite
+	 */
 	public void contaminationBiaisGauche() {
-		int i = 0;
 		int ajout = 0;
 
 		/* vers le bas droit */
@@ -135,7 +154,7 @@ public class PionManager {
 		}
 
 		ajout = 0;
-		/* TODO vers le haut gauche */
+		/* vers le haut gauche */
 		for (int j = indiceCaseH - 1; j >= 0; j--) {
 			try {
 				if (j % 2 == 0) {
@@ -171,9 +190,12 @@ public class PionManager {
 
 	}
 
+	/**
+	 * @return propagation du pion vers le haut droit puis vers le bas gauche
+	 */
 	public void contaminationBiaisDroit() {
-
 		int ajout = 0;
+		
 		/* vers le haut droit */
 		for (int j = indiceCaseH - 1; j >= 0; j--) {
 			try {
@@ -206,7 +228,7 @@ public class PionManager {
 		}
 
 		ajout = 0;
-		/* TODO bas gauche */
+		/* bas gauche */
 		for (int j = indiceCaseH + 1; j < 10; j++) {
 			try {
 				if (j % 2 == 0) {

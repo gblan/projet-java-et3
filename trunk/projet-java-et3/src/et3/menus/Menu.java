@@ -16,11 +16,9 @@ import main.Principale;
 
 public class Menu extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	
 	public Menu(String windowName) {
 		super(windowName);
 		setBounds(100, 100, 315, 454);

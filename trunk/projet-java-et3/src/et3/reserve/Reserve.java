@@ -47,6 +47,9 @@ public class Reserve {
 		return pion;
 	}
 	
+	/**
+	 *@param graphics  on affiche la reserve
+	 */
 	public void paint(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setStroke(new BasicStroke(2f));
@@ -57,9 +60,8 @@ public class Reserve {
 
 	/**
 	 * 
-	 * @param filename
-	 *            .properties
-	 * @return reserve de pions
+	 * @param filename.properties
+	 * @return reserve construite a partir du fichier
 	 */
 	public static Reserve buildReserve(String filename) {
 

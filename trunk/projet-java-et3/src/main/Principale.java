@@ -18,7 +18,6 @@ import et3.menus.Menu;
 import et3.reserve.Reserve;
 import et3.reserve.pions.PionManager;
 
-//Mr. Compiler, please do not read this.
 public class Principale extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +29,21 @@ public class Principale extends JFrame {
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
+	}
+	public int getClique_x() {
+		return clique_x;
+	}
+
+	public void setClique_x(int clique_x) {
+		this.clique_x = clique_x;
+	}
+
+	public int getClique_y() {
+		return clique_y;
+	}
+
+	public void setClique_y(int clique_y) {
+		this.clique_y = clique_y;
 	}
 
 	/* Selection du pion a la souris */
@@ -43,7 +57,7 @@ public class Principale extends JFrame {
 					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
 					 for (int k = 0; k < jeu.getGrille().getListCases().get(j).size();k++) {
 						 if ( jeu.getGrille().getListCases().get(j).get(k).contains(clique_x, clique_y)) {
-							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
+//							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
 						 }
 					 }
 					}
@@ -151,16 +165,9 @@ public class Principale extends JFrame {
 				} else if (!jeu.getGrille().getListCases().get(j).get(k)
 						.getEtatActuel().toString()
 						.equals(CaseEnum.OCCUPEE.toString()))   {
-					jeu.getGrille()
-							.getListCases()
-							.get(j)
-							.get(k)
-							.setEtatActuel(
-									jeu.getGrille().getListCases().get(j)
-											.get(k).getEtatInitial());
-
-				}
-
+					jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(
+						jeu.getGrille().getListCases().get(j).get(k).getEtatInitial());
+																}
 			}
 		}
 	}
@@ -196,22 +203,6 @@ public class Principale extends JFrame {
 		pack();
 		setVisible(true);
 
-	}
-
-	public int getClique_x() {
-		return clique_x;
-	}
-
-	public void setClique_x(int clique_x) {
-		this.clique_x = clique_x;
-	}
-
-	public int getClique_y() {
-		return clique_y;
-	}
-
-	public void setClique_y(int clique_y) {
-		this.clique_y = clique_y;
 	}
 
 	public static void main(String[] arg) {

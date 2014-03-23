@@ -18,14 +18,8 @@ import et3.reserve.pions.Pion;
 
 public class Jeu extends Component {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * En attendant les .properties pour Tester l'affichage A MODIFIER
-	 */
 	private Grille grille;
 	private Reserve reserve;
 	private Pion pionSelectionne;
@@ -33,7 +27,7 @@ public class Jeu extends Component {
 	private int indiceCaseV;
 
 	/*
-	 * FIN A MODIFIER
+	 * TODO FIN A MODIFIER
 	 */
 
 	public Jeu(Grille grille, Reserve reserve) {
