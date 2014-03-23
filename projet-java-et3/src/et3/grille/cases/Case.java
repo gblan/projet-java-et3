@@ -22,7 +22,7 @@ public class Case extends Component {
 	private int y;
 	private final int HEIGHT = 40;
 
-	/* A FAIRE : Cases du HAUT,BAS... */
+	/* TODO : Cases du HAUT,BAS... */
 
 	public Case(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
 		super();
@@ -122,6 +122,13 @@ public class Case extends Component {
 		return false;
 	}
 	
+
+	/**
+	 * 
+	 * @param point_x
+	 * @param point_y
+	 * @return true or false si la case contient le pion en parametre
+	 */
 	public boolean contains(int point_x, int point_y) {
 		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, HEIGHT, HEIGHT);
 		return (cercle.contains(new Point2D.Float(point_x, point_y)));

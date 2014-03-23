@@ -31,10 +31,6 @@ public class Pion {
 	public Pion() {
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public PionEnum getTypePion() {
 		return typePion;
 	}
@@ -47,10 +43,6 @@ public class Pion {
 		return yInitial;
 	}
 
-	/**
-	 * 
-	 * @param typePion
-	 */
 	public void setTypePion(PionEnum typePion) {
 		this.typePion = typePion;
 	}

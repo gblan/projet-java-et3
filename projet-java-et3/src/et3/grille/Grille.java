@@ -24,9 +24,8 @@ public class Grille {
 
 	/**
 	 * 
-	 * @param nom
-	 *            du fichier .properties
-	 * @return Grille remplie
+	 * @param filename .properties
+	 * @return Grille remplie a partir du .properties
 	 */
 	public static Grille buildGrid(String filename) {
 
