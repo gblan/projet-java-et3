@@ -31,7 +31,7 @@ public class Principale extends JFrame {
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
 	}
-	
+
 	public int getClique_x() {
 		return clique_x;
 	}
@@ -57,11 +57,14 @@ public class Principale extends JFrame {
 				if (jeu.getReserve().getPions().get(i)
 						.contains(clique_x, clique_y)) {
 					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-					 for (int k = 0; k < jeu.getGrille().getListCases().get(j).size();k++) {
-						 if ( jeu.getGrille().getListCases().get(j).get(k).contains(clique_x, clique_y)) {
-							 jeu.getGrille().getListCases().get(j).get(k).setEtatActuel(CaseEnum.DISPONIBLE);
-						 }
-					 }
+						for (int k = 0; k < jeu.getGrille().getListCases()
+								.get(j).size(); k++) {
+							if (jeu.getGrille().getListCases().get(j).get(k)
+									.contains(clique_x, clique_y)) {
+								jeu.getGrille().getListCases().get(j).get(k)
+										.setEtatActuel(CaseEnum.DISPONIBLE);
+							}
+						}
 					}
 					jeu.setPionSelectionne(jeu.getReserve().getPions().get(i));
 					jeu.repaint();
@@ -93,7 +96,6 @@ public class Principale extends JFrame {
 							jeu.getPionSelectionne().getyInitial());
 					jeu.setPionSelectionne(null);
 
-
 				}
 
 				else {
@@ -109,8 +111,10 @@ public class Principale extends JFrame {
 					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
-					
-					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),false);
+
+					PionManager pm = new PionManager(jeu.getGrille(),
+							jeu.getPionSelectionne(), jeu.getIndiceCaseH(),
+							jeu.getIndiceCaseV(), false);
 					jeu.setPionSelectionne(null);
 
 				}
@@ -132,58 +136,69 @@ public class Principale extends JFrame {
 						jeu.getPionSelectionne().getCenter_y() + translate_y);
 				setClique_x(evt.getX());
 				setClique_y(evt.getY());
-				
+
 				boolean potentielle = false;
 
 				for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-					for (int k = 0; k < jeu.getGrille().getListCases().get(j).size(); k++) {
+					for (int k = 0; k < jeu.getGrille().getListCases().get(j)
+							.size(); k++) {
 
 						if (jeu.getGrille().getListCases().get(j).get(k)
 								.intersect(jeu.getPionSelectionne())
-								&& (!jeu.getGrille().getListCases().get(j).get(k)
-										.getEtatActuel().toString()
+								&& (!jeu.getGrille().getListCases().get(j)
+										.get(k).getEtatActuel().toString()
 										.equals(CaseEnum.DESACTIVEE.toString()))) {
 
-							if (!jeu.getGrille().getListCases().get(j).get(k)
-											.getEtatActuel().toString()
-											.equals(CaseEnum.OCCUPEE.toString())) {
-								
-								jeu.getGrille().getListCases().get(j).get(k)
-										.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+							if (!(jeu.getGrille().getListCases().get(j).get(k)
+									.getEtatActuel().toString()
+									.equals(CaseEnum.OCCUPEE.toString()))
+									&& !(jeu.getGrille().getListCases().get(j)
+											.get(k).getEtatActuel().toString()
+											.equals(CaseEnum.CONTAMINEE
+													.toString()))) {
+
+								jeu.getGrille()
+										.getListCases()
+										.get(j)
+										.get(k)
+										.setEtatActuel(
+												CaseEnum.POTENTIELLESURVOLEE);
 								jeu.setIndiceCaseH(j);
 								jeu.setIndiceCaseV(k);
 								potentielle = true;
 
-
 							}
-						} else if (!jeu.getGrille().getListCases().get(j).get(k)
-								.getEtatActuel().toString()
-								.equals(CaseEnum.OCCUPEE.toString()) || !jeu.getGrille().getListCases().get(j).get(k)
-								.getEtatActuel().toString()
-								.equals(CaseEnum.POTENTIELLE.toString()))   {
-							jeu.getGrille()
-									.getListCases()
-									.get(j)
-									.get(k)
-									.setEtatActuel(
-											jeu.getGrille().getListCases().get(j)
-													.get(k).getEtatInitial());
-
+						} else if (!(jeu.getGrille().getListCases().get(j)
+								.get(k).getEtatActuel().toString()
+								.equals(CaseEnum.OCCUPEE.toString())) && !(jeu.getGrille().getListCases().get(j)
+										.get(k).getEtatActuel().toString()
+										.equals(CaseEnum.CONTAMINEE
+												.toString()))) {
+							
+								jeu.getGrille()
+										.getListCases()
+										.get(j)
+										.get(k)
+										.setEtatActuel(
+												jeu.getGrille().getListCases()
+														.get(j).get(k)
+														.getEtatInitial());
+							
 						}
 
 					}
 				}
-				
+
 				if (potentielle == true) {
-					PionManager pm = new PionManager(jeu.getGrille(), jeu.getPionSelectionne(), jeu.getIndiceCaseH(),jeu.getIndiceCaseV(),true);
+					PionManager pm = new PionManager(jeu.getGrille(),
+							jeu.getPionSelectionne(), jeu.getIndiceCaseH(),
+							jeu.getIndiceCaseV(), true);
 				}
 				jeu.repaint();
 
 			}
 		}
 	};
-
-
 
 	/**
 	 * 
@@ -218,10 +233,8 @@ public class Principale extends JFrame {
 
 	}
 
-
-
 	public static void main(String[] arg) {
-		//Principale p1 = new Principale("Sporos", 300, 500);
+		// Principale p1 = new Principale("Sporos", 300, 500);
 		Menu m = new Menu("Sporos");
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
