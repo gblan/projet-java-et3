@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import et3.grille.Grille;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;

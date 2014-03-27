@@ -36,7 +36,8 @@ public class PionManager {
 	/**
 	 * 
 	 * @param pion
-	 * @return swich sur chaque type de pion et appelle les propagations necessaires
+	 * @return swich sur chaque type de pion et appelle les propagations
+	 *         necessaires
 	 */
 	public void contaminationPion(Pion p) {
 		switch (p.getTypePion()) {
@@ -75,11 +76,13 @@ public class PionManager {
 	 * @return propagation du pion vers la gauche puis vers la droite
 	 */
 	public void contaminationHorizontal() {
-	
+
 		/* Vers la droite */
-		for (int j = indiceCaseV; j < 7; j++) {
-			if (this.grille.getListCases().get(this.indiceCaseH).get(j)
-					.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
+		for (int j = indiceCaseV+1; j < 7; j++) {
+			if ((this.grille.getListCases().get(this.indiceCaseH).get(j)
+					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
+					|| (this.grille.getListCases().get(this.indiceCaseH)
+							.get(j).getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(j)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
@@ -88,7 +91,11 @@ public class PionManager {
 				if (this.contaminationsPossibles) {
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
+					System.out.println("bite1");
+
 				} else {
+					System.out.println("bite2");
+
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
 				}
@@ -98,13 +105,17 @@ public class PionManager {
 
 		/* Vers la gauche */
 		for (int i = indiceCaseV - 1; i >= 0; i--) {
-			if (this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
+			if ((this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
+					|| (this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
+					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
+					|| this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
 				if (this.contaminationsPossibles) {
+					/* Pour le survol */
 					this.grille.getListCases().get(this.indiceCaseH).get(i)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
 				} else {
@@ -114,8 +125,7 @@ public class PionManager {
 
 			}
 		}
-	  
-	 
+
 	}
 
 	/**
@@ -130,15 +140,19 @@ public class PionManager {
 				if (j % 2 == 1) {
 					ajout++;
 				}
-				if (this.grille.getListCases().get(j)
+				if ((this.grille.getListCases().get(j)
 						.get(this.indiceCaseV + ajout).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE)) {
+						.equals(CaseEnum.DESACTIVEE))
+						|| (this.grille.getListCases().get(j)
+								.get(this.indiceCaseV + ajout).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV + ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
-						.get(this.indiceCaseV + ajout).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)) {
+						.equals(CaseEnum.DISPONIBLE)
+						|| this.grille.getListCases().get(j)
+								.get(this.indiceCaseV + ajout).getEtatActuel()
+								.equals(CaseEnum.POTENTIELLE)) {
 					if (this.contaminationsPossibles) {
 						this.grille.getListCases().get(j)
 								.get(this.indiceCaseV + ajout)
@@ -162,15 +176,19 @@ public class PionManager {
 				if (j % 2 == 0) {
 					ajout++;
 				}
-				if (this.grille.getListCases().get(j)
+				if ((this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE)) {
+						.equals(CaseEnum.DESACTIVEE))
+						|| (this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)) {
+						.equals(CaseEnum.DISPONIBLE)
+						|| this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.POTENTIELLE)) {
 
 					this.grille.getListCases().get(j)
 							.get(this.indiceCaseV - ajout)
@@ -197,22 +215,26 @@ public class PionManager {
 	 */
 	public void contaminationBiaisDroit() {
 		int ajout = 0;
-		
+
 		/* vers le haut droit */
 		for (int j = indiceCaseH - 1; j >= 0; j--) {
 			try {
 				if (j % 2 == 1) {
 					ajout--;
 				}
-				if (this.grille.getListCases().get(j)
+				if ((this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE)) {
+						.equals(CaseEnum.DESACTIVEE))
+						|| (this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)) {
+						.equals(CaseEnum.DISPONIBLE)
+						|| this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.POTENTIELLE)) {
 
 					if (this.contaminationsPossibles) {
 						this.grille.getListCases().get(j)
@@ -236,15 +258,19 @@ public class PionManager {
 				if (j % 2 == 0) {
 					ajout++;
 				}
-				if (this.grille.getListCases().get(j)
+				if ((this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE)) {
+						.equals(CaseEnum.DESACTIVEE))
+						|| (this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (this.grille.getListCases().get(j)
 						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE) || this.grille.getListCases().get(j)
-						.get(this.indiceCaseV - ajout).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)) {
+						.equals(CaseEnum.DISPONIBLE)
+						|| this.grille.getListCases().get(j)
+								.get(this.indiceCaseV - ajout).getEtatActuel()
+								.equals(CaseEnum.POTENTIELLE)) {
 
 					if (this.contaminationsPossibles) {
 						this.grille.getListCases().get(j)

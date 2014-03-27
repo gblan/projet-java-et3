@@ -18,7 +18,6 @@ public class Niveaux extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Jeu> listeNiveau;
-	private String[] test;
 
 	/**
 	 * @return Constructeur de niveaux

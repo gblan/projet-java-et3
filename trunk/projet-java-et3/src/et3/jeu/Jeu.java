@@ -25,6 +25,7 @@ public class Jeu extends Component {
 	private Pion pionSelectionne;
 	private int indiceCaseH;
 	private int indiceCaseV;
+	private ArrayList<Pion> pionsEnJeu;
 
 	/*
 	 * TODO FIN A MODIFIER
@@ -34,6 +35,7 @@ public class Jeu extends Component {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
+		this.setPionsEnJeu(new ArrayList<Pion>());
 	}
 
 	public Reserve getReserve() {
@@ -78,6 +80,14 @@ public class Jeu extends Component {
 		this.grille = grille;
 	}
 
+
+	public ArrayList<Pion> getPionsEnJeu() {
+		return pionsEnJeu;
+	}
+
+	public void setPionsEnJeu(ArrayList<Pion> pionsEnJeu) {
+		this.pionsEnJeu = pionsEnJeu;
+	}
 	/**
 	 * @param graphics on affiche le jeu en faisant appel à l'affichage de chaque case et de chaque pion
 	 */
@@ -108,5 +118,6 @@ public class Jeu extends Component {
 			this.pionSelectionne.paint(graphics);
 		}
 	}
+
 
 }
