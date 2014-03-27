@@ -112,6 +112,8 @@ public class Principale extends JFrame {
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
 
+					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
+					
 					PionManager pm = new PionManager(jeu.getGrille(),
 							jeu.getPionSelectionne(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), false);
