@@ -13,8 +13,10 @@ import javax.imageio.ImageIO;
 
 import et3.grille.Grille;
 import et3.grille.cases.Case;
+import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionEnum;
 
 public class Jeu extends Component {
 
@@ -45,8 +47,6 @@ public class Jeu extends Component {
 	public void setReserve(Reserve reserve) {
 		this.reserve = reserve;
 	}
-
-	
 
 	public int getIndiceCaseH() {
 		return indiceCaseH;
@@ -80,7 +80,6 @@ public class Jeu extends Component {
 		this.grille = grille;
 	}
 
-
 	public ArrayList<Pion> getPionsEnJeu() {
 		return pionsEnJeu;
 	}
@@ -88,8 +87,11 @@ public class Jeu extends Component {
 	public void setPionsEnJeu(ArrayList<Pion> pionsEnJeu) {
 		this.pionsEnJeu = pionsEnJeu;
 	}
+
 	/**
-	 * @param graphics on affiche le jeu en faisant appel à l'affichage de chaque case et de chaque pion
+	 * @param graphics
+	 *            on affiche le jeu en faisant appel à l'affichage de chaque
+	 *            case et de chaque pion
 	 */
 	public void paint(Graphics graphics) {
 
@@ -109,8 +111,7 @@ public class Jeu extends Component {
 		try {
 			BufferedImage img = ImageIO.read(file);
 			graphics.drawImage(img, 230, 10, null);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		g.setStroke(new BasicStroke(2f));
@@ -119,5 +120,16 @@ public class Jeu extends Component {
 		}
 	}
 
+	public boolean isFinish() {
+		for (int i = 0; i < this.grille.getListCases().size(); i++) {
+			for (int j = 0; j < grille.getListCases().get(i).size(); j++) {
+				if (grille.getListCases().get(i).get(j).getEtatActuel()
+						.equals(CaseEnum.DISPONIBLE)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 }
