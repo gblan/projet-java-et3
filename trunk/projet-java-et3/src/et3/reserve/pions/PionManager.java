@@ -24,23 +24,23 @@ public class PionManager {
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, ArrayList<Pion> listPions, int indiceCaseH,
-			int indiceCaseV, boolean contaminationsPossibles) {
+	public PionManager(Grille grille, ArrayList<Pion> listPions,
+			int indiceCaseH, int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
 		this.listPions = listPions;
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
-		contaminationListPion(listPions);
+		//contaminationListPion();
 	}
 
-	public void contaminationListPion(ArrayList<Pion> listPions){
-		for(Pion p : listPions){
+	public void contaminationListPion() {
+		for (Pion p : getListPions()) {
 			contaminationPion(p);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param pion
@@ -86,11 +86,11 @@ public class PionManager {
 	public void contaminationHorizontal() {
 
 		/* Vers la droite */
-		for (int j = indiceCaseV+1; j < 7; j++) {
+		for (int j = indiceCaseV + 1; j < 7; j++) {
 			if ((this.grille.getListCases().get(this.indiceCaseH).get(j)
 					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (this.grille.getListCases().get(this.indiceCaseH)
-							.get(j).getEtatActuel().equals(CaseEnum.OCCUPEE))) {
+					|| (this.grille.getListCases().get(this.indiceCaseH).get(j)
+							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 				break;
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(j)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
@@ -294,6 +294,10 @@ public class PionManager {
 			}
 		}
 
+	}
+
+	public ArrayList<Pion> getListPions() {
+		return listPions;
 	}
 
 }

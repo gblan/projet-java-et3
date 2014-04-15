@@ -14,6 +14,10 @@ import et3.reserve.pions.PionManager;
 
 public class JeuListener extends Jeu{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Jeu jeu;
 	private int clique_x;
 	private int clique_y;
@@ -113,6 +117,8 @@ public class JeuListener extends Jeu{
 					PionManager pm = new PionManager(jeu.getGrille(),
 							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), false);
+					pm.contaminationListPion();
+					
 					jeu.setPionSelectionne(null);
 
 				}
@@ -174,6 +180,7 @@ public class JeuListener extends Jeu{
 					PionManager pm = new PionManager(jeu.getGrille(),
 							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), true);
+					pm.contaminationListPion();
 				}
 				jeu.repaint();
 
