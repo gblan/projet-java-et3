@@ -16,16 +16,16 @@ public class Pion {
 	private int y;
 	private int xInitial;
 	private int yInitial;
-	private final int rayon = 21;
+	private final static int rayon = 21;
 
-	public Pion(PionEnum typePion, int center_x, int center_y, int xIni,
-			int yIni) {
+	public Pion(PionEnum typePion, int x, int y, int xInitial,
+			int yInitial) {
 		super();
 		this.typePion = typePion;
-		this.x = center_x;
-		this.y = center_y;
-		this.xInitial = xIni;
-		this.yInitial = yIni;
+		this.x = x;
+		this.y = y;
+		this.xInitial = xInitial;
+		this.yInitial = yInitial;
 	}
 
 	public Pion() {
@@ -47,20 +47,20 @@ public class Pion {
 		this.typePion = typePion;
 	}
 
-	public int getCenter_x() {
+	public int getX() {
 		return x;
 	}
 
-	public void setCenter_x(int center_x) {
-		this.x = center_x;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public int getCenter_y() {
+	public int getY() {
 		return y;
 	}
 
-	public void setCenter_y(int center_y) {
-		this.y = center_y;
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public int getRayon() {
@@ -73,9 +73,9 @@ public class Pion {
 	 * @param point_y
 	 * @return true or false si le point selectionné contient le Pion
 	 */
-	public boolean contains(int point_x, int point_y) {
-		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, 32, 32);
-		return (cercle.contains(new Point2D.Float(point_x, point_y)));
+	public boolean contains(int pointX, int pointY) {
+		Ellipse2D.Float cercle = new Ellipse2D.Float(getX(), getY(), 32, 32);
+		return (cercle.contains(new Point2D.Float(pointX, pointY)));
 
 	}
 

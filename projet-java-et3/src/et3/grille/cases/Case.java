@@ -20,7 +20,7 @@ public class Case extends Component {
 	private CaseEnum etatActuel;
 	private int x;
 	private int y;
-	private final int HEIGHT = 40;
+	private final static int HEIGHT = 40;
 
 	/* TODO : Cases du HAUT,BAS... */
 
@@ -50,7 +50,7 @@ public class Case extends Component {
 	public void setEtatActuel(CaseEnum etatActuel) {
 		this.etatActuel = etatActuel;
 	}
-	
+
 	public int getX() {
 		return x;
 	}
@@ -98,54 +98,55 @@ public class Case extends Component {
 		/*
 		 * Calcul de la distance entre la case et le pion En x
 		 */
-		
+
 		int centreCaseX = x + (HEIGHT / 10);
-		int centrePionX = p.getCenter_x();
-		int distance_x = Math.abs(centrePionX - centreCaseX);
+		int centrePionX = p.getX();
+		int distanceX = Math.abs(centrePionX - centreCaseX);
 
 		/* En y */
 
-		int centreCaseY = y
-				+ (HEIGHT / 10)
-				+ (HEIGHT / 20);
-		int centrePionY = p.getCenter_y();
-		int distance_y = Math.abs(centrePionY - centreCaseY);
-		
+		int centreCaseY = y + (HEIGHT / 10) + (HEIGHT / 20);
+		int centrePionY = p.getY();
+		int distanceY = Math.abs(centrePionY - centreCaseY);
+
 		/* Distance */
-		
-		int distance = (int) Math.sqrt(distance_x*distance_x+distance_y*distance_y);
-		
-		if (distance < p.getRayon()-(p.getRayon()/20)) {
+
+		int distance = (int) Math.sqrt(Math.pow(distanceX, 2)
+				+ Math.pow(distanceY, 2));
+
+		if (distance < p.getRayon() - (p.getRayon() / 20)) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
 
 	/**
 	 * 
-	 * @param point_x
-	 * @param point_y
+	 * @param pointX
+	 * @param pointY
 	 * @return true or false si la case contient le pion en parametre
 	 */
-	public boolean contains(int point_x, int point_y) {
+	public boolean contains(int pointX, int pointY) {
 		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, HEIGHT, HEIGHT);
-		return (cercle.contains(new Point2D.Float(point_x, point_y)));
+		return (cercle.contains(new Point2D.Float(pointX, pointY)));
 
 	}
 
 	/**
-	 *@param graphics  on affiche la case
+	 * @param graphics
+	 *            on affiche la case
 	 */
 	public void paint(Graphics g) {
-		
+
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setStroke(new BasicStroke(2f));
 		// On dessine tout d'abord l'hexagone commun aux cases
-		int r = HEIGHT / 2; // r = radius of inscribed circle
-		int s = (int) (HEIGHT / 1.73205); // s = (h/2)/cos(30)= (h/2) /
-											// (sqrt(3)/2) = h / sqrt(3)
+		int r = HEIGHT / 2;
+		// r = radius of inscribed circle
+		int s = (int) (HEIGHT / 1.73205);
+		// s = (h/2)/cos(30)= (h/2) /
+		// (sqrt(3)/2) = h / sqrt(3)
 		int t = (int) (r / 1.73205);
 		int[] cy = new int[] { y + t, y + s + t, y + s + t + t, y + s + t,
 				y + t, y };
@@ -179,7 +180,7 @@ public class Case extends Component {
 			graphics.setColor(new Color(0, 127, 255));
 			graphics.fillOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
-			
+
 			break;
 		case CONTAMINEE:
 			graphics.setStroke(new BasicStroke(3f));
@@ -204,7 +205,7 @@ public class Case extends Component {
 					+ (HEIGHT / 20), 2 * r - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case POTENTIELLESURVOLEE:
-			
+
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 0, 0));
 			graphics.drawOval(x + (HEIGHT / 10), y + (HEIGHT / 10)
@@ -220,15 +221,15 @@ public class Case extends Component {
 			break;
 		}
 	}
-	
+
 	@Override
-	public String toString(){
-		String res ="";
-		res+="Case : x : "+this.x+", y : "+this.y+"\n";
-		res+="\t etat Initial : "+this.etatInitial.toString()+", etat actuel : "+this.etatActuel.toString()+"\n";
-		
+	public String toString() {
+		String res = "";
+		res += "Case : x : " + this.x + ", y : " + this.y + "\n";
+		res += "\t etat Initial : " + this.etatInitial.toString()
+				+ ", etat actuel : " + this.etatActuel.toString() + "\n";
+
 		return res;
 	}
-
 
 }
