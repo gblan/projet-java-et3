@@ -98,13 +98,13 @@ public class Jeu extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		for (int i = 0; i < this.grille.getListCases().size(); i++) {
-			for (int j = 0; j < grille.getListCases().get(i).size(); j++) {
-				grille.getListCases().get(i).get(j).paint(graphics);
+		for (ArrayList<Case> alCase : this.grille.getListCases()) {
+			for (Case grille : alCase) {
+				grille.paint(graphics);
 			}
 		}
-		for (int i = 0; i < this.reserve.getPions().size(); i++) {
-			reserve.getPions().get(i).paint(graphics);
+		for (Pion alPion : this.reserve.getPions()) {
+			alPion.paint(graphics);
 		}
 		reserve.paint(g);
 		File file = new File("resources/icone_menu.png");
@@ -121,10 +121,10 @@ public class Jeu extends Component {
 	}
 
 	public boolean isFinish() {
-		for (int i = 0; i < this.grille.getListCases().size(); i++) {
-			for (int j = 0; j < grille.getListCases().get(i).size(); j++) {
-				if (grille.getListCases().get(i).get(j).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+		for (ArrayList<Case> alCase : grille.getListCases()) {
+			for (Case grille : alCase) {
+				if ((!grille.getEtatActuel().equals(CaseEnum.OCCUPEE))
+						&& (!grille.getEtatActuel().equals(CaseEnum.CONTAMINEE))) {
 					return false;
 				}
 			}
