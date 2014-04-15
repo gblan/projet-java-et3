@@ -12,56 +12,66 @@ import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionManager;
 
-public class JeuListener extends Jeu{
+public class JeuListener extends Jeu {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Jeu jeu;
-	private int clique_x;
-	private int clique_y;
+	private int cliqueX;
+	private int cliqueY;
 
-	public void setJeu(Jeu jeu){
+	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
 	}
-	
-	public Jeu getJeu(){
+
+	public Jeu getJeu() {
 		return this.jeu;
 	}
-	
-	public int getClique_x() {
-		return clique_x;
+
+	public int getCliqueX() {
+		return cliqueX;
 	}
 
-	public void setClique_x(int clique_x) {
-		this.clique_x = clique_x;
+	public void setCliqueX(int cliqueX) {
+		this.cliqueX = cliqueX;
 	}
 
-	public int getClique_y() {
-		return clique_y;
+	public int getCliqueY() {
+		return cliqueY;
 	}
 
-	public void setClique_y(int clique_y) {
-		this.clique_y = clique_y;
+	public void setCliqueY(int cliqueY) {
+		this.cliqueY = cliqueY;
 	}
-	
+
 	public JeuListener(Grille grille, Reserve reserve) {
 		super(grille, reserve);
 		// TODO Auto-generated constructor stub
 	}
 
+	public MouseMotionAdapter getSelectionnerPionsMotion() {
+		return selectionnerPionsMotion;
+	}
+
+
+	public MouseAdapter getSelectionnerPions() {
+		return selectionnerPions;
+	}
+
+
 	/* Selection du pion a la souris */
-	public MouseAdapter selectionnerPions = new MouseAdapter() {
+	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			setClique_x(evt.getX());
-			setClique_y(evt.getY());
+			setCliqueX(evt.getX());
+			setCliqueY(evt.getY());
 			for (Pion pion : jeu.getReserve().getPions()) {
-				if (pion.contains(clique_x, clique_y)) {
+				if (pion.contains(getCliqueX(), getCliqueY())) {
 					for (ArrayList<Case> alCase : jeu.getGrille()
 							.getListCases()) {
 						for (Case caseJeu : alCase) {
-							if (caseJeu.contains(clique_x, clique_y)) {
+							if (caseJeu.contains(getCliqueX(), getCliqueY())) {
 								caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
 							}
 						}
@@ -90,9 +100,9 @@ public class JeuListener extends Jeu{
 								.get(jeu.getIndiceCaseV()).getEtatActuel()
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 					/* A FAIRE deplacement vers point initial */
-					jeu.getPionSelectionne().setCenter_x(
+					jeu.getPionSelectionne().setX(
 							jeu.getPionSelectionne().getxInitial());
-					jeu.getPionSelectionne().setCenter_y(
+					jeu.getPionSelectionne().setY(
 							jeu.getPionSelectionne().getyInitial());
 					jeu.setPionSelectionne(null);
 
@@ -100,11 +110,11 @@ public class JeuListener extends Jeu{
 
 				else {
 					// sinon on le positionne sur la case
-					jeu.getPionSelectionne().setCenter_x(
+					jeu.getPionSelectionne().setX(
 							jeu.getGrille().getListCases()
 									.get(jeu.getIndiceCaseH())
 									.get(jeu.getIndiceCaseV()).getX() + 3);
-					jeu.getPionSelectionne().setCenter_y(
+					jeu.getPionSelectionne().setY(
 							jeu.getGrille().getListCases()
 									.get(jeu.getIndiceCaseH())
 									.get(jeu.getIndiceCaseV()).getY() + 4);
@@ -115,10 +125,10 @@ public class JeuListener extends Jeu{
 					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
 
 					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
-							jeu.getIndiceCaseV(), false);
+							(ArrayList<Pion>) jeu.getPionsEnJeu(),
+							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), false);
 					pm.contaminationListPion();
-					
+
 					jeu.setPionSelectionne(null);
 
 				}
@@ -128,18 +138,18 @@ public class JeuListener extends Jeu{
 		}
 	};
 
-	public MouseMotionAdapter selectionnerPionsMotion = new MouseMotionAdapter() {
+	private MouseMotionAdapter selectionnerPionsMotion = new MouseMotionAdapter() {
 		/* Déplacement a la souris */
 		public void mouseDragged(MouseEvent evt) {
 			if (jeu.getPionSelectionne() != null) {
-				int translate_x = evt.getX() - getClique_x();
-				int translate_y = evt.getY() - getClique_y();
-				jeu.getPionSelectionne().setCenter_x(
-						jeu.getPionSelectionne().getCenter_x() + translate_x);
-				jeu.getPionSelectionne().setCenter_y(
-						jeu.getPionSelectionne().getCenter_y() + translate_y);
-				setClique_x(evt.getX());
-				setClique_y(evt.getY());
+				int translate_x = evt.getX() - getCliqueX();
+				int translate_y = evt.getY() - getCliqueY();
+				jeu.getPionSelectionne().setX(
+						jeu.getPionSelectionne().getX() + translate_x);
+				jeu.getPionSelectionne().setY(
+						jeu.getPionSelectionne().getY() + translate_y);
+				setCliqueX(evt.getX());
+				setCliqueY(evt.getY());
 
 				boolean potentielle = false;
 				int j = 0, k;
@@ -176,10 +186,10 @@ public class JeuListener extends Jeu{
 					j++;
 				}
 
-				if (potentielle == true) {
+				if (potentielle) {
 					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
-							jeu.getIndiceCaseV(), true);
+							(ArrayList<Pion>) jeu.getPionsEnJeu(),
+							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), true);
 					pm.contaminationListPion();
 				}
 				jeu.repaint();
@@ -187,5 +197,5 @@ public class JeuListener extends Jeu{
 			}
 		}
 	};
-	
+
 }

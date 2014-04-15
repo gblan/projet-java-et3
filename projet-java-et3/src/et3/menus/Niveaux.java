@@ -2,6 +2,7 @@ package et3.menus;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -17,7 +18,7 @@ public class Niveaux extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Jeu> listeNiveau;
+	private List<Jeu> listeNiveau;
 
 	/**
 	 * @return Constructeur de niveaux

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -26,7 +27,7 @@ public class Jeu extends Component {
 	private Pion pionSelectionne;
 	private int indiceCaseH;
 	private int indiceCaseV;
-	private ArrayList<Pion> pionsEnJeu;
+	private List<Pion> pionsEnJeu;
 
 	/*
 	 * TODO FIN A MODIFIER
@@ -79,11 +80,11 @@ public class Jeu extends Component {
 		this.grille = grille;
 	}
 
-	public ArrayList<Pion> getPionsEnJeu() {
+	public List<Pion> getPionsEnJeu() {
 		return pionsEnJeu;
 	}
 
-	public void setPionsEnJeu(ArrayList<Pion> pionsEnJeu) {
+	public void setPionsEnJeu(List<Pion> pionsEnJeu) {
 		this.pionsEnJeu = pionsEnJeu;
 	}
 
@@ -98,8 +99,8 @@ public class Jeu extends Component {
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		for (ArrayList<Case> alCase : this.grille.getListCases()) {
-			for (Case grille : alCase) {
-				grille.paint(graphics);
+			for (Case grilleJeu : alCase) {
+				grilleJeu.paint(graphics);
 			}
 		}
 		for (Pion alPion : this.reserve.getPions()) {
@@ -121,9 +122,9 @@ public class Jeu extends Component {
 
 	public boolean isFinish() {
 		for (ArrayList<Case> alCase : grille.getListCases()) {
-			for (Case grille : alCase) {
-				if ((!grille.getEtatActuel().equals(CaseEnum.OCCUPEE))
-						&& (!grille.getEtatActuel().equals(CaseEnum.CONTAMINEE))) {
+			for (Case grilleJeu : alCase) {
+				if ((!grilleJeu.getEtatActuel().equals(CaseEnum.OCCUPEE))
+						&& (!grilleJeu.getEtatActuel().equals(CaseEnum.CONTAMINEE))) {
 					return false;
 				}
 			}
