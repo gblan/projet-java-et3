@@ -1,6 +1,7 @@
 package et3.reserve.pions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import et3.grille.Grille;
 import et3.grille.cases.CaseEnum;
@@ -10,7 +11,7 @@ import et3.grille.cases.CaseEnum;
 public class PionManager {
 
 	private Grille grille;
-	private ArrayList<Pion> listPions;
+	private List<Pion> listPions;
 	private int indiceCaseH;
 	private int indiceCaseV;
 	private boolean contaminationsPossibles;
@@ -24,7 +25,7 @@ public class PionManager {
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, ArrayList<Pion> listPions,
+	public PionManager(Grille grille, List<Pion> listPions,
 			int indiceCaseH, int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
@@ -296,7 +297,7 @@ public class PionManager {
 
 	}
 
-	public ArrayList<Pion> getListPions() {
+	public List<Pion> getListPions() {
 		return listPions;
 	}
 

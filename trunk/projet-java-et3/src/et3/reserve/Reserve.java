@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.List;
 
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionEnum;
@@ -12,17 +13,17 @@ import et3.sauvegarde.PropertyAcces;
 
 public class Reserve {
 
-	private ArrayList<Pion> pions;
+	private List<Pion> pions;
 
 	public Reserve() {
 		this.pions = new ArrayList<Pion>();
 	}
 
-	public ArrayList<Pion> getPions() {
+	public List<Pion> getPions() {
 		return pions;
 	}
 
-	public void setPions(ArrayList<Pion> pions) {
+	public void setPions(List<Pion> pions) {
 		this.pions = pions;
 	}
 

@@ -1,6 +1,7 @@
 package et3.grille;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
@@ -8,13 +9,13 @@ import et3.sauvegarde.PropertyAcces;
 
 public class Grille {
 
-	private ArrayList<ArrayList<Case>> listCases;
+	private List<ArrayList<Case>> listCases;
 
-	public Grille(ArrayList<ArrayList<Case>> listCases) {
-		this.listCases = listCases;
+	public Grille(List<ArrayList<Case>> arrayList) {
+		this.listCases = arrayList;
 	}
 
-	public ArrayList<ArrayList<Case>> getListCases() {
+	public List<ArrayList<Case>> getListCases() {
 		return listCases;
 	}
 
@@ -28,7 +29,6 @@ public class Grille {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
 		ArrayList<Case> ligne = null;
-		;
 		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
 
 		String caseGrille = "";
@@ -38,7 +38,7 @@ public class Grille {
 		for (int i = 0; i < 10; i++) {
 			ligne = new ArrayList<Case>();
 			for (int j = 0; j < 7; j++) {
-				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
+				caseGrille = j + "," + i;
 				c = Case.getPositions(j, i);
 				typeCase = PropertyAcces.retrieveProperties(filename,
 						caseGrille);
