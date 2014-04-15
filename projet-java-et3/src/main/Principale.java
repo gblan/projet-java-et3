@@ -16,6 +16,7 @@ import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
+import et3.jeu.JeuListener;
 import et3.menus.Menu;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
@@ -27,163 +28,6 @@ public class Principale extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Jeu jeu;
-	private int clique_x;
-	private int clique_y;
-
-	public void setJeu(Jeu jeu) {
-		this.jeu = jeu;
-	}
-
-	public int getClique_x() {
-		return clique_x;
-	}
-
-	public void setClique_x(int clique_x) {
-		this.clique_x = clique_x;
-	}
-
-	public int getClique_y() {
-		return clique_y;
-	}
-
-	public void setClique_y(int clique_y) {
-		this.clique_y = clique_y;
-	}
-
-	/* Selection du pion a la souris */
-	private MouseAdapter selectionnerPions = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-			setClique_x(evt.getX());
-			setClique_y(evt.getY());
-			for (Pion pion : jeu.getReserve().getPions()) {
-				if (pion.contains(clique_x, clique_y)) {
-					for (ArrayList<Case> alCase : jeu.getGrille()
-							.getListCases()) {
-						for (Case caseJeu : alCase) {
-							if (caseJeu.contains(clique_x, clique_y)) {
-								caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
-							}
-						}
-					}
-					jeu.setPionSelectionne(pion);
-					jeu.repaint();
-				}
-			}
-		}
-
-		public void mouseReleased(MouseEvent evt) {
-
-			if (jeu.getPionSelectionne() != null) {
-				// Si il n'y a pas de case selectionne le pion retourne dans la
-				// reserve
-
-				// if Magic. Do not touch.
-				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
-						.get(jeu.getIndiceCaseV()) == null
-						|| !(jeu.getGrille().getListCases()
-								.get(jeu.getIndiceCaseH())
-								.get(jeu.getIndiceCaseV()).intersect(jeu
-								.getPionSelectionne()))
-						|| jeu.getGrille().getListCases()
-								.get(jeu.getIndiceCaseH())
-								.get(jeu.getIndiceCaseV()).getEtatActuel()
-								.toString().equals(CaseEnum.OCCUPEE.toString())) {
-					/* A FAIRE deplacement vers point initial */
-					jeu.getPionSelectionne().setCenter_x(
-							jeu.getPionSelectionne().getxInitial());
-					jeu.getPionSelectionne().setCenter_y(
-							jeu.getPionSelectionne().getyInitial());
-					jeu.setPionSelectionne(null);
-
-				}
-
-				else {
-					// sinon on le positionne sur la case
-					jeu.getPionSelectionne().setCenter_x(
-							jeu.getGrille().getListCases()
-									.get(jeu.getIndiceCaseH())
-									.get(jeu.getIndiceCaseV()).getX() + 3);
-					jeu.getPionSelectionne().setCenter_y(
-							jeu.getGrille().getListCases()
-									.get(jeu.getIndiceCaseH())
-									.get(jeu.getIndiceCaseV()).getY() + 4);
-					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
-							.get(jeu.getIndiceCaseV())
-							.setEtatActuel(CaseEnum.OCCUPEE);
-
-					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
-
-					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
-							jeu.getIndiceCaseV(), false);
-					jeu.setPionSelectionne(null);
-
-				}
-			}
-			jeu.repaint();
-
-		}
-	};
-
-	private MouseMotionAdapter selectionnerPionsMotion = new MouseMotionAdapter() {
-		/* Déplacement a la souris */
-		public void mouseDragged(MouseEvent evt) {
-			if (jeu.getPionSelectionne() != null) {
-				int translate_x = evt.getX() - getClique_x();
-				int translate_y = evt.getY() - getClique_y();
-				jeu.getPionSelectionne().setCenter_x(
-						jeu.getPionSelectionne().getCenter_x() + translate_x);
-				jeu.getPionSelectionne().setCenter_y(
-						jeu.getPionSelectionne().getCenter_y() + translate_y);
-				setClique_x(evt.getX());
-				setClique_y(evt.getY());
-
-				boolean potentielle = false;
-				int j = 0, k;
-				for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
-					k = 0;
-					for (Case caseJeu : alCase) {
-
-						if (caseJeu.intersect(jeu.getPionSelectionne())
-								&& (!caseJeu.getEtatActuel().toString()
-										.equals(CaseEnum.DESACTIVEE.toString()))) {
-
-							if (!(caseJeu.getEtatActuel().toString()
-									.equals(CaseEnum.OCCUPEE.toString()))
-									&& !(caseJeu.getEtatActuel().toString()
-											.equals(CaseEnum.CONTAMINEE
-													.toString()))) {
-
-								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-								jeu.setIndiceCaseH(j);
-								jeu.setIndiceCaseV(k);
-								potentielle = true;
-
-							}
-						} else if (!(caseJeu.getEtatActuel().toString()
-								.equals(CaseEnum.OCCUPEE.toString()))
-								&& !(caseJeu.getEtatActuel().toString()
-										.equals(CaseEnum.CONTAMINEE.toString()))) {
-
-							caseJeu.setEtatActuel(caseJeu.getEtatInitial());
-
-						}
-						k++;
-					}
-					j++;
-				}
-
-				if (potentielle == true) {
-					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
-							jeu.getIndiceCaseV(), true);
-				}
-				jeu.repaint();
-
-			}
-		}
-	};
 
 	/**
 	 * 
@@ -199,20 +43,23 @@ public class Principale extends JFrame {
 		Container pane = getContentPane();
 		pane.setLayout(new FlowLayout());
 
-		// DEBUT TEST
-		Grille grille = Grille.buildGrid("level1.properties");
+		String level = "level1.properties";
 
-		Reserve reserve = Reserve.buildReserve("level1.properties");
+		// DEBUT TEST
+		Grille grille = Grille.buildGrid(level);
+		Reserve reserve = Reserve.buildReserve(level);
 
 		// FIN TEST
 
-		setJeu(new Jeu(grille, reserve));
-		jeu.setBackground(Color.WHITE);
-		jeu.setPreferredSize(new Dimension(width, height));
-		jeu.addMouseListener(selectionnerPions);
-		jeu.addMouseMotionListener(selectionnerPionsMotion);
+		JeuListener jeuListener = new JeuListener(grille, reserve);
+		jeuListener.setJeu(new Jeu(grille, reserve));
+		jeuListener.getJeu().setBackground(Color.WHITE);
+		jeuListener.getJeu().setPreferredSize(new Dimension(width, height));
+		jeuListener.getJeu().addMouseListener(jeuListener.selectionnerPions);
+		jeuListener.getJeu().addMouseMotionListener(
+				jeuListener.selectionnerPionsMotion);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pane.add(jeu);
+		pane.add(jeuListener.getJeu());
 		pack();
 		setVisible(true);
 
