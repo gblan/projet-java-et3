@@ -47,9 +47,9 @@ public class Principale extends JFrame {
 		jeuListener.setJeu(new Jeu(grille, reserve));
 		jeuListener.getJeu().setBackground(Color.WHITE);
 		jeuListener.getJeu().setPreferredSize(new Dimension(width, height));
-		jeuListener.getJeu().addMouseListener(jeuListener.selectionnerPions);
+		jeuListener.getJeu().addMouseListener(jeuListener.getSelectionnerPions());
 		jeuListener.getJeu().addMouseMotionListener(
-				jeuListener.selectionnerPionsMotion);
+				jeuListener.getSelectionnerPionsMotion());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeu());
 		pack();
