@@ -8,14 +8,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
+import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.jeu.Jeu;
 import et3.menus.Menu;
 import et3.reserve.Reserve;
+import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionManager;
 
 public class Principale extends JFrame {
@@ -53,20 +56,17 @@ public class Principale extends JFrame {
 		public void mousePressed(MouseEvent evt) {
 			setClique_x(evt.getX());
 			setClique_y(evt.getY());
-			for (int i = 0; i < jeu.getReserve().getPions().size(); i++) {
-				if (jeu.getReserve().getPions().get(i)
-						.contains(clique_x, clique_y)) {
-					for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-						for (int k = 0; k < jeu.getGrille().getListCases()
-								.get(j).size(); k++) {
-							if (jeu.getGrille().getListCases().get(j).get(k)
-									.contains(clique_x, clique_y)) {
-								jeu.getGrille().getListCases().get(j).get(k)
-										.setEtatActuel(CaseEnum.DISPONIBLE);
+			for (Pion pion : jeu.getReserve().getPions()) {
+				if (pion.contains(clique_x, clique_y)) {
+					for (ArrayList<Case> alCase : jeu.getGrille()
+							.getListCases()) {
+						for (Case caseJeu : alCase) {
+							if (caseJeu.contains(clique_x, clique_y)) {
+								caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
 							}
 						}
 					}
-					jeu.setPionSelectionne(jeu.getReserve().getPions().get(i));
+					jeu.setPionSelectionne(pion);
 					jeu.repaint();
 				}
 			}
@@ -113,7 +113,7 @@ public class Principale extends JFrame {
 							.setEtatActuel(CaseEnum.OCCUPEE);
 
 					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
-					
+
 					PionManager pm = new PionManager(jeu.getGrille(),
 							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), false);
@@ -140,55 +140,38 @@ public class Principale extends JFrame {
 				setClique_y(evt.getY());
 
 				boolean potentielle = false;
+				int j = 0, k;
+				for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
+					k = 0;
+					for (Case caseJeu : alCase) {
 
-				for (int j = 0; j < jeu.getGrille().getListCases().size(); j++) {
-					for (int k = 0; k < jeu.getGrille().getListCases().get(j)
-							.size(); k++) {
-
-						if (jeu.getGrille().getListCases().get(j).get(k)
-								.intersect(jeu.getPionSelectionne())
-								&& (!jeu.getGrille().getListCases().get(j)
-										.get(k).getEtatActuel().toString()
+						if (caseJeu.intersect(jeu.getPionSelectionne())
+								&& (!caseJeu.getEtatActuel().toString()
 										.equals(CaseEnum.DESACTIVEE.toString()))) {
 
-							if (!(jeu.getGrille().getListCases().get(j).get(k)
-									.getEtatActuel().toString()
+							if (!(caseJeu.getEtatActuel().toString()
 									.equals(CaseEnum.OCCUPEE.toString()))
-									&& !(jeu.getGrille().getListCases().get(j)
-											.get(k).getEtatActuel().toString()
+									&& !(caseJeu.getEtatActuel().toString()
 											.equals(CaseEnum.CONTAMINEE
 													.toString()))) {
 
-								jeu.getGrille()
-										.getListCases()
-										.get(j)
-										.get(k)
-										.setEtatActuel(
-												CaseEnum.POTENTIELLESURVOLEE);
+								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 								jeu.setIndiceCaseH(j);
 								jeu.setIndiceCaseV(k);
 								potentielle = true;
 
 							}
-						} else if (!(jeu.getGrille().getListCases().get(j)
-								.get(k).getEtatActuel().toString()
-								.equals(CaseEnum.OCCUPEE.toString())) && !(jeu.getGrille().getListCases().get(j)
-										.get(k).getEtatActuel().toString()
-										.equals(CaseEnum.CONTAMINEE
-												.toString()))) {
-							
-								jeu.getGrille()
-										.getListCases()
-										.get(j)
-										.get(k)
-										.setEtatActuel(
-												jeu.getGrille().getListCases()
-														.get(j).get(k)
-														.getEtatInitial());
-							
-						}
+						} else if (!(caseJeu.getEtatActuel().toString()
+								.equals(CaseEnum.OCCUPEE.toString()))
+								&& !(caseJeu.getEtatActuel().toString()
+										.equals(CaseEnum.CONTAMINEE.toString()))) {
 
+							caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+
+						}
+						k++;
 					}
+					j++;
 				}
 
 				if (potentielle == true) {

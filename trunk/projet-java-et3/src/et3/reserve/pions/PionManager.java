@@ -32,7 +32,7 @@ public class PionManager {
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
-//		contaminationPion(pion);
+		contaminationListPion(listPions);
 	}
 
 	public void contaminationListPion(ArrayList<Pion> listPions){

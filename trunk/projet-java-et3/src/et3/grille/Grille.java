@@ -18,19 +18,17 @@ public class Grille {
 		return listCases;
 	}
 
-	public void setListCases(ArrayList<ArrayList<Case>> listCases) {
-		this.listCases = listCases;
-	}
-
 	/**
 	 * 
-	 * @param filename .properties
+	 * @param filename
+	 *            .properties
 	 * @return Grille remplie a partir du .properties
 	 */
 	public static Grille buildGrid(String filename) {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
-		ArrayList<Case> ligne = null;;
+		ArrayList<Case> ligne = null;
+		;
 		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
 
 		String caseGrille = "";
@@ -38,7 +36,7 @@ public class Grille {
 		CaseEnum caseEnum = null;
 
 		for (int i = 0; i < 10; i++) {
-			ligne =  new ArrayList<Case>();
+			ligne = new ArrayList<Case>();
 			for (int j = 0; j < 7; j++) {
 				caseGrille = String.valueOf(j) + "," + String.valueOf(i);
 				c = Case.getPositions(j, i);
@@ -59,6 +57,18 @@ public class Grille {
 		}
 
 		return grille;
+	}
+
+	@Override
+	public String toString() {
+		String res = "";
+		for (ArrayList<Case> al : getListCases()) {
+			for (Case grille : al) {
+				res += grille.toString() + "\n\n";
+			}
+		}
+
+		return res;
 	}
 
 }
