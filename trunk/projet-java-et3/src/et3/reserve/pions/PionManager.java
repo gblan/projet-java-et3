@@ -1,5 +1,7 @@
 package et3.reserve.pions;
 
+import java.util.ArrayList;
+
 import et3.grille.Grille;
 import et3.grille.cases.CaseEnum;
 
@@ -8,7 +10,7 @@ import et3.grille.cases.CaseEnum;
 public class PionManager {
 
 	private Grille grille;
-	private Pion pion;
+	private ArrayList<Pion> listPions;
 	private int indiceCaseH;
 	private int indiceCaseV;
 	private boolean contaminationsPossibles;
@@ -16,23 +18,29 @@ public class PionManager {
 	/**
 	 * 
 	 * @param grille
-	 * @param pion
+	 * @param listPions
 	 * @param indiceCaseH
 	 * @param indiceCaseV
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, Pion pion, int indiceCaseH,
+	public PionManager(Grille grille, ArrayList<Pion> listPions, int indiceCaseH,
 			int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
-		this.pion = pion;
+		this.listPions = listPions;
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
-		contaminationPion(pion);
+//		contaminationPion(pion);
 	}
 
+	public void contaminationListPion(ArrayList<Pion> listPions){
+		for(Pion p : listPions){
+			contaminationPion(p);
+		}
+	}
+	
 	/**
 	 * 
 	 * @param pion
@@ -87,14 +95,13 @@ public class PionManager {
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(j)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
 					|| this.grille.getListCases().get(this.indiceCaseH).get(j)
-							.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
+							.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
 				if (this.contaminationsPossibles) {
+					/* SURVOL */
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
-					System.out.println("bite1");
 
 				} else {
-					System.out.println("bite2");
 
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
@@ -113,7 +120,7 @@ public class PionManager {
 			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
 					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
 					|| this.grille.getListCases().get(this.indiceCaseH).get(i)
-							.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
+							.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
 				if (this.contaminationsPossibles) {
 					/* Pour le survol */
 					this.grille.getListCases().get(this.indiceCaseH).get(i)
