@@ -16,7 +16,6 @@ import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
-import et3.reserve.pions.PionEnum;
 
 public class Jeu extends Component {
 
