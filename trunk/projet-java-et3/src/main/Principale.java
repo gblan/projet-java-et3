@@ -115,7 +115,7 @@ public class Principale extends JFrame {
 					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
 					
 					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionSelectionne(), jeu.getIndiceCaseH(),
+							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), false);
 					jeu.setPionSelectionne(null);
 
@@ -193,7 +193,7 @@ public class Principale extends JFrame {
 
 				if (potentielle == true) {
 					PionManager pm = new PionManager(jeu.getGrille(),
-							jeu.getPionSelectionne(), jeu.getIndiceCaseH(),
+							jeu.getPionsEnJeu(), jeu.getIndiceCaseH(),
 							jeu.getIndiceCaseV(), true);
 				}
 				jeu.repaint();
