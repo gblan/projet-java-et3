@@ -1,6 +1,5 @@
 package et3.reserve.pions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import et3.grille.Grille;
@@ -25,15 +24,15 @@ public class PionManager {
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, List<Pion> listPions,
-			int indiceCaseH, int indiceCaseV, boolean contaminationsPossibles) {
+	public PionManager(Grille grille, List<Pion> listPions, int indiceCaseH,
+			int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
 		this.listPions = listPions;
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
-		//contaminationListPion();
+		// contaminationListPion();
 	}
 
 	public void contaminationListPion() {
@@ -48,33 +47,33 @@ public class PionManager {
 	 * @return swich sur chaque type de pion et appelle les propagations
 	 *         necessaires
 	 */
-	public void contaminationPion(Pion p) {
+	private void contaminationPion(Pion p) {
 		switch (p.getTypePion()) {
 		case TYPE1:
 			contaminationHorizontal();
 			break;
 		case TYPE2:
-			contaminationBiaisDroit();
+			contaminationMontante();
 			break;
 		case TYPE3:
-			contaminationBiaisGauche();
+			contaminationDescendante();
 			break;
 		case TYPE4:
-			contaminationBiaisGauche();
+			contaminationDescendante();
 			contaminationHorizontal();
 			break;
 		case TYPE5:
-			contaminationBiaisDroit();
+			contaminationMontante();
 			contaminationHorizontal();
 			break;
 		case TYPE6:
-			contaminationBiaisDroit();
-			contaminationBiaisGauche();
+			contaminationMontante();
+			contaminationDescendante();
 			break;
 		case TYPE7:
 			contaminationHorizontal();
-			contaminationBiaisDroit();
-			contaminationBiaisGauche();
+			contaminationMontante();
+			contaminationDescendante();
 			break;
 		default:
 			break;
@@ -84,8 +83,47 @@ public class PionManager {
 	/**
 	 * @return propagation du pion vers la gauche puis vers la droite
 	 */
-	public void contaminationHorizontal() {
+	private void contaminationHorizontal() {
+		contaminationGauche();
+		contaminationDroite();
+	}
 
+	private void contaminationMontante() {
+		contaminationBasGauche();
+		contaminationHautDroite();
+	}
+
+	private void contaminationDescendante() {
+		contaminationHautGauche();
+		contaminationBasDroit();
+	}
+
+	private void contaminationGauche() {
+		/* Vers la gauche */
+		for (int i = indiceCaseV - 1; i >= 0; i--) {
+			if ((this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
+					|| (this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
+				break;
+			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
+					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
+					|| this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
+				if (this.contaminationsPossibles) {
+					/* Pour le survol */
+					this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+				} else {
+					this.grille.getListCases().get(this.indiceCaseH).get(i)
+							.setEtatActuel(CaseEnum.CONTAMINEE);
+				}
+
+			}
+		}
+	}
+
+	private void contaminationDroite() {
 		/* Vers la droite */
 		for (int j = indiceCaseV + 1; j < 7; j++) {
 			if ((this.grille.getListCases().get(this.indiceCaseH).get(j)
@@ -110,36 +148,12 @@ public class PionManager {
 
 			}
 		}
-
-		/* Vers la gauche */
-		for (int i = indiceCaseV - 1; i >= 0; i--) {
-			if ((this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (this.grille.getListCases().get(this.indiceCaseH).get(i)
-							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
-				break;
-			} else if (this.grille.getListCases().get(this.indiceCaseH).get(i)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE)
-					|| this.grille.getListCases().get(this.indiceCaseH).get(i)
-							.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
-				if (this.contaminationsPossibles) {
-					/* Pour le survol */
-					this.grille.getListCases().get(this.indiceCaseH).get(i)
-							.setEtatActuel(CaseEnum.POTENTIELLE);
-				} else {
-					this.grille.getListCases().get(this.indiceCaseH).get(i)
-							.setEtatActuel(CaseEnum.CONTAMINEE);
-				}
-
-			}
-		}
-
 	}
 
 	/**
 	 * @return propagation du pion vers le haut gauche puis vers le bas droite
 	 */
-	public void contaminationBiaisGauche() {
+	private void contaminationBasDroit() {
 		int ajout = 0;
 
 		/* vers le bas droit */
@@ -176,8 +190,10 @@ public class PionManager {
 				break;
 			}
 		}
+	}
 
-		ajout = 0;
+	private void contaminationHautGauche() {
+		int ajout = 0;
 		/* vers le haut gauche */
 		for (int j = indiceCaseH - 1; j >= 0; j--) {
 			try {
@@ -221,7 +237,7 @@ public class PionManager {
 	/**
 	 * @return propagation du pion vers le haut droit puis vers le bas gauche
 	 */
-	public void contaminationBiaisDroit() {
+	private void contaminationHautDroite() {
 		int ajout = 0;
 
 		/* vers le haut droit */
@@ -258,8 +274,10 @@ public class PionManager {
 				break;
 			}
 		}
+	}
 
-		ajout = 0;
+	private void contaminationBasGauche() {
+		int ajout = 0;
 		/* bas gauche */
 		for (int j = indiceCaseH + 1; j < 10; j++) {
 			try {
