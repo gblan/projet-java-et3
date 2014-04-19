@@ -32,7 +32,10 @@ public class PionManager {
 		this.indiceCaseH = indiceCaseH;
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
-		// contaminationListPion();
+	}
+	
+	public List<Pion> getListPions() {
+		return listPions;
 	}
 
 	public void contaminationListPion() {
@@ -118,7 +121,6 @@ public class PionManager {
 					this.grille.getListCases().get(this.indiceCaseH).get(i)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
 				}
-
 			}
 		}
 	}
@@ -145,7 +147,6 @@ public class PionManager {
 					this.grille.getListCases().get(this.indiceCaseH).get(j)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
 				}
-
 			}
 		}
 	}
@@ -184,7 +185,6 @@ public class PionManager {
 								.get(this.indiceCaseV + ajout)
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 					}
-
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -231,7 +231,6 @@ public class PionManager {
 				break;
 			}
 		}
-
 	}
 
 	/**
@@ -312,11 +311,6 @@ public class PionManager {
 				break;
 			}
 		}
-
-	}
-
-	public List<Pion> getListPions() {
-		return listPions;
 	}
 
 }

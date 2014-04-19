@@ -142,12 +142,12 @@ public class JeuListener extends Jeu {
 		/* Déplacement a la souris */
 		public void mouseDragged(MouseEvent evt) {
 			if (jeu.getPionSelectionne() != null) {
-				int translate_x = evt.getX() - getCliqueX();
-				int translate_y = evt.getY() - getCliqueY();
+				int translateX = evt.getX() - getCliqueX();
+				int translateY = evt.getY() - getCliqueY();
 				jeu.getPionSelectionne().setX(
-						jeu.getPionSelectionne().getX() + translate_x);
+						jeu.getPionSelectionne().getX() + translateX);
 				jeu.getPionSelectionne().setY(
-						jeu.getPionSelectionne().getY() + translate_y);
+						jeu.getPionSelectionne().getY() + translateY);
 				setCliqueX(evt.getX());
 				setCliqueY(evt.getY());
 
