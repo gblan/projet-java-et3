@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.io.FileNotFoundException;
-
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
@@ -58,7 +56,6 @@ public class Principale extends JFrame {
 	}
 
 	public static void main(String[] arg) {
-		// Principale p1 = new Principale("Sporos", 300, 500);
 		Menu m = new Menu("Sporos");
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

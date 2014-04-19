@@ -37,7 +37,7 @@ public class Jeu extends Component {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
-		this.setPionsEnJeu(new ArrayList<Pion>());
+		this.pionsEnJeu = new ArrayList<Pion>();
 	}
 
 	public Reserve getReserve() {
@@ -82,10 +82,6 @@ public class Jeu extends Component {
 
 	public List<Pion> getPionsEnJeu() {
 		return pionsEnJeu;
-	}
-
-	public void setPionsEnJeu(List<Pion> pionsEnJeu) {
-		this.pionsEnJeu = pionsEnJeu;
 	}
 
 	/**

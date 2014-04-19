@@ -20,7 +20,7 @@ public class Case extends Component {
 	private CaseEnum etatActuel;
 	private int x;
 	private int y;
-	private final static int HEIGHT = 40;
+	private static final int HEIGHT = 40;
 
 	/* TODO : Cases du HAUT,BAS... */
 

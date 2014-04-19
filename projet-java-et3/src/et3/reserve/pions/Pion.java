@@ -16,7 +16,7 @@ public class Pion {
 	private int y;
 	private int xInitial;
 	private int yInitial;
-	private final static int rayon = 21;
+	private static final int RAYON = 21;
 
 	public Pion(PionEnum typePion, int x, int y, int xInitial,
 			int yInitial) {
@@ -64,7 +64,7 @@ public class Pion {
 	}
 
 	public int getRayon() {
-		return rayon;
+		return RAYON;
 	}
 
 	/**
