@@ -22,8 +22,6 @@ public class Case extends Component {
 	private int y;
 	private static final int HEIGHT = 40;
 
-	/* TODO : Cases du HAUT,BAS... */
-
 	public Case(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
 		super();
 		this.etatInitial = etatInitial;
