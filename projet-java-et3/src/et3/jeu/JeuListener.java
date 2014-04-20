@@ -4,6 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.List;
 
 import et3.grille.Grille;
 import et3.grille.cases.Case;
@@ -48,7 +49,6 @@ public class JeuListener extends Jeu {
 
 	public JeuListener(Grille grille, Reserve reserve) {
 		super(grille, reserve);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MouseMotionAdapter getSelectionnerPionsMotion() {
@@ -68,27 +68,25 @@ public class JeuListener extends Jeu {
 			setCliqueY(evt.getY());
 			for (Pion pion : jeu.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-					for (ArrayList<Case> alCase : jeu.getGrille()
-							.getListCases()) {
+					for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
 						for (Case caseJeu : alCase) {
 							if (caseJeu.contains(getCliqueX(), getCliqueY())) {
-								caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
+								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+								jeu.getPionsEnJeu().remove(pion);
 							}
 						}
 					}
 					jeu.setPionSelectionne(pion);
 					jeu.repaint();
 				}
-			}
+			}			
 		}
 
 		public void mouseReleased(MouseEvent evt) {
 
 			if (jeu.getPionSelectionne() != null) {
-				// Si il n'y a pas de case selectionne le pion retourne dans la
-				// reserve
-
-				// if Magic. Do not touch.
+				// Si pas de case select, le pion retourne dans la reserve
+				
 				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 						.get(jeu.getIndiceCaseV()) == null
 						|| !(jeu.getGrille().getListCases()
@@ -99,7 +97,7 @@ public class JeuListener extends Jeu {
 								.get(jeu.getIndiceCaseH())
 								.get(jeu.getIndiceCaseV()).getEtatActuel()
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
-					/* A FAIRE deplacement vers point initial */
+
 					jeu.getPionSelectionne().setX(
 							jeu.getPionSelectionne().getxInitial());
 					jeu.getPionSelectionne().setY(
@@ -121,8 +119,10 @@ public class JeuListener extends Jeu {
 					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
-
-					jeu.getPionsEnJeu().add(jeu.getPionSelectionne());
+					
+					List<Pion> tmp = new ArrayList<>(jeu.getPionsEnJeu());
+					tmp.add(jeu.getPionSelectionne());
+					jeu.setPionsEnJeu(tmp);
 
 					PionManager pm = new PionManager(jeu.getGrille(),
 							(ArrayList<Pion>) jeu.getPionsEnJeu(),
@@ -151,9 +151,10 @@ public class JeuListener extends Jeu {
 				setCliqueX(evt.getX());
 				setCliqueY(evt.getY());
 
-				boolean potentielle = false;
+				boolean survol = false;
 				int j = 0, k;
 				for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
+					survol = false;
 					k = 0;
 					for (Case caseJeu : alCase) {
 
@@ -170,7 +171,7 @@ public class JeuListener extends Jeu {
 								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 								jeu.setIndiceCaseH(j);
 								jeu.setIndiceCaseV(k);
-								potentielle = true;
+								survol = true;
 
 							}
 						} else if (!(caseJeu.getEtatActuel().toString()
@@ -186,7 +187,7 @@ public class JeuListener extends Jeu {
 					j++;
 				}
 
-				if (potentielle) {
+				if (survol) {
 					PionManager pm = new PionManager(jeu.getGrille(),
 							(ArrayList<Pion>) jeu.getPionsEnJeu(),
 							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), true);
