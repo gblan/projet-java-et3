@@ -26,14 +26,14 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
-	public Principale(String title, int width, int height) {
+	public Principale(String title,int numLevel, int width, int height) {
 		super(title);
 		setBounds(300, 100, 0, 0);
 		setSize(width - 100, height - 100);
 		Container pane = getContentPane();
 		pane.setLayout(new FlowLayout());
 
-		String level = "level1.properties";
+		String level = "level"+numLevel+".properties";
 
 		// DEBUT TEST
 		Grille grille = Grille.buildGrid(level);

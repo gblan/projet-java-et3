@@ -28,7 +28,7 @@ public class Menu extends JFrame {
 				setVisible(false);
 				
 				/* TODO Aller a liste niveau par la suite*/
-				Principale p1 = new Principale("Sporos", 300, 500);
+				Principale p1 = new Principale("Sporos",1, 300, 500);
 				
 			}
 		});
