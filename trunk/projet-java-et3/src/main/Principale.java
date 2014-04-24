@@ -36,8 +36,8 @@ public class Principale extends JFrame {
 		String level = "level"+numLevel+".properties";
 
 		// DEBUT TEST
-		Grille grille = Grille.buildGrid(level);
-		Reserve reserve = Reserve.buildReserve(level);
+		Grille grille = Grille.buildGrid("levels/"+level);
+		Reserve reserve = Reserve.buildReserve("levels/"+level);
 
 		// FIN TEST
 

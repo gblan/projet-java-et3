@@ -54,7 +54,6 @@ public class Niveaux extends JFrame {
 		        JList list = (JList)evt.getSource();
 		        if (evt.getClickCount() == 2) {
 		            int index = list.locationToIndex(evt.getPoint());
-		            System.out.println(index);
 					Principale p1 = new Principale("Sporos : niveau "+index,index, 300, 500);
 
 		        }
@@ -70,10 +69,10 @@ public class Niveaux extends JFrame {
 		String[] tmp = new String[100];
 		for (int i = 1; i < 100; i++) {
 			String str = "level" + i + ".properties";
-			File properties = new File(str);
+			File properties = new File("levels/"+str);
 			if (properties.isFile()) {
-				Jeu jeu = new Jeu(Grille.buildGrid(str),
-						Reserve.buildReserve(str));
+				Jeu jeu = new Jeu(Grille.buildGrid("levels/"+str),
+						Reserve.buildReserve("levels/"+str));
 				this.listeNiveau.add(jeu);
 				tmp[i] = str;
 			}
