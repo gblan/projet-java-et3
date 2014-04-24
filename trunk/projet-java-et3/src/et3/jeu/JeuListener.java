@@ -6,6 +6,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import et3.grille.Grille;
 import et3.grille.cases.Case;
 import et3.grille.cases.CaseEnum;
@@ -129,6 +131,12 @@ public class JeuListener extends Jeu {
 							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), false);
 					pm.contaminationListPion();
 
+					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
+					if(jeu.isFinish()){
+						JOptionPane.showMessageDialog(null,
+								"BRAVO, vous avez réussi", "SUCCES",
+								JOptionPane.PLAIN_MESSAGE);
+					}
 					jeu.setPionSelectionne(null);
 
 				}
