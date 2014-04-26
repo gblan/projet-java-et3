@@ -124,7 +124,11 @@ public class Jeu extends Component {
 	public boolean isFinish() {
 		for (ArrayList<Case> alCase : grille.getListCases()) {
 			for (Case grilleJeu : alCase) {
-				if (grilleJeu.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
+				if (!grilleJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)
+						&& !grilleJeu.getEtatActuel().equals(
+								CaseEnum.CONTAMINEE)
+						&& !grilleJeu.getEtatActuel().equals(
+								CaseEnum.DESACTIVEE)) {
 					return false;
 				}
 			}
