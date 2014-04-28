@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import et3.grille.Grille;
 import et3.grille.cases.Case;
-import et3.reserve.Reserve;
+import et3.grille.cases.CaseView;
 import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionView;
 
 public class JeuView extends Component {
 	
@@ -36,12 +36,14 @@ public class JeuView extends Component {
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
-			for (Case grilleJeu : alCase) {
-				grilleJeu.paint(graphics);
+			for (Case cases : alCase) {
+				CaseView caseView = new CaseView(cases);
+				caseView.paint(graphics);
 			}
 		}
-		for (Pion alPion : jeu.getReserve().getPions()) {
-			alPion.paint(graphics);
+		for (Pion pion : jeu.getReserve().getPions()) {
+			PionView pionView = new PionView(pion);
+			pionView.paint(graphics);
 		}
 		jeu.getReserve().paint(g);
 		File file = new File("resources/icone_menu.png");
@@ -53,7 +55,8 @@ public class JeuView extends Component {
 		}
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
-			jeu.getPionSelectionne().paint(graphics);
+			PionView pionView = new PionView(jeu.getPionSelectionne());
+			pionView.paint(graphics);
 		}
 	}
 }
