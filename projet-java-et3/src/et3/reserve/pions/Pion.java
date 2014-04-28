@@ -79,29 +79,6 @@ public class Pion {
 
 	}
 
-	/**
-	 * 
-	 * @param graphics
-	 *            qui permet l'affichage d'un pion
-	 */
-	public void paint(Graphics graphics) {
-
-		// Puis le cercle interieur en fonction de l'etat de la case
-		for (int i = 1; i < 8; i++) {
-			if (this.typePion.toString().equals(
-					"TYPE".concat(String.valueOf(i)))) {
-				File file = new File("resources/Pion_" + i + ".png");
-				try {
-					BufferedImage img = ImageIO.read(file);
-					graphics.drawImage(img, x, y, null);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
 	@Override
 	public String toString() {
 		String res = "";
