@@ -11,13 +11,33 @@ import java.util.Properties;
 
 public class PropertyAcces {
 
+	public static int getCurrentLevel() {
+		int level = 0;
+
+		try {
+			Properties prop = PropertyLoader.load("save.properties");
+
+			String hash = prop.getProperty("level");
+
+			for (int i = 1; i < 1000; i++) {
+				if (hash.compareTo(hachage(i)) == 0) {
+					level = i;
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			level = 0;
+		}
+		return level;
+	}
+
 	/**
 	 * 
 	 * @param key
-	 * @param value
 	 * @return sauvegarde l avancement dans le fichier save.properties
 	 */
-	public static void saveProperties(int value) {
+	public static void saveProperties(int level) {
 		Properties prop = new Properties();
 		OutputStream output = null;
 
@@ -25,10 +45,8 @@ public class PropertyAcces {
 
 			output = new FileOutputStream("save.properties");
 
-			// set the properties value
-			prop.setProperty("level", hachage(value));
+			prop.setProperty("level", hachage(level));
 
-			// save properties to project root folder
 			prop.store(output, null);
 
 		} catch (IOException io) {
@@ -41,7 +59,6 @@ public class PropertyAcces {
 					e.printStackTrace();
 				}
 			}
-
 		}
 	}
 

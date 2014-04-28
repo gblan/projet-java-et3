@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import main.Principale;
+
 import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
 import et3.reserve.pions.PionManager;
@@ -153,17 +155,20 @@ public class JeuListener {
 
 						/* Sauvegarde */
 						PropertyAcces.saveProperties(jeuModel.getIdJeu());
-
-						if (retour != JOptionPane.CLOSED_OPTION) {
-							if (retour == 1) {
-								// next
-							} else {
-								// retour au menu
-								System.exit(0);
-							}
-						} else {
-							// retour au menu
+						System.out.println(retour);
+						if (retour == 2) {
+							// OK
 							System.exit(0);
+
+							/* Transition vers nouvelle fenêtre*/
+							Principale p1 = new Principale("Sporos : niveau "+jeuModel.getIdJeu(),jeuModel.getIdJeu(), 300, 500);
+
+						} else if (retour == 0) {
+							// CANCEL
+
+						} else if (retour == -1) {
+							// QUIT
+							System.out.println("bite3");
 
 						}
 
