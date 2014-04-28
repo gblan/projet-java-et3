@@ -15,13 +15,14 @@ import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 import et3.reserve.pions.PionManager;
 
-public class JeuListener extends Jeu {
+public class JeuListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Jeu jeu;
+	private JeuView jeuView;
 	private int cliqueX;
 	private int cliqueY;
 
@@ -31,6 +32,15 @@ public class JeuListener extends Jeu {
 
 	public Jeu getJeu() {
 		return this.jeu;
+	}
+
+	
+	public JeuView getJeuView() {
+		return jeuView;
+	}
+
+	public void setJeuView(JeuView jeuview) {
+		this.jeuView = jeuview;
 	}
 
 	public int getCliqueX() {
@@ -49,8 +59,9 @@ public class JeuListener extends Jeu {
 		this.cliqueY = cliqueY;
 	}
 
-	public JeuListener(Grille grille, Reserve reserve) {
-		super(grille, reserve);
+	public JeuListener(Jeu jeu,JeuView jeuView) {
+		this.jeu=jeu;
+		this.jeuView=jeuView;
 	}
 
 	public MouseMotionAdapter getSelectionnerPionsMotion() {
@@ -79,7 +90,7 @@ public class JeuListener extends Jeu {
 						}
 					}
 					jeu.setPionSelectionne(pion);
-					jeu.repaint();
+					jeuView.repaint();
 				}
 			}			
 		}
@@ -141,7 +152,7 @@ public class JeuListener extends Jeu {
 
 				}
 			}
-			jeu.repaint();
+			jeuView.repaint();
 
 		}
 	};
@@ -201,7 +212,7 @@ public class JeuListener extends Jeu {
 							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), true);
 					pm.contaminationListPion();
 				}
-				jeu.repaint();
+				jeuView.repaint();
 
 			}
 		}

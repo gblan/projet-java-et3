@@ -6,8 +6,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.binding.ListBinding;
-
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;

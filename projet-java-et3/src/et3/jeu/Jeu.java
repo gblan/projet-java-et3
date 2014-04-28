@@ -18,7 +18,7 @@ import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 
-public class Jeu extends Component {
+public class Jeu  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -89,37 +89,7 @@ public class Jeu extends Component {
 	}
 	
 
-	/**
-	 * @param graphics
-	 *            on affiche le jeu en faisant appel à l'affichage de chaque
-	 *            case et de chaque pion
-	 */
-	public void paint(Graphics graphics) {
 
-		Graphics2D g = (Graphics2D) graphics;
-		g.setColor(getBackground());
-		g.fillRect(0, 0, getWidth(), getHeight());
-		for (ArrayList<Case> alCase : this.grille.getListCases()) {
-			for (Case grilleJeu : alCase) {
-				grilleJeu.paint(graphics);
-			}
-		}
-		for (Pion alPion : this.reserve.getPions()) {
-			alPion.paint(graphics);
-		}
-		reserve.paint(g);
-		File file = new File("resources/icone_menu.png");
-		try {
-			BufferedImage img = ImageIO.read(file);
-			graphics.drawImage(img, 230, 10, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		g.setStroke(new BasicStroke(2f));
-		if (this.pionSelectionne != null) {
-			this.pionSelectionne.paint(graphics);
-		}
-	}
 
 	public boolean isFinish() {
 		for (ArrayList<Case> alCase : grille.getListCases()) {

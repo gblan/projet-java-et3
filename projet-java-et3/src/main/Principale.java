@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
 import et3.jeu.Jeu;
 import et3.jeu.JeuListener;
+import et3.jeu.JeuView;
 import et3.menus.Menu;
 import et3.reserve.Reserve;
 
@@ -41,15 +43,18 @@ public class Principale extends JFrame {
 
 		// FIN TEST
 
-		JeuListener jeuListener = new JeuListener(grille, reserve);
-		jeuListener.setJeu(new Jeu(grille, reserve));
-		jeuListener.getJeu().setBackground(Color.WHITE);
-		jeuListener.getJeu().setPreferredSize(new Dimension(width, height));
-		jeuListener.getJeu().addMouseListener(jeuListener.getSelectionnerPions());
-		jeuListener.getJeu().addMouseMotionListener(
+		
+		Jeu jeu = new Jeu(grille, reserve);
+		JeuView jeuView = new JeuView(jeu);
+		JeuListener jeuListener = new JeuListener(jeu,jeuView);
+		
+		jeuListener.getJeuView().setBackground(Color.WHITE);
+		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
+		jeuListener.getJeuView().addMouseListener(jeuListener.getSelectionnerPions());
+		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pane.add(jeuListener.getJeu());
+		pane.add(jeuListener.getJeuView());
 		pack();
 		setVisible(true);
 
