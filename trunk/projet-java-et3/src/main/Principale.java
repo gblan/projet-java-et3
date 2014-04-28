@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 
 import et3.grille.Grille;
-import et3.jeu.Jeu;
 import et3.jeu.JeuListener;
+import et3.jeu.JeuModel;
 import et3.jeu.JeuView;
 import et3.menus.Menu;
 import et3.reserve.Reserve;
@@ -44,7 +45,7 @@ public class Principale extends JFrame {
 		// FIN TEST
 
 		
-		Jeu jeu = new Jeu(grille, reserve);
+		JeuModel jeu = new JeuModel(grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
 		JeuListener jeuListener = new JeuListener(jeu,jeuView);
 		

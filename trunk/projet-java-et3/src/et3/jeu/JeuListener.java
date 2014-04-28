@@ -21,16 +21,16 @@ public class JeuListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Jeu jeu;
+	private JeuModel jeu;
 	private JeuView jeuView;
 	private int cliqueX;
 	private int cliqueY;
 
-	public void setJeu(Jeu jeu) {
+	public void setJeu(JeuModel jeu) {
 		this.jeu = jeu;
 	}
 
-	public Jeu getJeu() {
+	public JeuModel getJeu() {
 		return this.jeu;
 	}
 
@@ -59,7 +59,7 @@ public class JeuListener {
 		this.cliqueY = cliqueY;
 	}
 
-	public JeuListener(Jeu jeu,JeuView jeuView) {
+	public JeuListener(JeuModel jeu,JeuView jeuView) {
 		this.jeu=jeu;
 		this.jeuView=jeuView;
 	}

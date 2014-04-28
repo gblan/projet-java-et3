@@ -18,9 +18,9 @@ import et3.reserve.pions.Pion;
 
 public class JeuView extends Component {
 	
-	private Jeu jeu;
+	private JeuModel jeu;
 	
-	public JeuView(Jeu jeu) {
+	public JeuView(JeuModel jeu) {
 		this.jeu=jeu;
 		// TODO Auto-generated constructor stub
 	}
