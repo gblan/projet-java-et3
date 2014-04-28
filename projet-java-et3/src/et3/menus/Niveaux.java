@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import main.Principale;
 
 import et3.grille.Grille;
-import et3.jeu.Jeu;
+import et3.jeu.JeuModel;
 import et3.reserve.Reserve;
 
 public class Niveaux extends JFrame {
@@ -22,7 +22,7 @@ public class Niveaux extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Jeu> listeNiveau;
+	private List<JeuModel> listeNiveau;
 	private String[] listNiveau;
 
 	/**
@@ -30,7 +30,7 @@ public class Niveaux extends JFrame {
 	 */
 	public Niveaux(String windowsName) {
 		super(windowsName);
-		this.listeNiveau = new ArrayList<Jeu>();
+		this.listeNiveau = new ArrayList<JeuModel>();
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildLevels();
@@ -69,7 +69,7 @@ public class Niveaux extends JFrame {
 			String str = "level" + i + ".properties";
 			File properties = new File("levels/"+str);
 			if (properties.isFile()) {
-				Jeu jeu = new Jeu(Grille.buildGrid("levels/"+str),
+				JeuModel jeu = new JeuModel(Grille.buildGrid("levels/"+str),
 						Reserve.buildReserve("levels/"+str));
 				this.listeNiveau.add(jeu);
 				tmp[i] = str;
@@ -85,7 +85,7 @@ public class Niveaux extends JFrame {
 		int i = 1;
 		res += "Niveaux : \n";
 
-		for (Jeu j : this.listeNiveau) {
+		for (JeuModel j : this.listeNiveau) {
 			res += "\t Grille num " + i + ", Reserve : "
 					+ j.getReserve().getPions().size() + "\n";
 			i++;

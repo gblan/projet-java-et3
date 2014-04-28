@@ -18,7 +18,7 @@ import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
 import et3.reserve.pions.Pion;
 
-public class Jeu  {
+public class JeuModel  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class Jeu  {
 	 * TODO FIN A MODIFIER
 	 */
 
-	public Jeu(Grille grille, Reserve reserve) {
+	public JeuModel(Grille grille, Reserve reserve) {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
