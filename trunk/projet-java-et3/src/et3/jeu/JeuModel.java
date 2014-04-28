@@ -1,20 +1,11 @@
 package et3.jeu;
 
-import java.awt.BasicStroke;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import et3.grille.Grille;
-import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
+import et3.grille.cases.CaseModel;
 import et3.reserve.Reserve;
 import et3.reserve.pions.PionModel;
 
