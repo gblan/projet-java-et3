@@ -17,11 +17,11 @@ import et3.reserve.pions.PionModel;
 import et3.reserve.pions.PionView;
 
 public class JeuView extends Component {
-	
+
 	private JeuModel jeu;
-	
+
 	public JeuView(JeuModel jeu) {
-		this.jeu=jeu;
+		this.jeu = jeu;
 		// TODO Auto-generated constructor stub
 	}
 

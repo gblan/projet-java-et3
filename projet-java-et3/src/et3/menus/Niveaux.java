@@ -11,7 +11,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import main.Principale;
-
 import et3.grille.Grille;
 import et3.jeu.JeuModel;
 import et3.reserve.Reserve;
@@ -43,21 +42,22 @@ public class Niveaux extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JList list = new JList(listNiveau);
-		
+
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        JList list = (JList) evt.getSource();
-		        if (evt.getClickCount() == 2) {
-		            int index = list.locationToIndex(evt.getPoint());
-					Principale p1 = new Principale("Sporos : niveau "+index,index, 300, 500);
+			public void mouseClicked(MouseEvent evt) {
+				JList list = (JList) evt.getSource();
+				if (evt.getClickCount() == 2) {
+					int index = list.locationToIndex(evt.getPoint());
+					Principale p1 = new Principale("Sporos : niveau " + index,
+							index, 300, 500);
 
-		        }
-		    }
+				}
+			}
 		});
-		
+
 		JScrollPane listScroller = new JScrollPane(list);
-		
+
 		getContentPane().add(listScroller);
 	}
 
@@ -65,10 +65,11 @@ public class Niveaux extends JFrame {
 		String[] tmp = new String[100];
 		for (int i = 1; i < 100; i++) {
 			String str = "level" + i + ".properties";
-			File properties = new File("levels/"+str);
+			File properties = new File("levels/" + str);
 			if (properties.isFile()) {
-				JeuModel jeu = new JeuModel(Grille.buildGrid("levels/"+str),
-						Reserve.buildReserve("levels/"+str));
+				JeuModel jeu = new JeuModel(i,
+						Grille.buildGrid("levels/" + str),
+						Reserve.buildReserve("levels/" + str));
 				this.listeNiveau.add(jeu);
 				tmp[i] = str;
 			}

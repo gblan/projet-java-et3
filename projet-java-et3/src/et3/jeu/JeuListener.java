@@ -12,6 +12,7 @@ import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
 import et3.reserve.pions.PionManager;
 import et3.reserve.pions.PionModel;
+import et3.sauvegarde.PropertyAcces;
 
 public class JeuListener {
 
@@ -19,20 +20,19 @@ public class JeuListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JeuModel jeu;
+	private JeuModel jeuModel;
 	private JeuView jeuView;
 	private int cliqueX;
 	private int cliqueY;
 
 	public void setJeu(JeuModel jeu) {
-		this.jeu = jeu;
+		this.jeuModel = jeu;
 	}
 
 	public JeuModel getJeu() {
-		return this.jeu;
+		return this.jeuModel;
 	}
 
-	
 	public JeuView getJeuView() {
 		return jeuView;
 	}
@@ -57,96 +57,118 @@ public class JeuListener {
 		this.cliqueY = cliqueY;
 	}
 
-	public JeuListener(JeuModel jeu,JeuView jeuView) {
-		this.jeu=jeu;
-		this.jeuView=jeuView;
+	public JeuListener(JeuModel jeu, JeuView jeuView) {
+		this.jeuModel = jeu;
+		this.jeuView = jeuView;
 	}
 
 	public MouseMotionAdapter getSelectionnerPionsMotion() {
 		return selectionnerPionsMotion;
 	}
 
-
 	public MouseAdapter getSelectionnerPions() {
 		return selectionnerPions;
 	}
-
 
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
-			for (PionModel pion : jeu.getReserve().getPions()) {
+			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-					for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
+					for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
+							.getListCases()) {
 						for (CaseModel caseJeu : alCase) {
 							if (caseJeu.contains(getCliqueX(), getCliqueY())) {
 								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
-								jeu.getPionsEnJeu().remove(pion);
+								jeuModel.getPionsEnJeu().remove(pion);
 							}
 						}
 					}
-					jeu.setPionSelectionne(pion);
+					jeuModel.setPionSelectionne(pion);
 					jeuView.repaint();
 				}
-			}			
+			}
 		}
 
 		public void mouseReleased(MouseEvent evt) {
 
-			if (jeu.getPionSelectionne() != null) {
+			if (jeuModel.getPionSelectionne() != null) {
 				// Si pas de case select, le pion retourne dans la reserve
-				
-				if (jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
-						.get(jeu.getIndiceCaseV()) == null
-						|| !(jeu.getGrille().getListCases()
-								.get(jeu.getIndiceCaseH())
-								.get(jeu.getIndiceCaseV()).intersect(jeu
-								.getPionSelectionne()))
-						|| jeu.getGrille().getListCases()
-								.get(jeu.getIndiceCaseH())
-								.get(jeu.getIndiceCaseV()).getEtatActuel()
+
+				if (jeuModel.getGrille().getListCases()
+						.get(jeuModel.getIndiceCaseH())
+						.get(jeuModel.getIndiceCaseV()) == null
+						|| !(jeuModel.getGrille().getListCases()
+								.get(jeuModel.getIndiceCaseH())
+								.get(jeuModel.getIndiceCaseV())
+								.intersect(jeuModel.getPionSelectionne()))
+						|| jeuModel.getGrille().getListCases()
+								.get(jeuModel.getIndiceCaseH())
+								.get(jeuModel.getIndiceCaseV()).getEtatActuel()
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 
-					jeu.getPionSelectionne().setX(
-							jeu.getPionSelectionne().getxInitial());
-					jeu.getPionSelectionne().setY(
-							jeu.getPionSelectionne().getyInitial());
-					jeu.setPionSelectionne(null);
+					jeuModel.getPionSelectionne().setX(
+							jeuModel.getPionSelectionne().getxInitial());
+					jeuModel.getPionSelectionne().setY(
+							jeuModel.getPionSelectionne().getyInitial());
+					jeuModel.setPionSelectionne(null);
 
 				}
 
 				else {
 					// sinon on le positionne sur la case
-					jeu.getPionSelectionne().setX(
-							jeu.getGrille().getListCases()
-									.get(jeu.getIndiceCaseH())
-									.get(jeu.getIndiceCaseV()).getX() + 3);
-					jeu.getPionSelectionne().setY(
-							jeu.getGrille().getListCases()
-									.get(jeu.getIndiceCaseH())
-									.get(jeu.getIndiceCaseV()).getY() + 4);
-					jeu.getGrille().getListCases().get(jeu.getIndiceCaseH())
-							.get(jeu.getIndiceCaseV())
+					jeuModel.getPionSelectionne().setX(
+							jeuModel.getGrille().getListCases()
+									.get(jeuModel.getIndiceCaseH())
+									.get(jeuModel.getIndiceCaseV()).getX() + 3);
+					jeuModel.getPionSelectionne().setY(
+							jeuModel.getGrille().getListCases()
+									.get(jeuModel.getIndiceCaseH())
+									.get(jeuModel.getIndiceCaseV()).getY() + 4);
+					jeuModel.getGrille().getListCases()
+							.get(jeuModel.getIndiceCaseH())
+							.get(jeuModel.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
-					
-					List<PionModel> tmp = new ArrayList<>(jeu.getPionsEnJeu());
-					tmp.add(jeu.getPionSelectionne());
-					jeu.setPionsEnJeu(tmp);
 
-					PionManager pm = new PionManager(jeu.getGrille(),
-							(ArrayList<PionModel>) jeu.getPionsEnJeu(),
-							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), false);
+					List<PionModel> tmp = new ArrayList<>(
+							jeuModel.getPionsEnJeu());
+					tmp.add(jeuModel.getPionSelectionne());
+					jeuModel.setPionsEnJeu(tmp);
+
+					PionManager pm = new PionManager(jeuModel.getGrille(),
+							(ArrayList<PionModel>) jeuModel.getPionsEnJeu(),
+							jeuModel.getIndiceCaseH(),
+							jeuModel.getIndiceCaseV(), false);
 					pm.contaminationListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
-					if(jeu.isFinish()){
-						JOptionPane.showMessageDialog(null,
-								"BRAVO, vous avez réussi", "SUCCES",
-								JOptionPane.PLAIN_MESSAGE);
+					if (jeuModel.isFinish()) {
+						jeuView.repaint();
+
+						int retour = JOptionPane.showConfirmDialog(null,
+								"Voulez vous passer au niveau suivant ?",
+								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
+
+						/* Sauvegarde */
+						PropertyAcces.saveProperties(jeuModel.getIdJeu());
+
+						if (retour != JOptionPane.CLOSED_OPTION) {
+							if (retour == 1) {
+								// next
+							} else {
+								// retour au menu
+								System.exit(0);
+							}
+						} else {
+							// retour au menu
+							System.exit(0);
+
+						}
+
 					}
-					jeu.setPionSelectionne(null);
+					jeuModel.setPionSelectionne(null);
 
 				}
 			}
@@ -158,24 +180,25 @@ public class JeuListener {
 	private MouseMotionAdapter selectionnerPionsMotion = new MouseMotionAdapter() {
 		/* Déplacement a la souris */
 		public void mouseDragged(MouseEvent evt) {
-			if (jeu.getPionSelectionne() != null) {
+			if (jeuModel.getPionSelectionne() != null) {
 				int translateX = evt.getX() - getCliqueX();
 				int translateY = evt.getY() - getCliqueY();
-				jeu.getPionSelectionne().setX(
-						jeu.getPionSelectionne().getX() + translateX);
-				jeu.getPionSelectionne().setY(
-						jeu.getPionSelectionne().getY() + translateY);
+				jeuModel.getPionSelectionne().setX(
+						jeuModel.getPionSelectionne().getX() + translateX);
+				jeuModel.getPionSelectionne().setY(
+						jeuModel.getPionSelectionne().getY() + translateY);
 				setCliqueX(evt.getX());
 				setCliqueY(evt.getY());
 
 				boolean survol = false;
 				int j = 0, k;
-				for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
+				for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
+						.getListCases()) {
 					survol = false;
 					k = 0;
 					for (CaseModel caseJeu : alCase) {
 
-						if (caseJeu.intersect(jeu.getPionSelectionne())
+						if (caseJeu.intersect(jeuModel.getPionSelectionne())
 								&& (!caseJeu.getEtatActuel().toString()
 										.equals(CaseEnum.DESACTIVEE.toString()))) {
 
@@ -186,8 +209,8 @@ public class JeuListener {
 													.toString()))) {
 
 								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
-								jeu.setIndiceCaseH(j);
-								jeu.setIndiceCaseV(k);
+								jeuModel.setIndiceCaseH(j);
+								jeuModel.setIndiceCaseV(k);
 								survol = true;
 
 							}
@@ -205,9 +228,10 @@ public class JeuListener {
 				}
 
 				if (survol) {
-					PionManager pm = new PionManager(jeu.getGrille(),
-							(ArrayList<PionModel>) jeu.getPionsEnJeu(),
-							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), true);
+					PionManager pm = new PionManager(jeuModel.getGrille(),
+							(ArrayList<PionModel>) jeuModel.getPionsEnJeu(),
+							jeuModel.getIndiceCaseH(),
+							jeuModel.getIndiceCaseV(), true);
 					pm.contaminationListPion();
 				}
 				jeuView.repaint();

@@ -126,11 +126,10 @@ public class CaseModel extends Component {
 		return (cercle.contains(new Point2D.Float(pointX, pointY)));
 
 	}
-	
-	public void paint(Graphics g) {
-		
-	}
 
+	public void paint(Graphics g) {
+
+	}
 
 	@Override
 	public String toString() {

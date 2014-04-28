@@ -3,6 +3,10 @@ package et3.sauvegarde;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 import java.util.Properties;
 
 public class PropertyAcces {
@@ -11,18 +15,18 @@ public class PropertyAcces {
 	 * 
 	 * @param key
 	 * @param value
-	 * @return sauvegarde l avancement dans le fichier sauvegarde.properties
+	 * @return sauvegarde l avancement dans le fichier save.properties
 	 */
-	public void saveProperties(String key, String value) {
+	public static void saveProperties(int value) {
 		Properties prop = new Properties();
 		OutputStream output = null;
 
 		try {
 
-			output = new FileOutputStream("sauvegarde.properties");
+			output = new FileOutputStream("save.properties");
 
 			// set the properties value
-			prop.setProperty(key, value);
+			prop.setProperty("level", hachage(value));
 
 			// save properties to project root folder
 			prop.store(output, null);
@@ -57,6 +61,33 @@ public class PropertyAcces {
 			e.printStackTrace();
 			result = null;
 		}
+		return result;
+	}
+
+	public static String hachage(int numLevel) {
+		String sha1 = "";
+		String s = String.valueOf(numLevel);
+
+		try {
+			MessageDigest crypt = MessageDigest.getInstance("SHA-512");
+			crypt.reset();
+			crypt.update(s.getBytes("UTF-8"));
+			sha1 = byteToHex(crypt.digest());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return sha1;
+	}
+
+	private static String byteToHex(final byte[] hash) {
+		Formatter formatter = new Formatter();
+		for (byte b : hash) {
+			formatter.format("%02x", b);
+		}
+		String result = formatter.toString();
+		formatter.close();
 		return result;
 	}
 }

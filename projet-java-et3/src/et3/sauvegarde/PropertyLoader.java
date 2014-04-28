@@ -8,7 +8,8 @@ public class PropertyLoader {
 
 	/**
 	 * 
-	 * @param filename le fichier contenant les propriétés
+	 * @param filename
+	 *            le fichier contenant les propriétés
 	 * @return un objet Properties contenant les propriétés du fichier
 	 */
 	public static Properties load(String filename) throws IOException {

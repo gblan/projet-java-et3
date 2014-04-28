@@ -29,29 +29,29 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
-	public Principale(String title,int numLevel, int width, int height) {
+	public Principale(String title, int numLevel, int width, int height) {
 		super(title);
 		setBounds(300, 100, 0, 0);
 		setSize(width - 100, height - 100);
 		Container pane = getContentPane();
 		pane.setLayout(new FlowLayout());
 
-		String level = "level"+numLevel+".properties";
+		String level = "level" + numLevel + ".properties";
 
 		// DEBUT TEST
-		Grille grille = Grille.buildGrid("levels/"+level);
-		Reserve reserve = Reserve.buildReserve("levels/"+level);
+		Grille grille = Grille.buildGrid("levels/" + level);
+		Reserve reserve = Reserve.buildReserve("levels/" + level);
 
 		// FIN TEST
 
-		
-		JeuModel jeu = new JeuModel(grille, reserve);
+		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		JeuListener jeuListener = new JeuListener(jeu,jeuView);
-		
+		JeuListener jeuListener = new JeuListener(jeu, jeuView);
+
 		jeuListener.getJeuView().setBackground(Color.WHITE);
 		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
-		jeuListener.getJeuView().addMouseListener(jeuListener.getSelectionnerPions());
+		jeuListener.getJeuView().addMouseListener(
+				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

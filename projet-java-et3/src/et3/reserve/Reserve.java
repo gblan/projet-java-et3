@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import et3.reserve.pions.PionModel;
 import et3.reserve.pions.PionEnum;
+import et3.reserve.pions.PionModel;
 import et3.sauvegarde.PropertyAcces;
 
 public class Reserve {
@@ -46,21 +46,22 @@ public class Reserve {
 
 		return pion;
 	}
-	
+
 	/**
-	 *@param graphics  on affiche la reserve
+	 * @param graphics
+	 *            on affiche la reserve
 	 */
 	public void paint(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setStroke(new BasicStroke(2f));
 		g.setColor(Color.black);
-		graphics.drawRoundRect(40, 6, 
-			     160, 45, 40, 40);
+		graphics.drawRoundRect(40, 6, 160, 45, 40, 40);
 	}
 
 	/**
 	 * 
-	 * @param filename.properties
+	 * @param filename
+	 *            .properties
 	 * @return reserve construite a partir du fichier
 	 */
 	public static Reserve buildReserve(String filename) {
@@ -70,7 +71,6 @@ public class Reserve {
 		PionModel p = new PionModel();
 		String typePion, pionName;
 		PionEnum pionEnum = PionEnum.TYPE1;
-		
 
 		for (int i = 1; i < 8; i++) {
 			pionName = "PION".concat(String.valueOf(i));

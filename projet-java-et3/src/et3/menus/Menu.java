@@ -16,7 +16,6 @@ public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	public Menu(String windowName) {
 		super(windowName);
 		setBounds(100, 100, 315, 454);
@@ -26,10 +25,10 @@ public class Menu extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				
-				/* TODO Aller a liste niveau par la suite*/
-				Principale p1 = new Principale("Sporos",1, 300, 500);
-				
+
+				/* TODO Aller a liste niveau par la suite */
+				Principale p1 = new Principale("Sporos", 1, 300, 500);
+
 			}
 		});
 

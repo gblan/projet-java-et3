@@ -3,8 +3,8 @@ package et3.grille;
 import java.util.ArrayList;
 import java.util.List;
 
-import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
+import et3.grille.cases.CaseModel;
 import et3.sauvegarde.PropertyAcces;
 
 public class Grille {
@@ -29,7 +29,8 @@ public class Grille {
 
 		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>());
 		ArrayList<CaseModel> ligne = null;
-		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
+		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
+				0, 0);
 
 		String caseGrille = "";
 		String typeCase;
