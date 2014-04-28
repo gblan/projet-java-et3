@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Pion {
+public class PionModel {
 
 	private PionEnum typePion;
 	private int x;
@@ -18,7 +18,7 @@ public class Pion {
 	private int yInitial;
 	private static final int RAYON = 21;
 
-	public Pion(PionEnum typePion, int x, int y, int xInitial,
+	public PionModel(PionEnum typePion, int x, int y, int xInitial,
 			int yInitial) {
 		super();
 		this.typePion = typePion;
@@ -28,7 +28,7 @@ public class Pion {
 		this.yInitial = yInitial;
 	}
 
-	public Pion() {
+	public PionModel() {
 	}
 
 	public PionEnum getTypePion() {

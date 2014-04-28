@@ -9,10 +9,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import et3.grille.Grille;
-import et3.grille.cases.Case;
+import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
-import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionModel;
 import et3.reserve.pions.PionManager;
 
 public class JeuListener {
@@ -79,10 +79,10 @@ public class JeuListener {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
-			for (Pion pion : jeu.getReserve().getPions()) {
+			for (PionModel pion : jeu.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-					for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
-						for (Case caseJeu : alCase) {
+					for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
+						for (CaseModel caseJeu : alCase) {
 							if (caseJeu.contains(getCliqueX(), getCliqueY())) {
 								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
 								jeu.getPionsEnJeu().remove(pion);
@@ -133,12 +133,12 @@ public class JeuListener {
 							.get(jeu.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
 					
-					List<Pion> tmp = new ArrayList<>(jeu.getPionsEnJeu());
+					List<PionModel> tmp = new ArrayList<>(jeu.getPionsEnJeu());
 					tmp.add(jeu.getPionSelectionne());
 					jeu.setPionsEnJeu(tmp);
 
 					PionManager pm = new PionManager(jeu.getGrille(),
-							(ArrayList<Pion>) jeu.getPionsEnJeu(),
+							(ArrayList<PionModel>) jeu.getPionsEnJeu(),
 							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), false);
 					pm.contaminationListPion();
 
@@ -172,10 +172,10 @@ public class JeuListener {
 
 				boolean survol = false;
 				int j = 0, k;
-				for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
+				for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
 					survol = false;
 					k = 0;
-					for (Case caseJeu : alCase) {
+					for (CaseModel caseJeu : alCase) {
 
 						if (caseJeu.intersect(jeu.getPionSelectionne())
 								&& (!caseJeu.getEtatActuel().toString()
@@ -208,7 +208,7 @@ public class JeuListener {
 
 				if (survol) {
 					PionManager pm = new PionManager(jeu.getGrille(),
-							(ArrayList<Pion>) jeu.getPionsEnJeu(),
+							(ArrayList<PionModel>) jeu.getPionsEnJeu(),
 							jeu.getIndiceCaseH(), jeu.getIndiceCaseV(), true);
 					pm.contaminationListPion();
 				}

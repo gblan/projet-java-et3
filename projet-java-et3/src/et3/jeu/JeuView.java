@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import et3.grille.cases.Case;
+import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseView;
-import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionModel;
 import et3.reserve.pions.PionView;
 
 public class JeuView extends Component {
@@ -35,13 +35,13 @@ public class JeuView extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		for (ArrayList<Case> alCase : jeu.getGrille().getListCases()) {
-			for (Case cases : alCase) {
+		for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
+			for (CaseModel cases : alCase) {
 				CaseView caseView = new CaseView(cases);
 				caseView.paint(graphics);
 			}
 		}
-		for (Pion pion : jeu.getReserve().getPions()) {
+		for (PionModel pion : jeu.getReserve().getPions()) {
 			PionView pionView = new PionView(pion);
 			pionView.paint(graphics);
 		}

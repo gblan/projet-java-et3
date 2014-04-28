@@ -7,23 +7,23 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionModel;
 import et3.reserve.pions.PionEnum;
 import et3.sauvegarde.PropertyAcces;
 
 public class Reserve {
 
-	private List<Pion> pions;
+	private List<PionModel> pions;
 
 	public Reserve() {
-		this.pions = new ArrayList<Pion>();
+		this.pions = new ArrayList<PionModel>();
 	}
 
-	public List<Pion> getPions() {
+	public List<PionModel> getPions() {
 		return pions;
 	}
 
-	public void setPions(List<Pion> pions) {
+	public void setPions(List<PionModel> pions) {
 		this.pions = pions;
 	}
 
@@ -33,7 +33,7 @@ public class Reserve {
 	 * @param typePion
 	 * @return position absolue de chaque pion
 	 */
-	public static Pion getPosition(String pionName, PionEnum typePion) {
+	public static PionModel getPosition(String pionName, PionEnum typePion) {
 		String num = "";
 		int numInt = 0;
 
@@ -42,7 +42,7 @@ public class Reserve {
 
 		int x = 0, y = 10;
 		x = 50 + (40 * (numInt - 1));
-		Pion pion = new Pion(typePion, x, y, x, y);
+		PionModel pion = new PionModel(typePion, x, y, x, y);
 
 		return pion;
 	}
@@ -65,9 +65,9 @@ public class Reserve {
 	 */
 	public static Reserve buildReserve(String filename) {
 
-		ArrayList<Pion> alPions = new ArrayList<Pion>();
+		ArrayList<PionModel> alPions = new ArrayList<PionModel>();
 		Reserve reserve = new Reserve();
-		Pion p = new Pion();
+		PionModel p = new PionModel();
 		String typePion, pionName;
 		PionEnum pionEnum = PionEnum.TYPE1;
 		
