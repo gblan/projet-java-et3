@@ -24,8 +24,8 @@ public class PionManager {
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, List<PionModel> listPions, int indiceCaseH,
-			int indiceCaseV, boolean contaminationsPossibles) {
+	public PionManager(Grille grille, List<PionModel> listPions,
+			int indiceCaseH, int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
 		this.listPions = listPions;
@@ -33,7 +33,7 @@ public class PionManager {
 		this.indiceCaseV = indiceCaseV;
 		this.contaminationsPossibles = contaminationsPossibles;
 	}
-	
+
 	public List<PionModel> getListPions() {
 		return listPions;
 	}

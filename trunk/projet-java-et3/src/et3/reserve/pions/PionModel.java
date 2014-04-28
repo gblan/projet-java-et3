@@ -12,8 +12,7 @@ public class PionModel {
 	private int yInitial;
 	private static final int RAYON = 21;
 
-	public PionModel(PionEnum typePion, int x, int y, int xInitial,
-			int yInitial) {
+	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial) {
 		super();
 		this.typePion = typePion;
 		this.x = x;

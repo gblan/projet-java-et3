@@ -11,7 +11,8 @@ public class CaseView {
 
 	public CaseView(CaseModel caseModel) {
 		super();
-		this.caseModel = caseModel;	}
+		this.caseModel = caseModel;
+	}
 
 	public CaseModel getCaseModel() {
 		return caseModel;

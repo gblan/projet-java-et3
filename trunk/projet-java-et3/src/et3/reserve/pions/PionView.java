@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class PionView {
-	
+
 	private PionModel pionModel;
 
 	public PionView(PionModel pionModel) {
@@ -32,12 +32,13 @@ public class PionView {
 	public void paint(Graphics graphics) {
 		// Puis le cercle interieur en fonction de l'etat de la case
 		for (int i = 1; i < 8; i++) {
-			if (getPionModel().getTypePion().toString().equals(
-					"TYPE".concat(String.valueOf(i)))) {
+			if (getPionModel().getTypePion().toString()
+					.equals("TYPE".concat(String.valueOf(i)))) {
 				File file = new File("resources/Pion_" + i + ".png");
 				try {
 					BufferedImage img = ImageIO.read(file);
-					graphics.drawImage(img, getPionModel().getX(), getPionModel().getY(), null);
+					graphics.drawImage(img, getPionModel().getX(),
+							getPionModel().getY(), null);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -45,5 +46,5 @@ public class PionView {
 		}
 
 	}
-	
+
 }

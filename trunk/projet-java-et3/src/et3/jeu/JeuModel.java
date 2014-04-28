@@ -9,10 +9,11 @@ import et3.grille.cases.CaseModel;
 import et3.reserve.Reserve;
 import et3.reserve.pions.PionModel;
 
-public class JeuModel  {
+public class JeuModel {
 
 	private static final long serialVersionUID = 1L;
 
+	private int idJeu;
 	private Grille grille;
 	private Reserve reserve;
 	private PionModel pionSelectionne;
@@ -24,8 +25,9 @@ public class JeuModel  {
 	 * TODO FIN A MODIFIER
 	 */
 
-	public JeuModel(Grille grille, Reserve reserve) {
+	public JeuModel(int idJeu, Grille grille, Reserve reserve) {
 		super();
+		this.setIdJeu(idJeu);
 		this.grille = grille;
 		this.reserve = reserve;
 		this.setPionsEnJeu(new ArrayList<PionModel>());
@@ -74,13 +76,18 @@ public class JeuModel  {
 	public List<PionModel> getPionsEnJeu() {
 		return pionsEnJeu;
 	}
-	
+
 	public void setPionsEnJeu(List<PionModel> pionsEnJeu) {
 		this.pionsEnJeu = pionsEnJeu;
 	}
-	
 
+	public int getIdJeu() {
+		return idJeu;
+	}
 
+	public void setIdJeu(int idJeu) {
+		this.idJeu = idJeu;
+	}
 
 	public boolean isFinish() {
 		for (ArrayList<CaseModel> alCase : grille.getListCases()) {
