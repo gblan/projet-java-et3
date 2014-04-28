@@ -3,19 +3,19 @@ package et3.grille;
 import java.util.ArrayList;
 import java.util.List;
 
-import et3.grille.cases.Case;
+import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
 import et3.sauvegarde.PropertyAcces;
 
 public class Grille {
 
-	private List<ArrayList<Case>> listCases;
+	private List<ArrayList<CaseModel>> listCases;
 
-	public Grille(List<ArrayList<Case>> arrayList) {
+	public Grille(List<ArrayList<CaseModel>> arrayList) {
 		this.listCases = arrayList;
 	}
 
-	public List<ArrayList<Case>> getListCases() {
+	public List<ArrayList<CaseModel>> getListCases() {
 		return listCases;
 	}
 
@@ -27,19 +27,19 @@ public class Grille {
 	 */
 	public static Grille buildGrid(String filename) {
 
-		Grille grille = new Grille(new ArrayList<ArrayList<Case>>());
-		ArrayList<Case> ligne = null;
-		Case c = new Case(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>());
+		ArrayList<CaseModel> ligne = null;
+		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE, 0, 0);
 
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
 
 		for (int i = 0; i < 10; i++) {
-			ligne = new ArrayList<Case>();
+			ligne = new ArrayList<CaseModel>();
 			for (int j = 0; j < 7; j++) {
 				caseGrille = j + "," + i;
-				c = Case.getPositions(j, i);
+				c = CaseModel.getPositions(j, i);
 				typeCase = PropertyAcces.retrieveProperties(filename,
 						caseGrille);
 				if (typeCase.equals(CaseEnum.DESACTIVEE.toString())) {
@@ -62,8 +62,8 @@ public class Grille {
 	@Override
 	public String toString() {
 		String res = "";
-		for (ArrayList<Case> al : getListCases()) {
-			for (Case grille : al) {
+		for (ArrayList<CaseModel> al : getListCases()) {
+			for (CaseModel grille : al) {
 				res += grille.toString() + "\n\n";
 			}
 		}

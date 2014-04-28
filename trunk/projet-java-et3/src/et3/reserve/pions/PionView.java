@@ -9,18 +9,18 @@ import javax.imageio.ImageIO;
 
 public class PionView {
 	
-	private Pion pionModel;
+	private PionModel pionModel;
 
-	public PionView(Pion pionModel) {
+	public PionView(PionModel pionModel) {
 		super();
 		this.pionModel = pionModel;
 	}
 
-	public Pion getPionModel() {
+	public PionModel getPionModel() {
 		return pionModel;
 	}
 
-	public void setPionModel(Pion pionModel) {
+	public void setPionModel(PionModel pionModel) {
 		this.pionModel = pionModel;
 	}
 

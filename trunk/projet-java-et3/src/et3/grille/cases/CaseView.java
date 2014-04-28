@@ -7,17 +7,17 @@ import java.awt.Graphics2D;
 
 public class CaseView {
 
-	private Case caseModel;
+	private CaseModel caseModel;
 
-	public CaseView(Case caseModel) {
+	public CaseView(CaseModel caseModel) {
 		super();
 		this.caseModel = caseModel;	}
 
-	public Case getCaseModel() {
+	public CaseModel getCaseModel() {
 		return caseModel;
 	}
 
-	public void setCaseModel(Case caseModel) {
+	public void setCaseModel(CaseModel caseModel) {
 		this.caseModel = caseModel;
 	}
 

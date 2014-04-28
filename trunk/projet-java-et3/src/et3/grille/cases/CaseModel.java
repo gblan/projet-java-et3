@@ -1,16 +1,13 @@
 package et3.grille.cases;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionModel;
 
-public class Case extends Component {
+public class CaseModel extends Component {
 
 	/**
 	 * 
@@ -21,7 +18,7 @@ public class Case extends Component {
 	private int x;
 	private int y;
 
-	public Case(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
+	public CaseModel(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
 		super();
 		this.etatInitial = etatInitial;
 		this.etatActuel = etatActuel;
@@ -29,7 +26,7 @@ public class Case extends Component {
 		this.y = y;
 	}
 
-	public Case() {
+	public CaseModel() {
 	}
 
 	public CaseEnum getEtatInitial() {
@@ -70,8 +67,8 @@ public class Case extends Component {
 	 * @param y
 	 * @return position absolue de chaque case
 	 */
-	public static Case getPositions(int x, int y) {
-		Case casePosition = new Case();
+	public static CaseModel getPositions(int x, int y) {
+		CaseModel casePosition = new CaseModel();
 		if (y % 2 == 0) {
 			// Y PAIR
 			casePosition.setX(20 + 40 * x);
@@ -90,7 +87,7 @@ public class Case extends Component {
 	 * @param p
 	 * @return true or false si le pion est sur la case ou pas
 	 */
-	public boolean intersect(Pion p) {
+	public boolean intersect(PionModel p) {
 
 		/*
 		 * Calcul de la distance entre la case et le pion En x

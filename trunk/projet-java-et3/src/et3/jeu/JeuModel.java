@@ -13,10 +13,10 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import et3.grille.Grille;
-import et3.grille.cases.Case;
+import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
 import et3.reserve.Reserve;
-import et3.reserve.pions.Pion;
+import et3.reserve.pions.PionModel;
 
 public class JeuModel  {
 
@@ -24,10 +24,10 @@ public class JeuModel  {
 
 	private Grille grille;
 	private Reserve reserve;
-	private Pion pionSelectionne;
+	private PionModel pionSelectionne;
 	private int indiceCaseH;
 	private int indiceCaseV;
-	private List<Pion> pionsEnJeu;
+	private List<PionModel> pionsEnJeu;
 
 	/*
 	 * TODO FIN A MODIFIER
@@ -37,7 +37,7 @@ public class JeuModel  {
 		super();
 		this.grille = grille;
 		this.reserve = reserve;
-		this.setPionsEnJeu(new ArrayList<Pion>());
+		this.setPionsEnJeu(new ArrayList<PionModel>());
 	}
 
 	public Reserve getReserve() {
@@ -64,11 +64,11 @@ public class JeuModel  {
 		this.indiceCaseV = indiceCaseV;
 	}
 
-	public Pion getPionSelectionne() {
+	public PionModel getPionSelectionne() {
 		return pionSelectionne;
 	}
 
-	public void setPionSelectionne(Pion pionSelectionne) {
+	public void setPionSelectionne(PionModel pionSelectionne) {
 		this.pionSelectionne = pionSelectionne;
 	}
 
@@ -80,11 +80,11 @@ public class JeuModel  {
 		this.grille = grille;
 	}
 
-	public List<Pion> getPionsEnJeu() {
+	public List<PionModel> getPionsEnJeu() {
 		return pionsEnJeu;
 	}
 	
-	public void setPionsEnJeu(List<Pion> pionsEnJeu) {
+	public void setPionsEnJeu(List<PionModel> pionsEnJeu) {
 		this.pionsEnJeu = pionsEnJeu;
 	}
 	
@@ -92,8 +92,8 @@ public class JeuModel  {
 
 
 	public boolean isFinish() {
-		for (ArrayList<Case> alCase : grille.getListCases()) {
-			for (Case grilleJeu : alCase) {
+		for (ArrayList<CaseModel> alCase : grille.getListCases()) {
+			for (CaseModel grilleJeu : alCase) {
 				if (!grilleJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)
 						&& !grilleJeu.getEtatActuel().equals(
 								CaseEnum.CONTAMINEE)

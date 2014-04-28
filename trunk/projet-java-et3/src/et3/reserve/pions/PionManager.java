@@ -10,7 +10,7 @@ import et3.grille.cases.CaseEnum;
 public class PionManager {
 
 	private Grille grille;
-	private List<Pion> listPions;
+	private List<PionModel> listPions;
 	private int indiceCaseH;
 	private int indiceCaseV;
 	private boolean contaminationsPossibles;
@@ -24,7 +24,7 @@ public class PionManager {
 	 * @param contaminationsPossibles
 	 * @return Constructor PionManager
 	 */
-	public PionManager(Grille grille, List<Pion> listPions, int indiceCaseH,
+	public PionManager(Grille grille, List<PionModel> listPions, int indiceCaseH,
 			int indiceCaseV, boolean contaminationsPossibles) {
 		super();
 		this.grille = grille;
@@ -34,12 +34,12 @@ public class PionManager {
 		this.contaminationsPossibles = contaminationsPossibles;
 	}
 	
-	public List<Pion> getListPions() {
+	public List<PionModel> getListPions() {
 		return listPions;
 	}
 
 	public void contaminationListPion() {
-		for (Pion p : getListPions()) {
+		for (PionModel p : getListPions()) {
 			contaminationPion(p);
 		}
 	}
@@ -50,7 +50,7 @@ public class PionManager {
 	 * @return swich sur chaque type de pion et appelle les propagations
 	 *         necessaires
 	 */
-	private void contaminationPion(Pion p) {
+	private void contaminationPion(PionModel p) {
 		switch (p.getTypePion()) {
 		case TYPE1:
 			contaminationHorizontal();
