@@ -8,12 +8,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import et3.grille.Grille;
-import et3.grille.cases.CaseModel;
 import et3.grille.cases.CaseEnum;
-import et3.reserve.Reserve;
-import et3.reserve.pions.PionModel;
+import et3.grille.cases.CaseModel;
 import et3.reserve.pions.PionManager;
+import et3.reserve.pions.PionModel;
 
 public class JeuListener {
 

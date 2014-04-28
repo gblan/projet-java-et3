@@ -39,8 +39,6 @@ public class Niveaux extends JFrame {
 	}
 
 	private void initialize() {
-		int i = 1;
-
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -49,7 +47,7 @@ public class Niveaux extends JFrame {
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
-		        JList list = (JList)evt.getSource();
+		        JList list = (JList) evt.getSource();
 		        if (evt.getClickCount() == 2) {
 		            int index = list.locationToIndex(evt.getPoint());
 					Principale p1 = new Principale("Sporos : niveau "+index,index, 300, 500);
