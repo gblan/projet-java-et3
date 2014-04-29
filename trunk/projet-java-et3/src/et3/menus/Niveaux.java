@@ -35,7 +35,7 @@ public class Niveaux extends JFrame {
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		currentLevel = PropertyAcces.getCurrentLevel();
-		
+
 		buildLevels();
 		initialize();
 		setVisible(true);
@@ -47,31 +47,33 @@ public class Niveaux extends JFrame {
 
 		JList list = new JList(listNiveau);
 
-		//list.setEnabled(false);
+		// list.setEnabled(false);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        JList list = (JList) evt.getSource();
-		        if (evt.getClickCount() == 2) {
-		            int index = list.locationToIndex(evt.getPoint());
-					Principale p1 = new Principale("Sporos : niveau "+index,index, 300, 500);
+			public void mouseClicked(MouseEvent evt) {
+				JList list = (JList) evt.getSource();
+				if (evt.getClickCount() == 2) {
+					int index = list.locationToIndex(evt.getPoint());
+					Principale p1 = new Principale("Sporos : niveau " + index,
+							index, 300, 500);
 
-		        }
-		    }
+				}
+			}
 		});
-		
+
 		JScrollPane listScroller = new JScrollPane(list);
 		getContentPane().add(listScroller);
 	}
 
 	private void buildLevels() {
-		String[] tmp = new String[currentLevel+2];
-		for (int i = 1; i < currentLevel+2; i++) {
+		String[] tmp = new String[currentLevel + 2];
+		for (int i = 1; i < currentLevel + 2; i++) {
 			String str = "level" + i + ".properties";
-			File properties = new File("levels/"+str);
+			File properties = new File("levels/" + str);
 			if (properties.isFile()) {
-				JeuModel jeu = new JeuModel(i, Grille.buildGrid("levels/"+str),
-						Reserve.buildReserve("levels/"+str));
+				JeuModel jeu = new JeuModel(i,
+						Grille.buildGrid("levels/" + str),
+						Reserve.buildReserve("levels/" + str));
 				this.listeNiveau.add(jeu);
 				tmp[i] = str;
 			}
