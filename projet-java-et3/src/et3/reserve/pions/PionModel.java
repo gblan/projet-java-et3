@@ -11,8 +11,8 @@ public class PionModel {
 	private int xInitial;
 	private int yInitial;
 	private static final int RAYON = 21;
-	private int indiceCaseH = 0;
-	private int indiceCaseV = 0;
+	private int indiceCaseH = -1;
+	private int indiceCaseV = -1;
 
 	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial) {
 		super();
@@ -61,7 +61,6 @@ public class PionModel {
 	public int getRayon() {
 		return RAYON;
 	}
-	
 
 	public int getIndiceCaseH() {
 		return indiceCaseH;

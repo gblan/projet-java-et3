@@ -53,7 +53,8 @@ public class DeploimentSurvolee extends Deploiment {
 		
 		/* Vers la droite */
 		for (int j = p.getIndiceCaseV() + 1; j < 7; j++) {
-			if ((super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
+			if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
+					.get(j)
 					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
 					|| (super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {

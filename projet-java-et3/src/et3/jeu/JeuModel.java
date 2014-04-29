@@ -27,10 +27,10 @@ public class JeuModel {
 
 	public JeuModel(int idJeu, Grille grille, Reserve reserve) {
 		super();
-		this.setIdJeu(idJeu);
+		this.idJeu =idJeu;
 		this.grille = grille;
 		this.reserve = reserve;
-		this.setPionsEnJeu(new ArrayList<PionModel>());
+		this.pionsEnJeu = new ArrayList<PionModel>();
 	}
 
 	public Reserve getReserve() {

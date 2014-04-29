@@ -8,12 +8,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import main.Principale;
 import deploiment.DeploimentContaminee;
 import deploiment.DeploimentSurvolee;
-import main.Principale;
 import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
-import et3.reserve.pions.PionManager;
 import et3.reserve.pions.PionModel;
 import et3.sauvegarde.PropertyAcces;
 
@@ -80,22 +79,25 @@ public class JeuListener {
 			setCliqueY(evt.getY());
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-					for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
-							.getListCases()) {
-						for (CaseModel caseJeu : alCase) {
 
-							caseJeu.setEtatActuel(caseJeu.getEtatInitial());
-
+					if ((pion.getIndiceCaseH() != -1)
+							&& (pion.getIndiceCaseV() != -1)) {
+						for (ArrayList<CaseModel> alCase : jeuModel.getGrille().getListCases()) {
+							for (CaseModel caseJeu : alCase) {
+								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+							}
 						}
-					}
+						jeuView.repaint();
 
+					}
 					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
+
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
 
-					jeuView.repaint();
+
 					break;
 				}
 			}
@@ -120,11 +122,16 @@ public class JeuListener {
 							jeuModel.getPionSelectionne().getxInitial());
 					jeuModel.getPionSelectionne().setY(
 							jeuModel.getPionSelectionne().getyInitial());
+					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
+					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
+
+					DeploimentContaminee dc = new DeploimentContaminee(
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
+					dc.deploimentListPion();
+
 					jeuModel.setPionSelectionne(null);
 
-				}
-
-				else {
+				} else {
 
 					// sinon on le positionne sur la case TODO ANIMATION
 					jeuModel.getPionSelectionne().setX(
@@ -139,8 +146,10 @@ public class JeuListener {
 							.get(jeuModel.getIndiceCaseH())
 							.get(jeuModel.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
-					jeuModel.getPionSelectionne().setIndiceCaseH(jeuModel.getIndiceCaseH());
-					jeuModel.getPionSelectionne().setIndiceCaseV(jeuModel.getIndiceCaseV());
+					jeuModel.getPionSelectionne().setIndiceCaseH(
+							jeuModel.getIndiceCaseH());
+					jeuModel.getPionSelectionne().setIndiceCaseV(
+							jeuModel.getIndiceCaseV());
 					/* On met a jour la liste des pions en jeu */
 					List<PionModel> tmp = new ArrayList<PionModel>(
 							jeuModel.getPionsEnJeu());
@@ -184,9 +193,8 @@ public class JeuListener {
 					jeuModel.setPionSelectionne(null);
 
 				}
+				jeuView.repaint();
 			}
-			jeuView.repaint();
-
 		}
 	};
 
@@ -226,8 +234,10 @@ public class JeuListener {
 								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 								jeuModel.setIndiceCaseH(j);
 								jeuModel.setIndiceCaseV(k);
-								jeuModel.getPionSelectionne().setIndiceCaseH(jeuModel.getIndiceCaseH());
-								jeuModel.getPionSelectionne().setIndiceCaseV(jeuModel.getIndiceCaseV());
+								jeuModel.getPionSelectionne().setIndiceCaseH(
+										jeuModel.getIndiceCaseH());
+								jeuModel.getPionSelectionne().setIndiceCaseV(
+										jeuModel.getIndiceCaseV());
 								survol = true;
 
 							}
@@ -244,7 +254,7 @@ public class JeuListener {
 					j++;
 				}
 
-				/* Deploiment potentiel */
+				/* Deploiment au survol */
 				if (survol) {
 
 					DeploimentSurvolee ds = new DeploimentSurvolee(

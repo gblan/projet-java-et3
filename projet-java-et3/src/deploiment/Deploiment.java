@@ -1,31 +1,24 @@
 package deploiment;
 
-
-
 import et3.grille.Grille;
 import et3.reserve.pions.PionModel;
 
 public abstract class Deploiment {
-	
+
 	private Grille grille;
-	
+
 	public Deploiment(Grille grille) {
 		super();
 		this.grille = grille;
 	}
 
-
 	public Grille getGrille() {
 		return grille;
 	}
 
-
 	public void setGrille(Grille grille) {
 		this.grille = grille;
 	}
-
-
-
 
 	/**
 	 * 
@@ -65,7 +58,7 @@ public abstract class Deploiment {
 			break;
 		}
 	}
-	
+
 	/**
 	 * @return propagation du pion vers la gauche puis vers la droite
 	 */
@@ -83,9 +76,9 @@ public abstract class Deploiment {
 		deploimentHautGauche(p);
 		deploimentBasDroit(p);
 	}
-	
+
 	protected abstract void deploimentGauche(PionModel p);
-	
+
 	protected abstract void deploimentDroite(PionModel p);
 
 	/**
@@ -99,10 +92,7 @@ public abstract class Deploiment {
 	 * @return propagation du pion vers le haut droit puis vers le bas gauche
 	 */
 	protected abstract void deploimentHautDroite(PionModel p);
-	
 
 	protected abstract void deploimentBasGauche(PionModel p);
-
-
 
 }
