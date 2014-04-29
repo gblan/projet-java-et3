@@ -5,7 +5,7 @@ import java.util.List;
 
 import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
-import et3.sauvegarde.PropertyAcces;
+import et3.utils.PropertyAcces;
 
 public class Grille {
 
