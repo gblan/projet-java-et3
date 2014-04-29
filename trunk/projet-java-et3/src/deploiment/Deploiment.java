@@ -8,15 +8,10 @@ import et3.reserve.pions.PionModel;
 public abstract class Deploiment {
 	
 	private Grille grille;
-	private int indiceCaseH;
-	private int indiceCaseV;
 	
-	public Deploiment(Grille grille, 
-			int indiceCaseH, int indiceCaseV) {
+	public Deploiment(Grille grille) {
 		super();
 		this.grille = grille;
-		this.indiceCaseH = indiceCaseH;
-		this.indiceCaseV = indiceCaseV;
 	}
 
 
@@ -30,24 +25,7 @@ public abstract class Deploiment {
 	}
 
 
-	public int getIndiceCaseH() {
-		return indiceCaseH;
-	}
 
-
-	public void setIndiceCaseH(int indiceCaseH) {
-		this.indiceCaseH = indiceCaseH;
-	}
-
-
-	public int getIndiceCaseV() {
-		return indiceCaseV;
-	}
-
-
-	public void setIndiceCaseV(int indiceCaseV) {
-		this.indiceCaseV = indiceCaseV;
-	}
 
 	/**
 	 * 
@@ -58,30 +36,30 @@ public abstract class Deploiment {
 	public void deploimentPion(PionModel p) {
 		switch (p.getTypePion()) {
 		case TYPE1:
-			deploimentHorizontal();
+			deploimentHorizontal(p);
 			break;
 		case TYPE2:
-			deploimentMontante();
+			deploimentMontante(p);
 			break;
 		case TYPE3:
-			deploimentDescendante();
+			deploimentDescendante(p);
 			break;
 		case TYPE4:
-			deploimentDescendante();
-			deploimentHorizontal();
+			deploimentDescendante(p);
+			deploimentHorizontal(p);
 			break;
 		case TYPE5:
-			deploimentMontante();
-			deploimentHorizontal();
+			deploimentMontante(p);
+			deploimentHorizontal(p);
 			break;
 		case TYPE6:
-			deploimentMontante();
-			deploimentDescendante();
+			deploimentMontante(p);
+			deploimentDescendante(p);
 			break;
 		case TYPE7:
-			deploimentHorizontal();
-			deploimentMontante();
-			deploimentDescendante();
+			deploimentHorizontal(p);
+			deploimentMontante(p);
+			deploimentDescendante(p);
 			break;
 		default:
 			break;
@@ -91,39 +69,39 @@ public abstract class Deploiment {
 	/**
 	 * @return propagation du pion vers la gauche puis vers la droite
 	 */
-	private void deploimentHorizontal() {
-		deploimentGauche();
-		deploimentDroite();
+	private void deploimentHorizontal(PionModel p) {
+		deploimentGauche(p);
+		deploimentDroite(p);
 	}
 
-	private void deploimentMontante() {
-		deploimentBasGauche();
-		deploimentHautDroite();
+	private void deploimentMontante(PionModel p) {
+		deploimentBasGauche(p);
+		deploimentHautDroite(p);
 	}
 
-	private void deploimentDescendante() {
-		deploimentHautGauche();
-		deploimentBasDroit();
+	private void deploimentDescendante(PionModel p) {
+		deploimentHautGauche(p);
+		deploimentBasDroit(p);
 	}
 	
-	protected abstract void deploimentGauche();
+	protected abstract void deploimentGauche(PionModel p);
 	
-	protected abstract void deploimentDroite();
+	protected abstract void deploimentDroite(PionModel p);
 
 	/**
 	 * @return propagation du pion vers le haut gauche puis vers le bas droite
 	 */
-	protected abstract void deploimentBasDroit();
+	protected abstract void deploimentBasDroit(PionModel p);
 
-	protected abstract void deploimentHautGauche();
+	protected abstract void deploimentHautGauche(PionModel p);
 
 	/**
 	 * @return propagation du pion vers le haut droit puis vers le bas gauche
 	 */
-	protected abstract void deploimentHautDroite();
+	protected abstract void deploimentHautDroite(PionModel p);
 	
 
-	protected abstract void deploimentBasGauche();
+	protected abstract void deploimentBasGauche(PionModel p);
 
 
 
