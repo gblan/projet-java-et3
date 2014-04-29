@@ -82,28 +82,46 @@ public class JeuListener {
 			setCliqueY(evt.getY());
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-
+					
+					
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
-						for (ArrayList<CaseModel> alCase : jeuModel.getGrille().getListCases()) {
+						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
+								.getListCases()) {
 							for (CaseModel caseJeu : alCase) {
-								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+								if (!caseJeu.getEtatActuel().equals(CaseEnum.DESACTIVEE) && !caseJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)){
+								caseJeu.setEtatActuel(CaseEnum.POTENTIELLE);
+								}
 							}
 						}
-						jeuView.repaint();
 
 					}
+					
 					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
-
+					System.out.println("lul");
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
+					
+					if ((pion.getIndiceCaseH() != -1)
+							&& (pion.getIndiceCaseV() != -1)) {
+						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
+								.getListCases()) {
+							for (CaseModel caseJeu : alCase) {
+								if (caseJeu.getEtatActuel().equals(CaseEnum.POTENTIELLE)){
+									caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
+								}
+								
+							}
+						}
 
-
-					break;
+					}
+					
 				}
 			}
+			jeuView.repaint();
+			
 		}
 
 		public void mouseReleased(MouseEvent evt) {
@@ -125,6 +143,9 @@ public class JeuListener {
 							jeuModel.getPionSelectionne().getxInitial());
 					jeuModel.getPionSelectionne().setY(
 							jeuModel.getPionSelectionne().getyInitial());
+					jeuModel.getGrille().getListCases()
+					.get(jeuModel.getIndiceCaseH())
+					.get(jeuModel.getIndiceCaseV()).setEtatActuel(CaseEnum.DISPONIBLE);
 					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
@@ -163,8 +184,7 @@ public class JeuListener {
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
-					
-					
+
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
 					if (jeuModel.isFinish()) {
 						jeuView.repaint();
