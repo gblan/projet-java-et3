@@ -14,7 +14,8 @@ import deploiment.DeploimentSurvolee;
 import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
 import et3.reserve.pions.PionModel;
-import et3.sauvegarde.PropertyAcces;
+import et3.utils.Bruitages;
+import et3.utils.PropertyAcces;
 
 public class JeuListener {
 
@@ -24,6 +25,7 @@ public class JeuListener {
 
 	private JeuModel jeuModel;
 	private JeuView jeuView;
+	private Bruitages bruits;
 	private int cliqueX;
 	private int cliqueY;
 
@@ -62,6 +64,7 @@ public class JeuListener {
 	public JeuListener(JeuModel jeu, JeuView jeuView) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
+		this.bruits = new Bruitages();
 	}
 
 	public MouseMotionAdapter getSelectionnerPionsMotion() {
@@ -128,6 +131,7 @@ public class JeuListener {
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
+					bruits.playSong("resources/sounds/ressort.wav");
 
 					jeuModel.setPionSelectionne(null);
 
@@ -159,10 +163,12 @@ public class JeuListener {
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
-
+					
+					
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
 					if (jeuModel.isFinish()) {
 						jeuView.repaint();
+						bruits.playSong("resources/sounds/fun.wav");
 
 						int retour = JOptionPane.showConfirmDialog(null,
 								"Voulez vous passer au niveau suivant ?",
@@ -185,12 +191,12 @@ public class JeuListener {
 
 						} else if (retour == -1) {
 							// QUIT
-							System.out.println("bite3");
 
 						}
 
 					}
 					jeuModel.setPionSelectionne(null);
+					bruits.playSong("resources/sounds/ploc.wav");
 
 				}
 				jeuView.repaint();

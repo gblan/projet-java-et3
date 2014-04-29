@@ -14,7 +14,7 @@ import main.Principale;
 import et3.grille.Grille;
 import et3.jeu.JeuModel;
 import et3.reserve.Reserve;
-import et3.sauvegarde.PropertyAcces;
+import et3.utils.PropertyAcces;
 
 public class Niveaux extends JFrame {
 

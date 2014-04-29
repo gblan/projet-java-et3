@@ -9,7 +9,7 @@ import java.util.List;
 
 import et3.reserve.pions.PionEnum;
 import et3.reserve.pions.PionModel;
-import et3.sauvegarde.PropertyAcces;
+import et3.utils.PropertyAcces;
 
 public class Reserve {
 

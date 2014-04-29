@@ -1,4 +1,4 @@
-package et3.sauvegarde;
+package et3.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
