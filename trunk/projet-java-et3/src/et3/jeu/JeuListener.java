@@ -8,8 +8,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import deploiment.DeploimentSurvolee;
 import main.Principale;
-
 import et3.grille.cases.CaseEnum;
 import et3.grille.cases.CaseModel;
 import et3.reserve.pions.PionManager;
@@ -21,7 +21,7 @@ public class JeuListener {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 	private JeuModel jeuModel;
 	private JeuView jeuView;
 	private int cliqueX;
@@ -186,6 +186,8 @@ public class JeuListener {
 		/* Déplacement a la souris */
 		public void mouseDragged(MouseEvent evt) {
 			if (jeuModel.getPionSelectionne() != null) {
+				
+				/* Le pion suit la souris */
 				int translateX = evt.getX() - getCliqueX();
 				int translateY = evt.getY() - getCliqueY();
 				jeuModel.getPionSelectionne().setX(
@@ -195,11 +197,11 @@ public class JeuListener {
 				setCliqueX(evt.getX());
 				setCliqueY(evt.getY());
 
+				/* La case survolée est jaune entouré de rouge */
 				boolean survol = false;
 				int j = 0, k;
 				for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 						.getListCases()) {
-					survol = false;
 					k = 0;
 					for (CaseModel caseJeu : alCase) {
 
@@ -232,12 +234,14 @@ public class JeuListener {
 					j++;
 				}
 
+				/* Deploiment potentiel */
 				if (survol) {
-					PionManager pm = new PionManager(jeuModel.getGrille(),
-							(ArrayList<PionModel>) jeuModel.getPionsEnJeu(),
+					
+					DeploimentSurvolee ds = new DeploimentSurvolee(jeuModel.getGrille(),
 							jeuModel.getIndiceCaseH(),
-							jeuModel.getIndiceCaseV(), true);
-					pm.contaminationListPion();
+							jeuModel.getIndiceCaseV());
+					ds.deploimentPion(jeuModel.getPionSelectionne());
+					
 				}
 				jeuView.repaint();
 
