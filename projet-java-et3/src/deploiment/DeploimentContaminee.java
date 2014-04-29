@@ -11,9 +11,8 @@ public class DeploimentContaminee extends Deploiment {
 
 	private List<PionModel> listPions;
 
-	public DeploimentContaminee(Grille grille, List<PionModel> listPions,
-			int indiceCaseH, int indiceCaseV) {
-		super(grille, indiceCaseH, indiceCaseV);
+	public DeploimentContaminee(Grille grille, List<PionModel> listPions) {
+		super(grille);
 		this.listPions=listPions;
 	}
 
@@ -32,19 +31,19 @@ public class DeploimentContaminee extends Deploiment {
 	}
 	
 	@Override
-	protected void deploimentGauche() {
+	protected void deploimentGauche(PionModel p) {
 		/* Vers la gauche */
-		
-		for (int i = super.getIndiceCaseV() - 1; i >= 0; i--) {
+	 
+		for (int i = p.getIndiceCaseV() - 1; i >= 0; i--) {
 			/*
 			 * On arrete le deploiment lorsque on rencontre une case desactivee
 			 * ou occupee
 			 */
 			
-			if ((super.getGrille().getListCases().get(super.getIndiceCaseH())
+			if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
 					.get(i).getEtatActuel().equals(CaseEnum.DESACTIVEE))
 					|| (super.getGrille().getListCases()
-							.get(super.getIndiceCaseH()).get(i).getEtatActuel()
+							.get(p.getIndiceCaseH()).get(i).getEtatActuel()
 							.equals(CaseEnum.OCCUPEE))) {
 				
 				break;
@@ -56,10 +55,10 @@ public class DeploimentContaminee extends Deploiment {
 			 * contaminee ou disponible
 			 */
 			else if (super.getGrille().getListCases()
-					.get(super.getIndiceCaseH()).get(i).getEtatActuel()
+					.get(p.getIndiceCaseH()).get(i).getEtatActuel()
 					.equals(CaseEnum.POTENTIELLE)) {
 				/* Transformation de la case en case potentielle */
-				super.getGrille().getListCases().get(super.getIndiceCaseH())
+				super.getGrille().getListCases().get(p.getIndiceCaseH())
 						.get(i).setEtatActuel(CaseEnum.CONTAMINEE);
 
 			}
@@ -67,20 +66,20 @@ public class DeploimentContaminee extends Deploiment {
 	}
 
 	@Override
-	protected void deploimentDroite() {
+	protected void deploimentDroite(PionModel p) {
 		
 		/* Vers la droite */
-		for (int j = super.getIndiceCaseV() + 1; j < 7; j++) {
-			if ((super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
+		for (int j = p.getIndiceCaseV() + 1; j < 7; j++) {
+			if ((super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
+					|| (super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 				break;
-			} else if (super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
+			} else if (super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 					.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
 
 				/* SURVOL */
-				super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
+				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 						.setEtatActuel(CaseEnum.CONTAMINEE);
 
 			}
@@ -90,28 +89,28 @@ public class DeploimentContaminee extends Deploiment {
 	}
 
 	@Override
-	protected void deploimentBasDroit() {
+	protected void deploimentBasDroit(PionModel p) {
 		int ajout = 0;
 
 		/* vers le bas droit */
-		for (int j = super.getIndiceCaseH() + 1; j < 10; j++) {
+		for (int j = p.getIndiceCaseH() + 1; j < 10; j++) {
 			try {
 				if (j % 2 == 1) {
 					ajout++;
 				}
 				if ((super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() + ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() + ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() + ajout).getEtatActuel()
+								.get(p.getIndiceCaseV() + ajout).getEtatActuel()
 								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() + ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() + ajout).getEtatActuel()
 						.equals(CaseEnum.POTENTIELLE)) {
 					
 						super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() + ajout)
+								.get(p.getIndiceCaseV() + ajout)
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 					
 				}
@@ -123,27 +122,27 @@ public class DeploimentContaminee extends Deploiment {
 	}
 
 	@Override
-	protected void deploimentHautGauche() {
+	protected void deploimentHautGauche(PionModel p) {
 		int ajout = 0;
 		/* vers le haut gauche */
-		for (int j = super.getIndiceCaseH() - 1; j >= 0; j--) {
+		for (int j = p.getIndiceCaseH() - 1; j >= 0; j--) {
 			try {
 				if (j % 2 == 0) {
 					ajout++;
 				}
 				if ((super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.POTENTIELLE)) {
 
 					super.getGrille().getListCases().get(j)
-							.get(super.getIndiceCaseV() - ajout)
+							.get(p.getIndiceCaseV() - ajout)
 							.setEtatActuel(CaseEnum.CONTAMINEE);
 					
 				}
@@ -154,29 +153,29 @@ public class DeploimentContaminee extends Deploiment {
 	}
 
 	@Override
-	protected void deploimentHautDroite() {
+	protected void deploimentHautDroite(PionModel p) {
 		int ajout = 0;
 
 		/* vers le haut droit */
-		for (int j = super.getIndiceCaseH() - 1; j >= 0; j--) {
+		for (int j = p.getIndiceCaseH() - 1; j >= 0; j--) {
 			try {
 				if (j % 2 == 1) {
 					ajout--;
 				}
 				if ((super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.POTENTIELLE)) {
 
 				
 						super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() - ajout)
+								.get(p.getIndiceCaseV() - ajout)
 								.setEtatActuel(CaseEnum.CONTAMINEE
 										);
 					
@@ -188,27 +187,27 @@ public class DeploimentContaminee extends Deploiment {
 	}
 
 	@Override
-	protected void deploimentBasGauche() {
+	protected void deploimentBasGauche(PionModel p) {
 		int ajout = 0;
 		/* bas gauche */
-		for (int j = super.getIndiceCaseH() + 1; j < 10; j++) {
+		for (int j = p.getIndiceCaseH() + 1; j < 10; j++) {
 			try {
 				if (j % 2 == 0) {
 					ajout++;
 				}
 				if ((super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 								.equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
-						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
+						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.POTENTIELLE)) {
 
 						super.getGrille().getListCases().get(j)
-								.get(super.getIndiceCaseV() - ajout)
+								.get(p.getIndiceCaseV() - ajout)
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 					
 				}

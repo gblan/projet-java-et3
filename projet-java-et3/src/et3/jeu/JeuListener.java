@@ -83,14 +83,20 @@ public class JeuListener {
 					for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 							.getListCases()) {
 						for (CaseModel caseJeu : alCase) {
-							if (caseJeu.contains(getCliqueX(), getCliqueY())) {
-								caseJeu.setEtatActuel(caseJeu.getEtatInitial());
-								jeuModel.getPionsEnJeu().remove(pion);
-							}
+
+							caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+
 						}
 					}
+
+					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
+					DeploimentContaminee dc = new DeploimentContaminee(
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
+					dc.deploimentListPion();
+
 					jeuView.repaint();
+					break;
 				}
 			}
 		}
@@ -98,14 +104,13 @@ public class JeuListener {
 		public void mouseReleased(MouseEvent evt) {
 
 			if (jeuModel.getPionSelectionne() != null) {
-				
-				
+
 				// Si pas de case select, le pion retourne dans la reserve
 
-				if ( !(jeuModel.getGrille().getListCases()
-								.get(jeuModel.getIndiceCaseH())
-								.get(jeuModel.getIndiceCaseV())
-								.intersect(jeuModel.getPionSelectionne()))
+				if (!(jeuModel.getGrille().getListCases()
+						.get(jeuModel.getIndiceCaseH())
+						.get(jeuModel.getIndiceCaseV()).intersect(jeuModel
+						.getPionSelectionne()))
 						|| jeuModel.getGrille().getListCases()
 								.get(jeuModel.getIndiceCaseH())
 								.get(jeuModel.getIndiceCaseV()).getEtatActuel()
@@ -120,8 +125,8 @@ public class JeuListener {
 				}
 
 				else {
-					
-					// sinon on le positionne sur la case TODO ANIMATION 
+
+					// sinon on le positionne sur la case TODO ANIMATION
 					jeuModel.getPionSelectionne().setX(
 							jeuModel.getGrille().getListCases()
 									.get(jeuModel.getIndiceCaseH())
@@ -134,18 +139,16 @@ public class JeuListener {
 							.get(jeuModel.getIndiceCaseH())
 							.get(jeuModel.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
-
+					jeuModel.getPionSelectionne().setIndiceCaseH(jeuModel.getIndiceCaseH());
+					jeuModel.getPionSelectionne().setIndiceCaseV(jeuModel.getIndiceCaseV());
 					/* On met a jour la liste des pions en jeu */
 					List<PionModel> tmp = new ArrayList<PionModel>(
 							jeuModel.getPionsEnJeu());
 					tmp.add(jeuModel.getPionSelectionne());
 					jeuModel.setPionsEnJeu(tmp);
 
-					
-					DeploimentContaminee dc = new DeploimentContaminee(jeuModel.getGrille(),
-							jeuModel.getPionsEnJeu(),
-							jeuModel.getIndiceCaseH(),
-							jeuModel.getIndiceCaseV());
+					DeploimentContaminee dc = new DeploimentContaminee(
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
@@ -163,8 +166,10 @@ public class JeuListener {
 							// OK
 							System.exit(0);
 
-							/* Transition vers nouvelle fenêtre*/
-							Principale p1 = new Principale("Sporos : niveau "+jeuModel.getIdJeu(),jeuModel.getIdJeu(), 300, 500);
+							/* Transition vers nouvelle fenêtre */
+							Principale p1 = new Principale("Sporos : niveau "
+									+ jeuModel.getIdJeu(), jeuModel.getIdJeu(),
+									300, 500);
 
 						} else if (retour == 0) {
 							// CANCEL
@@ -189,7 +194,7 @@ public class JeuListener {
 		/* Déplacement a la souris */
 		public void mouseDragged(MouseEvent evt) {
 			if (jeuModel.getPionSelectionne() != null) {
-				
+
 				/* Le pion suit la souris */
 				int translateX = evt.getX() - getCliqueX();
 				int translateY = evt.getY() - getCliqueY();
@@ -221,6 +226,8 @@ public class JeuListener {
 								caseJeu.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 								jeuModel.setIndiceCaseH(j);
 								jeuModel.setIndiceCaseV(k);
+								jeuModel.getPionSelectionne().setIndiceCaseH(jeuModel.getIndiceCaseH());
+								jeuModel.getPionSelectionne().setIndiceCaseV(jeuModel.getIndiceCaseV());
 								survol = true;
 
 							}
@@ -239,12 +246,11 @@ public class JeuListener {
 
 				/* Deploiment potentiel */
 				if (survol) {
-					
-					DeploimentSurvolee ds = new DeploimentSurvolee(jeuModel.getGrille(),
-							jeuModel.getIndiceCaseH(),
-							jeuModel.getIndiceCaseV());
+
+					DeploimentSurvolee ds = new DeploimentSurvolee(
+							jeuModel.getGrille());
 					ds.deploimentPion(jeuModel.getPionSelectionne());
-					
+
 				}
 				jeuView.repaint();
 
