@@ -34,17 +34,21 @@ public class DeploimentContaminee extends Deploiment {
 	@Override
 	protected void deploimentGauche() {
 		/* Vers la gauche */
+		
 		for (int i = super.getIndiceCaseV() - 1; i >= 0; i--) {
 			/*
 			 * On arrete le deploiment lorsque on rencontre une case desactivee
 			 * ou occupee
 			 */
+			
 			if ((super.getGrille().getListCases().get(super.getIndiceCaseH())
 					.get(i).getEtatActuel().equals(CaseEnum.DESACTIVEE))
 					|| (super.getGrille().getListCases()
 							.get(super.getIndiceCaseH()).get(i).getEtatActuel()
 							.equals(CaseEnum.OCCUPEE))) {
+				
 				break;
+				
 			}
 
 			/*
@@ -53,7 +57,7 @@ public class DeploimentContaminee extends Deploiment {
 			 */
 			else if (super.getGrille().getListCases()
 					.get(super.getIndiceCaseH()).get(i).getEtatActuel()
-					.equals(CaseEnum.DISPONIBLE)) {
+					.equals(CaseEnum.POTENTIELLE)) {
 				/* Transformation de la case en case potentielle */
 				super.getGrille().getListCases().get(super.getIndiceCaseH())
 						.get(i).setEtatActuel(CaseEnum.CONTAMINEE);
@@ -73,7 +77,7 @@ public class DeploimentContaminee extends Deploiment {
 							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 				break;
 			} else if (super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
+					.getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
 
 				/* SURVOL */
 				super.getGrille().getListCases().get(super.getIndiceCaseH()).get(j)
@@ -104,7 +108,7 @@ public class DeploimentContaminee extends Deploiment {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(super.getIndiceCaseV() + ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.POTENTIELLE)) {
 					
 						super.getGrille().getListCases().get(j)
 								.get(super.getIndiceCaseV() + ajout)
@@ -136,7 +140,7 @@ public class DeploimentContaminee extends Deploiment {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.POTENTIELLE)) {
 
 					super.getGrille().getListCases().get(j)
 							.get(super.getIndiceCaseV() - ajout)
@@ -168,7 +172,7 @@ public class DeploimentContaminee extends Deploiment {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.POTENTIELLE)) {
 
 				
 						super.getGrille().getListCases().get(j)
@@ -201,7 +205,7 @@ public class DeploimentContaminee extends Deploiment {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(super.getIndiceCaseV() - ajout).getEtatActuel()
-						.equals(CaseEnum.DISPONIBLE)) {
+						.equals(CaseEnum.POTENTIELLE)) {
 
 						super.getGrille().getListCases().get(j)
 								.get(super.getIndiceCaseV() - ajout)

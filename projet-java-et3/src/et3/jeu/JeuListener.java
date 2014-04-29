@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import deploiment.DeploimentContaminee;
 import deploiment.DeploimentSurvolee;
 import main.Principale;
 import et3.grille.cases.CaseEnum;
@@ -97,12 +98,11 @@ public class JeuListener {
 		public void mouseReleased(MouseEvent evt) {
 
 			if (jeuModel.getPionSelectionne() != null) {
+				
+				
 				// Si pas de case select, le pion retourne dans la reserve
 
-				if (jeuModel.getGrille().getListCases()
-						.get(jeuModel.getIndiceCaseH())
-						.get(jeuModel.getIndiceCaseV()) == null
-						|| !(jeuModel.getGrille().getListCases()
+				if ( !(jeuModel.getGrille().getListCases()
 								.get(jeuModel.getIndiceCaseH())
 								.get(jeuModel.getIndiceCaseV())
 								.intersect(jeuModel.getPionSelectionne()))
@@ -120,7 +120,8 @@ public class JeuListener {
 				}
 
 				else {
-					// sinon on le positionne sur la case
+					
+					// sinon on le positionne sur la case TODO ANIMATION 
 					jeuModel.getPionSelectionne().setX(
 							jeuModel.getGrille().getListCases()
 									.get(jeuModel.getIndiceCaseH())
@@ -134,16 +135,18 @@ public class JeuListener {
 							.get(jeuModel.getIndiceCaseV())
 							.setEtatActuel(CaseEnum.OCCUPEE);
 
-					List<PionModel> tmp = new ArrayList<>(
+					/* On met a jour la liste des pions en jeu */
+					List<PionModel> tmp = new ArrayList<PionModel>(
 							jeuModel.getPionsEnJeu());
 					tmp.add(jeuModel.getPionSelectionne());
 					jeuModel.setPionsEnJeu(tmp);
 
-					PionManager pm = new PionManager(jeuModel.getGrille(),
-							(ArrayList<PionModel>) jeuModel.getPionsEnJeu(),
+					
+					DeploimentContaminee dc = new DeploimentContaminee(jeuModel.getGrille(),
+							jeuModel.getPionsEnJeu(),
 							jeuModel.getIndiceCaseH(),
-							jeuModel.getIndiceCaseV(), false);
-					pm.contaminationListPion();
+							jeuModel.getIndiceCaseV());
+					dc.deploimentListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
 					if (jeuModel.isFinish()) {
