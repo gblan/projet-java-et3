@@ -99,6 +99,8 @@ public class JeuListener {
 					
 					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
+					if (jeuModel.getPionSelectionne().getIndiceCaseV() != -1 && jeuModel.getPionSelectionne().getIndiceCaseH() != -1)
+						jeuModel.getGrille().getListCases().get(jeuModel.getPionSelectionne().getIndiceCaseH()).get(jeuModel.getPionSelectionne().getIndiceCaseV()).setEtatActuel(CaseEnum.DISPONIBLE);
 					System.out.println("lul");
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
