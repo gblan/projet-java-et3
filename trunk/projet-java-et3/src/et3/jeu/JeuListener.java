@@ -82,48 +82,58 @@ public class JeuListener {
 			setCliqueY(evt.getY());
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
-					
-					
+
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
 						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 								.getListCases()) {
 							for (CaseModel caseJeu : alCase) {
-								if (!caseJeu.getEtatActuel().equals(CaseEnum.DESACTIVEE) && !caseJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)){
-								caseJeu.setEtatActuel(CaseEnum.POTENTIELLE);
+								if (!caseJeu.getEtatActuel().equals(
+										CaseEnum.DESACTIVEE)
+										&& !caseJeu.getEtatActuel().equals(
+												CaseEnum.OCCUPEE)) {
+									caseJeu.setEtatActuel(CaseEnum.POTENTIELLE);
 								}
 							}
 						}
 
 					}
-					
+
 					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
-					if (jeuModel.getPionSelectionne().getIndiceCaseV() != -1 && jeuModel.getPionSelectionne().getIndiceCaseH() != -1)
-						jeuModel.getGrille().getListCases().get(jeuModel.getPionSelectionne().getIndiceCaseH()).get(jeuModel.getPionSelectionne().getIndiceCaseV()).setEtatActuel(CaseEnum.DISPONIBLE);
-					System.out.println("lul");
+					if (jeuModel.getPionSelectionne().getIndiceCaseV() != -1
+							&& jeuModel.getPionSelectionne().getIndiceCaseH() != -1)
+						jeuModel.getGrille()
+								.getListCases()
+								.get(jeuModel.getPionSelectionne()
+										.getIndiceCaseH())
+								.get(jeuModel.getPionSelectionne()
+										.getIndiceCaseV())
+								.setEtatActuel(CaseEnum.POTENTIELLE);
+				
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
-					
+
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
 						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 								.getListCases()) {
 							for (CaseModel caseJeu : alCase) {
-								if (caseJeu.getEtatActuel().equals(CaseEnum.POTENTIELLE)){
+								if (caseJeu.getEtatActuel().equals(
+										CaseEnum.POTENTIELLE)) {
 									caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
 								}
-								
+
 							}
 						}
 
 					}
-					
+
 				}
 			}
 			jeuView.repaint();
-			
+
 		}
 
 		public void mouseReleased(MouseEvent evt) {
@@ -146,8 +156,9 @@ public class JeuListener {
 					jeuModel.getPionSelectionne().setY(
 							jeuModel.getPionSelectionne().getyInitial());
 					jeuModel.getGrille().getListCases()
-					.get(jeuModel.getIndiceCaseH())
-					.get(jeuModel.getIndiceCaseV()).setEtatActuel(CaseEnum.DISPONIBLE);
+							.get(jeuModel.getIndiceCaseH())
+							.get(jeuModel.getIndiceCaseV())
+							.setEtatActuel(CaseEnum.DISPONIBLE);
 					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
