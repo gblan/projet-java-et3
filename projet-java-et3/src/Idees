@@ -39,4 +39,16 @@ Types de pions :
 
 
 A FAIRE : 
-	Guillaume : Lien entre position et properties. 
+
+* Transition pion (
+	réserve
+	Case
+
+* Déploiement progressif
+* survol avec direction
+* menu qui se déplacent
+* background
+*  tailles de grilles
+* créateur de niveaux.
+* plusieurs niveaux (au moins 15)
+* graphismes
