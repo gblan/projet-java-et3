@@ -1,4 +1,4 @@
-package et3.reserve.pions;
+package sporos.reserve.pions;
 
 public enum PionEnum {
 	TYPE1,

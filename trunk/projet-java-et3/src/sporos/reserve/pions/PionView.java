@@ -1,4 +1,4 @@
-package et3.reserve.pions;
+package sporos.reserve.pions;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

@@ -1,11 +1,12 @@
-package et3.grille.cases;
+package sporos.grille.cases;
 
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-import et3.reserve.pions.PionModel;
+import sporos.reserve.pions.PionModel;
+
 
 public class CaseModel extends Component {
 
