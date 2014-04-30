@@ -58,6 +58,7 @@ public class Principale extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 	}
