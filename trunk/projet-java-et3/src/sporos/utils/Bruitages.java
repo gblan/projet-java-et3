@@ -13,9 +13,9 @@ public class Bruitages {
 	public Bruitages() {
 	}
 
-	AudioFormat audioFormat;
-	AudioInputStream audioInputStream;
-	SourceDataLine sourceDataLine;
+	private AudioFormat audioFormat;
+	private AudioInputStream audioInputStream;
+	private SourceDataLine sourceDataLine;
 
 	public void playSong(String fileName) {
 		jouerSon(fileName);

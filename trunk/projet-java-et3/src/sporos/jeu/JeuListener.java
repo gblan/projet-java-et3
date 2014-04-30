@@ -105,7 +105,7 @@ public class JeuListener {
 
 					// Case sous le pion devient potentielle
 					if (jeuModel.getPionSelectionne().getIndiceCaseV() != -1
-							&& jeuModel.getPionSelectionne().getIndiceCaseH() != -1)
+							&& jeuModel.getPionSelectionne().getIndiceCaseH() != -1) {
 						jeuModel.getGrille()
 								.getListCases()
 								.get(jeuModel.getPionSelectionne()
@@ -113,7 +113,7 @@ public class JeuListener {
 								.get(jeuModel.getPionSelectionne()
 										.getIndiceCaseV())
 								.setEtatActuel(CaseEnum.POTENTIELLE);
-
+					}
 					// Deploiment des contaminees
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());

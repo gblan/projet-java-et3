@@ -23,7 +23,9 @@ public class CaseView {
 	}
 
 	private static final int HEIGHT = 40;
-
+	private static final int DRAWOVAL1 = 10;
+	private static final int DRAWOVAL2 = 20;
+	
 	/**
 	 * @param graphics
 	 *            on affiche la case
@@ -61,35 +63,35 @@ public class CaseView {
 			 * decalages en fonction de HEIGHT a case des casts precedants
 			 */
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case OCCUPEE:
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 
 			break;
 		case CONTAMINEE:
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(128, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case SURVOLEE:
@@ -97,26 +99,26 @@ public class CaseView {
 		case POTENTIELLE:
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case POTENTIELLESURVOLEE:
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 0, 0));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / 10),
-					caseModel.getY() + (HEIGHT / 10) + (HEIGHT / 20), 2 * r
+			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case DESACTIVEE:
