@@ -83,7 +83,8 @@ public class JeuListener {
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())) {
 
-					// Preparation au refresh du deploiment en mettant toutes les cases potentielles
+					// Preparation au refresh du deploiment en mettant toutes
+					// les cases potentielles
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
 						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
@@ -102,8 +103,8 @@ public class JeuListener {
 
 					jeuModel.getPionsEnJeu().remove(pion);
 					jeuModel.setPionSelectionne(pion);
-					
-					//Case sous le pion devient potentielle
+
+					// Case sous le pion devient potentielle
 					if (jeuModel.getPionSelectionne().getIndiceCaseV() != -1
 							&& jeuModel.getPionSelectionne().getIndiceCaseH() != -1)
 						jeuModel.getGrille()
@@ -113,8 +114,8 @@ public class JeuListener {
 								.get(jeuModel.getPionSelectionne()
 										.getIndiceCaseV())
 								.setEtatActuel(CaseEnum.POTENTIELLE);
-					
-					// Deploiment
+
+					// Deploiment des contaminees
 					DeploimentContaminee dc = new DeploimentContaminee(
 							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
 					dc.deploimentListPion();
@@ -132,9 +133,15 @@ public class JeuListener {
 
 							}
 						}
-
+						if (!jeuModel.getGrille().getListCases()
+								.get(pion.getIndiceCaseH())
+								.get(pion.getIndiceCaseV()).getEtatActuel()
+								.equals(CaseEnum.CONTAMINEE)) {
+							DeploimentSurvolee ds = new DeploimentSurvolee(
+									jeuModel.getGrille());
+							ds.deploimentPion(jeuModel.getPionSelectionne());
+						}
 					}
-
 				}
 			}
 			jeuView.repaint();
