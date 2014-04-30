@@ -3,9 +3,15 @@ package sporos.menus;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
@@ -28,6 +34,16 @@ public class MenuPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton btnPartieRapide = new JButton("Partie Rapide");
+		BufferedImage imgbtnPartieRapide = null;
+		try {
+			imgbtnPartieRapide = ImageIO.read(new File("resources/partie-rapide.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnPartieRapide = new JButton(new ImageIcon(imgbtnPartieRapide));
+		btnPartieRapide.setBorder(BorderFactory.createEmptyBorder());
+		btnPartieRapide.setContentAreaFilled(false);
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -37,6 +53,16 @@ public class MenuPrincipal extends JFrame {
 		});
 
 		JButton btnModeAventure = new JButton("Mode Aventure");
+		BufferedImage imgbtnModeAventure = null;
+		try {
+			imgbtnModeAventure = ImageIO.read(new File("resources/mode-aventure.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnModeAventure = new JButton(new ImageIcon(imgbtnModeAventure));
+		btnModeAventure.setBorder(BorderFactory.createEmptyBorder());
+		btnModeAventure.setContentAreaFilled(false);
 		btnModeAventure.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -45,6 +71,16 @@ public class MenuPrincipal extends JFrame {
 		});
 
 		JButton btnModeCreateur = new JButton("Mode Createur");
+		BufferedImage imgbtnModeCreateur = null;
+		try {
+			imgbtnModeCreateur = ImageIO.read(new File("resources/mode-createur.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnModeCreateur = new JButton(new ImageIcon(imgbtnModeCreateur));
+		btnModeCreateur.setBorder(BorderFactory.createEmptyBorder());
+		btnModeCreateur.setContentAreaFilled(false);
 		btnModeCreateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -53,12 +89,32 @@ public class MenuPrincipal extends JFrame {
 		});
 
 		JButton btnOption = new JButton("Options");
+		BufferedImage imgbtnOption = null;
+		try {
+			imgbtnOption = ImageIO.read(new File("resources/menu-options.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnOption = new JButton(new ImageIcon(imgbtnOption));
+		btnOption.setBorder(BorderFactory.createEmptyBorder());
+		btnOption.setContentAreaFilled(false);
 		btnOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 
 		JButton btnQuit = new JButton("Quit");
+		BufferedImage imgbtnQuit = null;
+		try {
+			imgbtnQuit = ImageIO.read(new File("resources/menu-quitter.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnQuit = new JButton(new ImageIcon(imgbtnQuit));
+		btnQuit.setBorder(BorderFactory.createEmptyBorder());
+		btnQuit.setContentAreaFilled(false);
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

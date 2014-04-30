@@ -3,9 +3,15 @@ package sporos.menus;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
@@ -17,18 +23,48 @@ public class ModeCreation extends JFrame {
 		super("Mode Creation");
 
 		JButton btnMesCreations = new JButton("Mes Creations");
+		BufferedImage imgbtnMesCreations = null;
+		try {
+			imgbtnMesCreations = ImageIO.read(new File("resources/mes-creations.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnMesCreations = new JButton(new ImageIcon(imgbtnMesCreations));
+		btnMesCreations.setBorder(BorderFactory.createEmptyBorder());
+		btnMesCreations.setContentAreaFilled(false);
 		btnMesCreations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 
 		JButton btnNouvelleCreation = new JButton("Nouvelle Creation");
+		BufferedImage imgbtnNouvelleCreation = null;
+		try {
+			imgbtnNouvelleCreation = ImageIO.read(new File("resources/nouvelle-creation.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnNouvelleCreation = new JButton(new ImageIcon(imgbtnNouvelleCreation));
+		btnNouvelleCreation.setBorder(BorderFactory.createEmptyBorder());
+		btnNouvelleCreation.setContentAreaFilled(false);
 		btnNouvelleCreation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 
 		JButton btnRetourMenu = new JButton("Menu Principal");
+		BufferedImage imgbtnRetourMenu = null;
+		try {
+			imgbtnRetourMenu = ImageIO.read(new File("resources/menu-principal.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnRetourMenu = new JButton(new ImageIcon(imgbtnRetourMenu));
+		btnRetourMenu.setBorder(BorderFactory.createEmptyBorder());
+		btnRetourMenu.setContentAreaFilled(false);
 		btnRetourMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
