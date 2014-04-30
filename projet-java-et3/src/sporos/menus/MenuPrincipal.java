@@ -16,6 +16,13 @@ public class MenuPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+
+	public static void main(String[] arg) {
+		MenuPrincipal m = new MenuPrincipal();
+		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	
 	public MenuPrincipal() {
 		super("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,4 +100,5 @@ public class MenuPrincipal extends JFrame {
 
 	}
 
+	
 }
