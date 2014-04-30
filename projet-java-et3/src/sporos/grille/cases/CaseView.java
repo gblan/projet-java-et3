@@ -1,4 +1,4 @@
-package et3.grille.cases;
+package sporos.grille.cases;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
