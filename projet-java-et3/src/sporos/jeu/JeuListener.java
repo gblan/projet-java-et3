@@ -12,6 +12,8 @@ import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
+import sporos.main.Principale;
+import sporos.menus.MenuPrincipal;
 import sporos.reserve.pions.PionModel;
 import sporos.utils.Bruitages;
 import sporos.utils.PropertyAcces;
@@ -219,22 +221,22 @@ public class JeuListener {
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
 
 						/* Sauvegarde */
-						PropertyAcces.saveProperties(jeuModel.getIdJeu());
-						System.out.println(retour);
-						if (retour == 2) {
+						PropertyAcces.saveProperties(jeuModel.getIdJeu()+1);
+						if (retour == 0) {
 							// OK
-							System.exit(0);
+							jeuView.setVisible(false);
+							Principale av = new Principale("sporos, niveau : "+PropertyAcces
+									.getCurrentLevel(), PropertyAcces
+									.getCurrentLevel(), 300, 500);
 
-							/* Transition vers nouvelle fenêtre */
-							// Principale p1 = new Principale("Sporos : niveau "
-							// + jeuModel.getIdJeu(), jeuModel.getIdJeu(),
-							// 300, 500);
-
-						} else if (retour == 0) {
+						} else if (retour == 2) {
 							// CANCEL
+							jeuView.setVisible(false);
+							MenuPrincipal av = new MenuPrincipal();
 
 						} else if (retour == -1) {
 							// QUIT
+							System.exit(0);
 
 						}
 

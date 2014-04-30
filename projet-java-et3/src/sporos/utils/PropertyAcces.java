@@ -19,7 +19,7 @@ public class PropertyAcces {
 
 			String hash = prop.getProperty("level");
 
-			for (int i = 1; i < 1000; i++) {
+			for (int i = 1; i < 100; i++) {
 				if (hash.compareTo(hachage(i)) == 0) {
 					level = i;
 					break;
