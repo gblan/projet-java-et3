@@ -12,7 +12,7 @@ import sporos.grille.Grille;
 import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
-import sporos.menus.Menu;
+import sporos.menus.MenuPrincipal;
 import sporos.reserve.Reserve;
 
 
@@ -63,7 +63,7 @@ public class Principale extends JFrame {
 	}
 
 	public static void main(String[] arg) {
-		Menu m = new Menu("Sporos");
+		MenuPrincipal m = new MenuPrincipal();
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}

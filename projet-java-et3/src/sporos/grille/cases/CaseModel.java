@@ -7,7 +7,6 @@ import java.awt.geom.Point2D;
 
 import sporos.reserve.pions.PionModel;
 
-
 public class CaseModel extends Component {
 
 	/**

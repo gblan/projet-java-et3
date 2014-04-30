@@ -9,7 +9,6 @@ import sporos.grille.cases.CaseModel;
 import sporos.reserve.Reserve;
 import sporos.reserve.pions.PionModel;
 
-
 public class JeuModel {
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +27,7 @@ public class JeuModel {
 
 	public JeuModel(int idJeu, Grille grille, Reserve reserve) {
 		super();
-		this.idJeu =idJeu;
+		this.idJeu = idJeu;
 		this.grille = grille;
 		this.reserve = reserve;
 		this.pionsEnJeu = new ArrayList<PionModel>();

@@ -1,20 +1,15 @@
 package sporos.deploiment;
 
-
-
 import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.reserve.pions.PionModel;
 
 public class DeploimentSurvolee extends Deploiment {
-	
 
 	public DeploimentSurvolee(Grille grille) {
 		super(grille);
 
 	}
-	
-
 
 	@Override
 	protected void deploimentGauche(PionModel p) {
@@ -37,12 +32,11 @@ public class DeploimentSurvolee extends Deploiment {
 			 * On continue le deploiment lorsque on rencontre une case
 			 * contaminee ou disponible
 			 */
-			else if (super.getGrille().getListCases()
-					.get(p.getIndiceCaseH()).get(i).getEtatActuel()
-					.equals(CaseEnum.DISPONIBLE)) {
+			else if (super.getGrille().getListCases().get(p.getIndiceCaseH())
+					.get(i).getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
 				/* Transformation de la case en case potentielle */
-				super.getGrille().getListCases().get(p.getIndiceCaseH())
-						.get(i).setEtatActuel(CaseEnum.POTENTIELLE);
+				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(i)
+						.setEtatActuel(CaseEnum.POTENTIELLE);
 
 			}
 		}
@@ -50,17 +44,17 @@ public class DeploimentSurvolee extends Deploiment {
 
 	@Override
 	protected void deploimentDroite(PionModel p) {
-		
+
 		/* Vers la droite */
 		for (int j = p.getIndiceCaseV() + 1; j < 7; j++) {
 			if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
-					.get(j)
-					.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
-							.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
+					.get(j).getEtatActuel().equals(CaseEnum.DESACTIVEE))
+					|| (super.getGrille().getListCases()
+							.get(p.getIndiceCaseH()).get(j).getEtatActuel()
+							.equals(CaseEnum.OCCUPEE))) {
 				break;
-			} else if (super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
-					.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
+			} else if (super.getGrille().getListCases().get(p.getIndiceCaseH())
+					.get(j).getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
 
 				/* SURVOL */
 				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
@@ -86,17 +80,17 @@ public class DeploimentSurvolee extends Deploiment {
 						.get(p.getIndiceCaseV() + ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() + ajout).getEtatActuel()
-								.equals(CaseEnum.OCCUPEE))) {
+								.get(p.getIndiceCaseV() + ajout)
+								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(p.getIndiceCaseV() + ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
-					
-						super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() + ajout)
-								.setEtatActuel(CaseEnum.POTENTIELLE);
-					
+
+					super.getGrille().getListCases().get(j)
+							.get(p.getIndiceCaseV() + ajout)
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -118,18 +112,17 @@ public class DeploimentSurvolee extends Deploiment {
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
-								.equals(CaseEnum.OCCUPEE))) {
+								.get(p.getIndiceCaseV() - ajout)
+								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 
-					
-						super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout)
-								.setEtatActuel(CaseEnum.POTENTIELLE);
-					
+					super.getGrille().getListCases().get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -151,18 +144,17 @@ public class DeploimentSurvolee extends Deploiment {
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
-								.equals(CaseEnum.OCCUPEE))) {
+								.get(p.getIndiceCaseV() - ajout)
+								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 
-				
-						super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout)
-								.setEtatActuel(CaseEnum.POTENTIELLE);
-					
+					super.getGrille().getListCases().get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -183,23 +175,22 @@ public class DeploimentSurvolee extends Deploiment {
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DESACTIVEE))
 						|| (super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout).getEtatActuel()
-								.equals(CaseEnum.OCCUPEE))) {
+								.get(p.getIndiceCaseV() - ajout)
+								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 					break;
 				} else if (super.getGrille().getListCases().get(j)
 						.get(p.getIndiceCaseV() - ajout).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 
-						super.getGrille().getListCases().get(j)
-								.get(p.getIndiceCaseV() - ajout)
-								.setEtatActuel(CaseEnum.POTENTIELLE);
-					
-				} 
+					super.getGrille().getListCases().get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setEtatActuel(CaseEnum.POTENTIELLE);
+
+				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
 			}
 		}
 	}
 
-	
 }

@@ -16,14 +16,12 @@ import sporos.grille.cases.CaseView;
 import sporos.reserve.pions.PionModel;
 import sporos.reserve.pions.PionView;
 
-
 public class JeuView extends Component {
 
 	private JeuModel jeu;
 
 	public JeuView(JeuModel jeu) {
 		this.jeu = jeu;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

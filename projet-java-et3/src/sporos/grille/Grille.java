@@ -7,7 +7,6 @@ import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.utils.PropertyAcces;
 
-
 public class Grille {
 
 	private List<ArrayList<CaseModel>> listCases;

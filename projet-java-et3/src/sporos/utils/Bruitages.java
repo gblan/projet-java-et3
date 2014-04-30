@@ -17,10 +17,10 @@ public class Bruitages {
 	AudioInputStream audioInputStream;
 	SourceDataLine sourceDataLine;
 
-	public void playSong(String fileName){
+	public void playSong(String fileName) {
 		jouerSon(fileName);
 	}
-	
+
 	private void jouerSon(String fileName) {
 		try {
 			File soundFile = new File(fileName);
