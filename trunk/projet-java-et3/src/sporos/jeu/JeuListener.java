@@ -12,11 +12,9 @@ import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
-import sporos.main.Principale;
 import sporos.reserve.pions.PionModel;
 import sporos.utils.Bruitages;
 import sporos.utils.PropertyAcces;
-
 
 public class JeuListener {
 
@@ -228,9 +226,9 @@ public class JeuListener {
 							System.exit(0);
 
 							/* Transition vers nouvelle fenêtre */
-							Principale p1 = new Principale("Sporos : niveau "
-									+ jeuModel.getIdJeu(), jeuModel.getIdJeu(),
-									300, 500);
+							// Principale p1 = new Principale("Sporos : niveau "
+							// + jeuModel.getIdJeu(), jeuModel.getIdJeu(),
+							// 300, 500);
 
 						} else if (retour == 0) {
 							// CANCEL

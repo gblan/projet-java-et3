@@ -3,8 +3,6 @@ package sporos.menus;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -16,14 +14,12 @@ import sporos.main.Principale;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
-
 public class Niveaux extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<JeuModel> listeNiveau;
 	private String[] listNiveau;
 	private int currentLevel = 0;
 
@@ -32,13 +28,13 @@ public class Niveaux extends JFrame {
 	 */
 	public Niveaux(String windowsName) {
 		super(windowsName);
-		this.listeNiveau = new ArrayList<JeuModel>();
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		currentLevel = PropertyAcces.getCurrentLevel();
 
 		buildLevels();
 		initialize();
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
@@ -55,8 +51,8 @@ public class Niveaux extends JFrame {
 				JList list = (JList) evt.getSource();
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
-					Principale p1 = new Principale("Sporos : niveau " + index,
-							index, 300, 500);
+					setVisible(false);
+					Principale p1 = new Principale("sporos", index, 300, 500);
 
 				}
 			}
@@ -75,7 +71,6 @@ public class Niveaux extends JFrame {
 				JeuModel jeu = new JeuModel(i,
 						Grille.buildGrid("levels/" + str),
 						Reserve.buildReserve("levels/" + str));
-				this.listeNiveau.add(jeu);
 				tmp[i] = str;
 			}
 		}
@@ -86,13 +81,9 @@ public class Niveaux extends JFrame {
 	@Override
 	public String toString() {
 		String res = "";
-		int i = 1;
-		res += "Niveaux : \n";
 
-		for (JeuModel j : this.listeNiveau) {
-			res += "\t Grille num " + i + ", Reserve : "
-					+ j.getReserve().getPions().size() + "\n";
-			i++;
+		for (String j : this.listNiveau) {
+			res += "Nom niveau : " + j + "\n";
 		}
 		return res;
 	}

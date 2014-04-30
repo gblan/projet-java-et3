@@ -10,39 +10,29 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
-import sporos.main.Principale;
-
-
-public class Menu extends JFrame {
-
+public class ModeCreation extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public Menu(String windowName) {
-		super(windowName);
-		setBounds(100, 100, 315, 454);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ModeCreation() {
+		super("Mode Creation");
 
-		JButton btnNewButton = new JButton("Play");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnMesCreations = new JButton("Mes Creations");
+		btnMesCreations.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+		JButton btnNouvelleCreation = new JButton("Nouvelle Creation");
+		btnNouvelleCreation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+		JButton btnRetourMenu = new JButton("Menu Principal");
+		btnRetourMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-
-				/* TODO Aller a liste niveau par la suite */
-				Principale p1 = new Principale("Sporos", 1, 300, 500);
-
-			}
-		});
-
-		JButton btnOptions = new JButton("Options");
-		btnOptions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-		JButton btnQuit = new JButton("Quit");
-		btnQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				MenuPrincipal av = new MenuPrincipal();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -54,24 +44,25 @@ public class Menu extends JFrame {
 						.addGroup(
 								groupLayout
 										.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnOptions)
-										.addComponent(btnQuit,
+										.addComponent(btnMesCreations)
+										.addComponent(btnNouvelleCreation)
+										.addComponent(btnRetourMenu,
 												GroupLayout.PREFERRED_SIZE, 69,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnNewButton))
+												GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(115, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
 				Alignment.TRAILING).addGroup(
 				groupLayout.createSequentialGroup()
-						.addContainerGap(201, Short.MAX_VALUE)
-						.addComponent(btnNewButton).addGap(42)
-						.addComponent(btnOptions).addGap(42)
-						.addComponent(btnQuit).addGap(61)));
+						.addContainerGap(180, Short.MAX_VALUE)
+						.addComponent(btnMesCreations).addGap(25)
+						.addComponent(btnNouvelleCreation).addGap(25)
+						.addComponent(btnRetourMenu).addGap(61)));
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
-				btnNewButton, btnOptions, btnQuit });
+				btnMesCreations, btnNouvelleCreation, btnRetourMenu });
 		getContentPane().setLayout(groupLayout);
+		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);
-
 	}
 
 }
