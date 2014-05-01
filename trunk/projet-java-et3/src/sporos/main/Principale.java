@@ -53,7 +53,7 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
-		jeuListener.getJeuView().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
+		jeuListener.getJeuView().getButtonMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());

@@ -1,15 +1,18 @@
 package sporos.jeu;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.event.PopupMenuListener;
+import javax.swing.JPanel;
 
 import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
@@ -79,15 +82,34 @@ public class JeuListener {
 		return selectionnerMenuContextuel;
 	}
 
+	private MouseAdapter recommencerPartie = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500);
+		}
+
+	};
+	
+	private MouseAdapter quitterNiveau = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			jeuView.setVisible(false);
+			MenuPrincipal av = new MenuPrincipal();
+		}
+
+	};
+	
+	private MouseAdapter quitterPartie = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			System.exit(0);
+		}
+	};
+
+	
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			System.out.println("MENU CONTEXTUEL");
-			jeuView.printMenuContextuel();
+
 		}
 	};
 	
-	
-
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
