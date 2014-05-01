@@ -39,6 +39,10 @@ Types de pions :
 
 
 A FAIRE : 
+* plusieurs niveaux (au moins 15)
+
+* créateur de niveaux.
+
 
 * Transition pion (
 	réserve
@@ -49,6 +53,4 @@ A FAIRE :
 * menu qui se déplacent
 * background
 *  tailles de grilles
-* créateur de niveaux.
-* plusieurs niveaux (au moins 15)
 * graphismes
