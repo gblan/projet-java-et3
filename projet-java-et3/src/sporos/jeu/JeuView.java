@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,10 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import sporos.grille.cases.CaseModel;
@@ -85,20 +89,26 @@ public class JeuView extends Component {
 		btnMenuContextuel.setBounds(0, 0, 500, 50);
 		return btnMenuContextuel;
 	}
+	
+	public void buildMenuContextuel(){
+		JDialog dialog = new JDialog();
+	    JOptionPane optionPane = new JOptionPane();
+	    optionPane.setMessage("");
+	    optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
 
-	public JPopupMenu printMenuContextuel() {
-		/* popupMenu */
-
-	    JMenuItem item;
-	    JPopupMenu popup = new JPopupMenu();
-		popup.add(item = new JMenuItem("Left"));
-	    item.setHorizontalTextPosition(JMenuItem.RIGHT);
-
-	    popup.addSeparator();
-	 
-		
-		return popup;
+	    JPanel panel = new JPanel();
+	    panel.setLayout(new GridLayout(4,1));
+	    String[] buttonTxt = {"Rejouer","Quitter Niveau","Quitter Jeu"};
+	    JButton[] buttons = new JButton[buttonTxt.length];
+	    for (int i = 0; i < buttonTxt.length; i++)
+	    {
+	        buttons[i] = new JButton(buttonTxt[i]);
+	        panel.add(buttons[i]);
+	    }
+	    optionPane.setOptionType(JOptionPane.DEFAULT_OPTION);
+	    optionPane.add(panel);
+	    
+	    dialog = optionPane.createDialog(null, "Menu Contextuel");
 	}
-
 
 }
