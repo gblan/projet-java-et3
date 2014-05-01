@@ -63,8 +63,8 @@ public class Niveaux extends JFrame {
 	}
 
 	private void buildLevels() {
-		String[] tmp = new String[currentLevel + 2];
-		for (int i = 1; i < currentLevel + 2; i++) {
+		String[] tmp = new String[currentLevel + 1];
+		for (int i = 1; i < currentLevel + 1; i++) {
 			String str = "level" + i + ".properties";
 			File properties = new File("levels/" + str);
 			if (properties.isFile()) {
