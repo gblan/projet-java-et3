@@ -8,24 +8,25 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
-public class ModeCreation extends JFrame {
+public class MenuModeCreation extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public ModeCreation() {
+	public MenuModeCreation() {
 		super("Mode Creation");
 
 		JButton btnMesCreations = new JButton("Mes Creations");
 		BufferedImage imgbtnMesCreations = null;
 		try {
-			imgbtnMesCreations = ImageIO.read(new File("resources/mes-creations.png"));
+			imgbtnMesCreations = ImageIO.read(new File(
+					"resources/mes-creations.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -41,7 +42,8 @@ public class ModeCreation extends JFrame {
 		JButton btnNouvelleCreation = new JButton("Nouvelle Creation");
 		BufferedImage imgbtnNouvelleCreation = null;
 		try {
-			imgbtnNouvelleCreation = ImageIO.read(new File("resources/nouvelle-creation.png"));
+			imgbtnNouvelleCreation = ImageIO.read(new File(
+					"resources/nouvelle-creation.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -57,7 +59,8 @@ public class ModeCreation extends JFrame {
 		JButton btnRetourMenu = new JButton("Menu Principal");
 		BufferedImage imgbtnRetourMenu = null;
 		try {
-			imgbtnRetourMenu = ImageIO.read(new File("resources/menu-principal.png"));
+			imgbtnRetourMenu = ImageIO.read(new File(
+					"resources/menu-principal.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

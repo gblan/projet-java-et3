@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
@@ -19,18 +22,21 @@ import sporos.reserve.pions.PionView;
 public class JeuView extends Component {
 
 	private JeuModel jeu;
+	private JButton buttonMenuContextuel;
 
 	public JeuView(JeuModel jeu) {
 		this.jeu = jeu;
-		// TODO Auto-generated constructor stub
+		this.buttonMenuContextuel = new JButton();
 	}
-
 	
 	public JeuModel getJeu() {
 		return jeu;
 	}
-
-
+	
+	public JButton getButtonMenuContextuel() {
+		return buttonMenuContextuel;
+	}
+	
 	/**
 	 * @param graphics
 	 *            on affiche le jeu en faisant appel à l'affichage de chaque
@@ -52,17 +58,31 @@ public class JeuView extends Component {
 			pionView.paint(graphics);
 		}
 		jeu.getReserve().paint(g);
-		File file = new File("resources/icone_menu.png");
-		try {
-			BufferedImage img = ImageIO.read(file);
-			graphics.drawImage(img, 230, 10, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+		printMenuContextuel().paint(g);
+		
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
 			PionView pionView = new PionView(jeu.getPionSelectionne());
 			pionView.paint(graphics);
 		}
 	}
+
+	public JButton printMenuContextuel() {
+		JButton btnMenuContextuel = getButtonMenuContextuel();
+		BufferedImage imgMenuContextuel = null;
+		try {
+			imgMenuContextuel = ImageIO.read(new File(
+					"resources/icone_menu.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		btnMenuContextuel = new JButton(new ImageIcon(imgMenuContextuel));
+		btnMenuContextuel.setBorder(BorderFactory.createEmptyBorder());
+		btnMenuContextuel.setContentAreaFilled(false);
+		btnMenuContextuel.setBounds(0, 0, 500, 50);
+		return btnMenuContextuel;
+	}
+
+
 }

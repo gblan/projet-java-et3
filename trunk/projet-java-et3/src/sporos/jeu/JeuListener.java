@@ -1,5 +1,7 @@
 package sporos.jeu;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -19,10 +21,6 @@ import sporos.utils.Bruitages;
 import sporos.utils.PropertyAcces;
 
 public class JeuListener {
-
-	/**
-	 * 
-	 */
 
 	private JeuModel jeuModel;
 	private JeuView jeuView;
@@ -75,6 +73,16 @@ public class JeuListener {
 	public MouseAdapter getSelectionnerPions() {
 		return selectionnerPions;
 	}
+
+	public MouseAdapter getSelectionnerMenuContextuel() {
+		return selectionnerMenuContextuel;
+	}
+
+	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+
+		}
+	};
 
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
@@ -221,13 +229,12 @@ public class JeuListener {
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
 
 						/* Sauvegarde */
-						PropertyAcces.saveProperties(jeuModel.getIdJeu()+1);
+						PropertyAcces.saveProperties(jeuModel.getIdJeu() + 1);
 						if (retour == 0) {
 							// OK
 							jeuView.setVisible(false);
-							Principale av = new Principale("sporos, niveau : "+PropertyAcces
-									.getCurrentLevel(), PropertyAcces
-									.getCurrentLevel(), 300, 500);
+							Principale av = new Principale(
+									PropertyAcces.getCurrentLevel(), 300, 500);
 
 						} else if (retour == 2) {
 							// CANCEL

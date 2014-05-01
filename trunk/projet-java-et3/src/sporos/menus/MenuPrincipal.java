@@ -22,13 +22,12 @@ public class MenuPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-
 	public static void main(String[] arg) {
 		MenuPrincipal m = new MenuPrincipal();
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
+
 	public MenuPrincipal() {
 		super("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +35,8 @@ public class MenuPrincipal extends JFrame {
 		JButton btnPartieRapide = new JButton("Partie Rapide");
 		BufferedImage imgbtnPartieRapide = null;
 		try {
-			imgbtnPartieRapide = ImageIO.read(new File("resources/partie-rapide.png"));
+			imgbtnPartieRapide = ImageIO.read(new File(
+					"resources/partie-rapide.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -47,7 +47,7 @@ public class MenuPrincipal extends JFrame {
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale p1 = new Principale("sporos", 1, 300, 500);
+				Principale p1 = new Principale(1, 300, 500);
 
 			}
 		});
@@ -55,7 +55,8 @@ public class MenuPrincipal extends JFrame {
 		JButton btnModeAventure = new JButton("Mode Aventure");
 		BufferedImage imgbtnModeAventure = null;
 		try {
-			imgbtnModeAventure = ImageIO.read(new File("resources/mode-aventure.png"));
+			imgbtnModeAventure = ImageIO.read(new File(
+					"resources/mode-aventure.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -66,14 +67,15 @@ public class MenuPrincipal extends JFrame {
 		btnModeAventure.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ModeAventure av = new ModeAventure();
+				MenuModeAventure av = new MenuModeAventure();
 			}
 		});
 
 		JButton btnModeCreateur = new JButton("Mode Createur");
 		BufferedImage imgbtnModeCreateur = null;
 		try {
-			imgbtnModeCreateur = ImageIO.read(new File("resources/mode-createur.png"));
+			imgbtnModeCreateur = ImageIO.read(new File(
+					"resources/mode-createur.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -84,7 +86,7 @@ public class MenuPrincipal extends JFrame {
 		btnModeCreateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ModeCreation av = new ModeCreation();
+				MenuModeCreation av = new MenuModeCreation();
 			}
 		});
 
@@ -156,5 +158,4 @@ public class MenuPrincipal extends JFrame {
 
 	}
 
-	
 }
