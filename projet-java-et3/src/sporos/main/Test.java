@@ -1,11 +1,11 @@
 package sporos.main;
 
-import sporos.menus.Niveaux;
+import sporos.menus.MenuNiveaux;
 
 public class Test {
 
 	public static void main(String[] args) {
 
-		Niveaux level = new Niveaux("");
+		MenuNiveaux level = new MenuNiveaux("");
 	}
 }

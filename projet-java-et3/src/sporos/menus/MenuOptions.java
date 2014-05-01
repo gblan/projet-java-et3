@@ -1,6 +1,6 @@
 package sporos.menus;
 
-public class Parametres {
+public class MenuOptions {
 
 	private boolean sonActif;
 

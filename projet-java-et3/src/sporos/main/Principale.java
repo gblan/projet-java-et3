@@ -14,7 +14,6 @@ import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
 import sporos.reserve.Reserve;
 
-
 public class Principale extends JFrame {
 
 	/**
@@ -29,8 +28,8 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
-	public Principale(String title, int numLevel, int width, int height) {
-		super(title);
+	public Principale(int numLevel, int width, int height) {
+		super("Sporos, niveau : " + numLevel);
 		setBounds(300, 100, 0, 0);
 		setSize(width - 100, height - 100);
 		Container pane = getContentPane();
@@ -54,6 +53,8 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
+		jeuListener.getJeuView().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		pack();

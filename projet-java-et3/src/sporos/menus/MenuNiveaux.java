@@ -14,7 +14,7 @@ import sporos.main.Principale;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
-public class Niveaux extends JFrame {
+public class MenuNiveaux extends JFrame {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class Niveaux extends JFrame {
 	/**
 	 * @return Constructeur de niveaux
 	 */
-	public Niveaux(String windowsName) {
+	public MenuNiveaux(String windowsName) {
 		super(windowsName);
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +52,7 @@ public class Niveaux extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
-					Principale p1 = new Principale("sporos", index, 300, 500);
+					Principale p1 = new Principale(index, 300, 500);
 
 				}
 			}

@@ -8,9 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,16 +19,17 @@ import javax.swing.SwingConstants;
 import sporos.main.Principale;
 import sporos.utils.PropertyAcces;
 
-public class ModeAventure extends JFrame {
+public class MenuModeAventure extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public ModeAventure() {
+	public MenuModeAventure() {
 		super("Mode Aventure");
 
 		JButton btnNouvellePartie = new JButton("Nouvelle Partie");
 		BufferedImage imgbtnNouvellePartie = null;
 		try {
-			imgbtnNouvellePartie = ImageIO.read(new File("resources/nouvelle-partie.png"));
+			imgbtnNouvellePartie = ImageIO.read(new File(
+					"resources/nouvelle-partie.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -40,15 +41,16 @@ public class ModeAventure extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PropertyAcces.saveProperties(1);
 				setVisible(false);
-				Principale av = new Principale("sporos", PropertyAcces
-						.getCurrentLevel(), 300, 500);
+				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
+						300, 500);
 			}
 		});
 
 		JButton btnContinuerPartie = new JButton("Continuer Partie");
 		BufferedImage imgbtnContinuerPartie = null;
 		try {
-			imgbtnContinuerPartie = ImageIO.read(new File("resources/continuer-partie.png"));
+			imgbtnContinuerPartie = ImageIO.read(new File(
+					"resources/continuer-partie.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -59,16 +61,16 @@ public class ModeAventure extends JFrame {
 		btnContinuerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale av = new Principale("sporos, niveau : "+PropertyAcces
-						.getCurrentLevel(), PropertyAcces
-						.getCurrentLevel(), 300, 500);
+				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
+						300, 500);
 			}
 		});
 
 		JButton btnListeNiveaux = new JButton("Liste des Niveaux");
 		BufferedImage imgbtnListeNiveaux = null;
 		try {
-			imgbtnListeNiveaux = ImageIO.read(new File("resources/liste-niveaux.png"));
+			imgbtnListeNiveaux = ImageIO.read(new File(
+					"resources/liste-niveaux.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -79,14 +81,15 @@ public class ModeAventure extends JFrame {
 		btnListeNiveaux.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Niveaux av = new Niveaux("Liste des niveaux");
+				MenuNiveaux av = new MenuNiveaux("Liste des niveaux");
 			}
 		});
 
 		JButton btnRetourMenu = new JButton("Menu Principal");
 		BufferedImage imgbtnRetourMenu = null;
 		try {
-			imgbtnRetourMenu = ImageIO.read(new File("resources/menu-principal.png"));
+			imgbtnRetourMenu = ImageIO.read(new File(
+					"resources/menu-principal.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
