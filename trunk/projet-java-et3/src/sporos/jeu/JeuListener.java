@@ -80,7 +80,7 @@ public class JeuListener {
 
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			
+			System.out.println("MENU CONTEXTUEL");
 		}
 	};
 
