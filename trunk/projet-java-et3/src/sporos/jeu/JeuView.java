@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
@@ -59,7 +61,7 @@ public class JeuView extends Component {
 		}
 		jeu.getReserve().paint(g);
 
-		printMenuContextuel().paint(g);
+		printLogoMenuContextuel().paint(g);
 		
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
@@ -68,7 +70,7 @@ public class JeuView extends Component {
 		}
 	}
 
-	public JButton printMenuContextuel() {
+	public JButton printLogoMenuContextuel() {
 		JButton btnMenuContextuel = getButtonMenuContextuel();
 		BufferedImage imgMenuContextuel = null;
 		try {
@@ -82,6 +84,20 @@ public class JeuView extends Component {
 		btnMenuContextuel.setContentAreaFilled(false);
 		btnMenuContextuel.setBounds(0, 0, 500, 50);
 		return btnMenuContextuel;
+	}
+
+	public JPopupMenu printMenuContextuel() {
+		/* popupMenu */
+
+	    JMenuItem item;
+	    JPopupMenu popup = new JPopupMenu();
+		popup.add(item = new JMenuItem("Left"));
+	    item.setHorizontalTextPosition(JMenuItem.RIGHT);
+
+	    popup.addSeparator();
+	 
+		
+		return popup;
 	}
 
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.PopupMenuListener;
 
 import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
@@ -81,8 +82,11 @@ public class JeuListener {
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			System.out.println("MENU CONTEXTUEL");
+			jeuView.printMenuContextuel();
 		}
 	};
+	
+	
 
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
