@@ -13,7 +13,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import sporos.main.Principale;
@@ -25,27 +28,9 @@ public class MenuModeAventure extends JFrame {
 	public MenuModeAventure() {
 		super("Mode Aventure");
 
-		JButton btnNouvellePartie = new JButton("Nouvelle Partie");
-		BufferedImage imgbtnNouvellePartie = null;
-		try {
-			imgbtnNouvellePartie = ImageIO.read(new File(
-					"resources/nouvelle-partie.png"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		btnNouvellePartie = new JButton(new ImageIcon(imgbtnNouvellePartie));
-		btnNouvellePartie.setBorder(BorderFactory.createEmptyBorder());
-		btnNouvellePartie.setContentAreaFilled(false);
-		btnNouvellePartie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PropertyAcces.saveProperties(1);
-				setVisible(false);
-				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500);
-			}
-		});
-
+		JLabel labelNiveauCourant = new JLabel();
+		labelNiveauCourant.setText("Votre niveau actuel : "+PropertyAcces.getCurrentLevel());
+		
 		JButton btnContinuerPartie = new JButton("Continuer Partie");
 		BufferedImage imgbtnContinuerPartie = null;
 		try {
@@ -63,6 +48,38 @@ public class MenuModeAventure extends JFrame {
 				setVisible(false);
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
 						300, 500);
+			}
+		});
+		
+		JButton btnNouvellePartie = new JButton("Nouvelle Partie");
+		BufferedImage imgbtnNouvellePartie = null;
+		try {
+			imgbtnNouvellePartie = ImageIO.read(new File(
+					"resources/nouvelle-partie.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnNouvellePartie = new JButton(new ImageIcon(imgbtnNouvellePartie));
+		btnNouvellePartie.setBorder(BorderFactory.createEmptyBorder());
+		btnNouvellePartie.setContentAreaFilled(false);
+		btnNouvellePartie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+//				
+				int effacement = JOptionPane.showConfirmDialog(null,
+						"Ceci va effacer votre progression, êtes vous sur ?",
+						"Attention",JOptionPane.WARNING_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+			    
+				if (effacement == 0) {
+					// OK
+					PropertyAcces.saveProperties(1);
+					setVisible(false);
+					Principale av = new Principale(PropertyAcces.getCurrentLevel(),
+							300, 500);
+				}
+				
 			}
 		});
 
@@ -112,6 +129,7 @@ public class MenuModeAventure extends JFrame {
 						.addGroup(
 								groupLayout
 										.createParallelGroup(Alignment.LEADING)
+										.addComponent(labelNiveauCourant)
 										.addComponent(btnContinuerPartie)
 										.addComponent(btnNouvellePartie)
 										.addComponent(btnListeNiveaux)
@@ -123,6 +141,7 @@ public class MenuModeAventure extends JFrame {
 				Alignment.TRAILING).addGroup(
 				groupLayout.createSequentialGroup()
 						.addContainerGap(180, Short.MAX_VALUE)
+						.addComponent(labelNiveauCourant).addGap(10)
 						.addComponent(btnContinuerPartie).addGap(25)
 						.addComponent(btnNouvellePartie).addGap(25)
 						.addComponent(btnListeNiveaux).addGap(25)
