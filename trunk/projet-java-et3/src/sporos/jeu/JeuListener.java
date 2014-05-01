@@ -28,6 +28,12 @@ public class JeuListener {
 	private int cliqueX;
 	private int cliqueY;
 
+	public JeuListener(JeuModel jeu, JeuView jeuView) {
+		this.jeuModel = jeu;
+		this.jeuView = jeuView;
+		this.bruits = new Bruitages();
+	}
+	
 	public void setJeu(JeuModel jeu) {
 		this.jeuModel = jeu;
 	}
@@ -60,12 +66,6 @@ public class JeuListener {
 		this.cliqueY = cliqueY;
 	}
 
-	public JeuListener(JeuModel jeu, JeuView jeuView) {
-		this.jeuModel = jeu;
-		this.jeuView = jeuView;
-		this.bruits = new Bruitages();
-	}
-
 	public MouseMotionAdapter getSelectionnerPionsMotion() {
 		return selectionnerPionsMotion;
 	}
@@ -80,7 +80,7 @@ public class JeuListener {
 
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-
+			
 		}
 	};
 
