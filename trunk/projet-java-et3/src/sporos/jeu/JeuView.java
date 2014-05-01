@@ -22,7 +22,14 @@ public class JeuView extends Component {
 
 	public JeuView(JeuModel jeu) {
 		this.jeu = jeu;
+		// TODO Auto-generated constructor stub
 	}
+
+	
+	public JeuModel getJeu() {
+		return jeu;
+	}
+
 
 	/**
 	 * @param graphics
