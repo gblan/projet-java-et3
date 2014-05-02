@@ -43,6 +43,11 @@ public class JeuView extends Component {
 		return buttonMenuContextuel;
 	}
 	
+	public void setJeu(JeuModel jeu) {
+		this.jeu = jeu;
+	}
+
+
 	/**
 	 * @param graphics
 	 *            on affiche le jeu en faisant appel à l'affichage de chaque
@@ -71,6 +76,13 @@ public class JeuView extends Component {
 		if (jeu.getPionSelectionne() != null) {
 			PionView pionView = new PionView(jeu.getPionSelectionne());
 			pionView.paint(graphics);
+		}
+		if (jeu.getPionRelache() != null){
+			for (PionModel pion : jeu.getPionRelache()) {
+				
+				PionView pionView = new PionView(pion);
+				pionView.paint(graphics);
+			}
 		}
 	}
 
