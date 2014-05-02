@@ -1,4 +1,4 @@
-package sporos.menus;
+package sporos.creations;
 
 public class MesCreations {
 

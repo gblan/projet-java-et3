@@ -60,6 +60,27 @@ public class Grille {
 		return grille;
 	}
 
+	public static Grille buildEmptyGrid() {
+
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>());
+		ArrayList<CaseModel> ligne = null;
+		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
+				0, 0);
+
+		for (int i = 0; i < 10; i++) {
+			ligne = new ArrayList<CaseModel>();
+			for (int j = 0; j < 7; j++) {
+				c = CaseModel.getPositions(j, i);
+				c.setEtatInitial(CaseEnum.DESACTIVEE);
+				c.setEtatActuel(CaseEnum.DESACTIVEE);
+				ligne.add(c);
+			}
+			grille.getListCases().add(ligne);
+		}
+
+		return grille;
+	}
+	
 	@Override
 	public String toString() {
 		String res = "";
