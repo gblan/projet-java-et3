@@ -1,19 +1,18 @@
 package sporos.jeu;
 
-import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.Timer;
 
+import sporos.animation.Animation;
 import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
 import sporos.grille.cases.CaseEnum;
@@ -26,97 +25,30 @@ import sporos.utils.PropertyAcces;
 
 public class JeuListener {
 
+	/**
+	 * 
+	 */
+
 	private JeuModel jeuModel;
 	private JeuView jeuView;
 	private Bruitages bruits;
 	private int cliqueX;
 	private int cliqueY;
+	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
+    
 
-	public JeuListener(JeuModel jeu, JeuView jeuView) {
-		this.jeuModel = jeu;
-		this.jeuView = jeuView;
-		this.bruits = new Bruitages();
-	}
-	
-	public void setJeu(JeuModel jeu) {
-		this.jeuModel = jeu;
+	public Hashtable<PionModel, Timer> getTimers() {
+		return timers;
 	}
 
-	public JeuModel getJeu() {
-		return this.jeuModel;
-	}
-
-	public JeuView getJeuView() {
-		return jeuView;
-	}
-
-	public void setJeuView(JeuView jeuview) {
-		this.jeuView = jeuview;
-	}
-
-	public int getCliqueX() {
-		return cliqueX;
-	}
-
-	public void setCliqueX(int cliqueX) {
-		this.cliqueX = cliqueX;
-	}
-
-	public int getCliqueY() {
-		return cliqueY;
-	}
-
-	public void setCliqueY(int cliqueY) {
-		this.cliqueY = cliqueY;
-	}
-
-	public MouseMotionAdapter getSelectionnerPionsMotion() {
-		return selectionnerPionsMotion;
-	}
-
-	public MouseAdapter getSelectionnerPions() {
-		return selectionnerPions;
-	}
-
-	public MouseAdapter getSelectionnerMenuContextuel() {
-		return selectionnerMenuContextuel;
-	}
-
-	private MouseAdapter recommencerPartie = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500);
-		}
-
-	};
-	
-	private MouseAdapter quitterNiveau = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-			jeuView.setVisible(false);
-			MenuPrincipal av = new MenuPrincipal();
-		}
-
-	};
-	
-	private MouseAdapter quitterPartie = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-			System.exit(0);
-		}
-	};
-
-	
-	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-
-		}
-	};
-	
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
-				if (pion.contains(getCliqueX(), getCliqueY())) {
+				if (pion.contains(getCliqueX(), getCliqueY())
+						&& !jeuModel.getPionRelache().contains(pion)) {
 
 					// Preparation au refresh du deploiment en mettant toutes
 					// les cases potentielles
@@ -188,7 +120,6 @@ public class JeuListener {
 			if (jeuModel.getPionSelectionne() != null) {
 
 				// Si pas de case select, le pion retourne dans la reserve
-
 				if (!(jeuModel.getGrille().getListCases()
 						.get(jeuModel.getIndiceCaseH())
 						.get(jeuModel.getIndiceCaseV()).intersect(jeuModel
@@ -198,14 +129,9 @@ public class JeuListener {
 								.get(jeuModel.getIndiceCaseV()).getEtatActuel()
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 
-					jeuModel.getPionSelectionne().setX(
-							jeuModel.getPionSelectionne().getxInitial());
-					jeuModel.getPionSelectionne().setY(
-							jeuModel.getPionSelectionne().getyInitial());
-					jeuModel.getGrille().getListCases()
-							.get(jeuModel.getIndiceCaseH())
-							.get(jeuModel.getIndiceCaseV())
-							.setEtatActuel(CaseEnum.DISPONIBLE);
+					
+					Animation.DeplacementPion(jeuModel,jeuView,timers,1);
+
 					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
@@ -218,15 +144,17 @@ public class JeuListener {
 
 				} else {
 
+					
 					// sinon on le positionne sur la case TODO ANIMATION
-					jeuModel.getPionSelectionne().setX(
-							jeuModel.getGrille().getListCases()
-									.get(jeuModel.getIndiceCaseH())
-									.get(jeuModel.getIndiceCaseV()).getX() + 3);
-					jeuModel.getPionSelectionne().setY(
-							jeuModel.getGrille().getListCases()
-									.get(jeuModel.getIndiceCaseH())
-									.get(jeuModel.getIndiceCaseV()).getY() + 4);
+//					jeuModel.getPionSelectionne().setX(
+//							jeuModel.getGrille().getListCases()
+//									.get(jeuModel.getIndiceCaseH())
+//									.get(jeuModel.getIndiceCaseV()).getX() + 3);
+//					jeuModel.getPionSelectionne().setY(
+//							jeuModel.getGrille().getListCases()
+//									.get(jeuModel.getIndiceCaseH())
+//									.get(jeuModel.getIndiceCaseV()).getY() + 4);
+					Animation.DeplacementPion(jeuModel,jeuView,timers,0);
 					jeuModel.getGrille().getListCases()
 							.get(jeuModel.getIndiceCaseH())
 							.get(jeuModel.getIndiceCaseV())
@@ -235,6 +163,7 @@ public class JeuListener {
 							jeuModel.getIndiceCaseH());
 					jeuModel.getPionSelectionne().setIndiceCaseV(
 							jeuModel.getIndiceCaseV());
+					
 					/* On met a jour la liste des pions en jeu */
 					List<PionModel> tmp = new ArrayList<PionModel>(
 							jeuModel.getPionsEnJeu());
@@ -259,6 +188,7 @@ public class JeuListener {
 						if (retour == 0) {
 							// OK
 							jeuView.setVisible(false);
+							
 							Principale av = new Principale(
 									PropertyAcces.getCurrentLevel(), 300, 500);
 
@@ -353,4 +283,49 @@ public class JeuListener {
 		}
 	};
 
+	public void setJeuModel(JeuModel jeu) {
+		this.jeuModel = jeu;
+	}
+
+	public JeuModel getJeuModel() {
+		return this.jeuModel;
+	}
+
+	public JeuView getJeuView() {
+		return jeuView;
+	}
+
+	public void setJeuView(JeuView jeuview) {
+		this.jeuView = jeuview;
+	}
+
+	public int getCliqueX() {
+		return cliqueX;
+	}
+
+	public void setCliqueX(int cliqueX) {
+		this.cliqueX = cliqueX;
+	}
+
+	public int getCliqueY() {
+		return cliqueY;
+	}
+
+	public void setCliqueY(int cliqueY) {
+		this.cliqueY = cliqueY;
+	}
+
+	public JeuListener(JeuModel jeu, JeuView jeuView) {
+		this.jeuModel = jeu;
+		this.jeuView = jeuView;
+		this.bruits = new Bruitages();
+	}
+
+	public MouseMotionAdapter getSelectionnerPionsMotion() {
+		return selectionnerPionsMotion;
+	}
+
+	public MouseAdapter getSelectionnerPions() {
+		return selectionnerPions;
+	}
 }
