@@ -47,8 +47,9 @@ public class Grille {
 					caseEnum = CaseEnum.DESACTIVEE;
 				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
 					caseEnum = CaseEnum.DISPONIBLE;
+				} else  {
+					caseEnum = CaseEnum.DESACTIVEE;
 				}
-
 				c.setEtatInitial(caseEnum);
 				c.setEtatActuel(caseEnum);
 
