@@ -92,4 +92,8 @@ public class Reserve {
 
 		return reserve;
 	}
+	
+	public static Reserve buildEmptyReserve() {
+		return new Reserve();
+	}
 }
