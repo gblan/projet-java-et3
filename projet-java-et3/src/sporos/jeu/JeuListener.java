@@ -1,19 +1,13 @@
 package sporos.jeu;
 
-import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sporos.animation.Animation;
