@@ -17,9 +17,12 @@ public class JeuModel {
 	private Grille grille;
 	private Reserve reserve;
 	private PionModel pionSelectionne;
+	private List<PionModel> pionsRelache;
 	private int indiceCaseH;
 	private int indiceCaseV;
 	private List<PionModel> pionsEnJeu;
+	
+	
 
 	/*
 	 * TODO FIN A MODIFIER
@@ -31,6 +34,7 @@ public class JeuModel {
 		this.grille = grille;
 		this.reserve = reserve;
 		this.pionsEnJeu = new ArrayList<PionModel>();
+		this.pionsRelache = new ArrayList<PionModel>();
 	}
 
 	public Reserve getReserve() {
@@ -63,6 +67,15 @@ public class JeuModel {
 
 	public void setPionSelectionne(PionModel pionSelectionne) {
 		this.pionSelectionne = pionSelectionne;
+	}
+
+	
+	public List<PionModel> getPionRelache() {
+		return pionsRelache;
+	}
+
+	public void setPionRelache(List<PionModel> pionRelache) {
+		this.pionsRelache = pionRelache;
 	}
 
 	public Grille getGrille() {
