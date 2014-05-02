@@ -1,15 +1,19 @@
 package sporos.jeu;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sporos.animation.Animation;
@@ -25,22 +29,96 @@ import sporos.utils.PropertyAcces;
 
 public class JeuListener {
 
-	/**
-	 * 
-	 */
-
 	private JeuModel jeuModel;
 	private JeuView jeuView;
 	private Bruitages bruits;
 	private int cliqueX;
 	private int cliqueY;
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
-    
 
+
+	public JeuListener(JeuModel jeu, JeuView jeuView) {
+		this.jeuModel = jeu;
+		this.jeuView = jeuView;
+		this.bruits = new Bruitages();
+	}
+	
+	public void setJeu(JeuModel jeu) {
+		this.jeuModel = jeu;
+	}
+
+	public JeuModel getJeu() {
+		return this.jeuModel;
+	}
+
+	public JeuView getJeuView() {
+		return jeuView;
+	}
+
+	public void setJeuView(JeuView jeuview) {
+		this.jeuView = jeuview;
+	}
+
+	public int getCliqueX() {
+		return cliqueX;
+	}
+
+	public void setCliqueX(int cliqueX) {
+		this.cliqueX = cliqueX;
+	}
+
+	public int getCliqueY() {
+		return cliqueY;
+	}
+
+	public void setCliqueY(int cliqueY) {
+		this.cliqueY = cliqueY;
+	}	
+	
 	public Hashtable<PionModel, Timer> getTimers() {
 		return timers;
 	}
 
+	public MouseMotionAdapter getSelectionnerPionsMotion() {
+		return selectionnerPionsMotion;
+	}
+
+	public MouseAdapter getSelectionnerPions() {
+		return selectionnerPions;
+	}
+
+	public MouseAdapter getSelectionnerMenuContextuel() {
+		return selectionnerMenuContextuel;
+	}
+
+	private MouseAdapter recommencerPartie = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500);
+		}
+
+	};
+	
+	private MouseAdapter quitterNiveau = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			jeuView.setVisible(false);
+			MenuPrincipal av = new MenuPrincipal();
+		}
+
+	};
+	
+	private MouseAdapter quitterPartie = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+			System.exit(0);
+		}
+	};
+
+	
+	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
+		public void mousePressed(MouseEvent evt) {
+
+		}
+	};
+	
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
@@ -283,49 +361,4 @@ public class JeuListener {
 		}
 	};
 
-	public void setJeuModel(JeuModel jeu) {
-		this.jeuModel = jeu;
-	}
-
-	public JeuModel getJeuModel() {
-		return this.jeuModel;
-	}
-
-	public JeuView getJeuView() {
-		return jeuView;
-	}
-
-	public void setJeuView(JeuView jeuview) {
-		this.jeuView = jeuview;
-	}
-
-	public int getCliqueX() {
-		return cliqueX;
-	}
-
-	public void setCliqueX(int cliqueX) {
-		this.cliqueX = cliqueX;
-	}
-
-	public int getCliqueY() {
-		return cliqueY;
-	}
-
-	public void setCliqueY(int cliqueY) {
-		this.cliqueY = cliqueY;
-	}
-
-	public JeuListener(JeuModel jeu, JeuView jeuView) {
-		this.jeuModel = jeu;
-		this.jeuView = jeuView;
-		this.bruits = new Bruitages();
-	}
-
-	public MouseMotionAdapter getSelectionnerPionsMotion() {
-		return selectionnerPionsMotion;
-	}
-
-	public MouseAdapter getSelectionnerPions() {
-		return selectionnerPions;
-	}
 }
