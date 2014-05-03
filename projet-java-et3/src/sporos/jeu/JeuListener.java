@@ -1,13 +1,19 @@
 package sporos.jeu;
 
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sporos.animation.Animation;
@@ -109,7 +115,7 @@ public class JeuListener {
 	
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			System.out.println("teub");
+			jeuView.buildMenuContextuel();
 		}
 	};
 	
@@ -156,7 +162,7 @@ public class JeuListener {
 					}
 					// Deploiment des contaminees
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
 					dc.deploimentListPion();
 
 					// Les potentielles restantes devienne disponible
@@ -208,7 +214,7 @@ public class JeuListener {
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
 					dc.deploimentListPion();
 					bruits.playSong("resources/sounds/ressort.wav");
 
@@ -217,7 +223,7 @@ public class JeuListener {
 				} else {
 
 					
-					// sinon on le positionne sur la case TODO ANIMATION
+					// sinon on le positionne sur la case 
 //					jeuModel.getPionSelectionne().setX(
 //							jeuModel.getGrille().getListCases()
 //									.get(jeuModel.getIndiceCaseH())
@@ -243,7 +249,7 @@ public class JeuListener {
 					jeuModel.setPionsEnJeu(tmp);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu());
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
 					dc.deploimentListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
