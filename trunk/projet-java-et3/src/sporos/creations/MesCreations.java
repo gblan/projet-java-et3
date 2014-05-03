@@ -22,7 +22,6 @@ public class MesCreations extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String[] listNiveau;
-	private int currentLevel = 0;
 
 	/**
 	 * @return Constructeur de niveaux
@@ -31,7 +30,6 @@ public class MesCreations extends JFrame {
 		super(windowsName);
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		currentLevel = PropertyAcces.getCurrentLevel();
 
 		buildLevels();
 		initialize();
@@ -64,8 +62,8 @@ public class MesCreations extends JFrame {
 	}
 
 	private void buildLevels() {
-		String[] tmp = new String[currentLevel + 1];
-		for (int i = 1; i < currentLevel + 1; i++) {
+		String[] tmp = new String[PropertyAcces.getNumLevelToSave()];
+		for (int i = 1; i < PropertyAcces.getNumLevelToSave(); i++) {
 			String str = "level" + i + ".properties";
 			File properties = new File("levels/myLevels/" + str);
 			if (properties.isFile()) {
