@@ -3,6 +3,8 @@ package sporos.reserve.pions;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+import sporos.grille.cases.CaseModel;
+
 public class PionModel {
 
 	private PionEnum typePion;
@@ -87,8 +89,6 @@ public class PionModel {
 	public void setIndiceCaseV(int indiceCaseV) {
 		this.indiceCaseV = indiceCaseV;
 	}
-	
-	
 
 	public int getCaseCouranteDeplacementGauche() {
 		return caseCouranteDeplacementGauche;
@@ -173,7 +173,19 @@ public class PionModel {
 	public void setAjoutHautGauche(int ajoutHautGauche) {
 		this.ajoutHautGauche = ajoutHautGauche;
 	}
-
+	
+	public void setPositionRelativeToGrille(int x, int y) {
+		if (y % 2 == 0) {
+			// Y PAIR
+			this.setX(20 + 40 * x);
+			this.setY(80 + 35 * y);
+		} else {
+			// Y IMPAIR
+			this.setX(40 * x);
+			this.setY(80 + 35 * y);
+		}
+	}
+	
 	/**
 	 * 
 	 * @param point_x
