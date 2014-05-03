@@ -22,26 +22,24 @@ import javax.swing.JPopupMenu;
 
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
+import sporos.menus.MenuContextuel;
 import sporos.reserve.pions.PionModel;
 import sporos.reserve.pions.PionView;
 
 public class JeuView extends Component {
 
 	private JeuModel jeu;
-	private JButton buttonMenuContextuel;
+	private JButton btnMenuContextuel;
 
 	public JeuView(JeuModel jeu) {
 		this.jeu = jeu;
-		this.buttonMenuContextuel = new JButton();
+		this.btnMenuContextuel = MenuContextuel.createButtonContextuel();
 	}
 	
 	public JeuModel getJeu() {
 		return jeu;
 	}
-	
-	public JButton getButtonMenuContextuel() {
-		return buttonMenuContextuel;
-	}
+
 	
 	public void setJeu(JeuModel jeu) {
 		this.jeu = jeu;
@@ -70,7 +68,7 @@ public class JeuView extends Component {
 		}
 		jeu.getReserve().paint(g);
 
-		printLogoMenuContextuel().paint(g);
+		getBtnMenuContextuel().paint(g);
 		
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
@@ -84,22 +82,6 @@ public class JeuView extends Component {
 				pionView.paint(graphics);
 			}
 		}
-	}
-
-	public JButton printLogoMenuContextuel() {
-		JButton btnMenuContextuel = getButtonMenuContextuel();
-		BufferedImage imgMenuContextuel = null;
-		try {
-			imgMenuContextuel = ImageIO.read(new File(
-					"resources/icone_menu.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		btnMenuContextuel = new JButton(new ImageIcon(imgMenuContextuel));
-		btnMenuContextuel.setBorder(BorderFactory.createEmptyBorder());
-		btnMenuContextuel.setContentAreaFilled(false);
-		btnMenuContextuel.setBounds(0, 0, 500, 50);
-		return btnMenuContextuel;
 	}
 	
 	public void buildMenuContextuel(){
@@ -121,6 +103,14 @@ public class JeuView extends Component {
 	    optionPane.add(panel);
 	    
 	    dialog = optionPane.createDialog(null, "Menu Contextuel");
+	}
+
+	public JButton getBtnMenuContextuel() {
+		return btnMenuContextuel;
+	}
+
+	public void setBtnMenuContextuel(JButton btnMenuContextuel) {
+		this.btnMenuContextuel = btnMenuContextuel;
 	}
 
 }
