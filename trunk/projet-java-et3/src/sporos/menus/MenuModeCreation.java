@@ -40,7 +40,7 @@ public class MenuModeCreation extends JFrame {
 		btnMesCreations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				MesCreations av = new MesCreations("Mes Créations");				
+				MesCreations av = new MesCreations("Mes Creations");				
 			}
 		});
 
