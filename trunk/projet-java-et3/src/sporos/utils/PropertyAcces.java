@@ -62,13 +62,15 @@ public class PropertyAcces {
 		}
 	}
 	
-	private int getNumLevelToSave(){
-		int i=0;
-		
-		while(new File("levels/myLevels/level"+i+".properties")!=null){
+	public static int getNumLevelToSave(){
+		int i=1;
+		File f = null;
+		do{
+			f = new File("levels/myLevels/level"+i+".properties");
 			i++;
-		}
-		return i;
+		}while(f.exists());
+		
+		return i-1;
 	}
 	
 	/**
@@ -76,12 +78,12 @@ public class PropertyAcces {
 	 * @param key
 	 * @return sauvegarde l avancement dans le fichier save.properties
 	 */
-	public static void saveCreatedGrid(Grille grille, int currentLevelSaved) {
+	public static void saveCreatedGrid(Grille grille) {
 		Properties prop = new Properties();
 		OutputStream output = null;
 		
 		try {
-			output = new FileOutputStream("levels/myLevels/level"+currentLevelSaved+".properties");
+			output = new FileOutputStream("levels/myLevels/level"+getNumLevelToSave()+".properties");
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 7; j++) {
 					prop.setProperty(j+","+i, grille.getListCases().get(i).get(j).getEtatActuel().toString());
