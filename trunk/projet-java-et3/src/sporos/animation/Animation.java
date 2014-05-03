@@ -45,8 +45,14 @@ public class Animation {
 		
 		final int distance = (int) Math.sqrt(Math.pow(distanceX, 2)
 				+ Math.pow(distanceY, 2));
-
-		Timer timer = new Timer(1000 / distance, new ActionListener() {
+		int deltaTemps;
+		if (distance == 0){
+			deltaTemps = 0;
+		}
+		else {
+			deltaTemps = 1000/distance;
+		}
+		Timer timer = new Timer(deltaTemps, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int step;
 				if (distance > 100) {
