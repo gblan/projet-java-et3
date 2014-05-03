@@ -1,5 +1,7 @@
 package sporos.creations;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -51,6 +53,11 @@ public class CreationListener {
 		this.cliqueY = cliqueY;
 	}
 
+	public KeyListener getKey() {
+		return key;
+	}
+
+
 	private MouseAdapter gridCreationListener = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
@@ -73,6 +80,30 @@ public class CreationListener {
 			jeuView.repaint();
 		}
 
+	};
+	
+	private KeyListener key = new KeyListener(){
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+
+			if((arg0.getKeyCode()==KeyEvent.VK_ENTER)){
+				System.out.println("Teub");
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	};
 
 }

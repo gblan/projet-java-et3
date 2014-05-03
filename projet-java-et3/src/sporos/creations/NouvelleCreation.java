@@ -1,10 +1,15 @@
 package sporos.creations;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import sporos.grille.Grille;
@@ -20,7 +25,7 @@ public class NouvelleCreation extends JFrame{
 		super("Creation de niveau");
 		setBounds(300, 100, 0, 0);
 		Container pane = getContentPane();
-		pane.setLayout(new FlowLayout());
+		pane.setLayout(new CardLayout());
 
 		// DEBUT TEST
 		Grille grille = Grille.buildEmptyGrid();
@@ -35,8 +40,8 @@ public class NouvelleCreation extends JFrame{
 		creationListener.getJeuView().setBackground(Color.WHITE);
 		creationListener.getJeuView().setPreferredSize(new Dimension(300, 500));
 		creationListener.getJeuView().addMouseListener(creationListener.getGridCreationListener());
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		creationListener.getJeuView().addKeyListener(creationListener.getKey());
+
 		pane.add(creationListener.getJeuView());
 		pack();
 		setLocationRelativeTo(null);
