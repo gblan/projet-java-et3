@@ -42,32 +42,31 @@ public class Animation {
 
 		double distanceX = Math.abs(arriveeX - pionRelache.getX());
 		double distanceY = Math.abs(arriveeY - pionRelache.getY());
+		
 		final int distance = (int) Math.sqrt(Math.pow(distanceX, 2)
 				+ Math.pow(distanceY, 2));
 
 		Timer timer = new Timer(1000 / distance, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int step;
-				if (distance > 300) {
+				if (distance > 100) {
+					step = 8;
+				} else if (distance > 50) {
 					step = 6;
-				} else if (distance > 100) {
-					step = 4;
-				} else if (distance > 10) {
-					step = 2;
 				} else {
-					step = 1;
+					step = 2;
 				}
-
-				if (pionRelache.getX() < arriveeX) {
+				int ecart = step-1;
+				if (pionRelache.getX() < arriveeX-ecart) {
 
 					pionRelache.setX(pionRelache.getX() + step);
-				} else if (pionRelache.getX() > arriveeX) {
+				} else if (pionRelache.getX() > arriveeX+ecart) {
 					pionRelache.setX(pionRelache.getX() - step);
 				}
 
-				if (pionRelache.getY() < arriveeY) {
+				if (pionRelache.getY() < arriveeY-ecart) {
 					pionRelache.setY(pionRelache.getY() + step);
-				} else if (pionRelache.getY() > arriveeY) {
+				} else if (pionRelache.getY() > arriveeY+ecart) {
 					pionRelache.setY(pionRelache.getY() - step);
 				}
 				jeuView.repaint();
