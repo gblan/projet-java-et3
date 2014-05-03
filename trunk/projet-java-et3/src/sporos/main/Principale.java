@@ -12,7 +12,9 @@ import sporos.grille.Grille;
 import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
+import sporos.menus.MenuContextuel;
 import sporos.reserve.Reserve;
+import sporos.utils.PropertyAcces;
 
 public class Principale extends JFrame {
 
@@ -40,7 +42,7 @@ public class Principale extends JFrame {
 		// DEBUT TEST
 		Grille grille = Grille.buildGrid("levels/" + level);
 		Reserve reserve = Reserve.buildReserve("levels/" + level);
-
+		
 		// FIN TEST
 
 		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
@@ -53,10 +55,12 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
-		jeuListener.getJeuView().getButtonMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
+		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
 
+		PropertyAcces.saveCreatedGrid(grille, 2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
+		
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);

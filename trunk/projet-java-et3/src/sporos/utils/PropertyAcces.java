@@ -1,5 +1,6 @@
 package sporos.utils;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,6 +10,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 import java.util.Properties;
 
+import sporos.grille.Grille;
+
 public class PropertyAcces {
 
 	public static int getCurrentLevel() {
@@ -16,7 +19,6 @@ public class PropertyAcces {
 
 		try {
 			Properties prop = PropertyLoader.load("save.properties");
-
 			String hash = prop.getProperty("level");
 
 			for (int i = 1; i < 100; i++) {
@@ -44,9 +46,47 @@ public class PropertyAcces {
 		try {
 
 			output = new FileOutputStream("save.properties");
-
 			prop.setProperty("level", hachage(level));
+			prop.store(output, null);
 
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	private int getNumLevelToSave(){
+		int i=0;
+		
+		while(new File("levels/myLevels/level"+i+".properties")!=null){
+			i++;
+		}
+		return i;
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @return sauvegarde l avancement dans le fichier save.properties
+	 */
+	public static void saveCreatedGrid(Grille grille, int currentLevelSaved) {
+		Properties prop = new Properties();
+		OutputStream output = null;
+		
+		try {
+			output = new FileOutputStream("levels/myLevels/level"+currentLevelSaved+".properties");
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 7; j++) {
+					prop.setProperty(j+","+i, grille.getListCases().get(i).get(j).getEtatActuel().toString());
+				}
+			}			
 			prop.store(output, null);
 
 		} catch (IOException io) {
