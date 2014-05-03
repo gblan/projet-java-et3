@@ -30,13 +30,51 @@ public class JeuListener {
 	private Bruitages bruits;
 	private int cliqueX;
 	private int cliqueY;
+	private Timer endTimer;
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
 
 
-	public JeuListener(JeuModel jeu, JeuView jeuView) {
+	public JeuListener(JeuModel jeu, final JeuView jeuView) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
 		this.bruits = new Bruitages();
+		this.endTimer = new Timer(1, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			if (jeuView.getJeu().isFinish()) {
+				endTimer.stop();
+				jeuView.repaint();
+				Bruitages bruitage = new Bruitages();
+				bruitage.playSong("resources/sounds/fun.wav");
+
+				int retour = JOptionPane.showConfirmDialog(null,
+						"Voulez vous passer au niveau suivant ?",
+						"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
+
+				/* Sauvegarde */
+				PropertyAcces.saveProperties(jeuView.getJeu().getIdJeu() + 1);
+				if (retour == 0) {
+					// OK
+					jeuView.setVisible(false);
+					
+					Principale av = new Principale(
+							PropertyAcces.getCurrentLevel(), 300, 500);
+
+				} else if (retour == 2) {
+					// CANCEL
+					jeuView.setVisible(false);
+					MenuPrincipal av = new MenuPrincipal();
+
+				} else if (retour == -1) {
+					// QUIT
+					System.exit(0);
+
+				}
+
+			}
+		}
+		});
+		endTimer.start();
 	}
 	
 	public void setJeu(JeuModel jeu) {
@@ -111,9 +149,7 @@ public class JeuListener {
 	
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			System.out.println("test");
 			jeuView.buildMenuContextuel();
-
 		}
 	};
 	
@@ -130,6 +166,7 @@ public class JeuListener {
 					// les cases potentielles
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
+				
 						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 								.getListCases()) {
 							for (CaseModel caseJeu : alCase) {
@@ -138,6 +175,7 @@ public class JeuListener {
 										&& !caseJeu.getEtatActuel().equals(
 												CaseEnum.OCCUPEE)) {
 									caseJeu.setEtatActuel(CaseEnum.POTENTIELLE);
+									
 								}
 							}
 						}
@@ -160,9 +198,10 @@ public class JeuListener {
 					}
 					// Deploiment des contaminees
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
-					dc.deploimentListPion();
-
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,0);
+					
+					dc.deploimentInstantaneListPion();
+					
 					// Les potentielles restantes devienne disponible
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
@@ -212,7 +251,7 @@ public class JeuListener {
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,100);
 					dc.deploimentListPion();
 					bruits.playSong("resources/sounds/ressort.wav");
 
@@ -247,39 +286,12 @@ public class JeuListener {
 					jeuModel.setPionsEnJeu(tmp);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView);
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,100);
 					dc.deploimentListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
-					if (jeuModel.isFinish()) {
-						jeuView.repaint();
-						bruits.playSong("resources/sounds/fun.wav");
+					
 
-						int retour = JOptionPane.showConfirmDialog(null,
-								"Voulez vous passer au niveau suivant ?",
-								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
-
-						/* Sauvegarde */
-						PropertyAcces.saveProperties(jeuModel.getIdJeu() + 1);
-						if (retour == 0) {
-							// OK
-							jeuView.setVisible(false);
-							
-							Principale av = new Principale(
-									PropertyAcces.getCurrentLevel(), 300, 500);
-
-						} else if (retour == 2) {
-							// CANCEL
-							jeuView.setVisible(false);
-							MenuPrincipal av = new MenuPrincipal();
-
-						} else if (retour == -1) {
-							// QUIT
-							System.exit(0);
-
-						}
-
-					}
 					jeuModel.setPionSelectionne(null);
 					bruits.playSong("resources/sounds/ploc.wav");
 

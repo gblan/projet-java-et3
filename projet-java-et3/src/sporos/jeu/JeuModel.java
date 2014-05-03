@@ -1,13 +1,22 @@
 package sporos.jeu;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
+import sporos.main.Principale;
+import sporos.menus.MenuPrincipal;
 import sporos.reserve.Reserve;
 import sporos.reserve.pions.PionModel;
+import sporos.utils.Bruitages;
+import sporos.utils.PropertyAcces;
 
 public class JeuModel {
 
@@ -21,7 +30,7 @@ public class JeuModel {
 	private int indiceCaseH;
 	private int indiceCaseV;
 	private List<PionModel> pionsEnJeu;
-	
+
 	
 
 	/*
@@ -35,6 +44,7 @@ public class JeuModel {
 		this.reserve = reserve;
 		this.pionsEnJeu = new ArrayList<PionModel>();
 		this.pionsRelache = new ArrayList<PionModel>();
+		
 	}
 
 	public Reserve getReserve() {

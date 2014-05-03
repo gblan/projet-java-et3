@@ -13,6 +13,16 @@ public class PionModel {
 	private static final int RAYON = 21;
 	private int indiceCaseH = -1;
 	private int indiceCaseV = -1;
+	private int caseCouranteDeplacementGauche;
+	private int caseCouranteDeplacementDroite;
+	private int caseCouranteDeplacementBasDroite;
+	private int ajoutBasDroite;
+	private int caseCouranteDeplacementBasGauche;
+	private int ajoutBasGauche;
+	private int caseCouranteDeplacementHautDroite;
+	private int ajoutHautDroite;
+	private int caseCouranteDeplacementHautGauche;
+	private int ajoutHautGauche;
 
 	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial) {
 		super();
@@ -76,6 +86,92 @@ public class PionModel {
 
 	public void setIndiceCaseV(int indiceCaseV) {
 		this.indiceCaseV = indiceCaseV;
+	}
+	
+	
+
+	public int getCaseCouranteDeplacementGauche() {
+		return caseCouranteDeplacementGauche;
+	}
+
+	public void setCaseCouranteDeplacementGauche(int caseCouranteDeplacementGauche) {
+		this.caseCouranteDeplacementGauche = caseCouranteDeplacementGauche;
+	}
+
+	public int getCaseCouranteDeplacementDroite() {
+		return caseCouranteDeplacementDroite;
+	}
+
+	public void setCaseCouranteDeplacementDroite(int caseCouranteDeplacementDroite) {
+		this.caseCouranteDeplacementDroite = caseCouranteDeplacementDroite;
+	}
+
+	public int getCaseCouranteDeplacementBasDroite() {
+		return caseCouranteDeplacementBasDroite;
+	}
+
+	public void setCaseCouranteDeplacementBasDroite(
+			int caseCouranteDeplacementBasDroite) {
+		this.caseCouranteDeplacementBasDroite = caseCouranteDeplacementBasDroite;
+	}
+
+	public int getAjoutBasDroite() {
+		return ajoutBasDroite;
+	}
+
+	public void setAjoutBasDroite(int ajoutBasDroite) {
+		this.ajoutBasDroite = ajoutBasDroite;
+	}
+
+	public int getCaseCouranteDeplacementBasGauche() {
+		return caseCouranteDeplacementBasGauche;
+	}
+
+	public void setCaseCouranteDeplacementBasGauche(
+			int caseCouranteDeplacementBasGauche) {
+		this.caseCouranteDeplacementBasGauche = caseCouranteDeplacementBasGauche;
+	}
+
+	public int getAjoutBasGauche() {
+		return ajoutBasGauche;
+	}
+
+	public void setAjoutBasGauche(int ajoutBasGauche) {
+		this.ajoutBasGauche = ajoutBasGauche;
+	}
+
+	public int getCaseCouranteDeplacementHautDroite() {
+		return caseCouranteDeplacementHautDroite;
+	}
+
+	public void setCaseCouranteDeplacementHautDroite(
+			int caseCouranteDeplacementHautDroite) {
+		this.caseCouranteDeplacementHautDroite = caseCouranteDeplacementHautDroite;
+	}
+
+	public int getAjoutHautDroite() {
+		return ajoutHautDroite;
+	}
+
+	public void setAjoutHautDroite(int ajoutHautDroite) {
+		this.ajoutHautDroite = ajoutHautDroite;
+	}
+
+	public int getCaseCouranteDeplacementHautGauche() {
+		return caseCouranteDeplacementHautGauche;
+	}
+
+	public void setCaseCouranteDeplacementHautGauche(
+			int caseCouranteDeplacementHautGauche) {
+		this.caseCouranteDeplacementHautGauche = caseCouranteDeplacementHautGauche;
+	}
+
+	public int getAjoutHautGauche() {
+		return ajoutHautGauche;
+	}
+
+	public void setAjoutHautGauche(int ajoutHautGauche) {
+		this.ajoutHautGauche = ajoutHautGauche;
 	}
 
 	/**
