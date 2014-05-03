@@ -1,0 +1,75 @@
+
+
+L’IHM est la partie visible du logiciel. Les attentes en termes de qualité, d’ergonomie et de 
+conformité aux standards sont donc fortes. Les interfaces doivent être riches, intuitives et adaptées 
+aux besoins des utilisateurs. 
+Pendant ce projet, nous avons analysé les interfaces de manière à ce qu'elle soit conçue de manière 
+claire et lisible. 
+Nous avons pu mettre en place des composants permettant un fonctionnement plus poussé de notre 
+programme. De plus, nous avons pu utiliser un modèle de cadre d'application ,le modèle MVC.
+
+
+hachage sauvegarde
+sons
+drag & drop
+modèle mvc
+sonar, qualité de code
+
+
+
+
+Introduction
+
+Dans le cadre du module IHM de 3ème année du cycle Ingénieur à Polytech Paris-sud, 
+nous avons été amennés a réaliser un jeu en s'inspirant du jeu existant sur smartphones : SPOROS.
+
+Le but de ce jeu est de placer des pions dans une grille afin de compléter la grille.
+
+L'approche demandée est d'utiliser la programmation orientée objet (POO) via le langage JAVA.
+
+L'objectif de ce projet et donc de réaliser une Interface Homme-Machine ergonomique, ayant pour but principal le divertissement de l'utilisateur.
+
+
+
+Sommaire
+
+I Reflexion, modélisation
+	
+	1) Analyse du jeu sporos.
+Nous avons passé une bonne partie du temps de reflexion a analyser le jeu existant sur smartphone, 
+afin de bien cerner les différentes interractions possibles, et également les classer dans un ordre de réalisation, pour pouvoir nous organiser dans le développement
+
+	
+	2) Modélisation UML
+Avant de commencer a développer, nous nous sommes fixés une structure d'application, afin d'avoir un découpage assez compréhensible de notre programme.
+Le patron de conception qui est naturellement utilisé lors de la création d'une application est le "Modèle-Vue-Controleur". 
+nous avons donc fais notre modélisation en respectant ce patron de conception.
+Bien évidemment le diagramme ci dessous n'est pas celui initial, qui a subit de nombreuses améliorations.
+
+II Développement
+	1) Le jeu.
+			- Grille
+			- Réserve
+	
+	2) Drag & drop
+	
+III Choix de développement
+
+	1) l'acces au fichiers, Properties
+Objet qui appartiends a java, très facile 'utilisation, système de clé-valeur.
+nous sauvegardons nos niveaux dedans.
+
+	2)la sauvegarde de l'avancement
+Nous avons souhaité que l'utilisateur ne puisse pas tricher. pour ce faire, nous avons utilisé un système de hachage de son niveau.
+il ne lui est donc pas possible de passer a un niveau supérieur en ayant pas fini celui actuel.
+	
+IV) technologies utilisées.
+
+	1) SVN, partage de code
+	
+	2) Sonar, qualité de code
+	
+	3) Java sound
+
+
+Conclusion
