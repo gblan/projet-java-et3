@@ -58,7 +58,7 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPionsMotion());
 		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
 
-		PropertyAcces.saveCreatedGrid(grille);
+		PropertyAcces.saveCreatedGrid(grille, reserve);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		
