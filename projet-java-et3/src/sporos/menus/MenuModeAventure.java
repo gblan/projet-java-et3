@@ -28,7 +28,7 @@ public class MenuModeAventure extends JFrame {
 
 	public MenuModeAventure() {
 		super("Mode Aventure");
-
+		ImageImplement background = new ImageImplement(new ImageIcon("resources/Background1.png").getImage(),0,0);
 		JLabel labelNiveauCourant = new JLabel();
 		labelNiveauCourant.setText("Votre niveau actuel : "+PropertyAcces.getCurrentLevel());
 		
@@ -150,6 +150,7 @@ public class MenuModeAventure extends JFrame {
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
 				btnNouvellePartie, btnContinuerPartie, btnListeNiveaux,
 				btnRetourMenu });
+		getContentPane().add(background);
 		getContentPane().setLayout(groupLayout);
 		pack();
 		setLocationRelativeTo(null);
