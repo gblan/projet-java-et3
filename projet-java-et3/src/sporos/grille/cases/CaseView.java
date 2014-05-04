@@ -128,18 +128,16 @@ public class CaseView implements ImageObserver {
 			graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f));
 			graphics.setColor(new Color(20, 20, 20));
 			
-			if (caseModel.getDirectionPropagation().equals(
-					DirectionPropagationEnum.DESCENDANT)) {
+			switch(caseModel.getDirectionPropagation()){
+			case DESCENDANT :
 				graphics.drawLine(caseModel.getX() + 10, caseModel.getY() + 5,caseModel.getX() + 65, caseModel.getY() + 100);
-				
-			} else if (caseModel.getDirectionPropagation().equals(
-					DirectionPropagationEnum.MONTANT)) {
+				break;
+			case MONTANT :
 				graphics.drawLine(caseModel.getX(), caseModel.getY()+57, caseModel.getX()+33, caseModel.getY());
-				
-			} else if (caseModel.getDirectionPropagation().equals(
-					DirectionPropagationEnum.HORIZONTAL)) {
+				break;
+			case HORIZONTAL :
 				graphics.drawLine(caseModel.getX(), caseModel.getY()+22, caseModel.getX()+40, caseModel.getY()+22);
-				
+				break;
 			}			
 			break;
 		case POTENTIELLESURVOLEE:
