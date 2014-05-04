@@ -1,6 +1,7 @@
 package sporos.menus;
 
 import java.awt.Component;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import sporos.grille.GrilleEnum;
@@ -33,6 +35,8 @@ public class MenuPrincipal extends JFrame {
 		super("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		ImageImplement img = new ImageImplement(new ImageIcon("resources/Background1.png").getImage());
+		
 		JButton btnPartieRapide = new JButton("Partie Rapide");
 		BufferedImage imgbtnPartieRapide = null;
 		try {
@@ -123,7 +127,11 @@ public class MenuPrincipal extends JFrame {
 				System.exit(0);
 			}
 		});
+	
+			
+		getContentPane().add(img);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
 				groupLayout
@@ -153,7 +161,9 @@ public class MenuPrincipal extends JFrame {
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
 				btnPartieRapide, btnModeAventure, btnModeCreateur, btnOption,
 				btnQuit });
+		getContentPane().add(img);
 		getContentPane().setLayout(groupLayout);
+       
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
