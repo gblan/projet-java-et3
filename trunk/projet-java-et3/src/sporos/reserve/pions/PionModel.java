@@ -199,6 +199,8 @@ public class PionModel {
 	}
 	
 	public void setPositionRelativeToGrille(int x, int y) {
+		this.setIndiceCaseH(x);
+		this.setIndiceCaseV(y);
 		if (y % 2 == 0) {
 			// Y PAIR
 			this.setX(20 + 40 * x);

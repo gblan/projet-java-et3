@@ -11,6 +11,8 @@ import java.util.Formatter;
 import java.util.Properties;
 
 import sporos.grille.Grille;
+import sporos.reserve.Reserve;
+import sporos.reserve.pions.PionModel;
 
 public class PropertyAcces {
 
@@ -61,35 +63,36 @@ public class PropertyAcces {
 			}
 		}
 	}
-	
-	public static int getNumLevelToSave(){
-		int i=1;
+
+	public static int getNumLevelToSave() {
+		int i = 1;
 		File f = null;
-		do{
-			f = new File("levels/myLevels/level"+i+".properties");
+		do {
+			f = new File("levels/myLevels/level" + i + ".properties");
 			i++;
-		}while(f.exists());
-		
-		return i-1;
+		} while (f.exists());
+
+		return i - 1;
 	}
-	
+
 	/**
 	 * 
+	 * @param reserve
+	 * @param grille
 	 * @param key
 	 * @return sauvegarde l avancement dans le fichier save.properties
 	 */
-	public static void saveCreatedGrid(Grille grille) {
-		Properties prop = new Properties();
+
+	public static void saveCreatedGrid(Grille grille, Reserve reserve) {
+		int numlevel = getNumLevelToSave();
 		OutputStream output = null;
-		
+
 		try {
-			output = new FileOutputStream("levels/myLevels/level"+getNumLevelToSave()+".properties");
-			for (int i = 0; i < grille.getNbLigne() ; i++) {
-				for (int j = 0; j < grille.getNbColonne(); j++) {
-					prop.setProperty(j+","+i, grille.getListCases().get(i).get(j).getEtatActuel().toString());
-				}
-			}			
-			prop.store(output, null);
+			output = new FileOutputStream("levels/myLevels/level" + numlevel
+					+ ".properties");
+
+			savePion(reserve, numlevel, output);
+			saveGrid(grille, numlevel, output);
 
 		} catch (IOException io) {
 			io.printStackTrace();
@@ -102,6 +105,35 @@ public class PropertyAcces {
 				}
 			}
 		}
+
+	}
+
+	private static void savePion(Reserve reserve, int numlevel,
+			OutputStream output) throws IOException {
+		Properties prop = new Properties();
+
+		int i = 1;
+		for (PionModel p : reserve.getPions()) {
+			prop.setProperty("PION" + (i), p.getTypePion().toString());
+			i++;
+		}
+		prop.store(output, null);
+
+	}
+
+	private static void saveGrid(Grille grille, int numlevel,
+			OutputStream output) throws IOException {
+		Properties prop = new Properties();
+
+		for (int i = 0; i < grille.getNbLigne(); i++) {
+			for (int j = 0; j < grille.getNbColonne(); j++) {
+				prop.setProperty(j + "," + i,
+						grille.getListCases().get(i).get(j).getEtatActuel()
+								.toString());
+			}
+		}
+		prop.store(output, null);
+
 	}
 
 	/**
