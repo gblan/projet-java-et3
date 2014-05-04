@@ -1,19 +1,13 @@
 package sporos.grille.cases;
 
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 import sporos.grille.GrilleEnum;
 import sporos.reserve.pions.PionModel;
 
-public class CaseModel extends Component {
+public class CaseModel{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private CaseEnum etatInitial;
 	private CaseEnum etatActuel;
 	private int x;
