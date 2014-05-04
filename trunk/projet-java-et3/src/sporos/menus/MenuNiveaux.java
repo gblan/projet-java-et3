@@ -9,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import sporos.grille.Grille;
+import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.main.Principale;
 import sporos.reserve.Reserve;
@@ -52,7 +53,7 @@ public class MenuNiveaux extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
-					Principale p1 = new Principale(index, 300, 500);
+					Principale p1 = new Principale(index, 300, 500,GrilleEnum.MOYEN);
 
 				}
 			}
@@ -69,8 +70,8 @@ public class MenuNiveaux extends JFrame {
 			File properties = new File("levels/" + str);
 			if (properties.isFile()) {
 				JeuModel jeu = new JeuModel(i,
-						Grille.buildGrid("levels/" + str),
-						Reserve.buildReserve("levels/" + str));
+						Grille.buildGrid("levels/" + str,GrilleEnum.GRAND),
+						Reserve.buildReserve("levels/" + str,GrilleEnum.GRAND));
 				tmp[i] = str;
 			}
 		}

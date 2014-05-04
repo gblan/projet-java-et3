@@ -3,8 +3,8 @@ package sporos.reserve.pions;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseModel;
-
 public class PionModel {
 
 	private PionEnum typePion;
@@ -12,7 +12,7 @@ public class PionModel {
 	private int y;
 	private int xInitial;
 	private int yInitial;
-	private static final int RAYON = 21;
+	private int RAYON;
 	private int indiceCaseH = -1;
 	private int indiceCaseV = -1;
 	private int caseCouranteDeplacementGauche;
@@ -25,14 +25,28 @@ public class PionModel {
 	private int ajoutHautDroite;
 	private int caseCouranteDeplacementHautGauche;
 	private int ajoutHautGauche;
+	private GrilleEnum taille;
 
-	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial) {
+	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial, GrilleEnum taille) {
 		super();
 		this.typePion = typePion;
 		this.x = x;
 		this.y = y;
 		this.xInitial = xInitial;
 		this.yInitial = yInitial;
+		this.taille = taille;
+		switch (taille) {
+		case PETIT :
+			this.RAYON = 31;
+			break;
+		case MOYEN :
+			this.RAYON = 21;
+			
+			break;
+		case GRAND :
+			this.RAYON = 13;
+			break;
+		}
 	}
 
 	public PionModel() {
@@ -88,6 +102,16 @@ public class PionModel {
 
 	public void setIndiceCaseV(int indiceCaseV) {
 		this.indiceCaseV = indiceCaseV;
+	}
+	
+	
+
+	public GrilleEnum getTaille() {
+		return taille;
+	}
+
+	public void setTaille(GrilleEnum taille) {
+		this.taille = taille;
 	}
 
 	public int getCaseCouranteDeplacementGauche() {
@@ -193,7 +217,19 @@ public class PionModel {
 	 * @return true or false si le point selectionné contient le Pion
 	 */
 	public boolean contains(int pointX, int pointY) {
-		Ellipse2D.Float cercle = new Ellipse2D.Float(getX(), getY(), 32, 32);
+		int size=0;
+		switch (taille) {
+		case PETIT :
+			size=42;
+			break;
+		case MOYEN :
+			size=32;
+			break;
+		case GRAND :
+			size=25;
+			break;
+		}
+		Ellipse2D.Float cercle = new Ellipse2D.Float(getX(), getY(), size, size);
 		return (cercle.contains(new Point2D.Float(pointX, pointY)));
 
 	}

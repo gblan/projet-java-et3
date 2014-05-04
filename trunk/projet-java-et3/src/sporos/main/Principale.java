@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 
 import sporos.grille.Grille;
+import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
@@ -30,7 +31,7 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
-	public Principale(int numLevel, int width, int height) {
+	public Principale(int numLevel, int width, int height,GrilleEnum taille) {
 		super("Sporos, niveau : " + numLevel);
 		setBounds(300, 100, 0, 0);
 		setSize(width - 100, height - 100);
@@ -40,8 +41,8 @@ public class Principale extends JFrame {
 		String level = "level" + numLevel + ".properties";
 
 		// DEBUT TEST
-		Grille grille = Grille.buildGrid("levels/" + level);
-		Reserve reserve = Reserve.buildReserve("levels/" + level);
+		Grille grille = Grille.buildGrid("levels/" + level, taille);
+		Reserve reserve = Reserve.buildReserve("levels/" + level, taille);
 		
 		// FIN TEST
 
@@ -57,7 +58,7 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPionsMotion());
 		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
 
-		PropertyAcces.saveCreatedGrid(grille, 2);
+		PropertyAcces.saveCreatedGrid(grille);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		

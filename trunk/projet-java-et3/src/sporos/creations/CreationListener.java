@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.jeu.JeuView;
@@ -62,7 +63,7 @@ public class CreationListener {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
-			PionModel pion = new PionModel(PionEnum.TYPE1, getCliqueX()-20, getCliqueY()-20, 0, 0);
+			PionModel pion = new PionModel(PionEnum.TYPE1, getCliqueX()-20, getCliqueY()-20, 0, 0,GrilleEnum.GRAND);
 			for (ArrayList<CaseModel> alCase : jeuView.getJeu().getGrille()
 					.getListCases()) {
 

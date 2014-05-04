@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import sporos.grille.GrilleEnum;
 import sporos.main.Principale;
 import sporos.utils.PropertyAcces;
 
@@ -47,7 +48,7 @@ public class MenuModeAventure extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500);
+						300, 500,GrilleEnum.MOYEN);
 			}
 		});
 		
@@ -77,7 +78,7 @@ public class MenuModeAventure extends JFrame {
 					PropertyAcces.saveProperties(1);
 					setVisible(false);
 					Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-							300, 500);
+							300, 500,GrilleEnum.MOYEN);
 				}
 				
 			}

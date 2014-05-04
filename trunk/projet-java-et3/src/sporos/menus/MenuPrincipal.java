@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
+import sporos.grille.GrilleEnum;
 import sporos.main.Principale;
 
 public class MenuPrincipal extends JFrame {
@@ -47,7 +48,7 @@ public class MenuPrincipal extends JFrame {
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale p1 = new Principale(1, 300, 500);
+				Principale p1 = new Principale(1, 300, 500,GrilleEnum.PETIT);
 
 			}
 		});

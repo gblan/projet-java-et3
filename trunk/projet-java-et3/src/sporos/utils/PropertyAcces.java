@@ -84,8 +84,8 @@ public class PropertyAcces {
 		
 		try {
 			output = new FileOutputStream("levels/myLevels/level"+getNumLevelToSave()+".properties");
-			for (int i = 0; i < 10; i++) {
-				for (int j = 0; j < 7; j++) {
+			for (int i = 0; i < grille.getNbLigne() ; i++) {
+				for (int j = 0; j < grille.getNbColonne(); j++) {
 					prop.setProperty(j+","+i, grille.getListCases().get(i).get(j).getEtatActuel().toString());
 				}
 			}			
