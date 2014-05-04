@@ -37,7 +37,7 @@ public class MenuPrincipal extends JFrame {
 		BufferedImage imgbtnPartieRapide = null;
 		try {
 			imgbtnPartieRapide = ImageIO.read(new File(
-					"resources/partie-rapide.png"));
+					"resources/PartieRapide.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -57,7 +57,7 @@ public class MenuPrincipal extends JFrame {
 		BufferedImage imgbtnModeAventure = null;
 		try {
 			imgbtnModeAventure = ImageIO.read(new File(
-					"resources/mode-aventure.png"));
+					"resources/ModeAventure.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -76,7 +76,7 @@ public class MenuPrincipal extends JFrame {
 		BufferedImage imgbtnModeCreateur = null;
 		try {
 			imgbtnModeCreateur = ImageIO.read(new File(
-					"resources/mode-createur.png"));
+					"resources/ModeCreation.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -94,7 +94,7 @@ public class MenuPrincipal extends JFrame {
 		JButton btnOption = new JButton("Options");
 		BufferedImage imgbtnOption = null;
 		try {
-			imgbtnOption = ImageIO.read(new File("resources/menu-options.png"));
+			imgbtnOption = ImageIO.read(new File("resources/boutonOption.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -110,7 +110,7 @@ public class MenuPrincipal extends JFrame {
 		JButton btnQuit = new JButton("Quit");
 		BufferedImage imgbtnQuit = null;
 		try {
-			imgbtnQuit = ImageIO.read(new File("resources/menu-quitter.png"));
+			imgbtnQuit = ImageIO.read(new File("resources/Quitter.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -145,8 +145,9 @@ public class MenuPrincipal extends JFrame {
 				groupLayout.createSequentialGroup()
 						.addContainerGap(180, Short.MAX_VALUE)
 						.addComponent(btnPartieRapide).addGap(25)
-						.addComponent(btnModeCreateur).addGap(25)
 						.addComponent(btnModeAventure).addGap(25)
+						.addComponent(btnModeCreateur).addGap(25)
+						
 						.addComponent(btnOption).addGap(25)
 						.addComponent(btnQuit).addGap(61)));
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
