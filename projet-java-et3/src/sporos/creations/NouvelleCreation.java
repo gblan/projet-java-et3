@@ -26,11 +26,11 @@ public class NouvelleCreation extends JFrame{
 		super("Creation de niveau");
 		setBounds(300, 100, 0, 0);
 		Container pane = getContentPane();
-		pane.setLayout(new CardLayout());
+		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
 		// DEBUT TEST
-		Grille grille = Grille.buildEmptyGrid(GrilleEnum.GRAND);
-		Reserve reserve = Reserve.buildEmptyReserve(GrilleEnum.GRAND);
+		Grille grille = Grille.buildEmptyGrid(GrilleEnum.MOYEN);
+		Reserve reserve = Reserve.buildEmptyReserve(GrilleEnum.MOYEN);
 		
 		// FIN TEST
 
@@ -42,8 +42,11 @@ public class NouvelleCreation extends JFrame{
 		creationListener.getJeuView().setPreferredSize(new Dimension(300, 500));
 		creationListener.getJeuView().addMouseListener(creationListener.getGridCreationListener());
 		creationListener.getJeuView().addKeyListener(creationListener.getKey());
-
 		pane.add(creationListener.getJeuView());
+
+		JButton valider = new JButton("Valider");
+		valider.addActionListener(creationListener.getValidateButtonListener());
+		pane.add(valider);
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);

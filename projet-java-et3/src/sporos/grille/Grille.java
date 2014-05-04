@@ -111,9 +111,9 @@ public class Grille {
 		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
 				0, 0,tailleGrille);
 
-		for (int i = 0; i < nbColonne; i++) {
+		for (int i = 0; i < nbLigne; i++) {
 			ligne = new ArrayList<CaseModel>();
-			for (int j = 0; j < nbLigne; j++) {
+			for (int j = 0; j < nbColonne; j++) {
 				c = c.getPositions(j, i);
 				c.setEtatInitial(CaseEnum.DESACTIVEE);
 				c.setEtatActuel(CaseEnum.DESACTIVEE);

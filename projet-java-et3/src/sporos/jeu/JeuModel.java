@@ -144,9 +144,9 @@ public class JeuModel {
 			boolean available = true;
 			do {
 				available = true;
-				int y = (int) (Math.random() * 7);
-				int x = (int) (Math.random() * 10);
-				if (grille.getListCases().get(x).get(y).getEtatActuel()
+				int x = (int) (Math.random() * 7);
+				int y = (int) (Math.random() * 10);
+				if (grille.getListCases().get(y).get(x).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 					pionReserve.setPositionRelativeToGrille(x, y);
 
@@ -163,6 +163,7 @@ public class JeuModel {
 	}
 
 	public boolean isCorrectGrid(long delai) {
+		
 		long t1 = System.currentTimeMillis();
 		long t2 =0;
 		do {
@@ -175,11 +176,12 @@ public class JeuModel {
 			cleanReserve();
 
 			// placement aléatoire des pions
-			randomPlacePion();
-
+			while(this.pionsEnJeu.size()!=reserve.getPions().size()){
+				randomPlacePion();
+			}
 			// déployer contamination
 			DeploimentContaminee dc = new DeploimentContaminee(grille,
-					pionsEnJeu, new JeuView(null),5);
+					pionsEnJeu, null,0);
 			dc.deploimentListPion();
 			if(isFinish()){
 				return true;
