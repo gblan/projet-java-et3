@@ -4,8 +4,15 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
-public class CaseView {
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+public class CaseView implements ImageObserver {
 
 	private CaseModel caseModel;
 
@@ -90,9 +97,14 @@ public class CaseView {
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(128, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			try {
+				graphics.drawImage(ImageIO.read(new File("resources/virus.png")), caseModel.getX()-2, caseModel.getY(), 45, 42, this);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+//			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+//					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
+//							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case SURVOLEE:
 			break;
@@ -148,6 +160,13 @@ public class CaseView {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3,
+			int arg4, int arg5) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

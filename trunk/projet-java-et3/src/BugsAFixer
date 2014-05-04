@@ -1,5 +1,0 @@
-1 : Selection de plusieurs pions
-2 : Quand on pose un pion qq part, puis qu'on le replace a la reserve, la case n'est plus accessible (FAIT) !!
-3 : Quand on selectionne un pion de la reserve, les pions de la grille font de la merde
-4 : mettre les listeners de case(qui sont actuellement dans Principale) dans et3.grille.cases.CaseListener.java
-5 : Quand le pion va sur les cases desactivées, les cases ne sont plus potentielles (FAIT) !!
