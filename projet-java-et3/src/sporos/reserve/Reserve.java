@@ -4,9 +4,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import sporos.grille.GrilleEnum;
 import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 import sporos.utils.PropertyAcces;
@@ -15,9 +17,11 @@ import sporos.utils.PropertyAcces;
 public class Reserve {
 
 	private List<PionModel> pions;
+	private static GrilleEnum tailleGrille;
 
-	public Reserve() {
+	public Reserve(GrilleEnum tailleGrille) {
 		this.pions = new ArrayList<PionModel>();
+		this.tailleGrille=tailleGrille;
 	}
 
 	public List<PionModel> getPions() {
@@ -34,16 +38,29 @@ public class Reserve {
 	 * @param typePion
 	 * @return position absolue de chaque pion
 	 */
-	public static PionModel getPosition(String pionName, PionEnum typePion) {
+	public static PionModel getPosition(String pionName, PionEnum typePion,GrilleEnum tailleGrille) {
 		String num = "";
 		int numInt = 0;
 
 		num = pionName.substring(4);
 		numInt = Integer.parseInt(num);
+		int x=0,y=0;
+		switch (tailleGrille) {
+		case PETIT :
+			x=50 + (50 * (numInt - 1));
+			y=7;
+			break;
+		case MOYEN :
+			x=50 + (40 * (numInt - 1));
+			y=10;
+			break;
+		case GRAND :
+			x=50 + (30* (numInt - 1));
+			y=13;
+			break;
+		}
 
-		int x = 0, y = 10;
-		x = 50 + (40 * (numInt - 1));
-		PionModel pion = new PionModel(typePion, x, y, x, y);
+		PionModel pion = new PionModel(typePion, x, y, x, y,tailleGrille);
 
 		return pion;
 	}
@@ -65,10 +82,10 @@ public class Reserve {
 	 *            .properties
 	 * @return reserve construite a partir du fichier
 	 */
-	public static Reserve buildReserve(String filename) {
+	public static Reserve buildReserve(String filename,GrilleEnum tailleGrille) {
 
 		ArrayList<PionModel> alPions = new ArrayList<PionModel>();
-		Reserve reserve = new Reserve();
+		Reserve reserve = new Reserve(tailleGrille);
 		PionModel p = new PionModel();
 		String typePion, pionName;
 		PionEnum pionEnum = PionEnum.TYPE1;
@@ -84,7 +101,7 @@ public class Reserve {
 			}
 
 			if (!typePion.equals("vide")) {
-				p = getPosition(pionName, pionEnum);
+				p = getPosition(pionName, pionEnum,tailleGrille);
 				alPions.add(p);
 				reserve.setPions(alPions);
 			}
@@ -93,7 +110,7 @@ public class Reserve {
 		return reserve;
 	}
 	
-	public static Reserve buildEmptyReserve() {
-		return new Reserve();
+	public static Reserve buildEmptyReserve(GrilleEnum tailleGrille) {
+		return new Reserve(tailleGrille);
 	}
 }

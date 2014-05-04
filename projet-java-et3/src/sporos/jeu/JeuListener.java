@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import sporos.animation.Animation;
 import sporos.deploiment.DeploimentContaminee;
 import sporos.deploiment.DeploimentSurvolee;
+import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.main.Principale;
@@ -58,7 +59,7 @@ public class JeuListener {
 					jeuView.setVisible(false);
 					
 					Principale av = new Principale(
-							PropertyAcces.getCurrentLevel(), 300, 500);
+							PropertyAcces.getCurrentLevel(), 300, 500,GrilleEnum.MOYEN);
 
 				} else if (retour == 2) {
 					// CANCEL
@@ -127,7 +128,7 @@ public class JeuListener {
 
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500);
+			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500,GrilleEnum.MOYEN);
 		}
 
 	};
@@ -245,7 +246,7 @@ public class JeuListener {
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 
 					
-					Animation.DeplacementPion(jeuModel,jeuView,timers,1);
+					Animation.DeplacementPion(jeuModel,jeuView,timers,1,jeuModel.getGrille().getTaille());
 
 					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
@@ -269,7 +270,7 @@ public class JeuListener {
 //							jeuModel.getGrille().getListCases()
 //									.get(jeuModel.getIndiceCaseH())
 //									.get(jeuModel.getIndiceCaseV()).getY() + 4);
-					Animation.DeplacementPion(jeuModel,jeuView,timers,0);
+					Animation.DeplacementPion(jeuModel,jeuView,timers,0,jeuModel.getGrille().getTaille());
 					jeuModel.getGrille().getListCases()
 							.get(jeuModel.getIndiceCaseH())
 							.get(jeuModel.getIndiceCaseV())

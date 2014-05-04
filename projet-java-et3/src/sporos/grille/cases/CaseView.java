@@ -15,23 +15,25 @@ import javax.swing.ImageIcon;
 public class CaseView implements ImageObserver {
 
 	private CaseModel caseModel;
+	
 
 	public CaseView(CaseModel caseModel) {
 		super();
 		this.caseModel = caseModel;
+		
 	}
 
 	public CaseModel getCaseModel() {
 		return caseModel;
 	}
+	
+	
 
 	public void setCaseModel(CaseModel caseModel) {
 		this.caseModel = caseModel;
 	}
 
-	private static final int HEIGHT = 40;
-	private static final int DRAWOVAL1 = 10;
-	private static final int DRAWOVAL2 = 20;
+	
 	
 	/**
 	 * @param graphics
@@ -42,9 +44,9 @@ public class CaseView implements ImageObserver {
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setStroke(new BasicStroke(2f));
 		// On dessine tout d'abord l'hexagone commun aux cases
-		int r = HEIGHT / 2;
+		int r = caseModel.getHEIGHT() / 2;
 		// r = radius of inscribed circle
-		int s = (int) (HEIGHT / 1.73205);
+		int s = (int) (caseModel.getHEIGHT() / 1.73205);
 		// s = (h/2)/cos(30)= (h/2) /
 		// (sqrt(3)/2) = h / sqrt(3)
 		int t = (int) (r / 1.73205);
@@ -67,36 +69,39 @@ public class CaseView implements ImageObserver {
 		case DISPONIBLE:
 			/*
 			 * dessine le cercle a l'interieur de l'hexagone(besoin de faire des
-			 * decalages en fonction de HEIGHT a case des casts precedants
+			 * decalages en fonction de caseModel.getHEIGHT() a case des casts precedants
 			 */
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case OCCUPEE:
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 
 			break;
 		case CONTAMINEE:
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(128, 203, 96));
+			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			try {
 				graphics.drawImage(ImageIO.read(new File("resources/virus.png")), caseModel.getX()-3, caseModel.getY(), 45, 42, this);
 			} catch (IOException e) {
@@ -113,14 +118,14 @@ public class CaseView implements ImageObserver {
 			
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			
 			/* Direction de propagation */
 
@@ -144,14 +149,14 @@ public class CaseView implements ImageObserver {
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 0, 0));
-			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
+							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case DESACTIVEE:
 			break;

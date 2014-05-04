@@ -2,10 +2,12 @@ package sporos.animation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Hashtable;
 
 import javax.swing.Timer;
 
+import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
 import sporos.reserve.pions.PionModel;
@@ -14,10 +16,26 @@ public class Animation {
 
 	public static void DeplacementPion(final JeuModel jeuModel,
 			final JeuView jeuView, final Hashtable<PionModel, Timer> timers,
-			final int surCase) {
+			final int surCase,GrilleEnum tailleGrille) {
 		// Animation deplacement pion
 		final PionModel pionRelache = jeuModel.getPionSelectionne();
 		jeuModel.getPionRelache().add(pionRelache);
+		int ajoutX=0;
+		int ajoutY=0;
+		switch (tailleGrille) {
+		case PETIT :
+			ajoutX=3;
+			ajoutY=5;
+			break;
+		case MOYEN :
+			ajoutX=3;
+			ajoutY=4;
+			break;
+		case GRAND :
+			ajoutX=1;
+			ajoutY=2;
+			break;
+		}
 
 		final int arriveeX;
 		final int arriveeY;
@@ -25,10 +43,10 @@ public class Animation {
 		case 0:
 			arriveeX = jeuModel.getGrille().getListCases()
 					.get(jeuModel.getIndiceCaseH())
-					.get(jeuModel.getIndiceCaseV()).getX() + 3;
+					.get(jeuModel.getIndiceCaseV()).getX() + ajoutX;
 			arriveeY = jeuModel.getGrille().getListCases()
 					.get(jeuModel.getIndiceCaseH())
-					.get(jeuModel.getIndiceCaseV()).getY() + 4;
+					.get(jeuModel.getIndiceCaseV()).getY() + ajoutY;
 			System.out.println(arriveeX);
 			break;
 		case 1:

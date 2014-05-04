@@ -38,6 +38,8 @@ public class JeuModel {
 		this.pionsRelache = new ArrayList<PionModel>();
 	}
 
+
+
 	public Reserve getReserve() {
 		return reserve;
 	}

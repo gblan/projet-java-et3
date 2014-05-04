@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+import sporos.grille.GrilleEnum;
 import sporos.reserve.pions.PionModel;
 
 public class CaseModel extends Component {
@@ -17,17 +18,99 @@ public class CaseModel extends Component {
 	private CaseEnum etatActuel;
 	private int x;
 	private int y;
+	private GrilleEnum taille;
+	private int HEIGHT;
+	private int DRAWOVAL1;
+	private int DRAWOVAL2;
 	private DirectionPropagationEnum directionPropagation;
-
-	public CaseModel(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
+	public CaseModel(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y,
+			GrilleEnum taille) {
 		super();
 		this.etatInitial = etatInitial;
 		this.etatActuel = etatActuel;
 		this.x = x;
 		this.y = y;
+		this.taille = taille;
+		switch (this.taille) {
+		case PETIT:
+			this.HEIGHT = 60;
+			this.DRAWOVAL1 = 15;
+			this.DRAWOVAL2 = 30;
+			break;
+		case MOYEN:
+			this.HEIGHT = 40;
+			this.DRAWOVAL1 = 10;
+			this.DRAWOVAL2 = 20;
+			break;
+		case GRAND:
+			this.HEIGHT = 30;
+			this.DRAWOVAL1 = 40;
+			this.DRAWOVAL2 = 10;
+			break;
+		default:
+			this.HEIGHT = 40;
+			this.DRAWOVAL1 = 10;
+			this.DRAWOVAL2 = 20;
+			break;
+		}
+
 	}
 
-	public CaseModel() {
+	
+	public int getHEIGHT() {
+		return HEIGHT;
+	}
+
+
+	public void setHEIGHT(int hEIGHT) {
+		HEIGHT = hEIGHT;
+	}
+
+
+	public int getDRAWOVAL1() {
+		return DRAWOVAL1;
+	}
+
+
+	public void setDRAWOVAL1(int dRAWOVAL1) {
+		DRAWOVAL1 = dRAWOVAL1;
+	}
+
+
+	public int getDRAWOVAL2() {
+		return DRAWOVAL2;
+	}
+
+
+	public void setDRAWOVAL2(int dRAWOVAL2) {
+		DRAWOVAL2 = dRAWOVAL2;
+	}
+
+
+	public CaseModel(GrilleEnum taille) {
+		this.taille = taille;
+		switch (this.taille) {
+		case PETIT:
+			this.HEIGHT = 50;
+			this.DRAWOVAL1 = 12;
+			this.DRAWOVAL2 = 11;
+			break;
+		case MOYEN:
+			this.HEIGHT = 40;
+			this.DRAWOVAL1 = 10;
+			this.DRAWOVAL2 = 20;
+			break;
+		case GRAND:
+			this.HEIGHT = 30;
+			this.DRAWOVAL1 = 11;
+			this.DRAWOVAL2 = 15;
+			break;
+		default:
+			this.HEIGHT = 40;
+			this.DRAWOVAL1 = 10;
+			this.DRAWOVAL2 = 20;
+			break;
+		}
 	}
 
 	public CaseEnum getEtatInitial() {
@@ -44,6 +127,14 @@ public class CaseModel extends Component {
 
 	public void setEtatActuel(CaseEnum etatActuel) {
 		this.etatActuel = etatActuel;
+	}
+
+	public GrilleEnum getTaille() {
+		return taille;
+	}
+
+	public void setTaille(GrilleEnum taille) {
+		this.taille = taille;
 	}
 
 	public int getX() {
@@ -68,17 +159,51 @@ public class CaseModel extends Component {
 	 * @param y
 	 * @return position absolue de chaque case
 	 */
-	public static CaseModel getPositions(int x, int y) {
-		CaseModel casePosition = new CaseModel();
+	public CaseModel getPositions(int x, int y) {
+		CaseModel casePosition = new CaseModel(taille);
+		int ecartX;
+		int posX;
+		int ecartY;
+		int posY;
+		switch (this.taille) {
+		case PETIT:
+			ecartX = 25;
+			posX = 50;
+			ecartY = 120;
+			posY=43;
+			break;
+		case MOYEN:
+			ecartX = 20;
+			posX = 40;
+			ecartY = 80;
+			posY=35;
+			break;
+		case GRAND:
+			ecartX = 20;
+			posX = 30;
+			ecartY = 70;
+			posY=25;
+			break;
+		default:
+			ecartX = 20;
+			posX = 40;
+			ecartY = 80;
+			posY=35;
+			break;
+		}
 		if (y % 2 == 0) {
 			// Y PAIR
-			casePosition.setX(20 + 40 * x);
-			casePosition.setY(80 + 35 * y);
+			casePosition.setX(ecartX + posX * x);
+			casePosition.setY(ecartY + posY * y);
 		} else {
 			// Y IMPAIR
-			casePosition.setX(40 * x);
-			casePosition.setY(80 + 35 * y);
-		}
+			if (taille == GrilleEnum.GRAND){
+				casePosition.setX(5+posX * x);
+			}
+			else {
+				casePosition.setX(posX * x);
+			}
+			casePosition.setY(ecartY + posY * y);		}
 
 		return casePosition;
 	}
@@ -125,10 +250,6 @@ public class CaseModel extends Component {
 	public boolean contains(int pointX, int pointY) {
 		Ellipse2D.Float cercle = new Ellipse2D.Float(x, y, HEIGHT, HEIGHT);
 		return (cercle.contains(new Point2D.Float(pointX, pointY)));
-
-	}
-
-	public void paint(Graphics g) {
 
 	}
 

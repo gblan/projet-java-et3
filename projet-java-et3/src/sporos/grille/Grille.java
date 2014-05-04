@@ -10,13 +10,56 @@ import sporos.utils.PropertyAcces;
 public class Grille {
 
 	private List<ArrayList<CaseModel>> listCases;
+	private GrilleEnum taille;
+	private static int nbColonne;
+	private static int nbLigne;
 
-	public Grille(List<ArrayList<CaseModel>> arrayList) {
+	public Grille(List<ArrayList<CaseModel>> arrayList, GrilleEnum taille) {
 		this.listCases = arrayList;
+		this.taille = taille;
+		switch (taille) {
+		case PETIT :
+			nbColonne = 5;
+			nbLigne = 7;
+			break;
+		case MOYEN :
+			nbColonne = 7;
+			nbLigne = 10;
+			break;
+		case GRAND :
+			nbColonne = 9;
+			nbLigne = 13;
+			break;
+		}
 	}
 
 	public List<ArrayList<CaseModel>> getListCases() {
 		return listCases;
+	}
+
+	
+	public GrilleEnum getTaille() {
+		return taille;
+	}
+
+	public void setTaille(GrilleEnum taille) {
+		this.taille = taille;
+	}
+
+	public static int getNbColonne() {
+		return nbColonne;
+	}
+
+	public static void setNbColonne(int nbColonne) {
+		Grille.nbColonne = nbColonne;
+	}
+
+	public static int getNbLigne() {
+		return nbLigne;
+	}
+
+	public static void setNbLigne(int nbLigne) {
+		Grille.nbLigne = nbLigne;
 	}
 
 	/**
@@ -25,22 +68,22 @@ public class Grille {
 	 *            .properties
 	 * @return Grille remplie a partir du .properties
 	 */
-	public static Grille buildGrid(String filename) {
+	public static Grille buildGrid(String filename,GrilleEnum tailleGrille) {
 
-		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>());
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(),tailleGrille);
 		ArrayList<CaseModel> ligne = null;
 		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
-				0, 0);
-
+				0, 0,tailleGrille);
+		
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < nbLigne; i++) {
 			ligne = new ArrayList<CaseModel>();
-			for (int j = 0; j < 7; j++) {
+			for (int j = 0; j < nbColonne; j++) {
 				caseGrille = j + "," + i;
-				c = CaseModel.getPositions(j, i);
+				c = c.getPositions(j, i);
 				typeCase = PropertyAcces.retrieveProperties(filename,
 						caseGrille);
 				if (typeCase.equals(CaseEnum.DESACTIVEE.toString())) {
@@ -61,17 +104,17 @@ public class Grille {
 		return grille;
 	}
 
-	public static Grille buildEmptyGrid() {
+	public static Grille buildEmptyGrid(GrilleEnum tailleGrille) {
 
-		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>());
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(), tailleGrille);
 		ArrayList<CaseModel> ligne = null;
 		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
-				0, 0);
+				0, 0,tailleGrille);
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < nbColonne; i++) {
 			ligne = new ArrayList<CaseModel>();
-			for (int j = 0; j < 7; j++) {
-				c = CaseModel.getPositions(j, i);
+			for (int j = 0; j < nbLigne; j++) {
+				c = c.getPositions(j, i);
 				c.setEtatInitial(CaseEnum.DESACTIVEE);
 				c.setEtatActuel(CaseEnum.DESACTIVEE);
 				ligne.add(c);

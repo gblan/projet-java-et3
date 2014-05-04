@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import sporos.grille.Grille;
+import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
 import sporos.reserve.Reserve;
@@ -28,8 +29,8 @@ public class NouvelleCreation extends JFrame{
 		pane.setLayout(new CardLayout());
 
 		// DEBUT TEST
-		Grille grille = Grille.buildEmptyGrid();
-		Reserve reserve = Reserve.buildEmptyReserve();
+		Grille grille = Grille.buildEmptyGrid(GrilleEnum.GRAND);
+		Reserve reserve = Reserve.buildEmptyReserve(GrilleEnum.GRAND);
 		
 		// FIN TEST
 

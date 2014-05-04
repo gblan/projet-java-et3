@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import sporos.grille.Grille;
+import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.main.Principale;
 import sporos.reserve.Reserve;
@@ -51,7 +52,7 @@ public class MesCreations extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
-					Principale p1 = new Principale(index, 300, 500);
+					Principale p1 = new Principale(index, 300, 500,GrilleEnum.MOYEN);
 
 				}
 			}
@@ -68,8 +69,8 @@ public class MesCreations extends JFrame {
 			File properties = new File("levels/myLevels/" + str);
 			if (properties.isFile()) {
 				JeuModel jeu = new JeuModel(i,
-						Grille.buildGrid("levels/myLevels/" + str),
-						Reserve.buildReserve("levels/myLevels/" + str));
+						Grille.buildGrid("levels/myLevels/" + str,GrilleEnum.GRAND),
+						Reserve.buildReserve("levels/myLevels/" + str,GrilleEnum.GRAND));
 				tmp[i] = str;
 			}
 		}
