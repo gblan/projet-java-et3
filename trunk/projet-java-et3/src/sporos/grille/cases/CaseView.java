@@ -97,6 +97,8 @@ public class CaseView {
 		case SURVOLEE:
 			break;
 		case POTENTIELLE:
+
+			
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
 			graphics.drawOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
@@ -107,6 +109,26 @@ public class CaseView {
 			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
 					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
 							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			
+			/* Direction de propagation */
+
+	        float dash1[] = {4f};
+			graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f));
+			graphics.setColor(new Color(20, 20, 20));
+			
+			if (caseModel.getDirectionPropagation().equals(
+					DirectionPropagationEnum.DESCENDANT)) {
+				graphics.drawLine(caseModel.getX() + 10, caseModel.getY() + 5,caseModel.getX() + 65, caseModel.getY() + 100);
+				
+			} else if (caseModel.getDirectionPropagation().equals(
+					DirectionPropagationEnum.MONTANT)) {
+				graphics.drawLine(caseModel.getX(), caseModel.getY()+57, caseModel.getX()+33, caseModel.getY());
+				
+			} else if (caseModel.getDirectionPropagation().equals(
+					DirectionPropagationEnum.HORIZONTAL)) {
+				graphics.drawLine(caseModel.getX(), caseModel.getY()+22, caseModel.getX()+40, caseModel.getY()+22);
+				
+			}			
 			break;
 		case POTENTIELLESURVOLEE:
 
