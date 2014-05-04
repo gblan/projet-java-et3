@@ -98,7 +98,7 @@ public class CaseView implements ImageObserver {
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(128, 203, 96));
 			try {
-				graphics.drawImage(ImageIO.read(new File("resources/virus.png")), caseModel.getX()-2, caseModel.getY(), 45, 42, this);
+				graphics.drawImage(ImageIO.read(new File("resources/virus.png")), caseModel.getX()-3, caseModel.getY(), 45, 42, this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
