@@ -17,6 +17,7 @@ public class CaseModel extends Component {
 	private CaseEnum etatActuel;
 	private int x;
 	private int y;
+	private DirectionPropagationEnum directionPropagation;
 
 	public CaseModel(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y) {
 		super();
@@ -139,6 +140,14 @@ public class CaseModel extends Component {
 				+ ", etat actuel : " + this.etatActuel.toString() + "\n";
 
 		return res;
+	}
+
+	public DirectionPropagationEnum getDirectionPropagation() {
+		return directionPropagation;
+	}
+
+	public void setDirectionPropagation(DirectionPropagationEnum directionPropagation) {
+		this.directionPropagation = directionPropagation;
 	}
 
 }
