@@ -22,6 +22,7 @@ import javax.swing.JPopupMenu;
 
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
+import sporos.menus.ImageImplement;
 import sporos.menus.MenuContextuel;
 import sporos.reserve.pions.PionModel;
 import sporos.reserve.pions.PionView;
@@ -56,6 +57,7 @@ public class JeuView extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
+
 		for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
 			for (CaseModel cases : alCase) {
 				CaseView caseView = new CaseView(cases);
