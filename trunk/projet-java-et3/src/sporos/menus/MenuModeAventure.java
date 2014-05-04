@@ -36,7 +36,7 @@ public class MenuModeAventure extends JFrame {
 		BufferedImage imgbtnContinuerPartie = null;
 		try {
 			imgbtnContinuerPartie = ImageIO.read(new File(
-					"resources/continuer-partie.png"));
+					"resources/ContinuerPartie.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -56,7 +56,7 @@ public class MenuModeAventure extends JFrame {
 		BufferedImage imgbtnNouvellePartie = null;
 		try {
 			imgbtnNouvellePartie = ImageIO.read(new File(
-					"resources/nouvelle-partie.png"));
+					"resources/NouvellePartie.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -88,7 +88,7 @@ public class MenuModeAventure extends JFrame {
 		BufferedImage imgbtnListeNiveaux = null;
 		try {
 			imgbtnListeNiveaux = ImageIO.read(new File(
-					"resources/liste-niveaux.png"));
+					"resources/ListeNiveaux.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -107,7 +107,7 @@ public class MenuModeAventure extends JFrame {
 		BufferedImage imgbtnRetourMenu = null;
 		try {
 			imgbtnRetourMenu = ImageIO.read(new File(
-					"resources/menu-principal.png"));
+					"resources/MenuPrincipal.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

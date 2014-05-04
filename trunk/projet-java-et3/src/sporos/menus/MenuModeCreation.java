@@ -29,7 +29,7 @@ public class MenuModeCreation extends JFrame {
 		BufferedImage imgbtnMesCreations = null;
 		try {
 			imgbtnMesCreations = ImageIO.read(new File(
-					"resources/mes-creations.png"));
+					"resources/MesCreation.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -48,7 +48,7 @@ public class MenuModeCreation extends JFrame {
 		BufferedImage imgbtnNouvelleCreation = null;
 		try {
 			imgbtnNouvelleCreation = ImageIO.read(new File(
-					"resources/nouvelle-creation.png"));
+					"resources/NouvelleCreation.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -68,7 +68,7 @@ public class MenuModeCreation extends JFrame {
 		BufferedImage imgbtnRetourMenu = null;
 		try {
 			imgbtnRetourMenu = ImageIO.read(new File(
-					"resources/menu-principal.png"));
+					"resources/MenuPrincipal.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
