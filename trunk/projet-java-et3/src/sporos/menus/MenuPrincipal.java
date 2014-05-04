@@ -35,7 +35,7 @@ public class MenuPrincipal extends JFrame {
 		super("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ImageImplement img = new ImageImplement(new ImageIcon("resources/Background1.png").getImage());
+		ImageImplement background = new ImageImplement(new ImageIcon("resources/Background1.png").getImage(),0,0);
 		
 		JButton btnPartieRapide = new JButton("Partie Rapide");
 		BufferedImage imgbtnPartieRapide = null;
@@ -129,7 +129,7 @@ public class MenuPrincipal extends JFrame {
 		});
 	
 			
-		getContentPane().add(img);
+
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
@@ -161,7 +161,7 @@ public class MenuPrincipal extends JFrame {
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
 				btnPartieRapide, btnModeAventure, btnModeCreateur, btnOption,
 				btnQuit });
-		getContentPane().add(img);
+		getContentPane().add(background);
 		getContentPane().setLayout(groupLayout);
        
 		pack();

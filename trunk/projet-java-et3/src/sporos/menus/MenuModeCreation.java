@@ -24,7 +24,7 @@ public class MenuModeCreation extends JFrame {
 
 	public MenuModeCreation() {
 		super("Mode Creation");
-
+		ImageImplement background = new ImageImplement(new ImageIcon("resources/Background1.png").getImage(),0,0);
 		JButton btnMesCreations = new JButton("Mes Creations");
 		BufferedImage imgbtnMesCreations = null;
 		try {
@@ -106,6 +106,7 @@ public class MenuModeCreation extends JFrame {
 						.addComponent(btnRetourMenu).addGap(61)));
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
 				btnMesCreations, btnNouvelleCreation, btnRetourMenu });
+		getContentPane().add(background);
 		getContentPane().setLayout(groupLayout);
 		pack();
 		setLocationRelativeTo(null);

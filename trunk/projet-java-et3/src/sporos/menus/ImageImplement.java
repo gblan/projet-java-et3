@@ -7,10 +7,14 @@ import javax.swing.JPanel;
 
 public class ImageImplement extends JPanel{
 	private java.awt.Image img;
+	private int x;
+	private int y;
 
-	public ImageImplement(java.awt.Image img) {
+	public ImageImplement(java.awt.Image img,int x,int y) {
 		super();
 		this.img = img;
+		this.x = x;
+		this.y = y;
 		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 		setPreferredSize(size);
 		setMinimumSize(size);
@@ -20,7 +24,7 @@ public class ImageImplement extends JPanel{
 	}
 
 	public void paintComponent(Graphics g) {
-		g.drawImage(img, 0, 0, null);
+		g.drawImage(img, x, y, null);
 	}
 
 }
