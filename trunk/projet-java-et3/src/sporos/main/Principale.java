@@ -32,7 +32,7 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
-	public Principale(int numLevel, int width, int height,GrilleEnum taille) {
+	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels) {
 		super("Sporos, niveau : " + numLevel);
 //		setBounds(300, 500, 10, 100);
 		setSize(width, height);
@@ -44,10 +44,16 @@ public class Principale extends JFrame {
 
 		String level = "level" + numLevel + ".properties";
 
+		Grille grille = null;
+		Reserve reserve = null;
 		// DEBUT TEST
-		Grille grille = Grille.buildGrid("levels/" + level, taille);
-		Reserve reserve = Reserve.buildReserve("levels/" + level, taille);
-		
+		if(myLevels){
+			grille = Grille.buildGrid("levels/myLevels/" + level, taille);
+			reserve = Reserve.buildReserve("levels/myLevels/" + level, taille);
+		}else{
+			grille = Grille.buildGrid("levels/" + level, taille);
+			reserve = Reserve.buildReserve("levels/" + level, taille);
+		}
 		// FIN TEST
 
 		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
@@ -61,10 +67,9 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPionsMotion());
 		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
 
-		PropertyAcces.saveCreatedGrid(grille, reserve);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
-		
+//		System.out.println("is corect grid : "+jeu.isCorrectGrid(15));
 //		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
