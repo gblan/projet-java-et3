@@ -10,31 +10,25 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class CaseView implements ImageObserver {
 
 	private CaseModel caseModel;
-	
 
 	public CaseView(CaseModel caseModel) {
 		super();
 		this.caseModel = caseModel;
-		
+
 	}
 
 	public CaseModel getCaseModel() {
 		return caseModel;
 	}
-	
-	
 
 	public void setCaseModel(CaseModel caseModel) {
 		this.caseModel = caseModel;
 	}
 
-	
-	
 	/**
 	 * @param graphics
 	 *            on affiche la case
@@ -69,94 +63,151 @@ public class CaseView implements ImageObserver {
 		case DISPONIBLE:
 			/*
 			 * dessine le cercle a l'interieur de l'hexagone(besoin de faire des
-			 * decalages en fonction de caseModel.getHEIGHT() a case des casts precedants
+			 * decalages en fonction de caseModel.getHEIGHT() a case des casts
+			 * precedants
 			 */
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case OCCUPEE:
 			graphics.setColor(Color.black);
-			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 
 			break;
 		case CONTAMINEE:
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(128, 203, 96));
-			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			try {
-				graphics.drawImage(ImageIO.read(new File("resources/virus.png")), caseModel.getX()-3, caseModel.getY(), 45, 42, this);
+				graphics.drawImage(
+						ImageIO.read(new File("resources/virus.png")),
+						caseModel.getX() - 3, caseModel.getY(), 45, 42, this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-//			graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-//					caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2 * r
-//							- (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			// graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
+			// caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2
+			// * r
+			// - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
 			break;
 		case SURVOLEE:
 			break;
 		case POTENTIELLE:
 
-			
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
-			
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
+
 			/* Direction de propagation */
 
-	        float dash1[] = {4f};
-			graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f));
+			float dash1[] = { 4f };
+			graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
+					BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f));
 			graphics.setColor(new Color(20, 20, 20));
-			
-			switch(caseModel.getDirectionPropagation()){
-			case DESCENDANT :
-				graphics.drawLine(caseModel.getX() + 10, caseModel.getY() + 5,caseModel.getX() + 65, caseModel.getY() + 100);
+
+			switch (caseModel.getDirectionPropagation()) {
+			case DESCENDANT:
+				graphics.drawLine(caseModel.getX() + 10, caseModel.getY() + 5,
+						caseModel.getX() + 65, caseModel.getY() + 100);
 				break;
-			case MONTANT :
-				graphics.drawLine(caseModel.getX(), caseModel.getY()+57, caseModel.getX()+33, caseModel.getY());
+			case MONTANT:
+				graphics.drawLine(caseModel.getX(), caseModel.getY() + 57,
+						caseModel.getX() + 33, caseModel.getY());
 				break;
-			case HORIZONTAL :
-				graphics.drawLine(caseModel.getX(), caseModel.getY()+22, caseModel.getX()+40, caseModel.getY()+22);
+			case HORIZONTAL:
+				graphics.drawLine(caseModel.getX(), caseModel.getY() + 22,
+						caseModel.getX() + 40, caseModel.getY() + 22);
 				break;
-			}			
+			}
 			break;
 		case POTENTIELLESURVOLEE:
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 0, 0));
-			graphics.drawOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(caseModel.getX() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY() + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()) + (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()), 2 * r
-							- (caseModel.getHEIGHT() / 5), 2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case DESACTIVEE:
 			break;

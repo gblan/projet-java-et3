@@ -38,8 +38,12 @@ public class DeploimentSurvolee extends Deploiment {
 				/* Transformation de la case en case potentielle */
 				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(i)
 						.setEtatActuel(CaseEnum.POTENTIELLE);
-				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(i)
-				.setDirectionPropagation(DirectionPropagationEnum.HORIZONTAL);
+				super.getGrille()
+						.getListCases()
+						.get(p.getIndiceCaseH())
+						.get(i)
+						.setDirectionPropagation(
+								DirectionPropagationEnum.HORIZONTAL);
 
 			}
 		}
@@ -62,8 +66,12 @@ public class DeploimentSurvolee extends Deploiment {
 				/* SURVOL */
 				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
 						.setEtatActuel(CaseEnum.POTENTIELLE);
-				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
-				.setDirectionPropagation(DirectionPropagationEnum.HORIZONTAL);
+				super.getGrille()
+						.getListCases()
+						.get(p.getIndiceCaseH())
+						.get(j)
+						.setDirectionPropagation(
+								DirectionPropagationEnum.HORIZONTAL);
 
 			}
 
@@ -95,9 +103,12 @@ public class DeploimentSurvolee extends Deploiment {
 					super.getGrille().getListCases().get(j)
 							.get(p.getIndiceCaseV() + ajout)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
-					super.getGrille().getListCases().get(j)
-					.get(p.getIndiceCaseV() + ajout)
-					.setDirectionPropagation(DirectionPropagationEnum.DESCENDANT);
+					super.getGrille()
+							.getListCases()
+							.get(j)
+							.get(p.getIndiceCaseV() + ajout)
+							.setDirectionPropagation(
+									DirectionPropagationEnum.DESCENDANT);
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -129,10 +140,13 @@ public class DeploimentSurvolee extends Deploiment {
 					super.getGrille().getListCases().get(j)
 							.get(p.getIndiceCaseV() - ajout)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
-					
-					super.getGrille().getListCases().get(j)
-					.get(p.getIndiceCaseV() - ajout)
-					.setDirectionPropagation(DirectionPropagationEnum.DESCENDANT);
+
+					super.getGrille()
+							.getListCases()
+							.get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setDirectionPropagation(
+									DirectionPropagationEnum.DESCENDANT);
 
 				}
 			} catch (IndexOutOfBoundsException e) {
@@ -165,10 +179,13 @@ public class DeploimentSurvolee extends Deploiment {
 					super.getGrille().getListCases().get(j)
 							.get(p.getIndiceCaseV() - ajout)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
-					
-					super.getGrille().getListCases().get(j)
-					.get(p.getIndiceCaseV() - ajout)
-					.setDirectionPropagation(DirectionPropagationEnum.MONTANT);
+
+					super.getGrille()
+							.getListCases()
+							.get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setDirectionPropagation(
+									DirectionPropagationEnum.MONTANT);
 				}
 			} catch (IndexOutOfBoundsException e) {
 				break;
@@ -199,10 +216,13 @@ public class DeploimentSurvolee extends Deploiment {
 					super.getGrille().getListCases().get(j)
 							.get(p.getIndiceCaseV() - ajout)
 							.setEtatActuel(CaseEnum.POTENTIELLE);
-					
-					super.getGrille().getListCases().get(j)
-					.get(p.getIndiceCaseV() - ajout)
-					.setDirectionPropagation(DirectionPropagationEnum.MONTANT);
+
+					super.getGrille()
+							.getListCases()
+							.get(j)
+							.get(p.getIndiceCaseV() - ajout)
+							.setDirectionPropagation(
+									DirectionPropagationEnum.MONTANT);
 
 				}
 			} catch (IndexOutOfBoundsException e) {

@@ -24,7 +24,8 @@ public class MenuModeCreation extends JFrame {
 
 	public MenuModeCreation() {
 		super("Mode Creation");
-		ImageImplement background = new ImageImplement(new ImageIcon("resources/Background1.png").getImage(),0,0);
+		ImageImplement background = new ImageImplement(new ImageIcon(
+				"resources/Background1.png").getImage(), 0, 0);
 		JButton btnMesCreations = new JButton("Mes Creations");
 		BufferedImage imgbtnMesCreations = null;
 		try {
@@ -40,7 +41,7 @@ public class MenuModeCreation extends JFrame {
 		btnMesCreations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				MesCreations av = new MesCreations("Mes Creations");				
+				MesCreations av = new MesCreations("Mes Creations");
 			}
 		});
 

@@ -76,11 +76,12 @@ public abstract class Deploiment {
 		deploimentHautGauche(p);
 		deploimentBasDroit(p);
 	}
-	
+
 	/**
-	 * @return propagation du pion vers la gauche puis vers la droite instantanement
+	 * @return propagation du pion vers la gauche puis vers la droite
+	 *         instantanement
 	 */
-	
+
 	protected abstract void deploimentGauche(PionModel p);
 
 	protected abstract void deploimentDroite(PionModel p);
@@ -93,11 +94,10 @@ public abstract class Deploiment {
 	protected abstract void deploimentHautGauche(PionModel p);
 
 	/**
-	 * @return propagation du pion vers le haut droit puis vers le bas gauche 
+	 * @return propagation du pion vers le haut droit puis vers le bas gauche
 	 */
 	protected abstract void deploimentHautDroite(PionModel p);
 
 	protected abstract void deploimentBasGauche(PionModel p);
-	
 
 }

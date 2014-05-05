@@ -5,12 +5,12 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class ImageImplement extends JPanel{
+public class ImageImplement extends JPanel {
 	private java.awt.Image img;
 	private int x;
 	private int y;
 
-	public ImageImplement(java.awt.Image img,int x,int y) {
+	public ImageImplement(java.awt.Image img, int x, int y) {
 		super();
 		this.img = img;
 		this.x = x;

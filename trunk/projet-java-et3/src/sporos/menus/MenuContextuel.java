@@ -11,7 +11,6 @@ import javax.swing.JButton;
 
 public class MenuContextuel {
 
-
 	public static JButton createButtonContextuel() {
 		JButton btnMenuContextuel = new JButton();
 		BufferedImage imgMenuContextuel = null;
@@ -25,7 +24,7 @@ public class MenuContextuel {
 		btnMenuContextuel.setBorder(BorderFactory.createEmptyBorder());
 		btnMenuContextuel.setContentAreaFilled(false);
 		btnMenuContextuel.setBounds(20, 0, 520, 50);
-		
+
 		return btnMenuContextuel;
 	}
 

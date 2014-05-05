@@ -1,6 +1,5 @@
 package sporos.creations;
 
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -52,7 +51,8 @@ public class MesCreations extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
-					Principale p1 = new Principale(index, 300, 500,GrilleEnum.MOYEN);
+					Principale p1 = new Principale(index, 300, 500,
+							GrilleEnum.MOYEN);
 
 				}
 			}
@@ -68,9 +68,10 @@ public class MesCreations extends JFrame {
 			String str = "level" + i + ".properties";
 			File properties = new File("levels/myLevels/" + str);
 			if (properties.isFile()) {
-				JeuModel jeu = new JeuModel(i,
-						Grille.buildGrid("levels/myLevels/" + str,GrilleEnum.GRAND),
-						Reserve.buildReserve("levels/myLevels/" + str,GrilleEnum.GRAND));
+				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
+						"levels/myLevels/" + str, GrilleEnum.GRAND),
+						Reserve.buildReserve("levels/myLevels/" + str,
+								GrilleEnum.GRAND));
 				tmp[i] = str;
 			}
 		}

@@ -5,17 +5,12 @@ import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.jeu.JeuView;
-import sporos.main.Principale;
-import sporos.menus.MenuPrincipal;
 import sporos.reserve.pions.PionModel;
-import sporos.utils.Bruitages;
-import sporos.utils.PropertyAcces;
 
 public class DeploimentContaminee extends Deploiment {
 
@@ -290,11 +285,10 @@ public class DeploimentContaminee extends Deploiment {
 	protected void deploimentGauche(final PionModel p) {
 		/* Vers la gauche */
 		final Grille grille = super.getGrille();
-		if (p.getIndiceCaseV() - 1 == -1){
+		if (p.getIndiceCaseV() - 1 == -1) {
 			p.setCaseCouranteDeplacementGauche(0);
-		}
-		else {
-			p.setCaseCouranteDeplacementGauche(p.getIndiceCaseV() -1);
+		} else {
+			p.setCaseCouranteDeplacementGauche(p.getIndiceCaseV() - 1);
 		}
 		Timer timer = new Timer(vitesse, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -304,8 +298,8 @@ public class DeploimentContaminee extends Deploiment {
 				 */
 
 				if ((grille.getListCases().get(p.getIndiceCaseH())
-						.get(p.getCaseCouranteDeplacementGauche()).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE))
+						.get(p.getCaseCouranteDeplacementGauche())
+						.getEtatActuel().equals(CaseEnum.DESACTIVEE))
 						|| (grille.getListCases().get(p.getIndiceCaseH())
 								.get(p.getCaseCouranteDeplacementGauche())
 								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
@@ -321,8 +315,8 @@ public class DeploimentContaminee extends Deploiment {
 				 * contaminee ou disponible
 				 */
 				else if (grille.getListCases().get(p.getIndiceCaseH())
-						.get(p.getCaseCouranteDeplacementGauche()).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)
+						.get(p.getCaseCouranteDeplacementGauche())
+						.getEtatActuel().equals(CaseEnum.POTENTIELLE)
 						|| grille.getListCases().get(p.getIndiceCaseH())
 								.get(p.getCaseCouranteDeplacementGauche())
 								.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
@@ -330,12 +324,14 @@ public class DeploimentContaminee extends Deploiment {
 					grille.getListCases().get(p.getIndiceCaseH())
 							.get(p.getCaseCouranteDeplacementGauche())
 							.setEtatActuel(CaseEnum.CONTAMINEE);
-					if (p.getCaseCouranteDeplacementGauche() == 0 || p.getCaseCouranteDeplacementGauche() == -1) {
+					if (p.getCaseCouranteDeplacementGauche() == 0
+							|| p.getCaseCouranteDeplacementGauche() == -1) {
 						timersDeploiment.get("gauche" + p.hashCode()).stop();
 						timersDeploiment.remove("gauche" + p.hashCode());
 
 					} else {
-						p.setCaseCouranteDeplacementGauche(p.getCaseCouranteDeplacementGauche()-1);
+						p.setCaseCouranteDeplacementGauche(p
+								.getCaseCouranteDeplacementGauche() - 1);
 					}
 
 				}
@@ -353,11 +349,10 @@ public class DeploimentContaminee extends Deploiment {
 
 		final Grille grille = super.getGrille();
 		if (p.getIndiceCaseV() + 1 == grille.getListCases()
-				.get(p.getIndiceCaseH()).size()){
+				.get(p.getIndiceCaseH()).size()) {
 			p.setCaseCouranteDeplacementDroite(p.getIndiceCaseV());
-		}
-		else {
-			p.setCaseCouranteDeplacementDroite( p.getIndiceCaseV() + 1);
+		} else {
+			p.setCaseCouranteDeplacementDroite(p.getIndiceCaseV() + 1);
 		}
 		Timer timer = new Timer(vitesse, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -367,8 +362,8 @@ public class DeploimentContaminee extends Deploiment {
 				 */
 
 				if ((grille.getListCases().get(p.getIndiceCaseH())
-						.get(p.getCaseCouranteDeplacementDroite()).getEtatActuel()
-						.equals(CaseEnum.DESACTIVEE))
+						.get(p.getCaseCouranteDeplacementDroite())
+						.getEtatActuel().equals(CaseEnum.DESACTIVEE))
 						|| (grille.getListCases().get(p.getIndiceCaseH())
 								.get(p.getCaseCouranteDeplacementDroite())
 								.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
@@ -383,8 +378,8 @@ public class DeploimentContaminee extends Deploiment {
 				 * contaminee ou disponible
 				 */
 				else if (grille.getListCases().get(p.getIndiceCaseH())
-						.get(p.getCaseCouranteDeplacementDroite()).getEtatActuel()
-						.equals(CaseEnum.POTENTIELLE)
+						.get(p.getCaseCouranteDeplacementDroite())
+						.getEtatActuel().equals(CaseEnum.POTENTIELLE)
 						|| grille.getListCases().get(p.getIndiceCaseH())
 								.get(p.getCaseCouranteDeplacementDroite())
 								.getEtatActuel().equals(CaseEnum.CONTAMINEE)) {
@@ -392,16 +387,19 @@ public class DeploimentContaminee extends Deploiment {
 					grille.getListCases().get(p.getIndiceCaseH())
 							.get(p.getCaseCouranteDeplacementDroite())
 							.setEtatActuel(CaseEnum.CONTAMINEE);
-					if (p.getCaseCouranteDeplacementDroite() == grille.getListCases()
-							.get(p.getIndiceCaseH()).size() - 1 || p.getCaseCouranteDeplacementDroite() == grille.getListCases()
-							.get(p.getIndiceCaseH()).size()) {
+					if (p.getCaseCouranteDeplacementDroite() == grille
+							.getListCases().get(p.getIndiceCaseH()).size() - 1
+							|| p.getCaseCouranteDeplacementDroite() == grille
+									.getListCases().get(p.getIndiceCaseH())
+									.size()) {
 
 						timersDeploiment.get("droite" + p.hashCode()).stop();
 						timersDeploiment.remove("droite" + p.hashCode());
 
 						System.out.println(timersDeploiment);
 					} else {
-						p.setCaseCouranteDeplacementDroite( p.getCaseCouranteDeplacementDroite()+1);
+						p.setCaseCouranteDeplacementDroite(p
+								.getCaseCouranteDeplacementDroite() + 1);
 					}
 
 				}
@@ -420,7 +418,7 @@ public class DeploimentContaminee extends Deploiment {
 		p.setAjoutBasDroite(0);
 		/* vers le bas droit */
 		final Grille grille = super.getGrille();
-		p.setCaseCouranteDeplacementBasDroite(p.getIndiceCaseH() + 1) ;
+		p.setCaseCouranteDeplacementBasDroite(p.getIndiceCaseH() + 1);
 		Timer timer = new Timer(vitesse, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
@@ -430,16 +428,18 @@ public class DeploimentContaminee extends Deploiment {
 
 				try {
 					if (p.getCaseCouranteDeplacementBasDroite() % 2 == 1) {
-						p.setAjoutBasDroite(p.getAjoutBasDroite()+1);
+						p.setAjoutBasDroite(p.getAjoutBasDroite() + 1);
 					}
 
 					if ((grille.getListCases()
 							.get(p.getCaseCouranteDeplacementBasDroite())
 							.get(p.getIndiceCaseV() + p.getAjoutBasDroite())
 							.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementBasDroite())
-									.get(p.getIndiceCaseV() + p.getAjoutBasDroite())
+									.get(p.getIndiceCaseV()
+											+ p.getAjoutBasDroite())
 									.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 
 						timersDeploiment.get("basdroite" + p.hashCode()).stop();
@@ -458,9 +458,11 @@ public class DeploimentContaminee extends Deploiment {
 							.get(p.getCaseCouranteDeplacementBasDroite())
 							.get(p.getIndiceCaseV() + p.getAjoutBasDroite())
 							.getEtatActuel().equals(CaseEnum.POTENTIELLE)
-							|| grille.getListCases()
+							|| grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementBasDroite())
-									.get(p.getIndiceCaseV() + p.getAjoutBasDroite())
+									.get(p.getIndiceCaseV()
+											+ p.getAjoutBasDroite())
 									.getEtatActuel()
 									.equals(CaseEnum.CONTAMINEE)) {
 						/* Transformation de la case en case potentielle */
@@ -469,7 +471,8 @@ public class DeploimentContaminee extends Deploiment {
 								.get(p.getIndiceCaseV() + p.getAjoutBasDroite())
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 
-						p.setCaseCouranteDeplacementBasDroite(p.getCaseCouranteDeplacementBasDroite()+1);
+						p.setCaseCouranteDeplacementBasDroite(p
+								.getCaseCouranteDeplacementBasDroite() + 1);
 
 					}
 
@@ -503,16 +506,18 @@ public class DeploimentContaminee extends Deploiment {
 
 				try {
 					if (p.getCaseCouranteDeplacementHautGauche() % 2 == 0) {
-						p.setAjoutHautGauche(p.getAjoutHautGauche()+1);
+						p.setAjoutHautGauche(p.getAjoutHautGauche() + 1);
 					}
 
 					if ((grille.getListCases()
 							.get(p.getCaseCouranteDeplacementHautGauche())
 							.get(p.getIndiceCaseV() - p.getAjoutHautGauche())
 							.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementHautGauche())
-									.get(p.getIndiceCaseV() - p.getAjoutHautGauche())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutHautGauche())
 									.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 
 						timersDeploiment.get("hautgauche" + p.hashCode())
@@ -530,18 +535,22 @@ public class DeploimentContaminee extends Deploiment {
 							.get(p.getCaseCouranteDeplacementHautGauche())
 							.get(p.getIndiceCaseV() - p.getAjoutHautGauche())
 							.getEtatActuel().equals(CaseEnum.POTENTIELLE)
-							|| grille.getListCases()
+							|| grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementHautGauche())
-									.get(p.getIndiceCaseV() - p.getAjoutHautGauche())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutHautGauche())
 									.getEtatActuel()
 									.equals(CaseEnum.CONTAMINEE)) {
 						/* Transformation de la case en case potentielle */
 						grille.getListCases()
 								.get(p.getCaseCouranteDeplacementHautGauche())
-								.get(p.getIndiceCaseV() - p.getAjoutHautGauche())
+								.get(p.getIndiceCaseV()
+										- p.getAjoutHautGauche())
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 
-						p.setCaseCouranteDeplacementHautGauche(p.getCaseCouranteDeplacementHautGauche()-1);
+						p.setCaseCouranteDeplacementHautGauche(p
+								.getCaseCouranteDeplacementHautGauche() - 1);
 
 					}
 
@@ -574,16 +583,18 @@ public class DeploimentContaminee extends Deploiment {
 
 				try {
 					if (p.getCaseCouranteDeplacementHautDroite() % 2 == 1) {
-						p.setAjoutHautDroite(p.getAjoutHautDroite()-1);
+						p.setAjoutHautDroite(p.getAjoutHautDroite() - 1);
 					}
 
 					if ((grille.getListCases()
 							.get(p.getCaseCouranteDeplacementHautDroite())
 							.get(p.getIndiceCaseV() - p.getAjoutHautDroite())
 							.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementHautDroite())
-									.get(p.getIndiceCaseV() - p.getAjoutHautDroite())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutHautDroite())
 									.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 
 						timersDeploiment.get("hautdroite" + p.hashCode())
@@ -601,18 +612,22 @@ public class DeploimentContaminee extends Deploiment {
 							.get(p.getCaseCouranteDeplacementHautDroite())
 							.get(p.getIndiceCaseV() - p.getAjoutHautDroite())
 							.getEtatActuel().equals(CaseEnum.POTENTIELLE)
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementHautDroite())
-									.get(p.getIndiceCaseV() - p.getAjoutHautDroite())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutHautDroite())
 									.getEtatActuel()
 									.equals(CaseEnum.CONTAMINEE))) {
 						/* Transformation de la case en case potentielle */
 						grille.getListCases()
 								.get(p.getCaseCouranteDeplacementHautDroite())
-								.get(p.getIndiceCaseV() - p.getAjoutHautDroite())
+								.get(p.getIndiceCaseV()
+										- p.getAjoutHautDroite())
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 
-						p.setCaseCouranteDeplacementHautDroite(p.getCaseCouranteDeplacementHautDroite()-1);
+						p.setCaseCouranteDeplacementHautDroite(p
+								.getCaseCouranteDeplacementHautDroite() - 1);
 
 					}
 
@@ -645,16 +660,18 @@ public class DeploimentContaminee extends Deploiment {
 
 				try {
 					if (p.getCaseCouranteDeplacementBasGauche() % 2 == 0) {
-						p.setAjoutBasGauche(p.getAjoutBasGauche()+1);
+						p.setAjoutBasGauche(p.getAjoutBasGauche() + 1);
 					}
 
 					if ((grille.getListCases()
 							.get(p.getCaseCouranteDeplacementBasGauche())
 							.get(p.getIndiceCaseV() - p.getAjoutBasGauche())
 							.getEtatActuel().equals(CaseEnum.DESACTIVEE))
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementBasGauche())
-									.get(p.getIndiceCaseV() - p.getAjoutBasGauche())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutBasGauche())
 									.getEtatActuel().equals(CaseEnum.OCCUPEE))) {
 
 						timersDeploiment.get("basgauche" + p.hashCode()).stop();
@@ -671,9 +688,11 @@ public class DeploimentContaminee extends Deploiment {
 							.get(p.getCaseCouranteDeplacementBasGauche())
 							.get(p.getIndiceCaseV() - p.getAjoutBasGauche())
 							.getEtatActuel().equals(CaseEnum.POTENTIELLE)
-							|| (grille.getListCases()
+							|| (grille
+									.getListCases()
 									.get(p.getCaseCouranteDeplacementBasGauche())
-									.get(p.getIndiceCaseV() - p.getAjoutBasGauche())
+									.get(p.getIndiceCaseV()
+											- p.getAjoutBasGauche())
 									.getEtatActuel()
 									.equals(CaseEnum.CONTAMINEE))) {
 						/* Transformation de la case en case potentielle */
@@ -682,7 +701,8 @@ public class DeploimentContaminee extends Deploiment {
 								.get(p.getIndiceCaseV() - p.getAjoutBasGauche())
 								.setEtatActuel(CaseEnum.CONTAMINEE);
 
-						p.setCaseCouranteDeplacementBasGauche(p.getCaseCouranteDeplacementBasGauche()+1);
+						p.setCaseCouranteDeplacementBasGauche(p
+								.getCaseCouranteDeplacementBasGauche() + 1);
 
 					}
 
