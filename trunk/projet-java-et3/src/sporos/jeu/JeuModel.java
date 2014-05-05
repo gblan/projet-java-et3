@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sporos.deploiment.DeploimentContaminee;
+import sporos.deploiment.DeploimentSurvolee;
 import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.reserve.Reserve;
+import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 
 public class JeuModel {
@@ -102,12 +104,10 @@ public class JeuModel {
 
 	public boolean isFinish() {
 		for (ArrayList<CaseModel> alCase : grille.getListCases()) {
-			for (CaseModel grilleJeu : alCase) {
-				if (!grilleJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)
-						&& !grilleJeu.getEtatActuel().equals(
-								CaseEnum.CONTAMINEE)
-						&& !grilleJeu.getEtatActuel().equals(
-								CaseEnum.DESACTIVEE)) {
+			for (CaseModel caseJeu : alCase) {
+				if (!caseJeu.getEtatActuel().equals(CaseEnum.OCCUPEE)
+						&& !caseJeu.getEtatActuel().equals(CaseEnum.CONTAMINEE)
+						&& !caseJeu.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
 					return false;
 				}
 			}
@@ -118,8 +118,8 @@ public class JeuModel {
 	private void cleanGrille() {
 		for (ArrayList<CaseModel> alCase : grille.getListCases()) {
 			for (CaseModel caseJeu : alCase) {
-				if (caseJeu.getEtatActuel().equals(caseJeu.getEtatInitial())) {
-					caseJeu.setEtatActuel(caseJeu.getEtatInitial());
+				if (!caseJeu.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
+					caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
 				}
 			}
 		}
@@ -142,43 +142,51 @@ public class JeuModel {
 				available = true;
 				int x = (int) (Math.random() * 7);
 				int y = (int) (Math.random() * 10);
+
 				if (grille.getListCases().get(y).get(x).getEtatActuel()
 						.equals(CaseEnum.DISPONIBLE)) {
 					pionReserve.setPositionRelativeToGrille(x, y);
+					List<PionModel> tmp = new ArrayList<PionModel>(pionsEnJeu);
 
-					List<PionModel> tmp = new ArrayList<PionModel>(
-							this.getPionsEnJeu());
+					if(grille.getListCases().get(y).get(x).intersect(pionReserve)){
+
+						grille.getListCases().get(y).get(x).setEtatActuel(CaseEnum.OCCUPEE);
+
+					}
+					
 					tmp.add(pionReserve);
 					this.setPionsEnJeu(tmp);
 				} else {
 					available = false;
 				}
-			} while (available == false);
+			} while (!available);
 
 		}
 	}
 
 	public boolean isCorrectGrid(long delai) {
-
+		DeploimentSurvolee ds = new DeploimentSurvolee(grille);
+		DeploimentContaminee dc = new DeploimentContaminee(grille, pionsEnJeu,
+				null, 0);
 		long t1 = System.currentTimeMillis();
 		long t2 = 0;
 		do {
 			t2 = System.currentTimeMillis();
 
-			/* clean la grille */
-			cleanGrille();
-
 			/* on remet les pions a la reserve */
 			cleanReserve();
 
+			/* clean la grille */
+			cleanGrille();
+
 			// placement aléatoire des pions
-			while (this.pionsEnJeu.size() != reserve.getPions().size()) {
-				randomPlacePion();
-			}
+			randomPlacePion();
+
 			// déployer contamination
-			DeploimentContaminee dc = new DeploimentContaminee(grille,
-					pionsEnJeu, null, 0);
-			dc.deploimentListPion();
+			for (PionModel p : pionsEnJeu) {
+				ds.deploimentPion(p);
+				dc.deploimentInstantanePion(p);
+			}
 			if (isFinish()) {
 				return true;
 			}

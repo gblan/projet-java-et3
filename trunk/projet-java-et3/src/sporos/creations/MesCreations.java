@@ -52,7 +52,7 @@ public class MesCreations extends JFrame {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
 					Principale p1 = new Principale(index, 300, 500,
-							GrilleEnum.MOYEN);
+							GrilleEnum.MOYEN, true);
 
 				}
 			}
@@ -69,9 +69,9 @@ public class MesCreations extends JFrame {
 			File properties = new File("levels/myLevels/" + str);
 			if (properties.isFile()) {
 				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
-						"levels/myLevels/" + str, GrilleEnum.GRAND),
+						"levels/myLevels/" + str, GrilleEnum.MOYEN),
 						Reserve.buildReserve("levels/myLevels/" + str,
-								GrilleEnum.GRAND));
+								GrilleEnum.MOYEN));
 				tmp[i] = str;
 			}
 		}

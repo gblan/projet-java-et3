@@ -59,7 +59,7 @@ public class JeuListener {
 						// OK
 						principale.kill();
 						Principale av = new Principale(PropertyAcces
-								.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN);
+								.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN, false);
 
 					} else if (retour == 2) {
 						// CANCEL
@@ -129,7 +129,7 @@ public class JeuListener {
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			Principale p1 = new Principale(jeuModel.getIdJeu(), 300, 500,
-					GrilleEnum.MOYEN);
+					GrilleEnum.MOYEN, false);
 		}
 
 	};
