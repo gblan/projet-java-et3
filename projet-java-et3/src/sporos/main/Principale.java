@@ -13,7 +13,6 @@ import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
-import sporos.menus.MenuContextuel;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
@@ -48,7 +47,7 @@ public class Principale extends JFrame {
 
 		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		JeuListener jeuListener = new JeuListener(jeu, jeuView);
+		JeuListener jeuListener = new JeuListener(jeu, jeuView, this);
 
 		jeuListener.getJeuView().setBackground(Color.WHITE);
 		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
@@ -65,7 +64,13 @@ public class Principale extends JFrame {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+        setResizable(false);
+        setOpacity(0.7f);
 
+	}
+	
+	public void kill(){
+		this.dispose();
 	}
 
 }

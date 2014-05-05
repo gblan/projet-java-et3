@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 import sporos.grille.GrilleEnum;
 import sporos.reserve.pions.PionModel;
 
-public class CaseModel{
+public class CaseModel {
 
 	private CaseEnum etatInitial;
 	private CaseEnum etatActuel;
@@ -17,6 +17,7 @@ public class CaseModel{
 	private int DRAWOVAL1;
 	private int DRAWOVAL2;
 	private DirectionPropagationEnum directionPropagation;
+
 	public CaseModel(CaseEnum etatInitial, CaseEnum etatActuel, int x, int y,
 			GrilleEnum taille) {
 		super();
@@ -50,36 +51,29 @@ public class CaseModel{
 
 	}
 
-	
 	public int getHEIGHT() {
 		return HEIGHT;
 	}
-
 
 	public void setHEIGHT(int hEIGHT) {
 		HEIGHT = hEIGHT;
 	}
 
-
 	public int getDRAWOVAL1() {
 		return DRAWOVAL1;
 	}
-
 
 	public void setDRAWOVAL1(int dRAWOVAL1) {
 		DRAWOVAL1 = dRAWOVAL1;
 	}
 
-
 	public int getDRAWOVAL2() {
 		return DRAWOVAL2;
 	}
 
-
 	public void setDRAWOVAL2(int dRAWOVAL2) {
 		DRAWOVAL2 = dRAWOVAL2;
 	}
-
 
 	public CaseModel(GrilleEnum taille) {
 		this.taille = taille;
@@ -164,25 +158,25 @@ public class CaseModel{
 			ecartX = 25;
 			posX = 50;
 			ecartY = 120;
-			posY=43;
+			posY = 43;
 			break;
 		case MOYEN:
 			ecartX = 20;
 			posX = 40;
 			ecartY = 80;
-			posY=35;
+			posY = 35;
 			break;
 		case GRAND:
 			ecartX = 20;
 			posX = 30;
 			ecartY = 70;
-			posY=25;
+			posY = 25;
 			break;
 		default:
 			ecartX = 20;
 			posX = 40;
 			ecartY = 80;
-			posY=35;
+			posY = 35;
 			break;
 		}
 		if (y % 2 == 0) {
@@ -191,13 +185,13 @@ public class CaseModel{
 			casePosition.setY(ecartY + posY * y);
 		} else {
 			// Y IMPAIR
-			if (taille == GrilleEnum.GRAND){
-				casePosition.setX(5+posX * x);
-			}
-			else {
+			if (taille == GrilleEnum.GRAND) {
+				casePosition.setX(5 + posX * x);
+			} else {
 				casePosition.setX(posX * x);
 			}
-			casePosition.setY(ecartY + posY * y);		}
+			casePosition.setY(ecartY + posY * y);
+		}
 
 		return casePosition;
 	}
@@ -261,7 +255,8 @@ public class CaseModel{
 		return directionPropagation;
 	}
 
-	public void setDirectionPropagation(DirectionPropagationEnum directionPropagation) {
+	public void setDirectionPropagation(
+			DirectionPropagationEnum directionPropagation) {
 		this.directionPropagation = directionPropagation;
 	}
 

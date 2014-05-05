@@ -4,7 +4,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 import sporos.grille.GrilleEnum;
-import sporos.grille.cases.CaseModel;
+
 public class PionModel {
 
 	private PionEnum typePion;
@@ -27,7 +27,8 @@ public class PionModel {
 	private int ajoutHautGauche;
 	private GrilleEnum taille;
 
-	public PionModel(PionEnum typePion, int x, int y, int xInitial, int yInitial, GrilleEnum taille) {
+	public PionModel(PionEnum typePion, int x, int y, int xInitial,
+			int yInitial, GrilleEnum taille) {
 		super();
 		this.typePion = typePion;
 		this.x = x;
@@ -36,14 +37,14 @@ public class PionModel {
 		this.yInitial = yInitial;
 		this.taille = taille;
 		switch (taille) {
-		case PETIT :
+		case PETIT:
 			this.RAYON = 31;
 			break;
-		case MOYEN :
+		case MOYEN:
 			this.RAYON = 21;
-			
+
 			break;
-		case GRAND :
+		case GRAND:
 			this.RAYON = 13;
 			break;
 		}
@@ -103,8 +104,6 @@ public class PionModel {
 	public void setIndiceCaseV(int indiceCaseV) {
 		this.indiceCaseV = indiceCaseV;
 	}
-	
-	
 
 	public GrilleEnum getTaille() {
 		return taille;
@@ -118,7 +117,8 @@ public class PionModel {
 		return caseCouranteDeplacementGauche;
 	}
 
-	public void setCaseCouranteDeplacementGauche(int caseCouranteDeplacementGauche) {
+	public void setCaseCouranteDeplacementGauche(
+			int caseCouranteDeplacementGauche) {
 		this.caseCouranteDeplacementGauche = caseCouranteDeplacementGauche;
 	}
 
@@ -126,7 +126,8 @@ public class PionModel {
 		return caseCouranteDeplacementDroite;
 	}
 
-	public void setCaseCouranteDeplacementDroite(int caseCouranteDeplacementDroite) {
+	public void setCaseCouranteDeplacementDroite(
+			int caseCouranteDeplacementDroite) {
 		this.caseCouranteDeplacementDroite = caseCouranteDeplacementDroite;
 	}
 
@@ -197,7 +198,7 @@ public class PionModel {
 	public void setAjoutHautGauche(int ajoutHautGauche) {
 		this.ajoutHautGauche = ajoutHautGauche;
 	}
-	
+
 	public void setPositionRelativeToGrille(int x, int y) {
 		this.setIndiceCaseH(x);
 		this.setIndiceCaseV(y);
@@ -211,7 +212,7 @@ public class PionModel {
 			this.setY(80 + 35 * y);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param point_x
@@ -219,16 +220,16 @@ public class PionModel {
 	 * @return true or false si le point selectionné contient le Pion
 	 */
 	public boolean contains(int pointX, int pointY) {
-		int size=0;
+		int size = 0;
 		switch (taille) {
-		case PETIT :
-			size=42;
+		case PETIT:
+			size = 42;
 			break;
-		case MOYEN :
-			size=32;
+		case MOYEN:
+			size = 32;
 			break;
-		case GRAND :
-			size=25;
+		case GRAND:
+			size = 25;
 			break;
 		}
 		Ellipse2D.Float cercle = new Ellipse2D.Float(getX(), getY(), size, size);

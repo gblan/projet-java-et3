@@ -53,7 +53,8 @@ public class MenuNiveaux extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
-					Principale p1 = new Principale(index, 300, 500,GrilleEnum.MOYEN);
+					Principale p1 = new Principale(index, 300, 500,
+							GrilleEnum.MOYEN);
 
 				}
 			}
@@ -69,9 +70,9 @@ public class MenuNiveaux extends JFrame {
 			String str = "level" + i + ".properties";
 			File properties = new File("levels/" + str);
 			if (properties.isFile()) {
-				JeuModel jeu = new JeuModel(i,
-						Grille.buildGrid("levels/" + str,GrilleEnum.GRAND),
-						Reserve.buildReserve("levels/" + str,GrilleEnum.GRAND));
+				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
+						"levels/" + str, GrilleEnum.GRAND),
+						Reserve.buildReserve("levels/" + str, GrilleEnum.GRAND));
 				tmp[i] = str;
 			}
 		}

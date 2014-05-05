@@ -18,15 +18,15 @@ public class Grille {
 		this.listCases = arrayList;
 		this.taille = taille;
 		switch (taille) {
-		case PETIT :
+		case PETIT:
 			nbColonne = 5;
 			nbLigne = 7;
 			break;
-		case MOYEN :
+		case MOYEN:
 			nbColonne = 7;
 			nbLigne = 10;
 			break;
-		case GRAND :
+		case GRAND:
 			nbColonne = 9;
 			nbLigne = 13;
 			break;
@@ -37,7 +37,6 @@ public class Grille {
 		return listCases;
 	}
 
-	
 	public GrilleEnum getTaille() {
 		return taille;
 	}
@@ -68,13 +67,14 @@ public class Grille {
 	 *            .properties
 	 * @return Grille remplie a partir du .properties
 	 */
-	public static Grille buildGrid(String filename,GrilleEnum tailleGrille) {
+	public static Grille buildGrid(String filename, GrilleEnum tailleGrille) {
 
-		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(),tailleGrille);
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(),
+				tailleGrille);
 		ArrayList<CaseModel> ligne = null;
 		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
-				0, 0,tailleGrille);
-		
+				0, 0, tailleGrille);
+
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
@@ -90,7 +90,7 @@ public class Grille {
 					caseEnum = CaseEnum.DESACTIVEE;
 				} else if (typeCase.equals(CaseEnum.DISPONIBLE.toString())) {
 					caseEnum = CaseEnum.DISPONIBLE;
-				} else  {
+				} else {
 					caseEnum = CaseEnum.DESACTIVEE;
 				}
 				c.setEtatInitial(caseEnum);
@@ -106,10 +106,11 @@ public class Grille {
 
 	public static Grille buildEmptyGrid(GrilleEnum tailleGrille) {
 
-		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(), tailleGrille);
+		Grille grille = new Grille(new ArrayList<ArrayList<CaseModel>>(),
+				tailleGrille);
 		ArrayList<CaseModel> ligne = null;
 		CaseModel c = new CaseModel(CaseEnum.DESACTIVEE, CaseEnum.DESACTIVEE,
-				0, 0,tailleGrille);
+				0, 0, tailleGrille);
 
 		for (int i = 0; i < nbLigne; i++) {
 			ligne = new ArrayList<CaseModel>();
@@ -124,7 +125,7 @@ public class Grille {
 
 		return grille;
 	}
-	
+
 	@Override
 	public String toString() {
 		String res = "";

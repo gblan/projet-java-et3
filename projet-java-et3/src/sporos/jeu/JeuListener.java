@@ -34,50 +34,50 @@ public class JeuListener {
 	private Timer endTimer;
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
 
-
-	public JeuListener(JeuModel jeu, final JeuView jeuView) {
+	public JeuListener(JeuModel jeu, final JeuView jeuView,
+			final Principale principale) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
 		this.bruits = new Bruitages();
 		this.endTimer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			if (jeuView.getJeu().isFinish()) {
-				endTimer.stop();
-				jeuView.repaint();
-				Bruitages bruitage = new Bruitages();
-				bruitage.playSong("resources/sounds/fun.wav");
 
-				int retour = JOptionPane.showConfirmDialog(null,
-						"Voulez vous passer au niveau suivant ?",
-						"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
+				if (jeuView.getJeu().isFinish()) {
+					endTimer.stop();
+					jeuView.repaint();
+					Bruitages bruitage = new Bruitages();
+					bruitage.playSong("resources/sounds/fun.wav");
 
-				/* Sauvegarde */
-				PropertyAcces.saveProperties(jeuView.getJeu().getIdJeu() + 1);
-				if (retour == 0) {
-					// OK
-					jeuView.setVisible(false);
-					
-					Principale av = new Principale(
-							PropertyAcces.getCurrentLevel(), 300, 500,GrilleEnum.MOYEN);
+					int retour = JOptionPane.showConfirmDialog(null,
+							"Voulez vous passer au niveau suivant ?",
+							"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
 
-				} else if (retour == 2) {
-					// CANCEL
-					jeuView.setVisible(false);
-					MenuPrincipal av = new MenuPrincipal();
+					/* Sauvegarde */
+					PropertyAcces
+							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
+					if (retour == 0) {
+						// OK
+						principale.kill();
+						Principale av = new Principale(PropertyAcces
+								.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN);
 
-				} else if (retour == -1) {
-					// QUIT
-					System.exit(0);
+					} else if (retour == 2) {
+						// CANCEL
+						principale.kill();
+						MenuPrincipal av = new MenuPrincipal();
+
+					} else if (retour == -1) {
+						// QUIT
+						System.exit(0);
+
+					}
 
 				}
-
 			}
-		}
 		});
 		endTimer.start();
 	}
-	
+
 	public void setJeu(JeuModel jeu) {
 		this.jeuModel = jeu;
 	}
@@ -108,8 +108,8 @@ public class JeuListener {
 
 	public void setCliqueY(int cliqueY) {
 		this.cliqueY = cliqueY;
-	}	
-	
+	}
+
 	public Hashtable<PionModel, Timer> getTimers() {
 		return timers;
 	}
@@ -128,11 +128,12 @@ public class JeuListener {
 
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
-			Principale p1 = new Principale(jeuModel.getIdJeu(),300,500,GrilleEnum.MOYEN);
+			Principale p1 = new Principale(jeuModel.getIdJeu(), 300, 500,
+					GrilleEnum.MOYEN);
 		}
 
 	};
-	
+
 	private MouseAdapter quitterNiveau = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			jeuView.setVisible(false);
@@ -140,20 +141,19 @@ public class JeuListener {
 		}
 
 	};
-	
+
 	private MouseAdapter quitterPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			System.exit(0);
 		}
 	};
 
-	
 	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			jeuView.buildMenuContextuel();
 		}
 	};
-	
+
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
@@ -167,7 +167,7 @@ public class JeuListener {
 					// les cases potentielles
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
-				
+
 						for (ArrayList<CaseModel> alCase : jeuModel.getGrille()
 								.getListCases()) {
 							for (CaseModel caseJeu : alCase) {
@@ -176,7 +176,7 @@ public class JeuListener {
 										&& !caseJeu.getEtatActuel().equals(
 												CaseEnum.OCCUPEE)) {
 									caseJeu.setEtatActuel(CaseEnum.POTENTIELLE);
-									
+
 								}
 							}
 						}
@@ -199,10 +199,11 @@ public class JeuListener {
 					}
 					// Deploiment des contaminees
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,0);
-					
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),
+							jeuView, 0);
+
 					dc.deploimentInstantaneListPion();
-					
+
 					// Les potentielles restantes devienne disponible
 					if ((pion.getIndiceCaseH() != -1)
 							&& (pion.getIndiceCaseV() != -1)) {
@@ -245,14 +246,15 @@ public class JeuListener {
 								.get(jeuModel.getIndiceCaseV()).getEtatActuel()
 								.toString().equals(CaseEnum.OCCUPEE.toString())) {
 
-					
-					Animation.DeplacementPion(jeuModel,jeuView,timers,1,jeuModel.getGrille().getTaille());
+					Animation.DeplacementPion(jeuModel, jeuView, timers, 1,
+							jeuModel.getGrille().getTaille());
 
 					jeuModel.getPionSelectionne().setIndiceCaseH(-1);
 					jeuModel.getPionSelectionne().setIndiceCaseV(-1);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,100);
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),
+							jeuView, 100);
 					dc.deploimentListPion();
 					bruits.playSong("resources/sounds/ressort.wav");
 
@@ -260,17 +262,17 @@ public class JeuListener {
 
 				} else {
 
-					
-					// sinon on le positionne sur la case 
-//					jeuModel.getPionSelectionne().setX(
-//							jeuModel.getGrille().getListCases()
-//									.get(jeuModel.getIndiceCaseH())
-//									.get(jeuModel.getIndiceCaseV()).getX() + 3);
-//					jeuModel.getPionSelectionne().setY(
-//							jeuModel.getGrille().getListCases()
-//									.get(jeuModel.getIndiceCaseH())
-//									.get(jeuModel.getIndiceCaseV()).getY() + 4);
-					Animation.DeplacementPion(jeuModel,jeuView,timers,0,jeuModel.getGrille().getTaille());
+					// sinon on le positionne sur la case
+					// jeuModel.getPionSelectionne().setX(
+					// jeuModel.getGrille().getListCases()
+					// .get(jeuModel.getIndiceCaseH())
+					// .get(jeuModel.getIndiceCaseV()).getX() + 3);
+					// jeuModel.getPionSelectionne().setY(
+					// jeuModel.getGrille().getListCases()
+					// .get(jeuModel.getIndiceCaseH())
+					// .get(jeuModel.getIndiceCaseV()).getY() + 4);
+					Animation.DeplacementPion(jeuModel, jeuView, timers, 0,
+							jeuModel.getGrille().getTaille());
 					jeuModel.getGrille().getListCases()
 							.get(jeuModel.getIndiceCaseH())
 							.get(jeuModel.getIndiceCaseV())
@@ -279,7 +281,7 @@ public class JeuListener {
 							jeuModel.getIndiceCaseH());
 					jeuModel.getPionSelectionne().setIndiceCaseV(
 							jeuModel.getIndiceCaseV());
-					
+
 					/* On met a jour la liste des pions en jeu */
 					List<PionModel> tmp = new ArrayList<PionModel>(
 							jeuModel.getPionsEnJeu());
@@ -287,11 +289,11 @@ public class JeuListener {
 					jeuModel.setPionsEnJeu(tmp);
 
 					DeploimentContaminee dc = new DeploimentContaminee(
-							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),jeuView,100);
+							jeuModel.getGrille(), jeuModel.getPionsEnJeu(),
+							jeuView, 100);
 					dc.deploimentListPion();
 
 					/* APRES LA CONTAMINATION ON TESTE SI LE JEU EST FINI */
-					
 
 					jeuModel.setPionSelectionne(null);
 					bruits.playSong("resources/sounds/ploc.wav");

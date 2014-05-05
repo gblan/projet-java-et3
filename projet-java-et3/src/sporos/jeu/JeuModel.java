@@ -1,7 +1,6 @@
 package sporos.jeu;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import sporos.deploiment.DeploimentContaminee;
@@ -9,7 +8,6 @@ import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.reserve.Reserve;
-import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 
 public class JeuModel {
@@ -37,8 +35,6 @@ public class JeuModel {
 		this.pionsEnJeu = new ArrayList<PionModel>();
 		this.pionsRelache = new ArrayList<PionModel>();
 	}
-
-
 
 	public Reserve getReserve() {
 		return reserve;
@@ -130,11 +126,11 @@ public class JeuModel {
 	}
 
 	private void cleanReserve() {
-		for(PionModel p :reserve.getPions()){
+		for (PionModel p : reserve.getPions()) {
 			p.setX(p.getxInitial());
 			p.setY(p.getyInitial());
 		}
-		
+
 		pionsEnJeu.clear();
 	}
 
@@ -163,9 +159,9 @@ public class JeuModel {
 	}
 
 	public boolean isCorrectGrid(long delai) {
-		
+
 		long t1 = System.currentTimeMillis();
-		long t2 =0;
+		long t2 = 0;
 		do {
 			t2 = System.currentTimeMillis();
 
@@ -176,18 +172,17 @@ public class JeuModel {
 			cleanReserve();
 
 			// placement aléatoire des pions
-			while(this.pionsEnJeu.size()!=reserve.getPions().size()){
+			while (this.pionsEnJeu.size() != reserve.getPions().size()) {
 				randomPlacePion();
 			}
 			// déployer contamination
 			DeploimentContaminee dc = new DeploimentContaminee(grille,
-					pionsEnJeu, null,0);
+					pionsEnJeu, null, 0);
 			dc.deploimentListPion();
-			if(isFinish()){
+			if (isFinish()) {
 				return true;
 			}
-		} while (!isFinish()
-				&& ((t2 - t1) / 1000) < delai);
+		} while (!isFinish() && ((t2 - t1) / 1000) < delai);
 		return false;
 	}
 

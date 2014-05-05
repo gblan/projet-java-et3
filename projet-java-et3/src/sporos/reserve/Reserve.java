@@ -4,7 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 import sporos.utils.PropertyAcces;
 
-
 public class Reserve {
 
 	private List<PionModel> pions;
@@ -21,7 +19,7 @@ public class Reserve {
 
 	public Reserve(GrilleEnum tailleGrille) {
 		this.pions = new ArrayList<PionModel>();
-		this.tailleGrille=tailleGrille;
+		this.tailleGrille = tailleGrille;
 	}
 
 	public List<PionModel> getPions() {
@@ -38,29 +36,30 @@ public class Reserve {
 	 * @param typePion
 	 * @return position absolue de chaque pion
 	 */
-	public static PionModel getPosition(String pionName, PionEnum typePion,GrilleEnum tailleGrille) {
+	public static PionModel getPosition(String pionName, PionEnum typePion,
+			GrilleEnum tailleGrille) {
 		String num = "";
 		int numInt = 0;
 
 		num = pionName.substring(4);
 		numInt = Integer.parseInt(num);
-		int x=0,y=0;
+		int x = 0, y = 0;
 		switch (tailleGrille) {
-		case PETIT :
-			x=50 + (50 * (numInt - 1));
-			y=7;
+		case PETIT:
+			x = 50 + (50 * (numInt - 1));
+			y = 7;
 			break;
-		case MOYEN :
-			x=50 + (40 * (numInt - 1));
-			y=10;
+		case MOYEN:
+			x = 50 + (40 * (numInt - 1));
+			y = 10;
 			break;
-		case GRAND :
-			x=50 + (30* (numInt - 1));
-			y=13;
+		case GRAND:
+			x = 50 + (30 * (numInt - 1));
+			y = 13;
 			break;
 		}
 
-		PionModel pion = new PionModel(typePion, x, y, x, y,tailleGrille);
+		PionModel pion = new PionModel(typePion, x, y, x, y, tailleGrille);
 
 		return pion;
 	}
@@ -82,7 +81,7 @@ public class Reserve {
 	 *            .properties
 	 * @return reserve construite a partir du fichier
 	 */
-	public static Reserve buildReserve(String filename,GrilleEnum tailleGrille) {
+	public static Reserve buildReserve(String filename, GrilleEnum tailleGrille) {
 
 		ArrayList<PionModel> alPions = new ArrayList<PionModel>();
 		Reserve reserve = new Reserve(tailleGrille);
@@ -101,7 +100,7 @@ public class Reserve {
 			}
 
 			if (!typePion.equals("vide")) {
-				p = getPosition(pionName, pionEnum,tailleGrille);
+				p = getPosition(pionName, pionEnum, tailleGrille);
 				alPions.add(p);
 				reserve.setPions(alPions);
 			}
@@ -109,7 +108,7 @@ public class Reserve {
 
 		return reserve;
 	}
-	
+
 	public static Reserve buildEmptyReserve(GrilleEnum tailleGrille) {
 		return new Reserve(tailleGrille);
 	}

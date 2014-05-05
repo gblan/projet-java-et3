@@ -13,7 +13,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,10 +27,12 @@ public class MenuModeAventure extends JFrame {
 
 	public MenuModeAventure() {
 		super("Mode Aventure");
-		ImageImplement background = new ImageImplement(new ImageIcon("resources/Background1.png").getImage(),0,0);
+		ImageImplement background = new ImageImplement(new ImageIcon(
+				"resources/Background1.png").getImage(), 0, 0);
 		JLabel labelNiveauCourant = new JLabel();
-		labelNiveauCourant.setText("Votre niveau actuel : "+PropertyAcces.getCurrentLevel());
-		
+		labelNiveauCourant.setText("Votre niveau actuel : "
+				+ PropertyAcces.getCurrentLevel());
+
 		JButton btnContinuerPartie = new JButton("Continuer Partie");
 		BufferedImage imgbtnContinuerPartie = null;
 		try {
@@ -48,10 +49,10 @@ public class MenuModeAventure extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500,GrilleEnum.MOYEN);
+						300, 500, GrilleEnum.MOYEN);
 			}
 		});
-		
+
 		JButton btnNouvellePartie = new JButton("Nouvelle Partie");
 		BufferedImage imgbtnNouvellePartie = null;
 		try {
@@ -66,21 +67,21 @@ public class MenuModeAventure extends JFrame {
 		btnNouvellePartie.setContentAreaFilled(false);
 		btnNouvellePartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 
-//				
+				//
 				int effacement = JOptionPane.showConfirmDialog(null,
 						"Ceci va effacer votre progression, êtes vous sur ?",
-						"Attention",JOptionPane.WARNING_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
-			    
+						"Attention", JOptionPane.WARNING_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION);
+
 				if (effacement == 0) {
 					// OK
 					PropertyAcces.saveProperties(1);
 					setVisible(false);
-					Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-							300, 500,GrilleEnum.MOYEN);
+					Principale av = new Principale(PropertyAcces
+							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN);
 				}
-				
+
 			}
 		});
 

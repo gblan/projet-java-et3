@@ -1,6 +1,5 @@
 package sporos.main;
 
-import sporos.creations.NouvelleCreation;
 
 public class Test {
 
@@ -8,6 +7,7 @@ public class Test {
 
 //		MenuNiveaux level = new MenuNiveaux("");
 		
-		NouvelleCreation test = new NouvelleCreation();
+//		NouvelleCreation test = new NouvelleCreation();
+		
 	}
 }

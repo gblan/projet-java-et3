@@ -2,7 +2,6 @@ package sporos.animation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.Hashtable;
 
 import javax.swing.Timer;
@@ -16,24 +15,24 @@ public class Animation {
 
 	public static void DeplacementPion(final JeuModel jeuModel,
 			final JeuView jeuView, final Hashtable<PionModel, Timer> timers,
-			final int surCase,GrilleEnum tailleGrille) {
+			final int surCase, GrilleEnum tailleGrille) {
 		// Animation deplacement pion
 		final PionModel pionRelache = jeuModel.getPionSelectionne();
 		jeuModel.getPionRelache().add(pionRelache);
-		int ajoutX=0;
-		int ajoutY=0;
+		int ajoutX = 0;
+		int ajoutY = 0;
 		switch (tailleGrille) {
-		case PETIT :
-			ajoutX=3;
-			ajoutY=5;
+		case PETIT:
+			ajoutX = 3;
+			ajoutY = 5;
 			break;
-		case MOYEN :
-			ajoutX=3;
-			ajoutY=4;
+		case MOYEN:
+			ajoutX = 3;
+			ajoutY = 4;
 			break;
-		case GRAND :
-			ajoutX=1;
-			ajoutY=2;
+		case GRAND:
+			ajoutX = 1;
+			ajoutY = 2;
 			break;
 		}
 
@@ -43,10 +42,12 @@ public class Animation {
 		case 0:
 			arriveeX = jeuModel.getGrille().getListCases()
 					.get(jeuModel.getIndiceCaseH())
-					.get(jeuModel.getIndiceCaseV()).getX() + ajoutX;
+					.get(jeuModel.getIndiceCaseV()).getX()
+					+ ajoutX;
 			arriveeY = jeuModel.getGrille().getListCases()
 					.get(jeuModel.getIndiceCaseH())
-					.get(jeuModel.getIndiceCaseV()).getY() + ajoutY;
+					.get(jeuModel.getIndiceCaseV()).getY()
+					+ ajoutY;
 			System.out.println(arriveeX);
 			break;
 		case 1:
@@ -60,15 +61,14 @@ public class Animation {
 
 		double distanceX = Math.abs(arriveeX - pionRelache.getX());
 		double distanceY = Math.abs(arriveeY - pionRelache.getY());
-		
+
 		final int distance = (int) Math.sqrt(Math.pow(distanceX, 2)
 				+ Math.pow(distanceY, 2));
 		int deltaTemps;
-		if (distance == 0){
+		if (distance == 0) {
 			deltaTemps = 0;
-		}
-		else {
-			deltaTemps = 1000/distance;
+		} else {
+			deltaTemps = 1000 / distance;
 		}
 		Timer timer = new Timer(deltaTemps, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,17 +80,17 @@ public class Animation {
 				} else {
 					step = 2;
 				}
-				int ecart = step-1;
-				if (pionRelache.getX() < arriveeX-ecart) {
+				int ecart = step - 1;
+				if (pionRelache.getX() < arriveeX - ecart) {
 
 					pionRelache.setX(pionRelache.getX() + step);
-				} else if (pionRelache.getX() > arriveeX+ecart) {
+				} else if (pionRelache.getX() > arriveeX + ecart) {
 					pionRelache.setX(pionRelache.getX() - step);
 				}
 
-				if (pionRelache.getY() < arriveeY-ecart) {
+				if (pionRelache.getY() < arriveeY - ecart) {
 					pionRelache.setY(pionRelache.getY() + step);
-				} else if (pionRelache.getY() > arriveeY+ecart) {
+				} else if (pionRelache.getY() > arriveeY + ecart) {
 					pionRelache.setY(pionRelache.getY() - step);
 				}
 				jeuView.repaint();
