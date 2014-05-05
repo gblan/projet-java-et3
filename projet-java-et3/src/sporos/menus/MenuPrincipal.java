@@ -52,7 +52,7 @@ public class MenuPrincipal extends JFrame {
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale p1 = new Principale(1, 300, 500,GrilleEnum.MOYEN);
+				Principale p1 = new Principale(1, 300, 500,GrilleEnum.MOYEN, false);
 
 			}
 		});

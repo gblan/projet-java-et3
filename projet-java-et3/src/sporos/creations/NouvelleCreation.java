@@ -38,7 +38,6 @@ public class NouvelleCreation extends JFrame {
 		creationListener.getJeuView().setPreferredSize(new Dimension(300, 500));
 		creationListener.getJeuView().addMouseListener(
 				creationListener.getGridCreationListener());
-		creationListener.getJeuView().addKeyListener(creationListener.getKey());
 		pane.add(creationListener.getJeuView());
 
 		JButton valider = new JButton("Valider");

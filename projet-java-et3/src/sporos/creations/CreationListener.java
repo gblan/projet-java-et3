@@ -66,10 +66,6 @@ public class CreationListener {
 		this.cliqueY = cliqueY;
 	}
 
-	public KeyListener getKey() {
-		return key;
-	}
-
 	private MouseAdapter gridCreationListener = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
@@ -94,29 +90,6 @@ public class CreationListener {
 
 	};
 
-	private KeyListener key = new KeyListener() {
-
-		@Override
-		public void keyPressed(KeyEvent arg0) {
-
-			if ((arg0.getKeyCode() == KeyEvent.VK_ENTER)) {
-			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-	};
-
 	public ActionListener getValidateButtonListener() {
 		return validateButtonListener;
 	}
@@ -125,35 +98,10 @@ public class CreationListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JDialog dialog = new JDialog();
-			JOptionPane optionPane = new JOptionPane();
-			optionPane.setMessage("");
-			optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
-
-			JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(7, 2));
-			String[] nb = { "0", "1", "2", "3" };
-
-			ArrayList<JComboBox> tab = new ArrayList<JComboBox>();
-			for (int i = 0; i < 7; i++) {
-				tab.add(new JComboBox(nb));
-			}
-
-			for (int i = 1; i < 8; i++) {
-				try {
-					panel.add(new JLabel(new ImageIcon(ImageIO.read(new File(
-							"resources/Pion_" + i + ".png")))));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				panel.add(tab.get(i - 1));
-			}
-			optionPane.add(panel);
-			optionPane.setOptionType(JOptionPane.DEFAULT_OPTION);
-
-			dialog = optionPane.createDialog(null, "Menu Contextuel");
-			dialog.setVisible(true);
+			DialogChoixBoutons jdialog = new DialogChoixBoutons(new JDialog(), jeuView);
+			jdialog.setVisible(true);
 		}
+
 	};
 
 }
