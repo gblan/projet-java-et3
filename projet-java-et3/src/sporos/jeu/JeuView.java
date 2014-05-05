@@ -27,16 +27,14 @@ public class JeuView extends Component {
 		this.jeu = jeu;
 		this.btnMenuContextuel = MenuContextuel.createButtonContextuel();
 	}
-	
+
 	public JeuModel getJeu() {
 		return jeu;
 	}
 
-	
 	public void setJeu(JeuModel jeu) {
 		this.jeu = jeu;
 	}
-
 
 	/**
 	 * @param graphics
@@ -62,40 +60,40 @@ public class JeuView extends Component {
 		jeu.getReserve().paint(g);
 
 		getBtnMenuContextuel().paint(g);
-		
+
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
 			PionView pionView = new PionView(jeu.getPionSelectionne());
 			pionView.paint(graphics);
 		}
-		if (jeu.getPionRelache() != null){
+		if (jeu.getPionRelache() != null) {
 			for (PionModel pion : jeu.getPionRelache()) {
-				
+
 				PionView pionView = new PionView(pion);
 				pionView.paint(graphics);
 			}
 		}
 	}
-	
-	public void buildMenuContextuel(){
-		JDialog dialog = new JDialog();
-	    JOptionPane optionPane = new JOptionPane();
-	    optionPane.setMessage("");
-	    optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
 
-	    JPanel panel = new JPanel();
-	    panel.setLayout(new GridLayout(4,1));
-	    String[] buttonTxt = {"Rejouer","Quitter Niveau","Quitter Jeu"};
-	    JButton[] buttons = new JButton[buttonTxt.length];
-	    for (int i = 0; i < buttonTxt.length; i++)
-	    {
-	        buttons[i] = new JButton(buttonTxt[i]);
-	        panel.add(buttons[i]);
-	    }
-	    optionPane.setOptionType(JOptionPane.DEFAULT_OPTION);
-	    optionPane.add(panel);
-	    
-	    dialog = optionPane.createDialog(null, "Menu Contextuel");
+	public static void buildMenuContextuel() {
+		JDialog dialog = new JDialog();
+		JOptionPane optionPane = new JOptionPane();
+		optionPane.setMessage("");
+		optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(4, 1));
+		String[] buttonTxt = { "Revenir", "Rejouer", "Quitter Niveau",
+				"Menu Principale" };
+		JButton[] buttons = new JButton[buttonTxt.length];
+		for (int i = 0; i < buttonTxt.length; i++) {
+			buttons[i] = new JButton(buttonTxt[i]);
+			panel.add(buttons[i]);
+		}
+		optionPane.setOptionType(JOptionPane.DEFAULT_OPTION);
+		optionPane.add(panel);
+
+		dialog = optionPane.createDialog(null, "Menu Contextuel");
 	}
 
 	public JButton getBtnMenuContextuel() {

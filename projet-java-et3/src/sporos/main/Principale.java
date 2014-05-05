@@ -47,7 +47,7 @@ public class Principale extends JFrame {
 
 		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		JeuListener jeuListener = new JeuListener(jeu, jeuView, this);
+		JeuListener jeuListener = new JeuListener(jeu, jeuView,this);
 
 		jeuListener.getJeuView().setBackground(Color.WHITE);
 		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
