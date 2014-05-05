@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
+import sporos.menus.ImageImplement;
 import sporos.menus.MenuContextuel;
 import sporos.reserve.pions.PionModel;
 import sporos.reserve.pions.PionView;
@@ -46,7 +48,8 @@ public class JeuView extends Component {
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-
+		
+		g.drawImage(new ImageIcon("resources/Background2.png").getImage(),0,0, null);
 		for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
 			for (CaseModel cases : alCase) {
 				CaseView caseView = new CaseView(cases);

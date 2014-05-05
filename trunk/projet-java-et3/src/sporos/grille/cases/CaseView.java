@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
@@ -53,10 +54,10 @@ public class CaseView implements ImageObserver {
 				caseModel.getX() + r, caseModel.getX() + r + r,
 				caseModel.getX() + r + r, caseModel.getX() + r };
 
-		graphics.setColor(Color.black);
-		graphics.drawPolygon(cx, cy, cx.length);
-		graphics.setColor(Color.blue);
-		graphics.fillPolygon(cx, cy, cx.length);
+//		graphics.setColor(Color.black);
+//		graphics.drawPolygon(cx, cy, cx.length);
+//		graphics.setColor(Color.blue);
+//		graphics.fillPolygon(cx, cy, cx.length);
 
 		// Puis le cercle interieur en fonction de l'etat de la case
 		switch (caseModel.getEtatActuel()) {
@@ -210,6 +211,21 @@ public class CaseView implements ImageObserver {
 					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case DESACTIVEE:
+			File file = new File("resources/CaseDesactive.png");
+			try {
+				BufferedImage img = ImageIO.read(file);
+//				Image imgScaled = img.getScaledInstance(
+//							2 * this.pionModel.getRayon() + 1,
+//							2 * this.pionModel.getRayon() + 1,
+//							BufferedImage.SCALE_FAST);
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		default:
 			break;
