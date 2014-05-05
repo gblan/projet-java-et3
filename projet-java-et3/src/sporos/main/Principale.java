@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.FileNotFoundException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import sporos.grille.Grille;
@@ -13,6 +14,7 @@ import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
+import sporos.menus.ImageImplement;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
@@ -32,10 +34,13 @@ public class Principale extends JFrame {
 	 */
 	public Principale(int numLevel, int width, int height,GrilleEnum taille) {
 		super("Sporos, niveau : " + numLevel);
-		setBounds(300, 100, 0, 0);
-		setSize(width - 100, height - 100);
+//		setBounds(300, 500, 10, 100);
+		setSize(width, height);
+		
 		Container pane = getContentPane();
+		pane.setBackground(Color.black);
 		pane.setLayout(new FlowLayout());
+
 
 		String level = "level" + numLevel + ".properties";
 
@@ -49,7 +54,6 @@ public class Principale extends JFrame {
 		JeuView jeuView = new JeuView(jeu);
 		JeuListener jeuListener = new JeuListener(jeu, jeuView,this);
 
-		jeuListener.getJeuView().setBackground(Color.WHITE);
 		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
 		jeuListener.getJeuView().addMouseListener(
 				jeuListener.getSelectionnerPions());
@@ -61,11 +65,10 @@ public class Principale extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		
-		pack();
+//		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
         setResizable(false);
-        setOpacity(0.7f);
 
 	}
 	
