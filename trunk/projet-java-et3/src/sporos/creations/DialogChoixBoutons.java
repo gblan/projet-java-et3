@@ -159,6 +159,10 @@ public class DialogChoixBoutons extends JDialog {
 		return confirmationListener;
 	}
 
+	public void kill(){
+		this.dispose();
+	}
+	
 	private ActionListener confirmationListener = new ActionListener() {
 
 		@Override
@@ -170,6 +174,7 @@ public class DialogChoixBoutons extends JDialog {
 						"Mauvais nombre de pions", JOptionPane.ERROR_MESSAGE);
 			} else {
 				saveAllCreation();
+				kill();
 				JOptionPane
 						.showMessageDialog(
 								null,
