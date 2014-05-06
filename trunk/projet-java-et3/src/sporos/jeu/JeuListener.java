@@ -33,16 +33,13 @@ public class JeuListener {
 	private int cliqueY;
 	private Timer endTimer;
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
+	private Principale principale;
 
 	public JeuListener(JeuModel jeu, final JeuView jeuView,
 			final Principale principale) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
-		jeuView.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent evt) {
-				JeuView.buildMenuContextuel(principale);
-			}
-		});
+		this.principale =principale;
 		this.bruits = new Bruitages();
 		this.endTimer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,6 +155,9 @@ public class JeuListener {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
+			if (evt.getX()>0 && evt.getX() <45 && evt.getY()>0 && evt.getY()<45){
+				JeuView.buildMenuContextuel(principale);
+			}
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
 				if (pion.contains(getCliqueX(), getCliqueY())
 						&& !jeuModel.getPionRelache().contains(pion)) {

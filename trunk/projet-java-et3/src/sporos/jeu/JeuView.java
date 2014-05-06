@@ -40,9 +40,11 @@ public class JeuView extends Component {
 	private JeuModel jeu;
 	private JButton btnMenuContextuel;
 
+
 	public JeuView(JeuModel jeu) {
 		this.jeu = jeu;
 		this.btnMenuContextuel = MenuContextuel.createButtonContextuel();
+
 	}
 
 	public JeuModel getJeu() {
@@ -53,6 +55,8 @@ public class JeuView extends Component {
 		this.jeu = jeu;
 	}
 	
+
+
 	/**
 	 * @param graphics
 	 *            on affiche le jeu en faisant appel à l'affichage de chaque
@@ -61,10 +65,12 @@ public class JeuView extends Component {
 	public void paint(Graphics graphics) {
 
 		Graphics2D g = (Graphics2D) graphics;
+
+		
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		
 		g.drawImage(new ImageIcon("resources/Background2.png").getImage(),0,0, null);
+		
 		for (ArrayList<CaseModel> alCase : jeu.getGrille().getListCases()) {
 			for (CaseModel cases : alCase) {
 				CaseView caseView = new CaseView(cases);
@@ -76,8 +82,8 @@ public class JeuView extends Component {
 			pionView.paint(graphics);
 		}
 		jeu.getReserve().paint(g);
-
-		getBtnMenuContextuel().paint(g);
+		btnMenuContextuel.paint(g);
+		
 
 		g.setStroke(new BasicStroke(2f));
 		if (jeu.getPionSelectionne() != null) {
