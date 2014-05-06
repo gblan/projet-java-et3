@@ -35,7 +35,8 @@ public class JeuListener {
 	private Timer endTimer;
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
 	private Principale principale;
-
+	private boolean fin = false;
+	
 	public JeuListener(JeuModel jeu, final JeuView jeuView,
 			final Principale principale, final boolean partieRapide) {
 		this.jeuModel = jeu;
@@ -55,7 +56,14 @@ public class JeuListener {
 						retour = JOptionPane.showConfirmDialog(null,
 								"Felicitation vous avez réussi une partie rapide",
 								"EXCELLENT", JOptionPane.CLOSED_OPTION);
-					} else {
+					}
+					else if ( PropertyAcces.getCurrentLevel() == 25){
+						retour = JOptionPane.showConfirmDialog(null,
+								"Felicitation fin du jeu! ?",
+								"BRAVO!", JOptionPane.CLOSED_OPTION);
+						fin = true;
+					}
+					else {
 						retour = JOptionPane.showConfirmDialog(null,
 								"Voulez vous passer au niveau suivant ?",
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
@@ -64,21 +72,27 @@ public class JeuListener {
 					PropertyAcces
 							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
 					if (retour == 0) {
-						GrilleEnum tailleGrille;
+						GrilleEnum tailleGrille = null;
 						if (PropertyAcces.getCurrentLevel()<6){
 							tailleGrille=GrilleEnum.PETIT;
 						}
 						else if (PropertyAcces.getCurrentLevel()<21){
 							tailleGrille=GrilleEnum.MOYEN;
 						}
-						else {
+						else if (PropertyAcces.getCurrentLevel()<25){
 							tailleGrille=GrilleEnum.GRAND;
 						}
+						else if(PropertyAcces.getCurrentLevel()==25) {
+							System.exit(0);
+						}
 						// OK
+						if(fin){
+							System.exit(0);
+						}
 						principale.kill();
 						if(!partieRapide){
 							Principale av = new Principale(PropertyAcces
-									.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN,
+									.getCurrentLevel(), 300, 500, tailleGrille,
 									false, false);
 							}else{
 								MenuPrincipal av = new MenuPrincipal();

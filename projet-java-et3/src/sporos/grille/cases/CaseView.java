@@ -443,40 +443,7 @@ public class CaseView implements ImageObserver {
 					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case DESACTIVEE:
-			File file8 = new File("resources/CaseDesactive.png");
-			try {
-				BufferedImage img = ImageIO.read(file8);
-
-				switch (this.caseModel.getTaille()){
-			    case PETIT : 
-			    	
-					Image imgScaled = img.getScaledInstance(
-								50,
-								55,
-								BufferedImage.SCALE_FAST);
-						graphics.drawImage(imgScaled,caseModel.getX(),
-								caseModel.getY(), null);
-					break;
-			    case MOYEN : 
-			    	
-						graphics.drawImage(img,caseModel.getX(),
-								caseModel.getY(), null);
-					break;
-			    case GRAND :
-			   
-					Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-								BufferedImage.SCALE_FAST);
-						graphics.drawImage(imgScaled2,caseModel.getX(),
-								caseModel.getY(), null);
-					break;
-			}
-
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
 			break;
 		default:
 			break;
