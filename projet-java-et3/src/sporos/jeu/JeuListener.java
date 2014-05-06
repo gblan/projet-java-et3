@@ -38,6 +38,11 @@ public class JeuListener {
 			final Principale principale) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
+		jeuView.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				JeuView.buildMenuContextuel(principale);
+			}
+		});
 		this.bruits = new Bruitages();
 		this.endTimer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,9 +127,7 @@ public class JeuListener {
 		return selectionnerPions;
 	}
 
-	public MouseAdapter getSelectionnerMenuContextuel() {
-		return selectionnerMenuContextuel;
-	}
+
 
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
@@ -148,11 +151,7 @@ public class JeuListener {
 		}
 	};
 
-	private MouseAdapter selectionnerMenuContextuel = new MouseAdapter() {
-		public void mousePressed(MouseEvent evt) {
-			jeuView.buildMenuContextuel();
-		}
-	};
+
 
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {

@@ -4,9 +4,17 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import sporos.grille.Grille;
@@ -65,11 +73,38 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
-		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener(jeuListener.getSelectionnerMenuContextuel());
+//		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener( new MouseAdapter() {
+//		public void mousePressed(MouseEvent evt) {
+//		System.out.println("lol");
+////		jeuView.buildMenuContextuel();
+//	}
+//});
+//		JButton btnMenuContextuel = new JButton();
+//		BufferedImage imgMenuContextuel = null;
+//		try {
+//			imgMenuContextuel = ImageIO.read(new File(
+//					"resources/icone_menu.png"));
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+//		btnMenuContextuel = new JButton(new ImageIcon(imgMenuContextuel));
+//		btnMenuContextuel.setBorder(BorderFactory.createEmptyBorder());
+//		btnMenuContextuel.setContentAreaFilled(false);
+//		btnMenuContextuel.setBounds(20, 0, 520, 50);
+//		
+//		btnMenuContextuel.addMouseListener( new MouseAdapter() {
+//			public void mousePressed(MouseEvent evt) {
+//				System.out.println("lol");
+////				jeuView.buildMenuContextuel();
+//			}
+//		});
+		
 
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		pane.add(btnMenuContextuel);
 		pane.add(jeuListener.getJeuView());
-//		System.out.println("is corect grid : "+jeu.isCorrectGrid(15));
+		
 //		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
