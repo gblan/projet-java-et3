@@ -46,15 +46,15 @@ public class Reserve {
 		int x = 0, y = 0;
 		switch (tailleGrille) {
 		case PETIT:
-			x = 50 + (50 * (numInt - 1));
+			x = 70 + (50 * (numInt - 1));
 			y = 7;
 			break;
 		case MOYEN:
-			x = 50 + (40 * (numInt - 1));
+			x = 70 + (40 * (numInt - 1));
 			y = 10;
 			break;
 		case GRAND:
-			x = 50 + (30 * (numInt - 1));
+			x = 70 + (30 * (numInt - 1));
 			y = 13;
 			break;
 		}
@@ -72,7 +72,7 @@ public class Reserve {
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setStroke(new BasicStroke(2f));
 		g.setColor(Color.black);
-		graphics.drawRoundRect(40, 6, 160, 45, 40, 40);
+		graphics.drawRoundRect(60, 6, 160, 45, 40, 40);
 	}
 
 	/**
