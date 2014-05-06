@@ -12,10 +12,11 @@ import sporos.grille.Grille;
 import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.main.Principale;
+import sporos.menus.MenuContextuel;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
-public class MesCreations extends JFrame {
+public class MesCreationsView extends JFrame {
 
 	/**
 	 * 
@@ -23,10 +24,12 @@ public class MesCreations extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private String[] listNiveau;
 
+
+
 	/**
 	 * @return Constructeur de niveaux
 	 */
-	public MesCreations(String windowsName) {
+	public MesCreationsView(String windowsName) {
 		super(windowsName);
 		setBounds(100, 100, 315, 454);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
