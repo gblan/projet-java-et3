@@ -40,14 +40,14 @@ public class JeuListener {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
 		this.principale =principale;
-		this.bruits = new Bruitages();
+		this.bruits = Bruitages.getInstance();
 		this.endTimer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (jeuView.getJeu().isFinish()) {
 					endTimer.stop();
 					jeuView.repaint();
-					Bruitages bruitage = new Bruitages();
+					Bruitages bruitage = Bruitages.getInstance();
 					bruitage.playSong("resources/sounds/fun.wav");
 
 					int retour = JOptionPane.showConfirmDialog(null,
