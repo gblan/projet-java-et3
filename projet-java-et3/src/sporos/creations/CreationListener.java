@@ -24,6 +24,7 @@ import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.jeu.JeuView;
+import sporos.main.Principale;
 import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 
@@ -32,6 +33,7 @@ public class CreationListener {
 	private JeuView jeuView;
 	private int cliqueX;
 	private int cliqueY;
+	private Principale principale;
 
 	public CreationListener(JeuView jeuView) {
 
@@ -70,6 +72,9 @@ public class CreationListener {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
+			if (evt.getX()>0 && evt.getX() <45 && evt.getY()>0 && evt.getY()<45){
+				JeuView.buildMenuContextuel(principale);
+			}
 			PionModel pion = new PionModel(PionEnum.TYPE1, getCliqueX() - 20,
 					getCliqueY() - 20, 0, 0, GrilleEnum.GRAND);
 			for (ArrayList<CaseModel> alCase : jeuView.getJeu().getGrille()

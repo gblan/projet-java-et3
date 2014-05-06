@@ -16,8 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
-import sporos.creations.MesCreations;
-import sporos.creations.NouvelleCreation;
+import sporos.creations.MesCreationsView;
+import sporos.creations.NouvelleCreationView;
 
 public class MenuModeCreation extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class MenuModeCreation extends JFrame {
 		btnMesCreations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				MesCreations av = new MesCreations("Mes Creations");
+				MesCreationsView av = new MesCreationsView("Mes Creations");
 			}
 		});
 
@@ -60,7 +60,7 @@ public class MenuModeCreation extends JFrame {
 		btnNouvelleCreation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				NouvelleCreation test = new NouvelleCreation();
+				NouvelleCreationView test = new NouvelleCreationView();
 
 			}
 		});
