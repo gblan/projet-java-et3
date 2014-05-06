@@ -3,6 +3,7 @@ package sporos.menus;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.StringTokenizer;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -83,7 +84,8 @@ public class MenuNiveaux extends JFrame {
 				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
 						"levels/" + str, GrilleEnum.GRAND),
 						Reserve.buildReserve("levels/" + str, GrilleEnum.GRAND));
-				tmp[i] = str.substring(0, 6);
+				String[] tmp2= str.split("\\.");
+				tmp[i] = tmp2[0];
 			}
 		}
 		listNiveau = tmp;

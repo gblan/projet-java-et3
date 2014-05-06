@@ -118,7 +118,7 @@ public class JeuModel {
 	private void cleanGrille() {
 		for (ArrayList<CaseModel> alCase : grille.getListCases()) {
 			for (CaseModel caseJeu : alCase) {
-				if (!caseJeu.getEtatActuel().equals(CaseEnum.DESACTIVEE)) {
+				if (!caseJeu.getEtatActuel().equals(caseJeu.getEtatInitial())) {
 					caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
 				}
 			}
@@ -150,7 +150,7 @@ public class JeuModel {
 
 					if(grille.getListCases().get(y).get(x).intersect(pionReserve)){
 
-						grille.getListCases().get(y).get(x).setEtatActuel(CaseEnum.OCCUPEE);
+						grille.getListCases().get(y).get(x).setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 
 					}
 					

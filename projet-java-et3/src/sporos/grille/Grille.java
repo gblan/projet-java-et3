@@ -78,7 +78,7 @@ public class Grille {
 		String caseGrille = "";
 		String typeCase;
 		CaseEnum caseEnum = null;
-		System.out.println(tailleGrille.toString());
+//		System.out.println(tailleGrille.toString());
 		for (int i = 0; i < nbLigne; i++) {
 			ligne = new ArrayList<CaseModel>();
 			for (int j = 0; j < nbColonne; j++) {
