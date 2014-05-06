@@ -12,7 +12,6 @@ import sporos.grille.Grille;
 import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.main.Principale;
-import sporos.menus.MenuContextuel;
 import sporos.reserve.Reserve;
 import sporos.utils.PropertyAcces;
 
@@ -23,8 +22,6 @@ public class MesCreationsView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String[] listNiveau;
-
-
 
 	/**
 	 * @return Constructeur de niveaux

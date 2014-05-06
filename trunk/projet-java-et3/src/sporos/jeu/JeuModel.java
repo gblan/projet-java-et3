@@ -9,7 +9,6 @@ import sporos.grille.Grille;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.reserve.Reserve;
-import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 
 public class JeuModel {
@@ -148,12 +147,14 @@ public class JeuModel {
 					pionReserve.setPositionRelativeToGrille(x, y);
 					List<PionModel> tmp = new ArrayList<PionModel>(pionsEnJeu);
 
-					if(grille.getListCases().get(y).get(x).intersect(pionReserve)){
+					if (grille.getListCases().get(y).get(x)
+							.intersect(pionReserve)) {
 
-						grille.getListCases().get(y).get(x).setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
+						grille.getListCases().get(y).get(x)
+								.setEtatActuel(CaseEnum.POTENTIELLESURVOLEE);
 
 					}
-					
+
 					tmp.add(pionReserve);
 					this.setPionsEnJeu(tmp);
 				} else {

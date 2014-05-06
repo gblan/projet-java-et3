@@ -159,10 +159,10 @@ public class DialogChoixBoutons extends JDialog {
 		return confirmationListener;
 	}
 
-	public void kill(){
+	public void kill() {
 		this.dispose();
 	}
-	
+
 	private ActionListener confirmationListener = new ActionListener() {
 
 		@Override
@@ -179,7 +179,7 @@ public class DialogChoixBoutons extends JDialog {
 						.showMessageDialog(
 								null,
 								"Le niveau voulu a été créé (niveau : "
-										+ (PropertyAcces.getNumLevelToSave()-1)
+										+ (PropertyAcces.getNumLevelToSave() - 1)
 										+ "), veuillez aller dans Mes Niveaux pour le consulter",
 								"Niveau creé", JOptionPane.INFORMATION_MESSAGE);
 			}

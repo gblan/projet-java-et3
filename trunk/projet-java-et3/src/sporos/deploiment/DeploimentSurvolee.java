@@ -51,14 +51,17 @@ public class DeploimentSurvolee extends Deploiment {
 
 	@Override
 	protected void deploimentDroite(PionModel p) {
-		
-		int lim =0;
-		switch(super.getGrille().getTaille()) {
-			case PETIT : lim = 5;
-					break;
-			case MOYEN : lim = 7;
-					break;
-			case GRAND : lim = 10;
+
+		int lim = 0;
+		switch (super.getGrille().getTaille()) {
+		case PETIT:
+			lim = 5;
+			break;
+		case MOYEN:
+			lim = 7;
+			break;
+		case GRAND:
+			lim = 10;
 		}
 
 		/* Vers la droite */
