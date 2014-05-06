@@ -246,15 +246,15 @@ public class CaseView implements ImageObserver {
 			switch (caseModel.getDirectionPropagation()) {
 			case DESCENDANT:
 				graphics.drawLine(caseModel.getX() + 10, caseModel.getY() + 5,
-						caseModel.getX() + 65, caseModel.getY() + 100);
+						caseModel.getX() + 33, caseModel.getY() + 45);
 				break;
 			case MONTANT:
-				graphics.drawLine(caseModel.getX(), caseModel.getY() + 57,
-						caseModel.getX() + 33, caseModel.getY());
+				graphics.drawLine(caseModel.getX()+12, caseModel.getY() + 43,
+						caseModel.getX() + 33, caseModel.getY()+3);
 				break;
 			case HORIZONTAL:
 				graphics.drawLine(caseModel.getX(), caseModel.getY() + 22,
-						caseModel.getX() + 40, caseModel.getY() + 22);
+						caseModel.getX() + 42, caseModel.getY() + 22);
 				break;
 			}
 			break;
