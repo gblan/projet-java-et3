@@ -43,10 +43,15 @@ public class Principale extends JFrame {
 	 */
 	
 	
+	
 	private void setMyLevels(boolean myLevels2) {
 		this.myLevels = myLevels2;
 	}
 	
+	public boolean isMyLevels() {
+		return myLevels;
+	}
+
 	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels) {
 		super("Sporos, niveau : " + numLevel);
 //		setBounds(300, 500, 10, 100);
