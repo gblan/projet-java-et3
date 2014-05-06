@@ -125,7 +125,7 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 			public void actionPerformed(ActionEvent e) {
 				dialog.dispose();
 				p.kill();
-				MenuNiveaux av = new MenuNiveaux("Liste des niveaux");
+				MesCreationsView av = new MesCreationsView("Liste des niveaux");
 				av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
