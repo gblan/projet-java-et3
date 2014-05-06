@@ -19,6 +19,7 @@ import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.main.Principale;
+import sporos.menus.MenuModeAventure;
 import sporos.menus.MenuPrincipal;
 import sporos.reserve.pions.PionModel;
 import sporos.utils.Bruitages;
@@ -77,7 +78,7 @@ public class JeuListener {
 					} else if (retour == 2) {
 						// CANCEL
 						principale.kill();
-						MenuPrincipal av = new MenuPrincipal();
+						MenuModeAventure av = new MenuModeAventure();
 
 					} else if (retour == -1) {
 						// QUIT
