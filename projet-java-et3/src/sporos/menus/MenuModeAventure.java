@@ -48,8 +48,18 @@ public class MenuModeAventure extends JFrame {
 		btnContinuerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				GrilleEnum tailleGrille;
+				if (PropertyAcces.getCurrentLevel()<6){
+					tailleGrille=GrilleEnum.PETIT;
+				}
+				else if (PropertyAcces.getCurrentLevel()<21){
+					tailleGrille=GrilleEnum.MOYEN;
+				}
+				else {
+					tailleGrille=GrilleEnum.GRAND;
+				}
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500, GrilleEnum.MOYEN, false, false);
+						300, 500, tailleGrille, false, false);
 			}
 		});
 
@@ -79,7 +89,7 @@ public class MenuModeAventure extends JFrame {
 					PropertyAcces.saveProperties(1);
 					setVisible(false);
 					Principale av = new Principale(PropertyAcces
-							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN, false, false);
+							.getCurrentLevel(), 300, 500, GrilleEnum.PETIT, false, false);
 				}
 
 			}

@@ -54,6 +54,7 @@ public class Principale extends JFrame {
 	}
 
 	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels, boolean partieRapide) {
+		
 		super("Sporos, niveau : " + numLevel);
 //		setBounds(300, 500, 10, 100);
 		setMyLevels(myLevels);

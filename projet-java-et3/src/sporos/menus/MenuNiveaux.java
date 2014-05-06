@@ -53,8 +53,18 @@ public class MenuNiveaux extends JFrame {
 				if (evt.getClickCount() == 2) {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
+					GrilleEnum tailleGrille;
+					if (index<6){
+						tailleGrille=GrilleEnum.PETIT;
+					}
+					else if (index<21){
+						tailleGrille=GrilleEnum.MOYEN;
+					}
+					else {
+						tailleGrille=GrilleEnum.GRAND;
+					}
 					Principale p1 = new Principale(index, 300, 500,
-							GrilleEnum.MOYEN, false, false);
+							tailleGrille, false,false);
 
 				}
 			}
