@@ -46,7 +46,7 @@ public class NouvelleCreationView extends JFrame {
 
 		JeuModel jeu = new JeuModel(0, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		CreationListener creationListener = new CreationListener(jeuView);
+		CreationListener creationListener = new CreationListener(jeuView,this);
 
 		creationListener.getJeuView().setBackground(Color.WHITE);
 		creationListener.getJeuView().setPreferredSize(new Dimension(300, 500));
@@ -62,7 +62,7 @@ public class NouvelleCreationView extends JFrame {
 		setVisible(true);
 	}
 	
-public static void buildMenuContextuel(final Principale p) {
+public static void buildMenuContextuel(final NouvelleCreationView p) {
 		
 		
 		final JFrame dialog = new JFrame("Menu");
@@ -105,8 +105,7 @@ public static void buildMenuContextuel(final Principale p) {
 			public void actionPerformed(ActionEvent e) {
 				dialog.dispose();
 				p.kill();
-				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500, GrilleEnum.MOYEN,false);
+				NouvelleCreationView av = new NouvelleCreationView();
 				av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
@@ -163,5 +162,10 @@ public static void buildMenuContextuel(final Principale p) {
 		dialog.setVisible(true);
 		dialog.setResizable(false);
 	}
+
+public void kill(){
+	this.dispose();
+}
+
 
 }

@@ -33,11 +33,12 @@ public class CreationListener {
 	private JeuView jeuView;
 	private int cliqueX;
 	private int cliqueY;
-	private Principale principale;
+	private NouvelleCreationView creationView;
 
-	public CreationListener(JeuView jeuView) {
+	public CreationListener(JeuView jeuView,NouvelleCreationView creationView) {
 
 		this.setJeuView(jeuView);
+		this.creationView=creationView;
 	}
 
 	public JeuView getJeuView() {
@@ -73,7 +74,7 @@ public class CreationListener {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
 			if (evt.getX()>0 && evt.getX() <45 && evt.getY()>0 && evt.getY()<45){
-				JeuView.buildMenuContextuel(principale);
+				NouvelleCreationView.buildMenuContextuel(creationView);
 			}
 			PionModel pion = new PionModel(PionEnum.TYPE1, getCliqueX() - 20,
 					getCliqueY() - 20, 0, 0, GrilleEnum.GRAND);

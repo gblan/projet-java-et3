@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
-import sporos.creations.NouvelleCreation;
+import sporos.creations.NouvelleCreationView;
 
 public class MenuOptions extends JFrame{
 
