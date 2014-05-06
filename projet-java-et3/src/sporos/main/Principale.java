@@ -28,6 +28,7 @@ import sporos.utils.PropertyAcces;
 
 public class Principale extends JFrame {
 
+	private boolean myLevels;
 	/**
 	 * 
 	 */
@@ -40,9 +41,16 @@ public class Principale extends JFrame {
 	 * @param height
 	 * @throws FileNotFoundException
 	 */
+	
+	
+	private void setMyLevels(boolean myLevels2) {
+		this.myLevels = myLevels2;
+	}
+	
 	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels) {
 		super("Sporos, niveau : " + numLevel);
 //		setBounds(300, 500, 10, 100);
+		setMyLevels(myLevels);
 		setSize(width, height);
 		
 		Container pane = getContentPane();
@@ -73,45 +81,19 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPions());
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
-//		jeuListener.getJeuView().getBtnMenuContextuel().addMouseListener( new MouseAdapter() {
-//		public void mousePressed(MouseEvent evt) {
-//		System.out.println("lol");
-////		jeuView.buildMenuContextuel();
-//	}
-//});
-//		JButton btnMenuContextuel = new JButton();
-//		BufferedImage imgMenuContextuel = null;
-//		try {
-//			imgMenuContextuel = ImageIO.read(new File(
-//					"resources/icone_menu.png"));
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-//		btnMenuContextuel = new JButton(new ImageIcon(imgMenuContextuel));
-//		btnMenuContextuel.setBorder(BorderFactory.createEmptyBorder());
-//		btnMenuContextuel.setContentAreaFilled(false);
-//		btnMenuContextuel.setBounds(20, 0, 520, 50);
-//		
-//		btnMenuContextuel.addMouseListener( new MouseAdapter() {
-//			public void mousePressed(MouseEvent evt) {
-//				System.out.println("lol");
-////				jeuView.buildMenuContextuel();
-//			}
-//		});
 		
-
+		System.out.println(jeu.isCorrectGrid(2));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		pane.add(btnMenuContextuel);
 		pane.add(jeuListener.getJeuView());
 		
-//		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
         setResizable(false);
 
 	}
-	
+
+
 	public void kill(){
 		this.dispose();
 	}
