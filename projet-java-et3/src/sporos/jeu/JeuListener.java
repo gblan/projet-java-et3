@@ -36,10 +36,10 @@ public class JeuListener {
 	private Principale principale;
 
 	public JeuListener(JeuModel jeu, final JeuView jeuView,
-			final Principale principale) {
+			final Principale principale, final boolean partieRapide) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
-		this.principale =principale;
+		this.principale = principale;
 		this.bruits = Bruitages.getInstance();
 		this.endTimer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -49,19 +49,30 @@ public class JeuListener {
 					jeuView.repaint();
 					Bruitages bruitage = Bruitages.getInstance();
 					bruitage.playSong("resources/sounds/fun.wav");
-
-					int retour = JOptionPane.showConfirmDialog(null,
-							"Voulez vous passer au niveau suivant ?",
-							"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
-
+					int retour = 0;
+					if (partieRapide) {
+						retour = JOptionPane.showConfirmDialog(null,
+								"Felicitation vous avez réussi une partie rapide",
+								"EXCELLENT", JOptionPane.CLOSED_OPTION);
+					} else {
+						retour = JOptionPane.showConfirmDialog(null,
+								"Voulez vous passer au niveau suivant ?",
+								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
+					}
 					/* Sauvegarde */
 					PropertyAcces
 							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
 					if (retour == 0) {
 						// OK
 						principale.kill();
+						if(!partieRapide){
 						Principale av = new Principale(PropertyAcces
-								.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN, false);
+								.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN,
+								false, false);
+						}else{
+							MenuPrincipal av = new MenuPrincipal();
+
+						}
 
 					} else if (retour == 2) {
 						// CANCEL
@@ -124,12 +135,10 @@ public class JeuListener {
 		return selectionnerPions;
 	}
 
-
-
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			Principale p1 = new Principale(jeuModel.getIdJeu(), 300, 500,
-					GrilleEnum.MOYEN, false);
+					GrilleEnum.MOYEN, false, false);
 		}
 
 	};
@@ -148,14 +157,13 @@ public class JeuListener {
 		}
 	};
 
-
-
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
-			if (evt.getX()>0 && evt.getX() <45 && evt.getY()>0 && evt.getY()<45){
+			if (evt.getX() > 0 && evt.getX() < 45 && evt.getY() > 0
+					&& evt.getY() < 45) {
 				JeuView.buildMenuContextuel(principale);
 			}
 			for (PionModel pion : jeuModel.getReserve().getPions()) {
@@ -261,7 +269,6 @@ public class JeuListener {
 
 				} else {
 
-			
 					Animation.DeplacementPion(jeuModel, jeuView, timers, 0,
 							jeuModel.getGrille().getTaille());
 					jeuModel.getGrille().getListCases()

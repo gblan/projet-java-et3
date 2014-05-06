@@ -53,7 +53,7 @@ public class Principale extends JFrame {
 		return myLevels;
 	}
 
-	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels) {
+	public Principale(int numLevel, int width, int height,GrilleEnum taille, boolean myLevels, boolean partieRapide) {
 		super("Sporos, niveau : " + numLevel);
 //		setBounds(300, 500, 10, 100);
 		setMyLevels(myLevels);
@@ -80,7 +80,7 @@ public class Principale extends JFrame {
 
 		JeuModel jeu = new JeuModel(numLevel, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		JeuListener jeuListener = new JeuListener(jeu, jeuView,this);
+		JeuListener jeuListener = new JeuListener(jeu, jeuView,this, partieRapide);
 
 		jeuListener.getJeuView().setPreferredSize(new Dimension(width, height));
 		jeuListener.getJeuView().addMouseListener(

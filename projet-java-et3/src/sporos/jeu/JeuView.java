@@ -146,7 +146,7 @@ public class JeuView extends Component {
 				} else {
 					Principale av = new Principale(PropertyAcces
 							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN,
-							false);
+							false, false);
 					av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			}

@@ -49,7 +49,7 @@ public class MenuModeAventure extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500, GrilleEnum.MOYEN, false);
+						300, 500, GrilleEnum.MOYEN, false, false);
 			}
 		});
 
@@ -79,7 +79,7 @@ public class MenuModeAventure extends JFrame {
 					PropertyAcces.saveProperties(1);
 					setVisible(false);
 					Principale av = new Principale(PropertyAcces
-							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN, false);
+							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN, false, false);
 				}
 
 			}
