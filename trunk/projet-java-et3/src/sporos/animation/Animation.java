@@ -27,8 +27,8 @@ public class Animation {
 			ajoutY = 5;
 			break;
 		case MOYEN:
-			ajoutX = 3;
-			ajoutY = 4;
+			ajoutX = 5;
+			ajoutY = 7;
 			break;
 		case GRAND:
 			ajoutX = 1;

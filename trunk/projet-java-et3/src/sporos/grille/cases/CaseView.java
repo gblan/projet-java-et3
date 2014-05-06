@@ -67,101 +67,159 @@ public class CaseView implements ImageObserver {
 			 * decalages en fonction de caseModel.getHEIGHT() a case des casts
 			 * precedants
 			 */
+			File file = new File("resources/CaseDesactive.png");
+			try {
+				BufferedImage img = ImageIO.read(file);
+//				Image imgScaled = img.getScaledInstance(
+//							2 * this.pionModel.getRayon() + 1,
+//							2 * this.pionModel.getRayon() + 1,
+//							BufferedImage.SCALE_FAST);
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			graphics.setColor(Color.black);
 			graphics.drawOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+3,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+3,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
-			graphics.setColor(new Color(0, 127, 255));
+			graphics.setColor(new Color(49, 140, 231));
 			graphics.fillOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+1,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+1,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case OCCUPEE:
+			File file2 = new File("resources/CaseDesactive.png");
+			try {
+				BufferedImage img = ImageIO.read(file2);
+//				Image imgScaled = img.getScaledInstance(
+//							2 * this.pionModel.getRayon() + 1,
+//							2 * this.pionModel.getRayon() + 1,
+//							BufferedImage.SCALE_FAST);
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			graphics.setColor(Color.black);
 			graphics.drawOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
 			graphics.fillOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 
 			break;
 		case CONTAMINEE:
-			graphics.setStroke(new BasicStroke(3f));
-			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
-			graphics.setStroke(new BasicStroke(2f));
-			graphics.setColor(new Color(128, 203, 96));
-			graphics.fillOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			File file5 = new File("resources/CaseDesactive.png");
 			try {
-				graphics.drawImage(
-						ImageIO.read(new File("resources/virus.png")),
-						caseModel.getX() - 3, caseModel.getY(), 45, 42, this);
+				BufferedImage img = ImageIO.read(file5);
+//				Image imgScaled = img.getScaledInstance(
+//							2 * this.pionModel.getRayon() + 1,
+//							2 * this.pionModel.getRayon() + 1,
+//							BufferedImage.SCALE_FAST);
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			// graphics.fillOval(caseModel.getX() + (HEIGHT / DRAWOVAL1),
-			// caseModel.getY() + (HEIGHT / DRAWOVAL1) + (HEIGHT / DRAWOVAL2), 2
-			// * r
-			// - (HEIGHT / 5), 2 * r - (HEIGHT / 5));
+			graphics.setStroke(new BasicStroke(2f));
+			graphics.setColor(new Color(255, 255, 255));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+3,
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+3,
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.setStroke(new BasicStroke(2f));
+			graphics.setColor(new Color(121, 28, 248));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+1,
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+1,
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
+//			try {
+//				graphics.drawImage(
+//						ImageIO.read(new File("resources/virus.png")),
+//						caseModel.getX() - 3, caseModel.getY(), 45, 42, this);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+			 
 			break;
 		case SURVOLEE:
 			break;
 		case POTENTIELLE:
+			File file3 = new File("resources/CaseDesactive.png");
+			try {
+				BufferedImage img = ImageIO.read(file3);
+//				Image imgScaled = img.getScaledInstance(
+//							2 * this.pionModel.getRayon() + 1,
+//							2 * this.pionModel.getRayon() + 1,
+//							BufferedImage.SCALE_FAST);
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
 			graphics.drawOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
 			graphics.fillOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
 					2 * r - (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 
@@ -188,32 +246,9 @@ public class CaseView implements ImageObserver {
 			}
 			break;
 		case POTENTIELLESURVOLEE:
-
-			graphics.setStroke(new BasicStroke(3f));
-			graphics.setColor(new Color(255, 0, 0));
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
-			graphics.setStroke(new BasicStroke(2f));
-			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1()),
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2()),
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
-			break;
-		case DESACTIVEE:
-			File file = new File("resources/CaseDesactive.png");
+			File file4 = new File("resources/CaseDesactive.png");
 			try {
-				BufferedImage img = ImageIO.read(file);
+				BufferedImage img = ImageIO.read(file4);
 //				Image imgScaled = img.getScaledInstance(
 //							2 * this.pionModel.getRayon() + 1,
 //							2 * this.pionModel.getRayon() + 1,
@@ -226,6 +261,30 @@ public class CaseView implements ImageObserver {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+
+			graphics.setStroke(new BasicStroke(3f));
+			graphics.setColor(new Color(255, 0, 0));
+			graphics.drawOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.setStroke(new BasicStroke(2f));
+			graphics.setColor(new Color(255, 203, 96));
+			graphics.fillOval(
+					caseModel.getX()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+2,
+					caseModel.getY()
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+2,
+					2 * r - (caseModel.getHEIGHT() / 5),
+					2 * r - (caseModel.getHEIGHT() / 5));
+			break;
+		case DESACTIVEE:
+
 			break;
 		default:
 			break;
