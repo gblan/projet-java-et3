@@ -108,6 +108,8 @@ public class MenuPrincipal extends JFrame {
 		btnOption.setContentAreaFilled(false);
 		btnOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				MenuOptions av = new MenuOptions();
 			}
 		});
 

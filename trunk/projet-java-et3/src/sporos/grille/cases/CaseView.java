@@ -183,7 +183,20 @@ public class CaseView implements ImageObserver {
 //			}
 			 
 			break;
-		case SURVOLEE:
+		case VIDE:
+			File file6 = new File("resources/CaseDesactive.png");
+			try {
+				BufferedImage img = ImageIO.read(file6);
+
+					graphics.drawImage(img,caseModel.getX(),
+							caseModel.getY(), null);
+
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			break;
 		case POTENTIELLE:
 			File file3 = new File("resources/CaseDesactive.png");

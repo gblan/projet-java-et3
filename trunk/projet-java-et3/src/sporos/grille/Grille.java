@@ -117,7 +117,7 @@ public class Grille {
 			for (int j = 0; j < nbColonne; j++) {
 				c = c.getPositions(j, i);
 				c.setEtatInitial(CaseEnum.DESACTIVEE);
-				c.setEtatActuel(CaseEnum.DESACTIVEE);
+				c.setEtatActuel(CaseEnum.VIDE);
 				ligne.add(c);
 			}
 			grille.getListCases().add(ligne);
