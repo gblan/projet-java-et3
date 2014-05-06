@@ -137,7 +137,7 @@ public class JeuView extends Component {
 				dialog.dispose();
 				p.kill();
 				Principale av = new Principale(PropertyAcces.getCurrentLevel(),
-						300, 500, GrilleEnum.MOYEN);
+						300, 500, GrilleEnum.MOYEN,false);
 				av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
