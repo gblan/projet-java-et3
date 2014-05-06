@@ -261,15 +261,7 @@ public class JeuListener {
 
 				} else {
 
-					// sinon on le positionne sur la case
-					// jeuModel.getPionSelectionne().setX(
-					// jeuModel.getGrille().getListCases()
-					// .get(jeuModel.getIndiceCaseH())
-					// .get(jeuModel.getIndiceCaseV()).getX() + 3);
-					// jeuModel.getPionSelectionne().setY(
-					// jeuModel.getGrille().getListCases()
-					// .get(jeuModel.getIndiceCaseH())
-					// .get(jeuModel.getIndiceCaseV()).getY() + 4);
+			
 					Animation.DeplacementPion(jeuModel, jeuView, timers, 0,
 							jeuModel.getGrille().getTaille());
 					jeuModel.getGrille().getListCases()
