@@ -306,7 +306,7 @@ public class DeploimentContaminee extends Deploiment {
 
 					timersDeploiment.get("gauche" + p.hashCode()).stop();
 					timersDeploiment.remove("gauche" + p.hashCode());
-					System.out.println(timersDeploiment);
+//					System.out.println(timersDeploiment);
 
 				}
 
@@ -396,7 +396,7 @@ public class DeploimentContaminee extends Deploiment {
 						timersDeploiment.get("droite" + p.hashCode()).stop();
 						timersDeploiment.remove("droite" + p.hashCode());
 
-						System.out.println(timersDeploiment);
+//						System.out.println(timersDeploiment);
 					} else {
 						p.setCaseCouranteDeplacementDroite(p
 								.getCaseCouranteDeplacementDroite() + 1);
@@ -446,7 +446,7 @@ public class DeploimentContaminee extends Deploiment {
 						timersDeploiment.remove("basdroite" + p.hashCode());
 						p.setAjoutBasDroite(0);
 
-						System.out.println(timersDeploiment);
+//						System.out.println(timersDeploiment);
 
 					}
 
