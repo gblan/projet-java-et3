@@ -54,10 +54,10 @@ public class CaseView implements ImageObserver {
 				caseModel.getX() + r, caseModel.getX() + r + r,
 				caseModel.getX() + r + r, caseModel.getX() + r };
 
-//		graphics.setColor(Color.black);
-//		graphics.drawPolygon(cx, cy, cx.length);
-//		graphics.setColor(Color.blue);
-//		graphics.fillPolygon(cx, cy, cx.length);
+		// graphics.setColor(Color.black);
+		// graphics.drawPolygon(cx, cy, cx.length);
+		// graphics.setColor(Color.blue);
+		// graphics.fillPolygon(cx, cy, cx.length);
 		int decaleCercleX = 0;
 		int decaleCercleY = 0;
 		// Puis le cercle interieur en fonction de l'etat de la case
@@ -69,268 +69,227 @@ public class CaseView implements ImageObserver {
 			 * precedants
 			 */
 			File file = new File("resources/CaseDesactive.png");
-			
+
 			try {
 				BufferedImage img = ImageIO.read(file);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-				    	decaleCercleX = 5;
-				    	decaleCercleY = 3;
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 3;
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					decaleCercleX = 5;
+					decaleCercleY = 3;
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					decaleCercleX = 3;
+					decaleCercleY = 3;
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 			graphics.setColor(Color.black);
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(49, 140, 231));
 			graphics.fillOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX-2,
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ decaleCercleX - 2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY-2,
-					2 * r - (caseModel.getHEIGHT() / 5),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+							+ decaleCercleY - 2, 2 * r
+							- (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 			break;
 		case OCCUPEE:
 			File file2 = new File("resources/CaseDesactive.png");
 			try {
 				BufferedImage img = ImageIO.read(file2);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-				    	decaleCercleX = 4;
-				    	decaleCercleY = 2;
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-				    	decaleCercleX = 2;
-				    	decaleCercleY = 2;
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					decaleCercleX = 4;
+					decaleCercleY = 2;
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					decaleCercleX = 2;
+					decaleCercleY = 2;
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			graphics.setColor(Color.black);
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			graphics.setColor(new Color(0, 127, 255));
-			graphics.fillOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 
 			break;
 		case CONTAMINEE:
-			
+
 			File file5 = new File("resources/CaseDesactive.png");
 			try {
 				BufferedImage img = ImageIO.read(file5);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-				    	decaleCercleX = 5;
-				    	decaleCercleY = 3;
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 3;
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					decaleCercleX = 5;
+					decaleCercleY = 3;
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					decaleCercleX = 3;
+					decaleCercleY = 3;
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(121, 28, 248));
 			graphics.fillOval(
 					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX-2,
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+							+ decaleCercleX - 2,
 					caseModel.getY()
 							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleX-2,
-					2 * r - (caseModel.getHEIGHT() / 5),
+							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+							+ decaleCercleX - 2, 2 * r
+							- (caseModel.getHEIGHT() / 5),
 					2 * r - (caseModel.getHEIGHT() / 5));
 
-			 
 			break;
 		case VIDE:
 			File file7 = new File("resources/CaseDesactive.png");
 			try {
 				BufferedImage img = ImageIO.read(file7);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 			break;
 		case POTENTIELLE:
 			File file3 = new File("resources/CaseDesactive.png");
 			try {
 				BufferedImage img = ImageIO.read(file3);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-				    	decaleCercleX = 4;
-				    	decaleCercleY = 2;
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-				    	decaleCercleX = 2;
-				    	decaleCercleY = 2;
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					decaleCercleX = 4;
+					decaleCercleY = 2;
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					decaleCercleX = 2;
+					decaleCercleY = 2;
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -338,24 +297,22 @@ public class CaseView implements ImageObserver {
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 
 			/* Direction de propagation */
 
@@ -370,8 +327,8 @@ public class CaseView implements ImageObserver {
 						caseModel.getX() + 33, caseModel.getY() + 45);
 				break;
 			case MONTANT:
-				graphics.drawLine(caseModel.getX()+12, caseModel.getY() + 43,
-						caseModel.getX() + 33, caseModel.getY()+3);
+				graphics.drawLine(caseModel.getX() + 12, caseModel.getY() + 43,
+						caseModel.getX() + 33, caseModel.getY() + 3);
 				break;
 			case HORIZONTAL:
 				graphics.drawLine(caseModel.getX(), caseModel.getY() + 22,
@@ -383,39 +340,31 @@ public class CaseView implements ImageObserver {
 			File file4 = new File("resources/CaseDesactive.png");
 			try {
 				BufferedImage img = ImageIO.read(file4);
-				
-				
-				switch (this.caseModel.getTaille()){
-				    case PETIT : 
-				    	decaleCercleX = 4;
-				    	decaleCercleY = 2;
-						Image imgScaled = img.getScaledInstance(
-									56,
-									59,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case MOYEN : 
-				    	decaleCercleX = 2;
-				    	decaleCercleY = 2;
-							graphics.drawImage(img,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
-				    case GRAND :
-				    	decaleCercleX = 3;
-				    	decaleCercleY = 2;
-						Image imgScaled2 = img.getScaledInstance(
-								33,
-								35,
-									BufferedImage.SCALE_FAST);
-							graphics.drawImage(imgScaled2,caseModel.getX(),
-									caseModel.getY(), null);
-						break;
+
+				switch (this.caseModel.getTaille()) {
+				case PETIT:
+					decaleCercleX = 4;
+					decaleCercleY = 2;
+					Image imgScaled = img.getScaledInstance(56, 59,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
+				case MOYEN:
+					decaleCercleX = 2;
+					decaleCercleY = 2;
+					graphics.drawImage(img, caseModel.getX(), caseModel.getY(),
+							null);
+					break;
+				case GRAND:
+					decaleCercleX = 3;
+					decaleCercleY = 2;
+					Image imgScaled2 = img.getScaledInstance(33, 35,
+							BufferedImage.SCALE_FAST);
+					graphics.drawImage(imgScaled2, caseModel.getX(),
+							caseModel.getY(), null);
+					break;
 				}
-				
-
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -423,27 +372,25 @@ public class CaseView implements ImageObserver {
 
 			graphics.setStroke(new BasicStroke(3f));
 			graphics.setColor(new Color(255, 0, 0));
-			graphics.drawOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.drawOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			graphics.setStroke(new BasicStroke(2f));
 			graphics.setColor(new Color(255, 203, 96));
-			graphics.fillOval(
-					caseModel.getX()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())+decaleCercleX,
-					caseModel.getY()
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
-							+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())+decaleCercleY,
-					2 * r - (caseModel.getHEIGHT() / 5),
-					2 * r - (caseModel.getHEIGHT() / 5));
+			graphics.fillOval(caseModel.getX()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ decaleCercleX, caseModel.getY()
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL1())
+					+ (caseModel.getHEIGHT() / caseModel.getDRAWOVAL2())
+					+ decaleCercleY, 2 * r - (caseModel.getHEIGHT() / 5), 2 * r
+					- (caseModel.getHEIGHT() / 5));
 			break;
 		case DESACTIVEE:
-			
+
 			break;
 		default:
 			break;

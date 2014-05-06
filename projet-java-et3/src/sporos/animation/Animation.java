@@ -48,7 +48,7 @@ public class Animation {
 					.get(jeuModel.getIndiceCaseH())
 					.get(jeuModel.getIndiceCaseV()).getY()
 					+ ajoutY;
-//			System.out.println(arriveeX);
+			// System.out.println(arriveeX);
 			break;
 		case 1:
 			arriveeX = pionRelache.getxInitial();

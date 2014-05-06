@@ -54,7 +54,18 @@ public class MenuPrincipal extends JFrame {
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale p1 = new Principale((int) (Math.random()*PropertyAcces.getCurrentLevel())+1, 300, 500,GrilleEnum.MOYEN, false,true);
+				GrilleEnum tailleGrille;
+				if (PropertyAcces.getCurrentLevel()<6){
+					tailleGrille=GrilleEnum.PETIT;
+				}
+				else if (PropertyAcces.getCurrentLevel()<21){
+					tailleGrille=GrilleEnum.MOYEN;
+				}
+				else {
+					tailleGrille=GrilleEnum.GRAND;
+				}
+				Principale av = new Principale((int) (Math.random()*PropertyAcces.getCurrentLevel())+1,
+						300, 500, tailleGrille, false, false);
 
 			}
 		});

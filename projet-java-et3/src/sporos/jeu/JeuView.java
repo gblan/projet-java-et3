@@ -2,7 +2,6 @@ package sporos.jeu;
 
 import java.awt.BasicStroke;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -15,12 +14,9 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sporos.creations.MesCreationsView;
@@ -29,7 +25,6 @@ import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.grille.cases.CaseView;
 import sporos.main.Principale;
-import sporos.menus.ImageImplement;
 import sporos.menus.MenuContextuel;
 import sporos.menus.MenuNiveaux;
 import sporos.menus.MenuPrincipal;

@@ -3,7 +3,6 @@ package sporos.menus;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.StringTokenizer;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -55,17 +54,15 @@ public class MenuNiveaux extends JFrame {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
 					GrilleEnum tailleGrille;
-					if (index<6){
-						tailleGrille=GrilleEnum.PETIT;
-					}
-					else if (index<21){
-						tailleGrille=GrilleEnum.MOYEN;
-					}
-					else {
-						tailleGrille=GrilleEnum.GRAND;
+					if (index < 6) {
+						tailleGrille = GrilleEnum.PETIT;
+					} else if (index < 21) {
+						tailleGrille = GrilleEnum.MOYEN;
+					} else {
+						tailleGrille = GrilleEnum.GRAND;
 					}
 					Principale p1 = new Principale(index, 300, 500,
-							tailleGrille, false,false);
+							tailleGrille, false, false);
 
 				}
 			}
@@ -84,7 +81,7 @@ public class MenuNiveaux extends JFrame {
 				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
 						"levels/" + str, GrilleEnum.GRAND),
 						Reserve.buildReserve("levels/" + str, GrilleEnum.GRAND));
-				String[] tmp2= str.split("\\.");
+				String[] tmp2 = str.split("\\.");
 				tmp[i] = tmp2[0];
 			}
 		}

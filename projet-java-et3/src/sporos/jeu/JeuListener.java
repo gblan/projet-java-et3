@@ -36,7 +36,7 @@ public class JeuListener {
 	private Hashtable<PionModel, Timer> timers = new Hashtable<PionModel, Timer>();
 	private Principale principale;
 	private boolean fin = false;
-	
+
 	public JeuListener(JeuModel jeu, final JeuView jeuView,
 			final Principale principale, final boolean partieRapide) {
 		this.jeuModel = jeu;
@@ -53,17 +53,17 @@ public class JeuListener {
 					bruitage.playSong("resources/sounds/fun.wav");
 					int retour = 0;
 					if (partieRapide) {
+						retour = JOptionPane
+								.showConfirmDialog(
+										null,
+										"Felicitation vous avez réussi une partie rapide",
+										"EXCELLENT", JOptionPane.CLOSED_OPTION);
+					} else if (PropertyAcces.getCurrentLevel() == 25) {
 						retour = JOptionPane.showConfirmDialog(null,
-								"Felicitation vous avez réussi une partie rapide",
-								"EXCELLENT", JOptionPane.CLOSED_OPTION);
-					}
-					else if ( PropertyAcces.getCurrentLevel() == 25){
-						retour = JOptionPane.showConfirmDialog(null,
-								"Felicitation fin du jeu! ?",
-								"BRAVO!", JOptionPane.CLOSED_OPTION);
+								"Felicitation fin du jeu! ?", "BRAVO!",
+								JOptionPane.CLOSED_OPTION);
 						fin = true;
-					}
-					else {
+					} else {
 						retour = JOptionPane.showConfirmDialog(null,
 								"Voulez vous passer au niveau suivant ?",
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
@@ -73,31 +73,28 @@ public class JeuListener {
 							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
 					if (retour == 0) {
 						GrilleEnum tailleGrille = null;
-						if (PropertyAcces.getCurrentLevel()<6){
-							tailleGrille=GrilleEnum.PETIT;
-						}
-						else if (PropertyAcces.getCurrentLevel()<21){
-							tailleGrille=GrilleEnum.MOYEN;
-						}
-						else if (PropertyAcces.getCurrentLevel()<25){
-							tailleGrille=GrilleEnum.GRAND;
-						}
-						else if(PropertyAcces.getCurrentLevel()==25) {
+						if (PropertyAcces.getCurrentLevel() < 6) {
+							tailleGrille = GrilleEnum.PETIT;
+						} else if (PropertyAcces.getCurrentLevel() < 21) {
+							tailleGrille = GrilleEnum.MOYEN;
+						} else if (PropertyAcces.getCurrentLevel() < 25) {
+							tailleGrille = GrilleEnum.GRAND;
+						} else if (PropertyAcces.getCurrentLevel() == 25) {
 							System.exit(0);
 						}
 						// OK
-						if(fin){
+						if (fin) {
 							System.exit(0);
 						}
 						principale.kill();
-						if(!partieRapide){
+						if (!partieRapide) {
 							Principale av = new Principale(PropertyAcces
 									.getCurrentLevel(), 300, 500, tailleGrille,
 									false, false);
-							}else{
-								MenuPrincipal av = new MenuPrincipal();
+						} else {
+							MenuPrincipal av = new MenuPrincipal();
 
-							}
+						}
 					} else if (retour == 2) {
 						// CANCEL
 						principale.kill();
@@ -159,8 +156,6 @@ public class JeuListener {
 		return selectionnerPions;
 	}
 
-
-
 	private MouseAdapter recommencerPartie = new MouseAdapter() {
 		public void mousePressed(MouseEvent evt) {
 			Principale p1 = new Principale(jeuModel.getIdJeu(), 300, 500,
@@ -182,8 +177,6 @@ public class JeuListener {
 			System.exit(0);
 		}
 	};
-
-
 
 	/* Selection du pion a la souris */
 	private MouseAdapter selectionnerPions = new MouseAdapter() {
@@ -297,7 +290,6 @@ public class JeuListener {
 
 				} else {
 
-			
 					Animation.DeplacementPion(jeuModel, jeuView, timers, 0,
 							jeuModel.getGrille().getTaille());
 					jeuModel.getGrille().getListCases()

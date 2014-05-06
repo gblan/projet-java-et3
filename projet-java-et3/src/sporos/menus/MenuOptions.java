@@ -17,9 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import sporos.creations.NouvelleCreationView;
 import sporos.utils.Bruitages;
-import sporos.utils.PropertyAcces;
 
 public class MenuOptions extends JFrame {
 
@@ -35,14 +33,13 @@ public class MenuOptions extends JFrame {
 		} else {
 			tmp = "Desactivé";
 		}
-		
-		labelNiveauCourant.setText("Le son est actuellement : "+tmp);
+
+		labelNiveauCourant.setText("Le son est actuellement : " + tmp);
 
 		JButton btnSon = new JButton("Son");
 		BufferedImage imgBtnSon = null;
 		try {
-			imgBtnSon = ImageIO.read(new File(
-					"resources/Son.png"));
+			imgBtnSon = ImageIO.read(new File("resources/Son.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -52,10 +49,10 @@ public class MenuOptions extends JFrame {
 		btnSon.setContentAreaFilled(false);
 		btnSon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
+				// setVisible(false);
 				if (Bruitages.getInstance().isActive()) {
 					Bruitages.getInstance().setActive(false);
-				}else{
+				} else {
 					Bruitages.getInstance().setActive(true);
 				}
 				String tmp = "";
@@ -64,7 +61,7 @@ public class MenuOptions extends JFrame {
 				} else {
 					tmp = "Desactivé";
 				}
-				labelNiveauCourant.setText("Le son est actuellement : "+tmp);
+				labelNiveauCourant.setText("Le son est actuellement : " + tmp);
 
 			}
 		});

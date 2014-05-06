@@ -22,11 +22,8 @@ import sporos.grille.Grille;
 import sporos.grille.GrilleEnum;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
-import sporos.main.Principale;
-import sporos.menus.MenuNiveaux;
 import sporos.menus.MenuPrincipal;
 import sporos.reserve.Reserve;
-import sporos.utils.PropertyAcces;
 
 public class NouvelleCreationView extends JFrame {
 
@@ -46,7 +43,7 @@ public class NouvelleCreationView extends JFrame {
 
 		JeuModel jeu = new JeuModel(0, grille, reserve);
 		JeuView jeuView = new JeuView(jeu);
-		CreationListener creationListener = new CreationListener(jeuView,this);
+		CreationListener creationListener = new CreationListener(jeuView, this);
 
 		creationListener.getJeuView().setBackground(Color.WHITE);
 		creationListener.getJeuView().setPreferredSize(new Dimension(300, 500));
@@ -61,19 +58,18 @@ public class NouvelleCreationView extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-public static void buildMenuContextuel(final NouvelleCreationView p) {
-		
-		
+
+	public static void buildMenuContextuel(final NouvelleCreationView p) {
+
 		final JFrame dialog = new JFrame("Menu");
 		dialog.setSize(100, 100);
-//		JOptionPane optionPane = new JOptionPane();
-//		optionPane.setMessage("");
-//		optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
+		// JOptionPane optionPane = new JOptionPane();
+		// optionPane.setMessage("");
+		// optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(4, 1));
-		
+
 		JButton btnRevenir = new JButton("Revenir");
 		BufferedImage imgbtnRevenir = null;
 		try {
@@ -93,7 +89,8 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 		JButton btnRecommencer = new JButton("Recommencer");
 		BufferedImage imgbtnRecommencer = null;
 		try {
-			imgbtnRecommencer= ImageIO.read(new File("resources/Recommencer.png"));
+			imgbtnRecommencer = ImageIO.read(new File(
+					"resources/Recommencer.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -109,11 +106,12 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 				av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-		
+
 		JButton btnNiveaux = new JButton("Niveaux");
 		BufferedImage imgbtnNiveaux = null;
 		try {
-			imgbtnNiveaux = ImageIO.read(new File("resources/NiveauxRetour.png"));
+			imgbtnNiveaux = ImageIO
+					.read(new File("resources/NiveauxRetour.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -129,11 +127,12 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 				av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-		
+
 		JButton btnMenu = new JButton("Menu");
 		BufferedImage imgbtnMenu = null;
 		try {
-			imgbtnMenu = ImageIO.read(new File("resources/MenuPrincipalRetour.png"));
+			imgbtnMenu = ImageIO.read(new File(
+					"resources/MenuPrincipalRetour.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -149,13 +148,13 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 				m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-		
+
 		panel.add(btnRevenir);
 		panel.add(btnRecommencer);
 		panel.add(btnNiveaux);
-		
+
 		panel.add(btnMenu);
-//		dialog.getContentPane().setOptionType(JOptionPane.DEFAULT_OPTION);
+		// dialog.getContentPane().setOptionType(JOptionPane.DEFAULT_OPTION);
 		dialog.getContentPane().add(panel);
 		dialog.pack();
 		dialog.setLocationRelativeTo(null);
@@ -163,9 +162,8 @@ public static void buildMenuContextuel(final NouvelleCreationView p) {
 		dialog.setResizable(false);
 	}
 
-public void kill(){
-	this.dispose();
-}
-
+	public void kill() {
+		this.dispose();
+	}
 
 }

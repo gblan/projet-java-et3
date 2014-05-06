@@ -1,30 +1,18 @@
 package sporos.creations;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import sporos.grille.GrilleEnum;
 import sporos.grille.cases.CaseEnum;
 import sporos.grille.cases.CaseModel;
 import sporos.jeu.JeuView;
-import sporos.main.Principale;
 import sporos.reserve.pions.PionEnum;
 import sporos.reserve.pions.PionModel;
 
@@ -35,10 +23,10 @@ public class CreationListener {
 	private int cliqueY;
 	private NouvelleCreationView creationView;
 
-	public CreationListener(JeuView jeuView,NouvelleCreationView creationView) {
+	public CreationListener(JeuView jeuView, NouvelleCreationView creationView) {
 
 		this.setJeuView(jeuView);
-		this.creationView=creationView;
+		this.creationView = creationView;
 	}
 
 	public JeuView getJeuView() {
@@ -73,7 +61,8 @@ public class CreationListener {
 		public void mousePressed(MouseEvent evt) {
 			setCliqueX(evt.getX());
 			setCliqueY(evt.getY());
-			if (evt.getX()>0 && evt.getX() <45 && evt.getY()>0 && evt.getY()<45){
+			if (evt.getX() > 0 && evt.getX() < 45 && evt.getY() > 0
+					&& evt.getY() < 45) {
 				NouvelleCreationView.buildMenuContextuel(creationView);
 			}
 			PionModel pion = new PionModel(PionEnum.TYPE1, getCliqueX() - 20,
@@ -104,7 +93,8 @@ public class CreationListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			DialogChoixBoutons jdialog = new DialogChoixBoutons(new JDialog(), jeuView);
+			DialogChoixBoutons jdialog = new DialogChoixBoutons(new JDialog(),
+					jeuView);
 			jdialog.setVisible(true);
 		}
 
