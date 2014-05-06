@@ -23,16 +23,16 @@ public class Animation {
 		int ajoutY = 0;
 		switch (tailleGrille) {
 		case PETIT:
-			ajoutX = 3;
-			ajoutY = 5;
+			ajoutX = 6;
+			ajoutY = 7;
 			break;
 		case MOYEN:
 			ajoutX = 5;
 			ajoutY = 7;
 			break;
 		case GRAND:
-			ajoutX = 1;
-			ajoutY = 2;
+			ajoutX = 4;
+			ajoutY = 5;
 			break;
 		}
 

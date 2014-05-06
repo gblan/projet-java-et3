@@ -106,30 +106,35 @@ public class DeploimentContaminee extends Deploiment {
 		/* Vers la gauche */
 
 		for (int i = p.getIndiceCaseV() - 1; i >= 0; i--) {
-			/*
-			 * On arrete le deploiment lorsque on rencontre une case desactivee
-			 * ou occupee
-			 */
+			try {
+				/*
+				 * On arrete le deploiment lorsque on rencontre une case
+				 * desactivee ou occupee
+				 */
 
-			if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
-					.get(i).getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (super.getGrille().getListCases()
-							.get(p.getIndiceCaseH()).get(i).getEtatActuel()
-							.equals(CaseEnum.OCCUPEE))) {
+				if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
+						.get(i).getEtatActuel().equals(CaseEnum.DESACTIVEE))
+						|| (super.getGrille().getListCases()
+								.get(p.getIndiceCaseH()).get(i).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
 
-				break;
+					break;
 
-			}
+				}
 
-			/*
-			 * On continue le deploiment lorsque on rencontre une case
-			 * contaminee ou disponible
-			 */
-			else if (super.getGrille().getListCases().get(p.getIndiceCaseH())
-					.get(i).getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
-				/* Transformation de la case en case potentielle */
-				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(i)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+				/*
+				 * On continue le deploiment lorsque on rencontre une case
+				 * contaminee ou disponible
+				 */
+				else if (super.getGrille().getListCases()
+						.get(p.getIndiceCaseH()).get(i).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
+					/* Transformation de la case en case potentielle */
+					super.getGrille().getListCases().get(p.getIndiceCaseH())
+							.get(i).setEtatActuel(CaseEnum.CONTAMINEE);
+
+				}
+			} catch (IndexOutOfBoundsException e) {
 
 			}
 		}
@@ -138,22 +143,28 @@ public class DeploimentContaminee extends Deploiment {
 	protected void deploimentInstantaneDroite(PionModel p) {
 
 		/* Vers la droite */
-		for (int j = p.getIndiceCaseV() + 1; j < 7; j++) {
-			if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
-					.get(j).getEtatActuel().equals(CaseEnum.DESACTIVEE))
-					|| (super.getGrille().getListCases()
-							.get(p.getIndiceCaseH()).get(j).getEtatActuel()
-							.equals(CaseEnum.OCCUPEE))) {
-				break;
-			} else if (super.getGrille().getListCases().get(p.getIndiceCaseH())
-					.get(j).getEtatActuel().equals(CaseEnum.POTENTIELLE)) {
 
-				/* SURVOL */
-				super.getGrille().getListCases().get(p.getIndiceCaseH()).get(j)
-						.setEtatActuel(CaseEnum.CONTAMINEE);
+		for (int j = p.getIndiceCaseV() + 1; j < 7; j++) {
+			try {
+				if ((super.getGrille().getListCases().get(p.getIndiceCaseH())
+						.get(j).getEtatActuel().equals(CaseEnum.DESACTIVEE))
+						|| (super.getGrille().getListCases()
+								.get(p.getIndiceCaseH()).get(j).getEtatActuel()
+								.equals(CaseEnum.OCCUPEE))) {
+					break;
+				} else if (super.getGrille().getListCases()
+						.get(p.getIndiceCaseH()).get(j).getEtatActuel()
+						.equals(CaseEnum.POTENTIELLE)) {
+
+					/* SURVOL */
+					super.getGrille().getListCases().get(p.getIndiceCaseH())
+							.get(j).setEtatActuel(CaseEnum.CONTAMINEE);
+
+				}
+
+			} catch (IndexOutOfBoundsException e) {
 
 			}
-
 		}
 
 	}
@@ -306,7 +317,7 @@ public class DeploimentContaminee extends Deploiment {
 
 					timersDeploiment.get("gauche" + p.hashCode()).stop();
 					timersDeploiment.remove("gauche" + p.hashCode());
-//					System.out.println(timersDeploiment);
+					// System.out.println(timersDeploiment);
 
 				}
 
@@ -396,7 +407,7 @@ public class DeploimentContaminee extends Deploiment {
 						timersDeploiment.get("droite" + p.hashCode()).stop();
 						timersDeploiment.remove("droite" + p.hashCode());
 
-//						System.out.println(timersDeploiment);
+						// System.out.println(timersDeploiment);
 					} else {
 						p.setCaseCouranteDeplacementDroite(p
 								.getCaseCouranteDeplacementDroite() + 1);
@@ -446,7 +457,7 @@ public class DeploimentContaminee extends Deploiment {
 						timersDeploiment.remove("basdroite" + p.hashCode());
 						p.setAjoutBasDroite(0);
 
-//						System.out.println(timersDeploiment);
+						// System.out.println(timersDeploiment);
 
 					}
 
