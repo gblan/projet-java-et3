@@ -77,10 +77,10 @@ public class CreationListener {
 
 				for (CaseModel caseJeu : alCase) {
 					if (caseJeu.intersect(pion)) {
-						if (caseJeu.getEtatActuel().equals(CaseEnum.DISPONIBLE)) {
-							caseJeu.setEtatActuel(CaseEnum.DESACTIVEE);
-						} else {
+						if (caseJeu.getEtatActuel().equals(CaseEnum.VIDE)) {
 							caseJeu.setEtatActuel(CaseEnum.DISPONIBLE);
+						} else {
+							caseJeu.setEtatActuel(CaseEnum.VIDE);
 						}
 					}
 				}
