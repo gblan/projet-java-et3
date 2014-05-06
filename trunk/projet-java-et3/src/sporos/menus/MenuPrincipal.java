@@ -28,8 +28,6 @@ public class MenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] arg) {
-//		Bruitages mp3 = new Bruitages();
-//		mp3.playSong("resources/");
 		MenuPrincipal m = new MenuPrincipal();
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
