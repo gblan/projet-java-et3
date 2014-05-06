@@ -24,6 +24,7 @@ import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
 import sporos.menus.ImageImplement;
 import sporos.reserve.Reserve;
+import sporos.utils.Bruitages;
 import sporos.utils.PropertyAcces;
 
 public class Principale extends JFrame {
@@ -87,8 +88,9 @@ public class Principale extends JFrame {
 		jeuListener.getJeuView().addMouseMotionListener(
 				jeuListener.getSelectionnerPionsMotion());
 		
-		System.out.println(jeu.isCorrectGrid(2));
-		
+//		System.out.println(jeu.isCorrectGrid(2));
+		Bruitages b = Bruitages.getInstance();
+		b.playSong("resources/sounds/sonjeu.wav");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 		

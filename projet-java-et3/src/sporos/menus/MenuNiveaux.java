@@ -73,7 +73,7 @@ public class MenuNiveaux extends JFrame {
 				JeuModel jeu = new JeuModel(i, Grille.buildGrid(
 						"levels/" + str, GrilleEnum.GRAND),
 						Reserve.buildReserve("levels/" + str, GrilleEnum.GRAND));
-				tmp[i] = str;
+				tmp[i] = str.substring(0, 6);
 			}
 		}
 		listNiveau = tmp;

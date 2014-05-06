@@ -14,42 +14,57 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import sporos.creations.NouvelleCreationView;
+import sporos.utils.Bruitages;
+import sporos.utils.PropertyAcces;
 
-public class MenuOptions extends JFrame{
+public class MenuOptions extends JFrame {
 
-	private boolean sonActif;
-
-	public boolean isSonActif() {
-		return sonActif;
-	}
-
-	public void setSonActif(boolean sonActif) {
-		this.sonActif = sonActif;
-	}
-	
 	public MenuOptions() {
 		super("Mode Option");
 		ImageImplement background = new ImageImplement(new ImageIcon(
 				"resources/Background1.png").getImage(), 0, 0);
 
-		JButton btnNouvelleCreation = new JButton("Nouvelle Creation");
-		BufferedImage imgbtnNouvelleCreation = null;
+		final JLabel labelNiveauCourant = new JLabel();
+		String tmp = "";
+		if (Bruitages.getInstance().isActive()) {
+			tmp = "Activé";
+		} else {
+			tmp = "Desactivé";
+		}
+		
+		labelNiveauCourant.setText("Le son est actuellement : "+tmp);
+
+		JButton btnSon = new JButton("Son");
+		BufferedImage imgBtnSon = null;
 		try {
-			imgbtnNouvelleCreation = ImageIO.read(new File(
-					"resources/NouvelleCreation.png"));
+			imgBtnSon = ImageIO.read(new File(
+					"resources/Son.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		btnNouvelleCreation = new JButton(new ImageIcon(imgbtnNouvelleCreation));
-		btnNouvelleCreation.setBorder(BorderFactory.createEmptyBorder());
-		btnNouvelleCreation.setContentAreaFilled(false);
-		btnNouvelleCreation.addActionListener(new ActionListener() {
+		btnSon = new JButton(new ImageIcon(imgBtnSon));
+		btnSon.setBorder(BorderFactory.createEmptyBorder());
+		btnSon.setContentAreaFilled(false);
+		btnSon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
+				if (Bruitages.getInstance().isActive()) {
+					Bruitages.getInstance().setActive(false);
+				}else{
+					Bruitages.getInstance().setActive(true);
+				}
+				String tmp = "";
+				if (Bruitages.getInstance().isActive()) {
+					tmp = "Activé";
+				} else {
+					tmp = "Desactivé";
+				}
+				labelNiveauCourant.setText("Le son est actuellement : "+tmp);
 
 			}
 		});
@@ -81,7 +96,8 @@ public class MenuOptions extends JFrame{
 						.addGroup(
 								groupLayout
 										.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnNouvelleCreation)
+										.addComponent(labelNiveauCourant)
+										.addComponent(btnSon)
 										.addComponent(btnRetourMenu,
 												GroupLayout.PREFERRED_SIZE, 69,
 												GroupLayout.PREFERRED_SIZE))
@@ -90,10 +106,11 @@ public class MenuOptions extends JFrame{
 				Alignment.TRAILING).addGroup(
 				groupLayout.createSequentialGroup()
 						.addContainerGap(180, Short.MAX_VALUE)
-						.addComponent(btnNouvelleCreation).addGap(25)
+						.addComponent(labelNiveauCourant).addGap(25)
+						.addComponent(btnSon).addGap(25)
 						.addComponent(btnRetourMenu).addGap(61)));
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
-				btnNouvelleCreation, btnRetourMenu });
+				btnSon, btnRetourMenu });
 		getContentPane().add(background);
 		getContentPane().setLayout(groupLayout);
 		pack();

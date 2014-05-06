@@ -10,7 +10,14 @@ import javax.sound.sampled.SourceDataLine;
 
 public class Bruitages {
 
-	public Bruitages() {
+	private boolean active = true;
+	private static Bruitages instance = null;
+
+	public static Bruitages getInstance() {
+		if (instance == null) {
+			instance = new Bruitages();
+		}
+		return instance;
 	}
 
 	private AudioFormat audioFormat;
@@ -18,7 +25,9 @@ public class Bruitages {
 	private SourceDataLine sourceDataLine;
 
 	public void playSong(String fileName) {
-		jouerSon(fileName);
+		if (isActive()) {
+			jouerSon(fileName);
+		}
 	}
 
 	private void jouerSon(String fileName) {
@@ -36,6 +45,14 @@ public class Bruitages {
 			e.printStackTrace();
 			System.exit(0);
 		}
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	class PlayThread extends Thread {
