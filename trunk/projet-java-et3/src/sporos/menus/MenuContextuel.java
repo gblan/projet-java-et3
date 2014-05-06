@@ -2,6 +2,8 @@ package sporos.menus;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +16,6 @@ import javax.swing.JButton;
 import sporos.jeu.JeuView;
 
 public class MenuContextuel {
-
 
 	public static JButton createButtonContextuel() {
 		JButton btnMenuContextuel = new JButton();
@@ -30,13 +31,13 @@ public class MenuContextuel {
 		btnMenuContextuel.setContentAreaFilled(false);
 		btnMenuContextuel.setBounds(20, 0, 520, 50);
 		
-		btnMenuContextuel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JeuView.buildMenuContextuel() ;
-				System.out.println("lol");
-			}
-		});
-		
+//		btnMenuContextuel.addMouseListener( new MouseAdapter() {
+//			public void mousePressed(MouseEvent evt) {
+//				System.out.println("lol");
+////				jeuView.buildMenuContextuel();
+//			}
+//		});
+//		
 		return btnMenuContextuel;
 	}
 
