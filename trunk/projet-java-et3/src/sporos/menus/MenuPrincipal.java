@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import sporos.grille.GrilleEnum;
 import sporos.main.Principale;
 import sporos.utils.Bruitages;
+import sporos.utils.PropertyAcces;
 
 public class MenuPrincipal extends JFrame {
 
@@ -55,7 +56,7 @@ public class MenuPrincipal extends JFrame {
 		btnPartieRapide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Principale p1 = new Principale(1, 300, 500,GrilleEnum.MOYEN, false);
+				Principale p1 = new Principale((int) (Math.random()*PropertyAcces.getCurrentLevel())+1, 300, 500,GrilleEnum.MOYEN, false,true);
 
 			}
 		});

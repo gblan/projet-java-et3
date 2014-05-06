@@ -54,7 +54,7 @@ public class MenuNiveaux extends JFrame {
 					int index = list.locationToIndex(evt.getPoint());
 					setVisible(false);
 					Principale p1 = new Principale(index, 300, 500,
-							GrilleEnum.MOYEN, false);
+							GrilleEnum.MOYEN, false, false);
 
 				}
 			}
