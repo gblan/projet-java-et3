@@ -78,8 +78,7 @@ public class Principale extends JFrame {
 				jeuListener.getSelectionnerPionsMotion());
 
 		// System.out.println(jeu.isCorrectGrid(2));
-		Bruitages b = Bruitages.getInstance();
-		b.playSong("resources/sounds/sonjeu.wav");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pane.add(jeuListener.getJeuView());
 
