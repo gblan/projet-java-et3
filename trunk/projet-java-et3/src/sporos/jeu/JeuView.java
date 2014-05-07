@@ -139,9 +139,16 @@ public class JeuView extends Component {
 					NouvelleCreationView av = new NouvelleCreationView();
 					av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				} else {
-					Principale av = new Principale(PropertyAcces
-							.getCurrentLevel(), 300, 500, GrilleEnum.MOYEN,
-							false, false);
+					GrilleEnum tailleGrille;
+					if (PropertyAcces.getCurrentLevel() < 6) {
+						tailleGrille = GrilleEnum.PETIT;
+					} else if (PropertyAcces.getCurrentLevel() < 21) {
+						tailleGrille = GrilleEnum.MOYEN;
+					} else {
+						tailleGrille = GrilleEnum.GRAND;
+					}
+					Principale av = new Principale(PropertyAcces.getCurrentLevel(),
+							300, 500, tailleGrille, false, false);
 					av.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			}
