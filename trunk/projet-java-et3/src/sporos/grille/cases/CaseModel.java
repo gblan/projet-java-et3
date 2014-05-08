@@ -222,7 +222,7 @@ public class CaseModel {
 		int distance = (int) Math.sqrt(Math.pow(distanceX, 2)
 				+ Math.pow(distanceY, 2));
 
-		if (distance < p.getRayon() - (p.getRayon() / 20)) {
+		if (distance < p.getRayon() - (p.getRayon() / 5)) {
 			return true;
 		}
 
