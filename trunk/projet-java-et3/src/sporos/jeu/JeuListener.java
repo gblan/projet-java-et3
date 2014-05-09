@@ -37,7 +37,7 @@ public class JeuListener {
 	private Principale principale;
 	private boolean fin = false;
 
-	public JeuListener(JeuModel jeu, final JeuView jeuView,
+	public JeuListener(final JeuModel jeu, final JeuView jeuView,
 			final Principale principale, final boolean partieRapide) {
 		this.jeuModel = jeu;
 		this.jeuView = jeuView;
@@ -58,9 +58,9 @@ public class JeuListener {
 										null,
 										"Felicitation vous avez réussi une partie rapide",
 										"EXCELLENT", JOptionPane.CLOSED_OPTION);
-					} else if (PropertyAcces.getCurrentLevel() == 25) {
+					} else if (jeu.getIdJeu() == 25) {
 						retour = JOptionPane.showConfirmDialog(null,
-								"Felicitation fin du jeu! ?", "BRAVO!",
+								"Felicitation fin du jeu!", "BRAVO!",
 								JOptionPane.CLOSED_OPTION);
 						fin = true;
 					} else {
@@ -69,17 +69,19 @@ public class JeuListener {
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
 					}
 					/* Sauvegarde */
+					if(jeu.getIdJeu()==PropertyAcces.getCurrentLevel()){
 					PropertyAcces
 							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
+					}
 					if (retour == 0) {
 						GrilleEnum tailleGrille = null;
-						if (PropertyAcces.getCurrentLevel() < 6) {
+						if (jeu.getIdJeu() < 6) {
 							tailleGrille = GrilleEnum.PETIT;
-						} else if (PropertyAcces.getCurrentLevel() < 21) {
+						} else if (jeu.getIdJeu() < 21) {
 							tailleGrille = GrilleEnum.MOYEN;
-						} else if (PropertyAcces.getCurrentLevel() < 25) {
+						} else if (jeu.getIdJeu() < 25) {
 							tailleGrille = GrilleEnum.GRAND;
-						} else if (PropertyAcces.getCurrentLevel() == 25) {
+						} else if (jeu.getIdJeu() == 25) {
 							System.exit(0);
 						}
 						// OK
@@ -88,8 +90,7 @@ public class JeuListener {
 						}
 						principale.kill();
 						if (!partieRapide) {
-							Principale av = new Principale(PropertyAcces
-									.getCurrentLevel(), 300, 500, tailleGrille,
+							Principale av = new Principale(jeu.getIdJeu()+1, 300, 500, tailleGrille,
 									false, false);
 						} else {
 							MenuPrincipal av = new MenuPrincipal();
