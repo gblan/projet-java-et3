@@ -69,7 +69,7 @@ public class JeuListener {
 								"EXCELLENT", JOptionPane.OK_CANCEL_OPTION);
 					}
 					/* Sauvegarde */
-					if(jeu.getIdJeu()==PropertyAcces.getCurrentLevel()){
+					if(jeu.getIdJeu()==PropertyAcces.getCurrentLevel() && jeu.getIdJeu()+1<26){
 					PropertyAcces
 							.saveProperties(jeuView.getJeu().getIdJeu() + 1);
 					}
