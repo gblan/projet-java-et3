@@ -14,7 +14,6 @@ import sporos.jeu.JeuListener;
 import sporos.jeu.JeuModel;
 import sporos.jeu.JeuView;
 import sporos.reserve.Reserve;
-import sporos.utils.Bruitages;
 
 public class Principale extends JFrame {
 
